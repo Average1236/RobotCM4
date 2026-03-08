@@ -193,7 +193,7 @@ void RobotCm::wifi_vision_callback(const asio::ip::udp::endpoint &ep, const void
         vision_data_.resize(size);
         vision_data_.store(ptr, size);
     }
-    // vision_publisher_.publish();
+    vision_publisher_.publish();
 }
 
 void RobotCm::wifi_cmd_small_callback(const asio::ip::udp::endpoint &ep, const void *ptr, size_t size)
@@ -203,7 +203,7 @@ void RobotCm::wifi_cmd_small_callback(const asio::ip::udp::endpoint &ep, const v
         cmd_small_data_.resize(size);
         cmd_small_data_.store(ptr, size);
     }
-    // cmd_small_publisher_.publish();
+    cmd_small_publisher_.publish();
 }
 
 void RobotCm::cmd_callback(const zos::Data &data)
