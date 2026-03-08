@@ -1,0 +1,5 @@
+/home/pi/rpi_timer/robot/build/CMakeFiles/main.dir
+/home/pi/rpi_timer/robot/build/CMakeFiles/edit_cache.dir
+/home/pi/rpi_timer/robot/build/CMakeFiles/rebuild_cache.dir
+/home/pi/rpi_timer/robot/build/zos_new/CMakeFiles/edit_cache.dir
+/home/pi/rpi_timer/robot/build/zos_new/CMakeFiles/rebuild_cache.dir
