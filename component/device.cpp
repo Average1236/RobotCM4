@@ -23,7 +23,6 @@ device_::device_()
 
     dribbler_i2c_handle = i2cOpen(config::i2c_bus, config::dribbler_addr, 0);
 
-#ifndef CM4_stm32
 #ifdef motor_i2c_same_addr
     motors_i2c_addr = config::motors_addr[0];
     motors_i2c_handle = i2cOpen(config::i2c_bus, motors_i2c_addr, 0);
@@ -36,7 +35,6 @@ device_::device_()
         // std::cout << i << ": " << std::hex << i2c_addr[i] << " ";
     }
 #endif
-#endif
 
     imu_uart = new mraa::Uart("/dev/ttyAMA0");
     imu_uart->setBaudRate(921600);
@@ -45,7 +43,6 @@ device_::device_()
     // uart1->setTimeout(10,10,10);
     // set_imu_config(imu_uart);
 
-#ifndef CM4_stm32
     try
     {
         nano_uart = new mraa::Uart("/dev/ttyAMA3");
@@ -59,25 +56,6 @@ device_::device_()
     {
         std::cerr << "Error setting parity on UART" << std::endl;
     }
-#else
-    try
-    {
-        stm32_uart = new mraa::Uart("/dev/ttyAMA3");
-    }
-    catch (std::exception &e)
-    {
-        std::cerr << "Error while setting up raw UART, do you have a uart?" << std::endl;
-        std::terminate();
-    }
-    if (stm32_uart->setBaudRate(115200) != mraa::SUCCESS)
-    {
-        std::cerr << "Error setting parity on UART" << std::endl;
-    }
-    // if (stm32_uart->setTimeout(5,5,5) != mraa::SUCCESS)
-    // {
-    //     std::cerr << "Error setting Timeout on UART" << std::endl;
-    // }
-#endif
 
     buzzer_start();
 
@@ -85,7 +63,6 @@ device_::device_()
     have_imu = true;
 }
 
-#ifndef CM4_stm32
 #ifndef motor_i2c_same_addr
 int device_::motors_detect()
 {
@@ -271,9 +248,8 @@ void device_::all_motor_run()
     std::this_thread::sleep_for(std::chrono::microseconds(1));
 }
 #endif
-#endif
 
-#if (defined(motor_i2c_same_addr) || defined(CM4_stm32))
+#ifdef motor_i2c_same_addr
 void device_::set_all_motor_vel(std::vector<int16_t> &vel_pack)
 {
     std::scoped_lock lock(vel_tx_mutex);
@@ -291,7 +267,6 @@ std::array<float, MAX_MOTOR> device_::get_motors_vel()
     return vel_encoders_array;
 }
 
-#ifndef CM4_stm32
 std::vector<int> device_::read_nano()
 {
     uint8_t nano_buff[3] = {0};
@@ -332,71 +307,7 @@ std::vector<int> device_::read_nano()
     }
     return nano_pack;
 }
-#else
-std::vector<int> device_::read_write_stm32()
-{
-    uint8_t nano_buff[3] = {0};
-    std::vector<int> nano_pack(3, 0);
-    int infrare_flag;
-    int cap_vol;
-    int bat_vol_10x;
-    std::scoped_lock lock(mutex_uart);
-    if(stm32_uart->dataAvailable(2))
-    {
-        std::string buff_str = stm32_uart->readStr(UART_BUFF_SIZE);
-        // std::cout << "read pack: " << buff_str << std::endl;
-        if (nano_buff != NULL)
-        {
-            std::copy(buff_str.begin(), buff_str.begin() + UART_BUFF_SIZE, nano_buff);
-        }
 
-        if ((nano_buff[0] & 0xfa) == 0xfa)
-        {
-            nano_pack[0] = nano_buff[0];
-            nano_pack[1] = nano_buff[1];
-            nano_pack[2] = nano_buff[2];
-            for(int i=0;i<3;i++)
-            {
-                expansion_board_buff[i] = nano_pack[i];
-            }
-        }
-        else if (nano_buff[0] == 0xaa)
-        {
-            nano_pack[0] = nano_buff[0];
-            nano_pack[1] = nano_buff[1];
-            nano_pack[2] = nano_buff[2];
-            for(int i=0;i<3;i++)
-            {
-                expansion_board_buff[i] = nano_pack[i];
-            }
-        }
-        else {
-            zos::log("wrong pack: {:#04x}\n", nano_buff[0]);
-        }
-
-        
-    }
-    
-    uint8_t vel_pack_temp[UART_TXDATA_SIZE];
-    {
-        std::scoped_lock lock(vel_tx_mutex);
-        for (int i = 0; i < UART_TXDATA_SIZE-1; i++)
-        {
-
-            vel_pack_temp[i+1] = all_vel.tx[i];
-            
-        }
-    }
-    vel_pack_temp[0] = stm32TxFrameHeader;
-    zos::log("{:#04x} ,{:#04x} ,{:#04x} ,{:#04x} ,{:#04x} ,{:#04x} ,{:#04x}\n",vel_pack_temp[0],vel_pack_temp[1],vel_pack_temp[2],vel_pack_temp[3],vel_pack_temp[4],vel_pack_temp[5],vel_pack_temp[6]);
-
-    zos::log("{}\n",stm32_uart->write((char *)vel_pack_temp,UART_TXDATA_SIZE));
-
-    std::this_thread::sleep_for(std::chrono::milliseconds(1));
-
-    return nano_pack;
-}
-#endif
 
 
 int device_::read_imu(mraa::Uart *uart)

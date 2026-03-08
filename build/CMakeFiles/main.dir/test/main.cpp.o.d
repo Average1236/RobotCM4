@@ -947,4 +947,8 @@ CMakeFiles/main.dir/test/main.cpp.o: \
  /usr/include/aarch64-linux-gnu/c++/14/bits/basic_file.h \
  /usr/include/aarch64-linux-gnu/c++/14/bits/c++io.h \
  /usr/include/c++/14/bits/fstream.tcc \
+ /home/pi/rpi_timer/robot/component/robot_stm32.h \
+ /home/pi/rpi_timer/robot/component/device_stm32.h \
+ /usr/local/include/mraa/spi.hpp /usr/local/include/mraa/spi.h \
+ /usr/local/include/mraa/gpio.hpp /usr/local/include/mraa/gpio.h \
  /home/pi/rpi_timer/robot/component/timer.h

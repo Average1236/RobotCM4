@@ -1,4 +1,5 @@
 #include "robot.h"
+#include "robot_stm32.h"
 #include "timer.h"
 #include <asio.hpp>
 #include <csignal>
@@ -9,7 +10,11 @@
 
 // #define CM4_stm32
 
+#ifdef CM4_stm32
+robot_stm32_ *g_robot = nullptr;
+#else
 robot_ *g_robot = nullptr;
+#endif
 
 std::atomic<bool> g_stop = false;
 
@@ -51,7 +56,7 @@ void schedule_periodic(asio::io_context &io,
     });
 }
 }
-
+#ifndef CM4_stm32
 void callback_device(void)
 {
     auto now_time = std::chrono::steady_clock::now();
@@ -72,6 +77,7 @@ void callback_device(void)
         // std::this_thread::sleep_for(std::chrono::microseconds(1000));
     }
 }
+#endif
 
 void callback_update_expansion_board(void)
 {
@@ -90,7 +96,11 @@ void callback_update_expansion_board(void)
 
 int main()
 {
+#ifdef CM4_stm32
+    robot_stm32_ robot{};
+#else
     robot_ robot{};
+#endif
     g_robot = &robot;
     g_stop = false;
 
@@ -103,15 +113,26 @@ int main()
         scheduler_io.stop();
     });
 
+#ifndef CM4_stm32
     std::jthread motor_thread(callback_device);
+#endif
     std::jthread update_expansion_board_thread(callback_update_expansion_board);
 
+#ifndef CM4_stm32
     schedule_periodic(scheduler_io,
                       std::chrono::nanoseconds(1000000000 / config::robot_freq),
                       []() {
                           if (g_robot)
                               g_robot->control();
                       });
+
+    schedule_periodic(scheduler_io,
+                      std::chrono::milliseconds(5),
+                      []() {
+                          if (g_robot)
+                              g_robot->update_imu();
+                      });
+#endif
 
     schedule_periodic(scheduler_io,
                       std::chrono::nanoseconds(1000000000 / config::sendback_freq),
@@ -150,13 +171,6 @@ int main()
                       []() {
                           if (g_robot)
                               g_robot->shoot();
-                      });
-
-    schedule_periodic(scheduler_io,
-                      std::chrono::milliseconds(5),
-                      []() {
-                          if (g_robot)
-                              g_robot->update_imu();
                       });
 
     schedule_periodic(scheduler_io,

@@ -24,14 +24,14 @@ std::string logcsv = "/home/pi/log.csv";
 
 robot_::robot_() : device{},
                    wifi(std::bind(&robot_::wifi_callback, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3)),
-                //    wifi_vision(config::receive_port_vision,std::bind(&robot_::_wifi_vision, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3)),
-                //    wifi_cmd_small(config::receive_port_cmd_small, std::bind(&robot_::_wifi_cmd_small, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3)),
+                   wifi_vision(config::receive_port_vision,std::bind(&robot_::_wifi_vision, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3)),
+                   wifi_cmd_small(config::receive_port_cmd_small, std::bind(&robot_::_wifi_cmd_small, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3)),
                    _cmd_subsciber("cmd", std::bind(&robot_::cmd_callback, this, std::placeholders::_1)),
-                   _cmd_publisher("cmd")
-                //    _vision_subsciber("vision", std::bind(&robot_::_vision_cb, this, std::placeholders::_1)),
-                //    _vision_publisher("vision"),
-                //    _cmd_small_subsciber("cmd_small", std::bind(&robot_::cmd_small_cb, this, std::placeholders::_1)),
-                //    _cmd_small_publisher("cmd_small")
+                   _cmd_publisher("cmd"),
+                   _vision_subsciber("vision", std::bind(&robot_::_vision_cb, this, std::placeholders::_1)),
+                   _vision_publisher("vision"),
+                   _cmd_small_subsciber("cmd_small", std::bind(&robot_::cmd_small_cb, this, std::placeholders::_1)),
+                   _cmd_small_publisher("cmd_small")
 {
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
@@ -262,9 +262,11 @@ void robot_::cmd_callback(const zos::Data &data)
             _c.vr_target = _c.use_dir ? ((float)(int32_t)_p.cmd_vel().imu_theta())/1000.0 : ((float)(int32_t)_p.cmd_vel().velocity_r())/1000.0;
             // _c.vr_target = _p.cmd_vel().velocity_r();
             // zos::log("vel,{},{},{}\n",_c.vx_target,_c.vy_target,_c.vr_target);
-            _c.angle_pid[0] = ((float)(int32_t)_p.angle_pid(0)/1000.0);
-            _c.angle_pid[1] = ((float)(int32_t)_p.angle_pid(1)/1000.0);
-            _c.angle_pid[2] = ((float)(int32_t)_p.angle_pid(2)/1000.0);
+            if (_p.angle_pid_size() >= 3) {
+                _c.angle_pid[0] = ((float)(int32_t)_p.angle_pid(0)/1000.0);
+                _c.angle_pid[1] = ((float)(int32_t)_p.angle_pid(1)/1000.0);
+                _c.angle_pid[2] = ((float)(int32_t)_p.angle_pid(2)/1000.0);
+            }
             sendIsDebug = _p.isdebug();
 
             last_need_change_team = (need_change_team)?true:false;
@@ -1176,7 +1178,7 @@ double robot_::ms_since_last_cmd_pack()
 
 void robot_::cmd_small_cb(const zos::Data &data)
 {
-    zos::log("cmd_small_cb\n");
+    // zos::log("cmd_small_cb\n");
     if (initFinish)
     {
 

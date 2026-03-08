@@ -6,6 +6,7 @@
 #include "wifi.h"
 #include "parameter.h"
 #include "matrix.h"
+#include "config.h"
 
 #include "robot_comm.pb.h"
 #include "vision_detection.pb.h"
@@ -146,14 +147,14 @@ private:
     std::mutex _cmd_small_data_mutex;
     zos::Subscriber<2> _cmd_subsciber;
     zos::Publisher _cmd_publisher;
-    // zos::Subscriber<2> _vision_subsciber;
-    // zos::Publisher _vision_publisher;
-    // zos::Subscriber<2> _cmd_small_subsciber;
-    // zos::Publisher _cmd_small_publisher;
+    zos::Subscriber<2> _vision_subsciber;
+    zos::Publisher _vision_publisher;
+    zos::Subscriber<2> _cmd_small_subsciber;
+    zos::Publisher _cmd_small_publisher;
 
     wifi_comm wifi;
-    // wifi_receive_ wifi_vision;
-    // wifi_receive_ wifi_cmd_small;
+    wifi_receive_ wifi_vision;
+    wifi_receive_ wifi_cmd_small;
 };
 
 #endif

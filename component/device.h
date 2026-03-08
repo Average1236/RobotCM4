@@ -36,9 +36,7 @@
 #define GPIO_LED2 21
 
 // #define motor_i2c_same_addr
-// #define CM4_stm32
 
-const uint8_t stm32TxFrameHeader = 0xbb;
 
 class device_
 {
@@ -57,13 +55,9 @@ private:
 
     // nano or stm32
 public:
-#ifndef CM4_stm32
     std::vector<int> read_nano();
     mraa::Uart *nano_uart;
-#else
-    std::vector<int> read_write_stm32();
-    mraa::Uart *stm32_uart;
-#endif
+
     // std::mutex expansion_board_buff_mutex;
     std::array<std::atomic<int>, UART_BUFF_SIZE> expansion_board_buff;
 
@@ -85,7 +79,6 @@ private:
     std::array<std::atomic_int, MAX_MOTOR> vel_target_atomic;   // 0.1 rad/s
     std::array<std::atomic_int, MAX_MOTOR> vel_encoders_atomic; // 0.1 rad/s
 
-#ifndef CM4_stm32
 #ifdef motor_i2c_same_addr
     uint8_t motors_i2c_addr;
     int motors_i2c_handle;
@@ -93,9 +86,8 @@ private:
     uint8_t motors_i2c_addr[4];
     int motors_i2c_handle[MAX_MOTOR];
 #endif
-#endif
 
-#if (defined(motor_i2c_same_addr) || defined(CM4_stm32))
+#ifdef motor_i2c_same_addr
     typedef union _all_vel_
     {
         int16_t vel[3];
