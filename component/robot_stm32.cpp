@@ -18,16 +18,16 @@ static std::atomic<bool> initFinish = false;
 static std::string logcsv = "/home/pi/log.csv";
 #endif
 
-robot_stm32_::robot_stm32_() : device{},
-                   wifi(std::bind(&robot_stm32_::wifi_callback, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3)),
-                   wifi_vision(config::receive_port_vision,std::bind(&robot_stm32_::_wifi_vision, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3)),
-                   wifi_cmd_small(config::receive_port_cmd_small, std::bind(&robot_stm32_::_wifi_cmd_small, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3)),
-                   _cmd_subsciber("cmd", std::bind(&robot_stm32_::cmd_callback, this, std::placeholders::_1)),
-                   _cmd_publisher("cmd"),
-                   _vision_subsciber("vision", std::bind(&robot_stm32_::_vision_cb, this, std::placeholders::_1)),
-                   _vision_publisher("vision"),
-                   _cmd_small_subsciber("cmd_small", std::bind(&robot_stm32_::cmd_small_cb, this, std::placeholders::_1)),
-                   _cmd_small_publisher("cmd_small")
+RobotStm32::RobotStm32() : device_{},
+                   wifi_(std::bind(&RobotStm32::wifi_callback, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3)),
+                   wifi_vision_(config::receive_port_vision,std::bind(&RobotStm32::wifi_vision_callback, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3)),
+                   wifi_cmd_small_(config::receive_port_cmd_small, std::bind(&RobotStm32::wifi_cmd_small_callback, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3)),
+                   cmd_subscriber_("cmd", std::bind(&RobotStm32::cmd_callback, this, std::placeholders::_1)),
+                   cmd_publisher_("cmd"),
+                   vision_subscriber_("vision", std::bind(&RobotStm32::vision_callback, this, std::placeholders::_1)),
+                   vision_publisher_("vision"),
+                   cmd_small_subscriber_("cmd_small", std::bind(&RobotStm32::cmd_small_callback, this, std::placeholders::_1)),
+                   cmd_small_publisher_("cmd_small")
 {
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
@@ -79,33 +79,33 @@ robot_stm32_::robot_stm32_() : device{},
         robot_status.robotX = visionY / 1000;
     }
 
-    filter_X.P_k = matrix::creatMatrix<float>(3, 3, 0);
-    filter_X.P_k[1][1] = Q * ((1.0 / config::robot_freq) / 2) * ((1.0 / config::robot_freq) / 2);
-    filter_X.P_k[2][1] = Q * ((1.0 / config::robot_freq) / 2);
-    filter_X.P_k[1][2] = Q * ((1.0 / config::robot_freq) / 2);
-    filter_X.P_k[2][2] = Q * 1;
+    filter_x_.P_k = matrix::creatMatrix<float>(3, 3, 0);
+    filter_x_.P_k[1][1] = q_ * ((1.0 / config::robot_freq) / 2) * ((1.0 / config::robot_freq) / 2);
+    filter_x_.P_k[2][1] = q_ * ((1.0 / config::robot_freq) / 2);
+    filter_x_.P_k[1][2] = q_ * ((1.0 / config::robot_freq) / 2);
+    filter_x_.P_k[2][2] = q_ * 1;
 
-    filter_X.X = matrix::creatMatrix<float>(3, 1, 0);
-    filter_X.X[0][0] = visionX / 1000;
+    filter_x_.X = matrix::creatMatrix<float>(3, 1, 0);
+    filter_x_.X[0][0] = visionX / 1000;
 
-    filter_X.x1 = visionX / 1000;
-    filter_X.x2 = visionX / 1000;
-    filter_X.x1k = visionX / 1000;
-    filter_X.x2k = visionX / 1000;
+    filter_x_.x1 = visionX / 1000;
+    filter_x_.x2 = visionX / 1000;
+    filter_x_.x1k = visionX / 1000;
+    filter_x_.x2k = visionX / 1000;
 
-    filter_Y.P_k = matrix::creatMatrix<float>(3, 3, 0);
-    filter_Y.P_k[1][1] = Q * ((1.0 / config::robot_freq) / 2) * ((1.0 / config::robot_freq) / 2);
-    filter_Y.P_k[2][1] = Q * ((1.0 / config::robot_freq) / 2);
-    filter_Y.P_k[1][2] = Q * ((1.0 / config::robot_freq) / 2);
-    filter_Y.P_k[2][2] = Q * 1;
+    filter_y_.P_k = matrix::creatMatrix<float>(3, 3, 0);
+    filter_y_.P_k[1][1] = q_ * ((1.0 / config::robot_freq) / 2) * ((1.0 / config::robot_freq) / 2);
+    filter_y_.P_k[2][1] = q_ * ((1.0 / config::robot_freq) / 2);
+    filter_y_.P_k[1][2] = q_ * ((1.0 / config::robot_freq) / 2);
+    filter_y_.P_k[2][2] = q_ * 1;
 
-    filter_Y.X = matrix::creatMatrix<float>(3, 1, 0);
-    filter_Y.X[0][0] = visionY / 1000;
+    filter_y_.X = matrix::creatMatrix<float>(3, 1, 0);
+    filter_y_.X[0][0] = visionY / 1000;
 
-    filter_Y.x1 = visionY / 1000;
-    filter_Y.x2 = visionY / 1000;
-    filter_Y.x1k = visionY / 1000;
-    filter_Y.x2k = visionY / 1000;
+    filter_y_.x1 = visionY / 1000;
+    filter_y_.x2 = visionY / 1000;
+    filter_y_.x1k = visionY / 1000;
+    filter_y_.x2k = visionY / 1000;
 
     read_config_yaml();
     
@@ -113,15 +113,15 @@ robot_stm32_::robot_stm32_() : device{},
         std::scoped_lock lock{_robot_status_mutex};
         if (robot_status.team == 1)
         {
-            vision2imu = 1;
+            vision_to_imu_ = 1;
         }
         else if (robot_status.team == 2)
         {
-            vision2imu = -1;
+            vision_to_imu_ = -1;
         }
         else
         {
-            vision2imu = 0;
+            vision_to_imu_ = 0;
         }
     }
 
@@ -139,52 +139,52 @@ robot_stm32_::robot_stm32_() : device{},
     initFinish = true;
 }
 
-void robot_stm32_::wifi_callback(const asio::ip::udp::endpoint &ep, const void *ptr, size_t size)
+void RobotStm32::wifi_callback(const asio::ip::udp::endpoint &ep, const void *ptr, size_t size)
 {
-    wifi.set_master_ip(ep.address().to_string());
+    wifi_.set_master_ip(ep.address().to_string());
     {
-        std::scoped_lock lock{_cmd_data_mutex};
-        _cmd_data.resize(size);
-        _cmd_data.store(ptr, size);
+        std::scoped_lock lock{cmd_data_mutex_};
+        cmd_data_.resize(size);
+        cmd_data_.store(ptr, size);
     }
 
-    _cmd_publisher.publish();
+    cmd_publisher_.publish();
 }
 
-void robot_stm32_::_wifi_vision(const asio::ip::udp::endpoint &ep, const void *ptr, size_t size)
+void RobotStm32::wifi_vision_callback(const asio::ip::udp::endpoint &ep, const void *ptr, size_t size)
 {
     {
-        std::scoped_lock lock{_vision_data_mutex};
-        _vision_data.resize(size);
-        _vision_data.store(ptr, size);
+        std::scoped_lock lock{vision_data_mutex_};
+        vision_data_.resize(size);
+        vision_data_.store(ptr, size);
     }
-    _vision_publisher.publish();
+    vision_publisher_.publish();
 }
 
-void robot_stm32_::_wifi_cmd_small(const asio::ip::udp::endpoint &ep, const void *ptr, size_t size)
+void RobotStm32::wifi_cmd_small_callback(const asio::ip::udp::endpoint &ep, const void *ptr, size_t size)
 {
     {
-        std::scoped_lock lock{_cmd_small_data_mutex};
-        _cmd_small_data.resize(size);
-        _cmd_small_data.store(ptr, size);
+        std::scoped_lock lock{cmd_small_data_mutex_};
+        cmd_small_data_.resize(size);
+        cmd_small_data_.store(ptr, size);
     }
-    _cmd_small_publisher.publish();
+    cmd_small_publisher_.publish();
 }
 
-void robot_stm32_::cmd_callback(const zos::Data &data)
+void RobotStm32::cmd_callback(const zos::Data &data)
 {
 
     if (initFinish)
     {
 
-        std::scoped_lock lock{_cmd_data_mutex};
-        auto res = pb_cmd.ParseFromArray(_cmd_data.data(), _cmd_data.size());
+        std::scoped_lock lock{cmd_data_mutex_};
+        auto res = pb_cmd_.ParseFromArray(cmd_data_.data(), cmd_data_.size());
         if (res)
         {
-            auto &_p = pb_cmd;
+            auto &_p = pb_cmd_;
             std::scoped_lock lock{_robot_cmd_mutex};
             auto &_c = robot_cmd;
-            _time_since_last_pack = 0;
+            _time_since_last_pack.store(0);
             _c.kick_en = (_p.kick_mode() != PB::NONE);
             _c.kick_mode = (_p.kick_mode() == PB::CHIP);
             _c.kick_discharge_time = _p.kick_discharge_time();
@@ -196,7 +196,7 @@ void robot_stm32_::cmd_callback(const zos::Data &data)
             _c.angle_pid[0] = ((float)(int32_t)_p.angle_pid(0)/1000.0);
             _c.angle_pid[1] = ((float)(int32_t)_p.angle_pid(1)/1000.0);
             _c.angle_pid[2] = ((float)(int32_t)_p.angle_pid(2)/1000.0);
-            sendIsDebug = _p.isdebug();
+            send_is_debug_ = _p.isdebug();
 
             last_need_change_team = (need_change_team)?true:false;
             need_change_team = _p.need_change_team();
@@ -216,17 +216,17 @@ void robot_stm32_::cmd_callback(const zos::Data &data)
     }
 }
 
-void robot_stm32_::update_expansion_board(const double dt)
+void RobotStm32::update_expansion_board(const double dt)
 {
 
-    device.read_write_stm32();
+    device_.read_write_stm32();
     
     {
         std::scoped_lock lock{_robot_status_mutex};
         auto &_s = robot_status;
         auto &_c = robot_cmd;
         // stm32 拓展板获取信息
-        if(device.have_infrare)
+        if(device_.have_infrare)
         {
             if (_s.robot_is_infrared > 0)
             {
@@ -241,58 +241,58 @@ void robot_stm32_::update_expansion_board(const double dt)
         {
             _s.robot_is_infrared = std::max(_s.robot_is_infrared - dt, -10000.0);
         }
-        _s.cap_vol = device.cap_vol;
-        _s.bat_vol = device.battery_vol;
+        _s.cap_vol = device_.cap_vol;
+        _s.bat_vol = device_.battery_vol;
 
         for(int i=0;i<4;i++)
         {
-            _s.motor_encoder[i] = device.wheel[i];
+            _s.motor_encoder[i] = device_.wheel[i];
         }
 
         _s.last_kick_time = std::min(_s.last_kick_time + dt, 10000.0);
         _s.robot_is_shooted = std::min(_s.robot_is_shooted + dt, 100.0);
         _s.robot_is_chipped = std::min(_s.robot_is_chipped + dt, 100.0);
 
-        imu_online = device.have_imu.load();
+        imu_online = device_.have_imu.load();
 
         {
-            std::scoped_lock lock{device.imu_mutex};
-            _s.imu_data[0] = device.imu_status.acc_x;
-            _s.imu_data[1] = device.imu_status.acc_y;
-            _s.imu_data[2] = device.imu_status.acc_z;
+            std::scoped_lock lock{device_.imu_mutex};
+            _s.imu_data[0] = device_.imu_status.acc_x;
+            _s.imu_data[1] = device_.imu_status.acc_y;
+            _s.imu_data[2] = device_.imu_status.acc_z;
             _s.imu_data[3] = 0;
-            _s.imu_data[4] = device.imu_status.omega_x;
-            _s.imu_data[5] = device.imu_status.omega_y;
-            _s.imu_data[6] = device.imu_status.omega_z;
+            _s.imu_data[4] = device_.imu_status.omega_x;
+            _s.imu_data[5] = device_.imu_status.omega_y;
+            _s.imu_data[6] = device_.imu_status.omega_z;
             _s.imu_data[7] = 0;
-            _s.imu_data[8] = device.imu_status.theta_x;
-            _s.imu_data[9] = device.imu_status.theta_y;
-            _s.imu_data[10] = device.imu_status.theta_z;
+            _s.imu_data[8] = device_.imu_status.theta_x;
+            _s.imu_data[9] = device_.imu_status.theta_y;
+            _s.imu_data[10] = device_.imu_status.theta_z;
             _s.imu_data[11] = 0;
         }
 
-        device.set_angle_pid(_c.angle_pid[0],_c.angle_pid[1],_c.angle_pid[2]);
-        device.set_dribbler(_c.drib_power);
-        device.use_imu = _c.use_dir;
-        device.set_vel(_c.vx_target,_c.vy_target,_c.vr_target);
+        device_.set_angle_pid(_c.angle_pid[0],_c.angle_pid[1],_c.angle_pid[2]);
+        device_.set_dribbler(_c.drib_power);
+        device_.use_imu = _c.use_dir;
+        device_.set_vel(_c.vx_target,_c.vy_target,_c.vr_target);
     }
 }
 
-void robot_stm32_::send_status()
+void RobotStm32::send_status()
 {
     zos::Data data;
     ZSS::New::Robot_Status pb_status;
 
-    if (wifi.get_master_ip() == "")
+    if (wifi_.get_master_ip() == "")
     {
 	    // zos::log("in send_status no send\n");
         return;
     }
 
     {        
-        if(sendIsDebug)
+        if(send_is_debug_)
         {
-            // zos::log("send_ip,{}\n",wifi.get_master_ip());
+            // zos::log("send_ip,{}\n",wifi_.get_master_ip());
             std::scoped_lock lock{_robot_status_mutex, _pVision_mutex};
             auto &_s = robot_status;
             auto &_v = pVision;
@@ -327,7 +327,7 @@ void robot_stm32_::send_status()
         }
         else
         {
-            // zos::log("send_ip,{}\n",wifi.get_master_ip());
+            // zos::log("send_ip,{}\n",wifi_.get_master_ip());
             std::scoped_lock lock{_robot_status_mutex, _pVision_mutex};
             auto &_s = robot_status;
             auto &_v = pVision;
@@ -363,26 +363,26 @@ void robot_stm32_::send_status()
     auto size = pb_status.ByteSizeLong();
     data.resize(size);
     pb_status.SerializeToArray(data.ptr(), size);
-    wifi.udp_sender_point(data.data(), size);
+    wifi_.udp_sender_point(data.data(), size);
     pb_status.Clear();
 }
 
-void robot_stm32_::multicast_info()
+void RobotStm32::multicast_info()
 {
 
     zos::Data data;
     ZSS::New::Multicast_Status mc_status;
     Robot_STATUS _s;
 
-    _time_since_last_pack += 1000.0 / config::multicast_freq; // ms
+    _time_since_last_pack.store(_time_since_last_pack.load() + 1000.0 / config::multicast_freq); // ms
 
     {
         std::scoped_lock lock{_robot_status_mutex};
         _s = robot_status;
     }
 
-    // mc_status.set_ip(wifi.get_ip()); 
-    std::string ip = wifi.get_ip();
+    // mc_status.set_ip(wifi_.get_ip()); 
+    std::string ip = wifi_.get_ip();
     size_t last_dot = ip.rfind('.');
     int ip_value = -1;
     if (last_dot != std::string::npos) {
@@ -399,11 +399,11 @@ void robot_stm32_::multicast_info()
     auto size = mc_status.ByteSizeLong();
     data.resize(size);
     mc_status.SerializeToArray(data.ptr(), size);
-    wifi.udp_sender_multicast(data.data(), size);
+    wifi_.udp_sender_multicast(data.data(), size);
     mc_status.Clear();
 }
 
-void robot_stm32_::shoot()
+void RobotStm32::shoot()
 {
     
 
@@ -432,7 +432,7 @@ void robot_stm32_::shoot()
             file.close();
         }
         zos::log("kick info   en:{}, mode:{}, time:{}   ir: {}, last_time: {}\n", _c.kick_en, _c.kick_mode, _c.kick_discharge_time, _s.robot_is_infrared, _s.last_kick_time);
-        kick_status = device.shoot_chip(_c.kick_mode, _c.kick_discharge_time);
+        kick_status = device_.shoot_chip(_c.kick_mode, _c.kick_discharge_time);
         // TODO: _s.robot_is_shooted/chipped
         {
             std::scoped_lock lock{_robot_status_mutex, _robot_cmd_mutex};
@@ -456,7 +456,7 @@ void robot_stm32_::shoot()
 }
 
 // dt in s
-void robot_stm32_::getFdb(const double _dt, double imu, double vision, double &pose, double &vel, filter_ &filter)
+void RobotStm32::get_fdb(const double _dt, double imu, double vision, double &pose, double &vel, filter_ &filter)
 {
     using namespace std;
 
@@ -475,7 +475,7 @@ void robot_stm32_::getFdb(const double _dt, double imu, double vision, double &p
     vector<vector<float>> C = matrix::creatMatrix<float>(1, 3, 0);
     C[0][0] = 1;
 
-    float tmp = filter.P_k[0][0] + R;
+    float tmp = filter.P_k[0][0] + r_measure_;
 
     std::vector<std::vector<float>> M = matrix::creatMatrix<float>(3, 3, 0);
 
@@ -483,7 +483,7 @@ void robot_stm32_::getFdb(const double _dt, double imu, double vision, double &p
 
     filter.P_k = matrix::matrixSum<float>(
         matrix::matrixMultiply<float>(matrix::matrixMultiply<float>(A, filter.P_k), matrix::matrixTrans<float>(A)),
-        matrix::matrixMultiply<float>(matrix::matrixMultiplyNum<float>(B, Q), matrix::matrixTrans<float>(B)));
+        matrix::matrixMultiply<float>(matrix::matrixMultiplyNum<float>(B, q_), matrix::matrixTrans<float>(B)));
 
     vector<vector<float>> eye = matrix::creatMatrix<float>(3, 3, 0);
     eye[0][0] = 1;
@@ -504,20 +504,20 @@ void robot_stm32_::getFdb(const double _dt, double imu, double vision, double &p
 
     pose = filter.X[0][0];
 
-    float d = r * h;
-    float d0 = d * h;
+    float d = radius_ * time_step_;
+    float d0 = d * time_step_;
 
     filter.x1k = filter.x1;
     filter.x2k = filter.x2;
 
-    float tdy = filter.x1k - pose + h * filter.x2k;
-    float a0 = sqrt(d * d + 8 * r * abs(tdy));
+    float tdy = filter.x1k - pose + time_step_ * filter.x2k;
+    float a0 = sqrt(d * d + 8 * radius_ * abs(tdy));
 
     float a = 0;
 
     if (abs(tdy) <= d0)
     {
-        a = filter.x2k + tdy / h;
+        a = filter.x2k + tdy / time_step_;
     }
     else
     {
@@ -534,17 +534,17 @@ void robot_stm32_::getFdb(const double _dt, double imu, double vision, double &p
     float f = 0;
     if (abs(a) <= d)
     {
-        f = -r * a / d;
+        f = -radius_ * a / d;
     }
     else
     {
         if (a > 0)
         {
-            f = -r;
+            f = -radius_;
         }
         else
         {
-            f = r;
+            f = radius_;
         }
     }
 
@@ -554,9 +554,9 @@ void robot_stm32_::getFdb(const double _dt, double imu, double vision, double &p
     vel = filter.x2;
 }
  
-void robot_stm32_::stand()
+void RobotStm32::stand()
 {
-    std::scoped_lock lock{_cmd_data_mutex};
+    std::scoped_lock lock{cmd_data_mutex_};
     robot_cmd.cmd_type = CMD_TYPE_VEL;
 
     robot_cmd.kick_en = false;
@@ -566,25 +566,25 @@ void robot_stm32_::stand()
     robot_cmd.vx_target = 0;
     robot_cmd.vr_target = 0;
     robot_cmd.use_dir = 0;
-    if (_time_since_last_pack > 1000)
+    if (_time_since_last_pack.load() > 1000)
     {
         robot_cmd.drib_power = 0;
     }
     
 
-    std::fill_n(begin(vel_pack), MAX_MOTOR, 0);
+    std::fill_n(begin(vel_pack_), MAX_MOTOR, 0);
 
-    wifi.udp_restart();
+    wifi_.udp_restart();
 }
 
-void robot_stm32_::read_config_yaml()
+void RobotStm32::read_config_yaml()
 {
     try
     {
         // zos::log("read_config_yaml\n");
-        config_yaml = YAML::LoadFile("/home/pi/rpi_timer/robot/config.yaml");
+        config_yaml_ = YAML::LoadFile("/home/pi/rpi_timer/robot/config.yaml");
         // id
-        robot_id = config_yaml["id"].as<int>();
+        robot_id = config_yaml_["id"].as<int>();
         // zos::log("robot id: {}\n", robot_id);
         {
             std::scoped_lock lock{_robot_status_mutex};
@@ -592,32 +592,32 @@ void robot_stm32_::read_config_yaml()
             _s.id = robot_id;
         }
         // freq
-        nrf2401_freq = config_yaml["freq"].as<int>();
-        // zos::log("nrf2401 freq: {}\n", nrf2401_freq);
+        nrf2401_freq_ = config_yaml_["freq"].as<int>();
+        // zos::log("nrf2401 freq: {}\n", nrf2401_freq_);
         //  team: 1 for blue,2 for yellow
         {
             std::scoped_lock lock{_robot_status_mutex};
             auto &_s = robot_status;
-            if (nrf2401_freq == 6)
+            if (nrf2401_freq_ == 6)
             {
                 _s.team = 2;
-                vision2imu = -1;
+                vision_to_imu_ = -1;
             }
-            else if (nrf2401_freq == 8)
+            else if (nrf2401_freq_ == 8)
             {
                 _s.team = 1;
-                vision2imu = 1;
+                vision_to_imu_ = 1;
             }
         }
         zos::warning("id: {}, team: {}\n", robot_status.id, robot_status.team);
 
         // motors pid
-        for (auto motor : config_yaml["motor_pid"])
+        for (auto motor : config_yaml_["motor_pid"])
         {
             int motor_id = motor["id"].as<int>();
             // zos::log("motor{}  p: {}  i: {}\n", motor_id, motor["p"].as<int>(), motor["i"].as<int>());
-            pid_pack[motor_id * 2] = motor["p"].as<int>();
-            pid_pack[motor_id * 2 + 1] = motor["i"].as<int>();
+            pid_pack_[motor_id * 2] = motor["p"].as<int>();
+            pid_pack_[motor_id * 2 + 1] = motor["i"].as<int>();
         }
     }
     catch (const YAML::BadFile &e)
@@ -634,48 +634,48 @@ void robot_stm32_::read_config_yaml()
     }
 }
 
-void robot_stm32_::save_id(int robot_id_new)
+void RobotStm32::save_id(int robot_id_new)
 {
-    if (config_yaml.IsNull())
+    if (config_yaml_.IsNull())
     {
-        config_yaml = YAML::LoadFile("/home/pi/rpi_timer/robot/config.yaml");
+        config_yaml_ = YAML::LoadFile("/home/pi/rpi_timer/robot/config.yaml");
     }
-    config_yaml["id"] = robot_id_new;
+    config_yaml_["id"] = robot_id_new;
     std::ofstream file_stream("/home/pi/rpi_timer/robot/config.yaml");
-    file_stream << config_yaml; // dump it back into the file
+    file_stream << config_yaml_; // dump it back into the file
     file_stream.close();
     // zos::log("robot id save\n");
 }
 
-void robot_stm32_::save_freq(int nrf2401_freq_new)
+void RobotStm32::save_freq(int nrf2401_freq_new)
 {
-    if (config_yaml.IsNull())
+    if (config_yaml_.IsNull())
     {
-        config_yaml = YAML::LoadFile("/home/pi/rpi_timer/robot/config.yaml");
+        config_yaml_ = YAML::LoadFile("/home/pi/rpi_timer/robot/config.yaml");
     }
-    config_yaml["freq"] = nrf2401_freq_new;
+    config_yaml_["freq"] = nrf2401_freq_new;
     std::ofstream file_stream("/home/pi/rpi_timer/robot/config.yaml");
-    file_stream << config_yaml; // dump it back into the file
+    file_stream << config_yaml_; // dump it back into the file
     file_stream.close();
     // zos::log("robot id save\n");
 }
 
-double robot_stm32_::ms_since_last_cmd_pack()
+double RobotStm32::ms_since_last_cmd_pack()
 {
-    return _time_since_last_pack;
+    return _time_since_last_pack.load();
 }
 
-void robot_stm32_::cmd_small_cb(const zos::Data &data)
+void RobotStm32::cmd_small_callback(const zos::Data &data)
 {
-    zos::log("cmd_small_cb\n");
+    zos::log("cmd_small_callback\n");
     if (initFinish)
     {
 
-        std::scoped_lock lock{_cmd_small_data_mutex};
-        auto res = pb_cmd_mini.ParseFromArray(_cmd_small_data.data(), _cmd_small_data.size());
+        std::scoped_lock lock{cmd_small_data_mutex_};
+        auto res = pb_cmd_mini_.ParseFromArray(cmd_small_data_.data(), cmd_small_data_.size());
         if (res)
         {
-            auto &_p = pb_cmd_mini;
+            auto &_p = pb_cmd_mini_;
             std::scoped_lock lock{_robot_cmd_mutex};
             auto &_c = robot_cmd;           
             using PB_MINI = ZSS::New::Robot_Command_Mini;
@@ -687,7 +687,7 @@ void robot_stm32_::cmd_small_cb(const zos::Data &data)
     }
 }
 
-void robot_stm32_::_vision_cb(const zos::Data &data)
+void RobotStm32::vision_callback(const zos::Data &data)
 {
     if (initFinish)
     {
@@ -700,12 +700,12 @@ void robot_stm32_::_vision_cb(const zos::Data &data)
         }
 
         // zos::log("vision_callback\n");
-        std::scoped_lock lock{_vision_data_mutex};
-        auto res = pb_detectionFrame.ParseFromArray(_vision_data.data(), _vision_data.size());
+        std::scoped_lock lock{vision_data_mutex_};
+        auto res = pb_detection_frame_.ParseFromArray(vision_data_.data(), vision_data_.size());
         if (res)
         {
             std::scoped_lock lock{_vision_queue_mutex};
-            auto &_p = pb_detectionFrame;
+            auto &_p = pb_detection_frame_;
             auto &_v = VisionTmp;
 
             // zos::log("{}\n",_p.DebugString());

@@ -3,7 +3,7 @@
 static auto now_time = std::chrono::steady_clock::now();
 static auto last_time = now_time - std::chrono::microseconds(1000000) / config::robot_freq;
 
-device_stm32_::device_stm32_()
+DeviceStm32::DeviceStm32()
 {
     // 检测gpio初始化完成
     auto _code_ = gpioInitialise();
@@ -51,7 +51,7 @@ device_stm32_::device_stm32_()
     have_imu = true;
 }
 
-void device_stm32_::read_write_stm32()
+void DeviceStm32::read_write_stm32()
 {
     CM4_to_stm32_spi tx = {0};
     stm32_to_CM4_spi rx = {0};
@@ -122,7 +122,7 @@ void device_stm32_::read_write_stm32()
     
 }
 
-void device_stm32_::buzzer_start()
+void DeviceStm32::buzzer_start()
 {
     std::thread _buzzer = std::thread([this]
                                       {
@@ -131,7 +131,7 @@ void device_stm32_::buzzer_start()
     _buzzer.join();
 }
 
-void device_stm32_::buzzer_once(int freq)
+void DeviceStm32::buzzer_once(int freq)
 {
     // gpioSetPWMfrequency(GPIO_BUZZER, freq);
     // gpioPWM(GPIO_BUZZER, 20);
@@ -139,14 +139,14 @@ void device_stm32_::buzzer_once(int freq)
     // gpioPWM(GPIO_BUZZER, 0);
 }
 
-void device_stm32_::buzzer_thread()
+void DeviceStm32::buzzer_thread()
 {
     std::thread _buzzer = std::thread([this]
                                       { buzzer_once(1600); });
     _buzzer.join();
 }
 
-float device_stm32_::shoot_chip(bool kick_mode, float kick_discharge_time)
+float DeviceStm32::shoot_chip(bool kick_mode, float kick_discharge_time)
 {
     int kick_flag = -1;
     int kick_gpio;

@@ -16,6 +16,7 @@
 #include "zos/utils/rate.h"
 #include "zos/log.h"
 #include "config.h"
+#include "device_base.h"
 
 #include <pigpio.h>
 #include "mraa/common.hpp"
@@ -36,13 +37,13 @@
 
 const int spi_length = 32;
 
-class device_stm32_
+class DeviceStm32 : public DeviceBase
 {
 
     // device
 public:
-    device_stm32_();
-    ~device_stm32_()
+    DeviceStm32();
+    ~DeviceStm32()
     {
         gpioTerminate();
     }

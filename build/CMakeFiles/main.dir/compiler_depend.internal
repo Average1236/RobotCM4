@@ -4,6 +4,7 @@
 CMakeFiles/main.dir/component/device.cpp.o
  /home/pi/rpi_timer/robot/component/device.cpp
  /home/pi/rpi_timer/robot/component/device.h
+ /home/pi/rpi_timer/robot/component/device_base.h
  /home/pi/rpi_timer/robot/config.h
  /home/pi/rpi_timer/robot/zos_new/zos/log.h
  /home/pi/rpi_timer/robot/zos_new/zos/utils/rate.h
@@ -798,9 +799,11 @@ CMakeFiles/main.dir/component/parameter.cpp.o
 CMakeFiles/main.dir/component/robot.cpp.o
  /home/pi/rpi_timer/robot/component/robot.cpp
  /home/pi/rpi_timer/robot/component/device.h
+ /home/pi/rpi_timer/robot/component/device_base.h
  /home/pi/rpi_timer/robot/component/matrix.h
  /home/pi/rpi_timer/robot/component/parameter.h
  /home/pi/rpi_timer/robot/component/robot.h
+ /home/pi/rpi_timer/robot/component/robot_base.h
  /home/pi/rpi_timer/robot/component/timer.h
  /home/pi/rpi_timer/robot/component/wifi.h
  /home/pi/rpi_timer/robot/config.h
@@ -5181,10 +5184,12 @@ CMakeFiles/main.dir/share/proto/zss_cmd_type.pb.cc.o
 CMakeFiles/main.dir/test/main.cpp.o
  /home/pi/rpi_timer/robot/test/main.cpp
  /home/pi/rpi_timer/robot/component/device.h
+ /home/pi/rpi_timer/robot/component/device_base.h
  /home/pi/rpi_timer/robot/component/device_stm32.h
  /home/pi/rpi_timer/robot/component/matrix.h
  /home/pi/rpi_timer/robot/component/parameter.h
  /home/pi/rpi_timer/robot/component/robot.h
+ /home/pi/rpi_timer/robot/component/robot_base.h
  /home/pi/rpi_timer/robot/component/robot_stm32.h
  /home/pi/rpi_timer/robot/component/timer.h
  /home/pi/rpi_timer/robot/component/wifi.h

@@ -15,6 +15,7 @@
 #include "zos/utils/rate.h"
 #include "zos/log.h"
 #include "config.h"
+#include "device_base.h"
 
 #include <pigpio.h>
 #include "mraa/common.hpp"
@@ -38,13 +39,13 @@
 // #define motor_i2c_same_addr
 
 
-class device_
+class DeviceCm : public DeviceBase
 {
 
     // device
 public:
-    device_();
-    ~device_()
+    DeviceCm();
+    ~DeviceCm()
     {
         gpioTerminate();
     }

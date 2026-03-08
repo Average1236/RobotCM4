@@ -11,10 +11,14 @@
 // #define CM4_stm32
 
 #ifdef CM4_stm32
-robot_stm32_ *g_robot = nullptr;
+using ActiveRobot = RobotStm32;
+using ActiveRobotPtr = RobotStm32 *;
 #else
-robot_ *g_robot = nullptr;
+using ActiveRobot = RobotCm;
+using ActiveRobotPtr = RobotCm *;
 #endif
+
+ActiveRobotPtr g_robot = nullptr;
 
 std::atomic<bool> g_stop = false;
 
@@ -96,11 +100,7 @@ void callback_update_expansion_board(void)
 
 int main()
 {
-#ifdef CM4_stm32
-    robot_stm32_ robot{};
-#else
-    robot_ robot{};
-#endif
+    ActiveRobot robot{};
     g_robot = &robot;
     g_stop = false;
 

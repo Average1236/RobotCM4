@@ -296,10 +296,13 @@ CMakeFiles/main.dir/component/robot.cpp.o: \
  /usr/include/c++/14/algorithm /usr/include/c++/14/bits/ranges_algo.h \
  /usr/include/c++/14/pstl/glue_algorithm_defs.h /usr/include/fmt/format.h \
  /home/pi/rpi_timer/robot/zos_new/zos/utils/rate.h \
- /home/pi/rpi_timer/robot/config.h /usr/local/include/pigpio.h \
- /usr/local/include/mraa/common.hpp /usr/local/include/mraa/common.h \
- /usr/local/include/mraa/types.h /usr/local/include/mraa/types.hpp \
- /usr/local/include/mraa/uart.hpp /usr/local/include/mraa/uart.h \
+ /home/pi/rpi_timer/robot/config.h \
+ /home/pi/rpi_timer/robot/component/device_base.h \
+ /usr/local/include/pigpio.h /usr/local/include/mraa/common.hpp \
+ /usr/local/include/mraa/common.h /usr/local/include/mraa/types.h \
+ /usr/local/include/mraa/types.hpp /usr/local/include/mraa/uart.hpp \
+ /usr/local/include/mraa/uart.h \
+ /home/pi/rpi_timer/robot/component/robot_base.h \
  /home/pi/rpi_timer/robot/component/timer.h /usr/include/signal.h \
  /usr/include/aarch64-linux-gnu/bits/signum-generic.h \
  /usr/include/aarch64-linux-gnu/bits/signum-arch.h \

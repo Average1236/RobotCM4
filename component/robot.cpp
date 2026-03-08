@@ -22,16 +22,16 @@ std::atomic<bool> initFinish = false;
 std::string logcsv = "/home/pi/log.csv";
 #endif
 
-robot_::robot_() : device{},
-                   wifi(std::bind(&robot_::wifi_callback, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3)),
-                   wifi_vision(config::receive_port_vision,std::bind(&robot_::_wifi_vision, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3)),
-                   wifi_cmd_small(config::receive_port_cmd_small, std::bind(&robot_::_wifi_cmd_small, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3)),
-                   _cmd_subsciber("cmd", std::bind(&robot_::cmd_callback, this, std::placeholders::_1)),
-                   _cmd_publisher("cmd"),
-                   _vision_subsciber("vision", std::bind(&robot_::_vision_cb, this, std::placeholders::_1)),
-                   _vision_publisher("vision"),
-                   _cmd_small_subsciber("cmd_small", std::bind(&robot_::cmd_small_cb, this, std::placeholders::_1)),
-                   _cmd_small_publisher("cmd_small")
+RobotCm::RobotCm() : device_{},
+                   wifi_(std::bind(&RobotCm::wifi_callback, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3)),
+                   wifi_vision_(config::receive_port_vision,std::bind(&RobotCm::wifi_vision_callback, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3)),
+                   wifi_cmd_small_(config::receive_port_cmd_small, std::bind(&RobotCm::wifi_cmd_small_callback, this, std::placeholders::_1, std::placeholders::_2, std::placeholders::_3)),
+                   cmd_subscriber_("cmd", std::bind(&RobotCm::cmd_callback, this, std::placeholders::_1)),
+                   cmd_publisher_("cmd"),
+                   vision_subscriber_("vision", std::bind(&RobotCm::vision_callback, this, std::placeholders::_1)),
+                   vision_publisher_("vision"),
+                   cmd_small_subscriber_("cmd_small", std::bind(&RobotCm::cmd_small_callback, this, std::placeholders::_1)),
+                   cmd_small_publisher_("cmd_small")
 {
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
 
@@ -95,38 +95,38 @@ robot_::robot_() : device{},
         robot_status.robotX = visionY / 1000;
     }
 
-    filter_X.P_k = matrix::creatMatrix<float>(3, 3, 0);
-    filter_X.P_k[1][1] = Q * ((1.0 / config::robot_freq) / 2) * ((1.0 / config::robot_freq) / 2);
-    filter_X.P_k[2][1] = Q * ((1.0 / config::robot_freq) / 2);
-    filter_X.P_k[1][2] = Q * ((1.0 / config::robot_freq) / 2);
-    filter_X.P_k[2][2] = Q * 1;
+    filter_x_.P_k = matrix::creatMatrix<float>(3, 3, 0);
+    filter_x_.P_k[1][1] = q_ * ((1.0 / config::robot_freq) / 2) * ((1.0 / config::robot_freq) / 2);
+    filter_x_.P_k[2][1] = q_ * ((1.0 / config::robot_freq) / 2);
+    filter_x_.P_k[1][2] = q_ * ((1.0 / config::robot_freq) / 2);
+    filter_x_.P_k[2][2] = q_ * 1;
 
-    filter_X.X = matrix::creatMatrix<float>(3, 1, 0);
-    filter_X.X[0][0] = visionX / 1000;
+    filter_x_.X = matrix::creatMatrix<float>(3, 1, 0);
+    filter_x_.X[0][0] = visionX / 1000;
 
-    filter_X.x1 = visionX / 1000;
-    filter_X.x2 = visionX / 1000;
-    filter_X.x1k = visionX / 1000;
-    filter_X.x2k = visionX / 1000;
+    filter_x_.x1 = visionX / 1000;
+    filter_x_.x2 = visionX / 1000;
+    filter_x_.x1k = visionX / 1000;
+    filter_x_.x2k = visionX / 1000;
 
-    filter_Y.P_k = matrix::creatMatrix<float>(3, 3, 0);
-    filter_Y.P_k[1][1] = Q * ((1.0 / config::robot_freq) / 2) * ((1.0 / config::robot_freq) / 2);
-    filter_Y.P_k[2][1] = Q * ((1.0 / config::robot_freq) / 2);
-    filter_Y.P_k[1][2] = Q * ((1.0 / config::robot_freq) / 2);
-    filter_Y.P_k[2][2] = Q * 1;
+    filter_y_.P_k = matrix::creatMatrix<float>(3, 3, 0);
+    filter_y_.P_k[1][1] = q_ * ((1.0 / config::robot_freq) / 2) * ((1.0 / config::robot_freq) / 2);
+    filter_y_.P_k[2][1] = q_ * ((1.0 / config::robot_freq) / 2);
+    filter_y_.P_k[1][2] = q_ * ((1.0 / config::robot_freq) / 2);
+    filter_y_.P_k[2][2] = q_ * 1;
 
-    filter_Y.X = matrix::creatMatrix<float>(3, 1, 0);
-    filter_Y.X[0][0] = visionY / 1000;
+    filter_y_.X = matrix::creatMatrix<float>(3, 1, 0);
+    filter_y_.X[0][0] = visionY / 1000;
 
-    filter_Y.x1 = visionY / 1000;
-    filter_Y.x2 = visionY / 1000;
-    filter_Y.x1k = visionY / 1000;
-    filter_Y.x2k = visionY / 1000;
+    filter_y_.x1 = visionY / 1000;
+    filter_y_.x2 = visionY / 1000;
+    filter_y_.x1k = visionY / 1000;
+    filter_y_.x2k = visionY / 1000;
 
     read_config_yaml();
 
 #if !defined(motor_i2c_same_addr) && !defined(CM4_stm32)
-    int motors_num = device.motors_detect();
+    int motors_num = device_.motors_detect();
     if (motors_num == 0)
     {
         zos::log("NO motor detected\n");
@@ -144,15 +144,15 @@ robot_::robot_() : device{},
         std::scoped_lock lock{_robot_status_mutex};
         if (robot_status.team == 1)
         {
-            vision2imu = 1;
+            vision_to_imu_ = 1;
         }
         else if (robot_status.team == 2)
         {
-            vision2imu = -1;
+            vision_to_imu_ = -1;
         }
         else
         {
-            vision2imu = 0;
+            vision_to_imu_ = 0;
         }
     }
 
@@ -171,55 +171,55 @@ robot_::robot_() : device{},
 }
 
 unsigned long receive_count = 0;
-void robot_::wifi_callback(const asio::ip::udp::endpoint &ep, const void *ptr, size_t size)
+void RobotCm::wifi_callback(const asio::ip::udp::endpoint &ep, const void *ptr, size_t size)
 {
-    wifi.set_master_ip(ep.address().to_string());
+    wifi_.set_master_ip(ep.address().to_string());
     {
-        std::scoped_lock lock{_cmd_data_mutex};
-        _cmd_data.resize(size);
-        _cmd_data.store(ptr, size);
+        std::scoped_lock lock{cmd_data_mutex_};
+        cmd_data_.resize(size);
+        cmd_data_.store(ptr, size);
         // zos::log("cmd_size,{}\n",size);
         // zos::log("cmd_receive_count,{}\n",++receive_count);
         // zos::log("cmd_ip,{}\n",ep.address().to_string());
     }
 
-    _cmd_publisher.publish();
+    cmd_publisher_.publish();
 }
 
-void robot_::_wifi_vision(const asio::ip::udp::endpoint &ep, const void *ptr, size_t size)
+void RobotCm::wifi_vision_callback(const asio::ip::udp::endpoint &ep, const void *ptr, size_t size)
 {
     {
-        std::scoped_lock lock{_vision_data_mutex};
-        _vision_data.resize(size);
-        _vision_data.store(ptr, size);
+        std::scoped_lock lock{vision_data_mutex_};
+        vision_data_.resize(size);
+        vision_data_.store(ptr, size);
     }
-    // _vision_publisher.publish();
+    // vision_publisher_.publish();
 }
 
-void robot_::_wifi_cmd_small(const asio::ip::udp::endpoint &ep, const void *ptr, size_t size)
+void RobotCm::wifi_cmd_small_callback(const asio::ip::udp::endpoint &ep, const void *ptr, size_t size)
 {
     {
-        std::scoped_lock lock{_cmd_small_data_mutex};
-        _cmd_small_data.resize(size);
-        _cmd_small_data.store(ptr, size);
+        std::scoped_lock lock{cmd_small_data_mutex_};
+        cmd_small_data_.resize(size);
+        cmd_small_data_.store(ptr, size);
     }
-    // _cmd_small_publisher.publish();
+    // cmd_small_publisher_.publish();
 }
 
-void robot_::cmd_callback(const zos::Data &data)
+void RobotCm::cmd_callback(const zos::Data &data)
 {
 
     if (initFinish)
     {
         // zos::log("cmd_callback\n");
-        std::scoped_lock lock{_cmd_data_mutex};
-        auto res = pb_cmd.ParseFromArray(_cmd_data.data(), _cmd_data.size());
+        std::scoped_lock lock{cmd_data_mutex_};
+        auto res = pb_cmd_.ParseFromArray(cmd_data_.data(), cmd_data_.size());
         if (res)
         {
-            auto &_p = pb_cmd;
+            auto &_p = pb_cmd_;
             std::scoped_lock lock{_robot_cmd_mutex};
             auto &_c = robot_cmd;
-            _time_since_last_pack = 0;
+            _time_since_last_pack.store(0);
             // zos::log("{}\n", _p.DebugString());
             //  TODO update
             
@@ -267,7 +267,7 @@ void robot_::cmd_callback(const zos::Data &data)
                 _c.angle_pid[1] = ((float)(int32_t)_p.angle_pid(1)/1000.0);
                 _c.angle_pid[2] = ((float)(int32_t)_p.angle_pid(2)/1000.0);
             }
-            sendIsDebug = _p.isdebug();
+            send_is_debug_ = _p.isdebug();
 
             last_need_change_team = (need_change_team)?true:false;
             need_change_team = _p.need_change_team();
@@ -293,41 +293,41 @@ void robot_::cmd_callback(const zos::Data &data)
             // _c.angle_pid[0] = 4;
             // _c.angle_pid[1] = 3;
             // _c.angle_pid[2] = 0.5;
-            // pid_pack[0]=_p.kp(0);
-            // pid_pack[1]=_p.ki(0);
-            // pid_pack[2]=_p.kp(1);
-            // pid_pack[3]=_p.ki(1);
-            // pid_pack[4]=_p.kp(2);
-            // pid_pack[5]=_p.ki(2);
-            // pid_pack[6]=_p.kp(3);
-            // pid_pack[7]=_p.ki(3);
+            // pid_pack_[0]=_p.kp(0);
+            // pid_pack_[1]=_p.ki(0);
+            // pid_pack_[2]=_p.kp(1);
+            // pid_pack_[3]=_p.ki(1);
+            // pid_pack_[4]=_p.kp(2);
+            // pid_pack_[5]=_p.ki(2);
+            // pid_pack_[6]=_p.kp(3);
+            // pid_pack_[7]=_p.ki(3);
             // for(int i=0;i<8;i++){
-            //     zos::status("------------{}------------\n",pid_pack[i]);
+            //     zos::status("------------{}------------\n",pid_pack_[i]);
             // }
             // _c.imu_is_used = _p.use_pid();
         }
     }
 }
 
-void robot_::update_imu()
+void RobotCm::update_imu()
 {
-    // std::vector<int> nano_pack = device.read_nano();
-    int length = device.read_imu(device.imu_uart);
+    // std::vector<int> nano_pack = device_.read_nano();
+    int length = device_.read_imu(device_.imu_uart);
     std::array<float, 12> imu_tmp = {0};
-    imu_tmp[0] = device.imu_status.acc_x;
-    imu_tmp[1] = device.imu_status.acc_y;
-    imu_tmp[2] = device.imu_status.acc_z;
-    imu_tmp[3] = device.imu_status.T_degree;
-    imu_tmp[4] = device.imu_status.omega_x;
-    imu_tmp[5] = device.imu_status.omega_y;
-    imu_tmp[6] = device.imu_status.omega_z;
-    imu_tmp[7] = device.imu_status.voltage;
-    imu_tmp[8] = device.imu_status.theta_x;
-    imu_tmp[9] = device.imu_status.theta_y;
-    imu_tmp[10] = device.imu_status.theta_z;
-    imu_tmp[11] = device.imu_status.version;
+    imu_tmp[0] = device_.imu_status.acc_x;
+    imu_tmp[1] = device_.imu_status.acc_y;
+    imu_tmp[2] = device_.imu_status.acc_z;
+    imu_tmp[3] = device_.imu_status.T_degree;
+    imu_tmp[4] = device_.imu_status.omega_x;
+    imu_tmp[5] = device_.imu_status.omega_y;
+    imu_tmp[6] = device_.imu_status.omega_z;
+    imu_tmp[7] = device_.imu_status.voltage;
+    imu_tmp[8] = device_.imu_status.theta_x;
+    imu_tmp[9] = device_.imu_status.theta_y;
+    imu_tmp[10] = device_.imu_status.theta_z;
+    imu_tmp[11] = device_.imu_status.version;
 
-    imu_online = device.imu_online();
+    imu_online = device_.imu_online();
     // imu_online = false;
     {
         std::scoped_lock lock{_robot_status_mutex};
@@ -335,28 +335,28 @@ void robot_::update_imu()
         // std::scoped_lock lock{_imu_queue_mutex};
         // imu_queue.push(imu_tmp);
     //     // zos::status("i----------------mu_data num: {}-----------------\n", length);
-        _s.imu_data[0] = device.imu_status.acc_x;
-        _s.imu_data[1] = device.imu_status.acc_y;
-        _s.imu_data[2] = device.imu_status.acc_z;
-        _s.imu_data[3] = device.imu_status.T_degree;
-        _s.imu_data[4] = device.imu_status.omega_x;
-        _s.imu_data[5] = device.imu_status.omega_y;
-        _s.imu_data[6] = device.imu_status.omega_z;
-        _s.imu_data[7] = device.imu_status.voltage;
-        _s.imu_data[8] = device.imu_status.theta_x;
-        _s.imu_data[9] = device.imu_status.theta_y;
-        _s.imu_data[10] = device.imu_status.theta_z;
-        _s.imu_data[11] = device.imu_status.version;
+        _s.imu_data[0] = device_.imu_status.acc_x;
+        _s.imu_data[1] = device_.imu_status.acc_y;
+        _s.imu_data[2] = device_.imu_status.acc_z;
+        _s.imu_data[3] = device_.imu_status.T_degree;
+        _s.imu_data[4] = device_.imu_status.omega_x;
+        _s.imu_data[5] = device_.imu_status.omega_y;
+        _s.imu_data[6] = device_.imu_status.omega_z;
+        _s.imu_data[7] = device_.imu_status.voltage;
+        _s.imu_data[8] = device_.imu_status.theta_x;
+        _s.imu_data[9] = device_.imu_status.theta_y;
+        _s.imu_data[10] = device_.imu_status.theta_z;
+        _s.imu_data[11] = device_.imu_status.version;
     }
 }
 
-void robot_::update_expansion_board(const double dt)
+void RobotCm::update_expansion_board(const double dt)
 {
 
 #ifndef CM4_stm32
-    std::vector<int> expansion_board_pack = device.read_nano();
+    std::vector<int> expansion_board_pack = device_.read_nano();
 #else
-    std::vector<int> expansion_board_pack = device.read_write_stm32();
+    std::vector<int> expansion_board_pack = device_.read_write_stm32();
 #endif
     
     {
@@ -371,20 +371,20 @@ void robot_::update_expansion_board(const double dt)
             {
                 _s.id = id_temp;
                 save_id(id_temp);
-                device.buzzer_thread();
+                device_.buzzer_thread();
                 zos::warning("change num: {}\n", id_temp);
             }
             if (freq_temp == 6 && _s.team != 2)
             {
                 _s.team = 2;
                 save_freq(freq_temp);
-                device.buzzer_thread();
+                device_.buzzer_thread();
             }
             else if (freq_temp == 8 && _s.team != 1)
             {
                 _s.team = 1;
                 save_freq(freq_temp);
-                device.buzzer_thread();
+                device_.buzzer_thread();
             }
         }
         else if ((expansion_board_pack[0] & 0xfa) == 0xfa)
@@ -418,7 +418,7 @@ void robot_::update_expansion_board(const double dt)
         // motors will be updated in control thread;
         for (int i = 0; i < MAX_MOTOR; i++)
         {
-            _s.motor_encoder[i] = vel_read_temp[i];
+            _s.motor_encoder[i] = vel_read_temp_[i];
         }
         // zos::warning("motor get : {},{},{},{}\n", _s.motor_encoder[0], _s.motor_encoder[1], _s.motor_encoder[2], _s.motor_encoder[3]);
         //  kick status will be reset to 0 in control thread (no closed loop check)
@@ -428,23 +428,23 @@ void robot_::update_expansion_board(const double dt)
     }
 }
 
-void robot_::send_status()
+void RobotCm::send_status()
 {
     zos::Data data;
     ZSS::New::Robot_Status pb_status;
 
     // update_status(1000.0 / config::sendback_freq);
 
-    if (wifi.get_master_ip() == "")
+    if (wifi_.get_master_ip() == "")
     {
 	    // zos::log("in send_status no send\n");
         return;
     }
 
     {        
-        if(sendIsDebug)
+        if(send_is_debug_)
         {
-            // zos::log("send_ip,{}\n",wifi.get_master_ip());
+            // zos::log("send_ip,{}\n",wifi_.get_master_ip());
             std::scoped_lock lock{_robot_status_mutex, _pVision_mutex};
             auto &_s = robot_status;
             auto &_v = pVision;
@@ -483,7 +483,7 @@ void robot_::send_status()
         }
         else
         {
-            // zos::log("send_ip,{}\n",wifi.get_master_ip());
+            // zos::log("send_ip,{}\n",wifi_.get_master_ip());
             std::scoped_lock lock{_robot_status_mutex, _pVision_mutex};
             auto &_s = robot_status;
             auto &_v = pVision;
@@ -539,27 +539,27 @@ void robot_::send_status()
     auto size = pb_status.ByteSizeLong();
     data.resize(size);
     pb_status.SerializeToArray(data.ptr(), size);
-    wifi.udp_sender_point(data.data(), size);
+    wifi_.udp_sender_point(data.data(), size);
     // zos::log("send_size,{}\n",size);
     pb_status.Clear();
 }
 
-void robot_::multicast_info()
+void RobotCm::multicast_info()
 {
 
     zos::Data data;
     ZSS::New::Multicast_Status mc_status;
     Robot_STATUS _s;
 
-    _time_since_last_pack += 1000.0 / config::multicast_freq; // ms
+    _time_since_last_pack.store(_time_since_last_pack.load() + 1000.0 / config::multicast_freq); // ms
 
     {
         std::scoped_lock lock{_robot_status_mutex};
         _s = robot_status;
     }
 
-    // mc_status.set_ip(wifi.get_ip()); 
-    std::string ip = wifi.get_ip();
+    // mc_status.set_ip(wifi_.get_ip()); 
+    std::string ip = wifi_.get_ip();
     size_t last_dot = ip.rfind('.');
     int ip_value = -1;
     if (last_dot != std::string::npos) {
@@ -580,12 +580,12 @@ void robot_::multicast_info()
     auto size = mc_status.ByteSizeLong();
     data.resize(size);
     mc_status.SerializeToArray(data.ptr(), size);
-    wifi.udp_sender_multicast(data.data(), size);
+    wifi_.udp_sender_multicast(data.data(), size);
     // zos::log("mul_size,{}\n",size);
     mc_status.Clear();
 }
 
-void robot_::device_run()
+void RobotCm::device_run()
 {
 
     Robot_CMD _c;
@@ -601,15 +601,15 @@ void robot_::device_run()
     // zos::log("dt = {}\n",dt);
 #ifndef CM4_stm32
 #ifndef motor_i2c_same_addr
-    device.motor_run();
+    device_.motor_run();
 #else
-    device.all_motor_run();
+    device_.all_motor_run();
 #endif
 #endif
-    device.set_dribbler((int)abs(_c.drib_power) | 0x0c);
+    device_.set_dribbler((int)abs(_c.drib_power) | 0x0c);
 }
 
-void robot_::control()
+void RobotCm::control()
 {
     // now_time = std::chrono::steady_clock::now();
     // dt = std::chrono::duration_cast<std::chrono::microseconds>(now_time - last_time).count();
@@ -641,8 +641,8 @@ void robot_::control()
 
         double angleZ = _v.ourRobot(_s.id).Dir();
 
-        getFdb(1.0 / config::robot_freq, _s.imu_data[0], vision2imu * _v.ourRobot(_s.id).X(), poseX, velX_imu, filter_X);
-        getFdb(1.0 / config::robot_freq, _s.imu_data[1], vision2imu * _v.ourRobot(_s.id).Y(), poseY, velY_imu, filter_Y);
+        get_fdb(1.0 / config::robot_freq, _s.imu_data[0], vision_to_imu_ * _v.ourRobot(_s.id).X(), poseX, velX_imu, filter_x_);
+        get_fdb(1.0 / config::robot_freq, _s.imu_data[1], vision_to_imu_ * _v.ourRobot(_s.id).Y(), poseY, velY_imu, filter_y_);
 
         velX = cos(angleZ) * velX_imu + sin(angleZ) * velY_imu;
         velY = -sin(angleZ) * velX_imu + cos(angleZ) * velY_imu;
@@ -683,21 +683,21 @@ void robot_::control()
     // }
 
 #if defined(motor_i2c_same_addr)||defined(CM4_stm32)
-    device.set_all_motor_vel(all_vel_pack);
+    device_.set_all_motor_vel(all_vel_pack_);
 #else
-    device.set_motors_vel(vel_pack);
+    device_.set_motors_vel(vel_pack_);
 #endif
 
-    auto temp_read = device.get_motors_vel();
+    auto temp_read = device_.get_motors_vel();
     for (int i = 0; i < MAX_MOTOR; i++)
     {
-        vel_read_temp[i] = temp_read[i];
+        vel_read_temp_[i] = temp_read[i];
     }
 
     
 }
 
-void robot_::shoot()
+void RobotCm::shoot()
 {
     
 
@@ -726,7 +726,7 @@ void robot_::shoot()
             file.close();
         }
         zos::log("kick info   en:{}, mode:{}, time:{}   ir: {}, last_time: {}\n", _c.kick_en, _c.kick_mode, _c.kick_discharge_time, _s.robot_is_infrared, _s.last_kick_time);
-        kick_status = device.shoot_chip(_c.kick_mode, _c.kick_discharge_time);
+        kick_status = device_.shoot_chip(_c.kick_mode, _c.kick_discharge_time);
         // TODO: _s.robot_is_shooted/chipped
         {
             std::scoped_lock lock{_robot_status_mutex, _robot_cmd_mutex};
@@ -750,7 +750,7 @@ void robot_::shoot()
 }
 
 // dt in s
-void robot_::getFdb(const double _dt, double imu, double vision, double &pose, double &vel, filter_ &filter)
+void RobotCm::get_fdb(const double _dt, double imu, double vision, double &pose, double &vel, filter_ &filter)
 {
     using namespace std;
 
@@ -769,7 +769,7 @@ void robot_::getFdb(const double _dt, double imu, double vision, double &pose, d
     vector<vector<float>> C = matrix::creatMatrix<float>(1, 3, 0);
     C[0][0] = 1;
 
-    float tmp = filter.P_k[0][0] + R;
+    float tmp = filter.P_k[0][0] + r_measure_;
 
     std::vector<std::vector<float>> M = matrix::creatMatrix<float>(3, 3, 0);
 
@@ -777,7 +777,7 @@ void robot_::getFdb(const double _dt, double imu, double vision, double &pose, d
 
     filter.P_k = matrix::matrixSum<float>(
         matrix::matrixMultiply<float>(matrix::matrixMultiply<float>(A, filter.P_k), matrix::matrixTrans<float>(A)),
-        matrix::matrixMultiply<float>(matrix::matrixMultiplyNum<float>(B, Q), matrix::matrixTrans<float>(B)));
+        matrix::matrixMultiply<float>(matrix::matrixMultiplyNum<float>(B, q_), matrix::matrixTrans<float>(B)));
 
     vector<vector<float>> eye = matrix::creatMatrix<float>(3, 3, 0);
     eye[0][0] = 1;
@@ -798,20 +798,20 @@ void robot_::getFdb(const double _dt, double imu, double vision, double &pose, d
 
     pose = filter.X[0][0];
 
-    float d = r * h;
-    float d0 = d * h;
+    float d = radius_ * time_step_;
+    float d0 = d * time_step_;
 
     filter.x1k = filter.x1;
     filter.x2k = filter.x2;
 
-    float tdy = filter.x1k - pose + h * filter.x2k;
-    float a0 = sqrt(d * d + 8 * r * abs(tdy));
+    float tdy = filter.x1k - pose + time_step_ * filter.x2k;
+    float a0 = sqrt(d * d + 8 * radius_ * abs(tdy));
 
     float a = 0;
 
     if (abs(tdy) <= d0)
     {
-        a = filter.x2k + tdy / h;
+        a = filter.x2k + tdy / time_step_;
     }
     else
     {
@@ -828,17 +828,17 @@ void robot_::getFdb(const double _dt, double imu, double vision, double &pose, d
     float f = 0;
     if (abs(a) <= d)
     {
-        f = -r * a / d;
+        f = -radius_ * a / d;
     }
     else
     {
         if (a > 0)
         {
-            f = -r;
+            f = -radius_;
         }
         else
         {
-            f = r;
+            f = radius_;
         }
     }
 
@@ -848,7 +848,7 @@ void robot_::getFdb(const double _dt, double imu, double vision, double &pose, d
     vel = filter.x2;
 }
 
-double robot_::get_vr(const double _dt, double fdb, bool have_fdb)
+double RobotCm::get_vr(const double _dt, double fdb, bool have_fdb)
 {
     Robot_CMD _c;
     Robot_STATUS _s;
@@ -864,27 +864,27 @@ double robot_::get_vr(const double _dt, double fdb, bool have_fdb)
         return _c.vr_target;
     float current_angle = fdb;
     float target_angle = _c.vr_target;
-    error = target_angle - current_angle;
+    error_ = target_angle - current_angle;
 
-    if (error < -3.1415926)
+    if (error_ < -3.1415926)
     {
-        error = error + 2 * 3.1415926;
+        error_ = error_ + 2 * 3.1415926;
     }
-    else if (error > 3.1415926)
+    else if (error_ > 3.1415926)
     {
-        error = error - 2 * 3.1415926;
+        error_ = error_ - 2 * 3.1415926;
     }
 
-    // zos::log("err : {}\n", error);
+    // zos::log("err : {}\n", error_);
 
-    float derivative = (error - prev_error) / _dt;
-    prev_error = error;
-    double output_vr = _c.angle_pid[0] * error + _c.angle_pid[2] * derivative;
-    // zos::status("output_vr: {} error: {} target_theta: {} current angle: {}\n", output_vr, error, target_angle, current_angle);
+    float derivative = (error_ - prev_error_) / _dt;
+    prev_error_ = error_;
+    double output_vr = _c.angle_pid[0] * error_ + _c.angle_pid[2] * derivative;
+    // zos::status("output_vr: {} error_: {} target_theta: {} current angle: {}\n", output_vr, error_, target_angle, current_angle);
     return output_vr;
 }
  
-void robot_::motion_planner(const double _dt, double fdb, bool have_fdb)
+void RobotCm::motion_planner(const double _dt, double fdb, bool have_fdb)
 { // dt in us
     Robot_CMD _c;
     {
@@ -950,9 +950,9 @@ void robot_::motion_planner(const double _dt, double fdb, bool have_fdb)
 
     // zos::log("{},{},{}\n", vx, vy, vr);
 
-    all_vel_pack[0] = (int16_t)(vx * 3000.0);
-    all_vel_pack[1] = (int16_t)(vy * 3000.0);
-    all_vel_pack[2] = (int16_t)(vr * 1000.0);
+    all_vel_pack_[0] = (int16_t)(vx * 3000.0);
+    all_vel_pack_[1] = (int16_t)(vy * 3000.0);
+    all_vel_pack_[2] = (int16_t)(vr * 1000.0);
 
     bool LimitVelXY = true;
     float VelXYStep = 0.1;
@@ -961,16 +961,16 @@ void robot_::motion_planner(const double _dt, double fdb, bool have_fdb)
     {
         for (int i = 0; i < 4; i++)
         {
-            vel_pack[i] = ((sin_angle[i]) * vx + (cos_angle[i]) * vy - 8.2 * vr / 160) * Vel_k2 * 100; // TODO: *100
-            // vel_pack[i] = (vel_pack[i] > 8000) ? 8000 : vel_pack[i];
-            // vel_pack[i] = (vel_pack[i] < -8000) ? -8000 : vel_pack[i];
+            vel_pack_[i] = ((sin_angle_[i]) * vx + (cos_angle_[i]) * vy - 8.2 * vr / 160) * vel_k2_ * 100; // TODO: *100
+            // vel_pack_[i] = (vel_pack_[i] > 8000) ? 8000 : vel_pack_[i];
+            // vel_pack_[i] = (vel_pack_[i] < -8000) ? -8000 : vel_pack_[i];
             // zos::log("{},{},{}\n",vx,vy,vr);
             
         }
-        if( vel_pack[0] < 4000 && vel_pack[0] > -4000 && 
-            vel_pack[1] < 4000 && vel_pack[1] > -4000 && 
-            vel_pack[2] < 4000 && vel_pack[2] > -4000 && 
-            vel_pack[3] < 4000 && vel_pack[3] > -4000)
+        if( vel_pack_[0] < 4000 && vel_pack_[0] > -4000 && 
+            vel_pack_[1] < 4000 && vel_pack_[1] > -4000 && 
+            vel_pack_[2] < 4000 && vel_pack_[2] > -4000 && 
+            vel_pack_[3] < 4000 && vel_pack_[3] > -4000)
         {
             LimitVelXY = false;
         }
@@ -1022,10 +1022,10 @@ void robot_::motion_planner(const double _dt, double fdb, bool have_fdb)
         _c.vr_target_last = vr;
     }
 
-    // zos::info("vel_pack: {} {} {} {}\n", vel_pack[0], vel_pack[1], vel_pack[2], vel_pack[3]);
+    // zos::info("vel_pack_: {} {} {} {}\n", vel_pack_[0], vel_pack_[1], vel_pack_[2], vel_pack_[3]);
 }
 
-void robot_::stand()
+void RobotCm::stand()
 {
     std::scoped_lock lock{_robot_cmd_mutex};
     robot_cmd.cmd_type = CMD_TYPE_VEL;
@@ -1037,25 +1037,25 @@ void robot_::stand()
     robot_cmd.vx_target = 0;
     robot_cmd.vr_target = 0;
     robot_cmd.use_dir = 0;
-    if (_time_since_last_pack > 1000)
+    if (_time_since_last_pack.load() > 1000)
     {
         robot_cmd.drib_power = 0;
     }
     
 
-    std::fill_n(begin(vel_pack), MAX_MOTOR, 0);
+    std::fill_n(begin(vel_pack_), MAX_MOTOR, 0);
 
-    wifi.udp_restart();
+    wifi_.udp_restart();
 }
 
-void robot_::read_config_yaml()
+void RobotCm::read_config_yaml()
 {
     try
     {
         // zos::log("read_config_yaml\n");
-        config_yaml = YAML::LoadFile("/home/pi/rpi_timer/robot/config.yaml");
+        config_yaml_ = YAML::LoadFile("/home/pi/rpi_timer/robot/config.yaml");
         // id
-        robot_id = config_yaml["id"].as<int>();
+        robot_id = config_yaml_["id"].as<int>();
         // zos::log("robot id: {}\n", robot_id);
         {
             std::scoped_lock lock{_robot_status_mutex};
@@ -1063,32 +1063,32 @@ void robot_::read_config_yaml()
             _s.id = robot_id;
         }
         // freq
-        nrf2401_freq = config_yaml["freq"].as<int>();
-        // zos::log("nrf2401 freq: {}\n", nrf2401_freq);
+        nrf2401_freq_ = config_yaml_["freq"].as<int>();
+        // zos::log("nrf2401 freq: {}\n", nrf2401_freq_);
         //  team: 1 for blue,2 for yellow
         {
             std::scoped_lock lock{_robot_status_mutex};
             auto &_s = robot_status;
-            if (nrf2401_freq == 6)
+            if (nrf2401_freq_ == 6)
             {
                 _s.team = 2;
-                vision2imu = -1;
+                vision_to_imu_ = -1;
             }
-            else if (nrf2401_freq == 8)
+            else if (nrf2401_freq_ == 8)
             {
                 _s.team = 1;
-                vision2imu = 1;
+                vision_to_imu_ = 1;
             }
         }
         zos::warning("id: {}, team: {}\n", robot_status.id, robot_status.team);
 
         // motors pid
-        for (auto motor : config_yaml["motor_pid"])
+        for (auto motor : config_yaml_["motor_pid"])
         {
             int motor_id = motor["id"].as<int>();
             // zos::log("motor{}  p: {}  i: {}\n", motor_id, motor["p"].as<int>(), motor["i"].as<int>());
-            pid_pack[motor_id * 2] = motor["p"].as<int>();
-            pid_pack[motor_id * 2 + 1] = motor["i"].as<int>();
+            pid_pack_[motor_id * 2] = motor["p"].as<int>();
+            pid_pack_[motor_id * 2 + 1] = motor["i"].as<int>();
         }
     }
     catch (const YAML::BadFile &e)
@@ -1105,88 +1105,88 @@ void robot_::read_config_yaml()
     }
 }
 
-void robot_::save_id(int robot_id_new)
+void RobotCm::save_id(int robot_id_new)
 {
-    if (config_yaml.IsNull())
+    if (config_yaml_.IsNull())
     {
-        config_yaml = YAML::LoadFile("/home/pi/rpi_timer/robot/config.yaml");
+        config_yaml_ = YAML::LoadFile("/home/pi/rpi_timer/robot/config.yaml");
     }
-    config_yaml["id"] = robot_id_new;
+    config_yaml_["id"] = robot_id_new;
     std::ofstream file_stream("/home/pi/rpi_timer/robot/config.yaml");
-    file_stream << config_yaml; // dump it back into the file
+    file_stream << config_yaml_; // dump it back into the file
     file_stream.close();
     // zos::log("robot id save\n");
 }
 
-void robot_::save_pid()
+void RobotCm::save_pid()
 {
-    if (config_yaml.IsNull())
+    if (config_yaml_.IsNull())
     {
-        config_yaml = YAML::LoadFile("/home/pi/rpi_timer/robot/config.yaml");
+        config_yaml_ = YAML::LoadFile("/home/pi/rpi_timer/robot/config.yaml");
     }
-    for (auto motor : config_yaml["motor_pid"])
+    for (auto motor : config_yaml_["motor_pid"])
     {
         int motor_id = motor["id"].as<int>();
-        if (pid_real[motor_id * 2] > 0)
+        if (pid_real_[motor_id * 2] > 0)
         {
-            motor["p"] = pid_real[motor_id * 2];
+            motor["p"] = pid_real_[motor_id * 2];
         }
-        if (pid_real[motor_id * 2 + 1] > 0)
+        if (pid_real_[motor_id * 2 + 1] > 0)
         {
-            motor["i"] = pid_real[motor_id * 2 + 1];
+            motor["i"] = pid_real_[motor_id * 2 + 1];
         }
     }
     std::ofstream file_stream("/home/pi/rpi_timer/robot/config.yaml");
-    file_stream << config_yaml; // dump it back into the file
+    file_stream << config_yaml_; // dump it back into the file
     file_stream.close();
     // zos::log("pid update\n");
     //  pid_read();
 }
 
 #ifndef motor_i2c_same_addr
-void robot_::set_pid()
+void RobotCm::set_pid()
 {
     stand();
     std::this_thread::sleep_for(std::chrono::milliseconds(10));
     pid_busy = true;
-    device.set_motors_pid(pid_pack);
-    pid_real = device.get_motors_pid();
+    device_.set_motors_pid(pid_pack_);
+    pid_real_ = device_.get_motors_pid();
     save_pid();
-    std::fill_n(begin(pid_pack), 8, 0);
+    std::fill_n(begin(pid_pack_), 8, 0);
     pid_busy = false;
     std::this_thread::sleep_for(std::chrono::seconds(1));
 }
 #endif
 
-void robot_::save_freq(int freq_new)
+void RobotCm::save_freq(int freq_new)
 {
-    if (config_yaml.IsNull())
+    if (config_yaml_.IsNull())
     {
-        config_yaml = YAML::LoadFile("/home/pi/rpi_timer/robot/config.yaml");
+        config_yaml_ = YAML::LoadFile("/home/pi/rpi_timer/robot/config.yaml");
     }
-    config_yaml["freq"] = freq_new;
+    config_yaml_["freq"] = freq_new;
     std::ofstream file_stream("/home/pi/rpi_timer/robot/config.yaml");
-    file_stream << config_yaml; // dump it back into the file
+    file_stream << config_yaml_; // dump it back into the file
     file_stream.close();
     // zos::log("robot id save\n");
 }
 
-double robot_::ms_since_last_cmd_pack()
+double RobotCm::ms_since_last_cmd_pack()
 {
-    return _time_since_last_pack;
+    return _time_since_last_pack.load();
 }
 
-void robot_::cmd_small_cb(const zos::Data &data)
+void RobotCm::cmd_small_callback(const zos::Data &data)
 {
-    // zos::log("cmd_small_cb\n");
+    // zos::log("cmd_small_callback\n");
     if (initFinish)
     {
 
-        std::scoped_lock lock{_cmd_small_data_mutex};
-        auto res = pb_cmd_mini.ParseFromArray(_cmd_small_data.data(), _cmd_small_data.size());
+        std::scoped_lock lock{cmd_small_data_mutex_};
+        auto res = pb_cmd_mini_.ParseFromArray(cmd_small_data_.data(), cmd_small_data_.size());
         if (res)
         {
-            auto &_p = pb_cmd_mini;
+            auto &_p = pb_cmd_mini_;
             std::scoped_lock lock{_robot_cmd_mutex};
             auto &_c = robot_cmd;
 
@@ -1219,7 +1219,7 @@ void robot_::cmd_small_cb(const zos::Data &data)
     }
 }
 
-void robot_::_vision_cb(const zos::Data &data)
+void RobotCm::vision_callback(const zos::Data &data)
 {
     if (initFinish)
     {
@@ -1232,12 +1232,12 @@ void robot_::_vision_cb(const zos::Data &data)
         }
 
         // zos::log("vision_callback\n");
-        std::scoped_lock lock{_vision_data_mutex};
-        auto res = pb_detectionFrame.ParseFromArray(_vision_data.data(), _vision_data.size());
+        std::scoped_lock lock{vision_data_mutex_};
+        auto res = pb_detection_frame_.ParseFromArray(vision_data_.data(), vision_data_.size());
         if (res)
         {
             std::scoped_lock lock{_vision_queue_mutex};
-            auto &_p = pb_detectionFrame;
+            auto &_p = pb_detection_frame_;
             auto &_v = VisionTmp;
 
             // zos::log("{}\n",_p.DebugString());

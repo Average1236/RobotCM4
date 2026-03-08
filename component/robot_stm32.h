@@ -2,6 +2,7 @@
 #define ROBOT_STM32_H
 
 #include "device_stm32.h"
+#include "robot_base.h"
 #include "wifi.h"
 #include "parameter.h"
 #include "matrix.h"
@@ -14,11 +15,11 @@
 #include <fstream>
 #include <sstream>
 
-class robot_stm32_
+class RobotStm32 : public RobotBase
 {
 public:
-    robot_stm32_();
-    ~robot_stm32_() = default;
+    RobotStm32();
+    ~RobotStm32() = default;
 
     uint8_t robot_id = config::robot_id;
 
@@ -39,19 +40,19 @@ public:
 
 private:
     void wifi_callback(const asio::ip::udp::endpoint &, const void *, size_t);
-    void _wifi_vision(const asio::ip::udp::endpoint &, const void *, size_t);
-    void _wifi_cmd_small(const asio::ip::udp::endpoint &, const void *, size_t);
+    void wifi_vision_callback(const asio::ip::udp::endpoint &, const void *, size_t);
+    void wifi_cmd_small_callback(const asio::ip::udp::endpoint &, const void *, size_t);
     void cmd_callback(const zos::Data &);
-    void _vision_cb(const zos::Data &);
-    void cmd_small_cb(const zos::Data &);
+    void vision_callback(const zos::Data &);
+    void cmd_small_callback(const zos::Data &);
 
     std::atomic<bool> imu_online;
 
-    float Q = 200;
-    float R = 0.01;
+    float q_ = 200;
+    float r_measure_ = 0.01;
 
-    float r = 10;
-    float h = 0.01;
+    float radius_ = 10;
+    float time_step_ = 0.01;
 
     typedef struct _filter_
     {
@@ -64,41 +65,38 @@ private:
         float x2k;
     } filter_;
 
-    filter_ filter_X;
-    filter_ filter_Y;
+    filter_ filter_x_;
+    filter_ filter_y_;
 
-    std::atomic<int> vision2imu;
+    std::atomic<int> vision_to_imu_;
 
-    std::atomic<bool> sendIsDebug = true;
+    std::atomic<bool> send_is_debug_ = true;
 
-    void getFdb(const double _dt, double imu, double vision, double &pose, double &vel, filter_ &filter);
+    void get_fdb(const double _dt, double imu, double vision, double &pose, double &vel, filter_ &filter);
 
-    Vision_DetectionFrame pb_detectionFrame;
+    Vision_DetectionFrame pb_detection_frame_;
 
     void read_config_yaml();
 
     void save_id(int robot_id_new);
     void save_freq(int nrf2401_freq_new);
 
-    YAML::Node config_yaml;
+    YAML::Node config_yaml_;
     std::atomic_bool need_change_team = false;
     std::atomic_bool last_need_change_team = false;
 
-    ZSS::New::Robot_Command pb_cmd;
-    ZSS::New::Robot_Command_Mini pb_cmd_mini;
+    ZSS::New::Robot_Command pb_cmd_;
+    ZSS::New::Robot_Command_Mini pb_cmd_mini_;
 
     std::atomic<double> _time_since_last_pack = 0; // ms
 
-    int nrf2401_freq;
+    int nrf2401_freq_;
 
-    std::vector<int> pid_pack = {0, 0, 0, 0, 0, 0, 0, 0};
-    std::vector<int> pid_real = {0, 0, 0, 0, 0, 0, 0, 0};
-    std::vector<int> vel_pack = {0, 0, 0, 0};
-    std::vector<int16_t> all_vel_pack = {0, 0, 0};
-    std::array<std::atomic<float>, 4> vel_read_temp = {0, 0, 0, 0};
-
-    const int COMM_TYPE_24L01 = 1;
-    const int COMM_TYPE_WIFI = 2;
+    std::vector<int> pid_pack_ = {0, 0, 0, 0, 0, 0, 0, 0};
+    std::vector<int> pid_real_ = {0, 0, 0, 0, 0, 0, 0, 0};
+    std::vector<int> vel_pack_ = {0, 0, 0, 0};
+    std::vector<int16_t> all_vel_pack_ = {0, 0, 0};
+    std::array<std::atomic<float>, 4> vel_read_temp_ = {0, 0, 0, 0};
 
     const int CMD_TYPE_NONE = 0;
     const int CMD_TYPE_WHEEL = 1;
@@ -106,24 +104,24 @@ private:
     const int CMD_TYPE_POSE = 3;
     const int CMD_TYPE_CHASE = 4;
 
-    device_stm32_ device;
+    DeviceStm32 device_;
 
-    zos::Data _cmd_data;
-    zos::Data _vision_data;
-    zos::Data _cmd_small_data;
-    std::mutex _cmd_data_mutex;
-    std::mutex _vision_data_mutex;
-    std::mutex _cmd_small_data_mutex;
-    zos::Subscriber<2> _cmd_subsciber;
-    zos::Publisher _cmd_publisher;
-    zos::Subscriber<2> _vision_subsciber;
-    zos::Publisher _vision_publisher;
-    zos::Subscriber<2> _cmd_small_subsciber;
-    zos::Publisher _cmd_small_publisher;
+    zos::Data cmd_data_;
+    zos::Data vision_data_;
+    zos::Data cmd_small_data_;
+    std::mutex cmd_data_mutex_;
+    std::mutex vision_data_mutex_;
+    std::mutex cmd_small_data_mutex_;
+    zos::Subscriber<2> cmd_subscriber_;
+    zos::Publisher cmd_publisher_;
+    zos::Subscriber<2> vision_subscriber_;
+    zos::Publisher vision_publisher_;
+    zos::Subscriber<2> cmd_small_subscriber_;
+    zos::Publisher cmd_small_publisher_;
 
-    wifi_comm wifi;
-    wifi_receive_ wifi_vision;
-    wifi_receive_ wifi_cmd_small;
+    wifi_comm wifi_;
+    wifi_receive_ wifi_vision_;
+    wifi_receive_ wifi_cmd_small_;
 };
 
 #endif

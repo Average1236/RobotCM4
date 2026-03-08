@@ -3,6 +3,7 @@
 
 CMakeFiles/main.dir/component/device.cpp.o: /home/pi/rpi_timer/robot/component/device.cpp \
   /home/pi/rpi_timer/robot/component/device.h \
+  /home/pi/rpi_timer/robot/component/device_base.h \
   /home/pi/rpi_timer/robot/config.h \
   /home/pi/rpi_timer/robot/zos_new/zos/log.h \
   /home/pi/rpi_timer/robot/zos_new/zos/utils/rate.h \
@@ -795,9 +796,11 @@ CMakeFiles/main.dir/component/parameter.cpp.o: /home/pi/rpi_timer/robot/componen
 
 CMakeFiles/main.dir/component/robot.cpp.o: /home/pi/rpi_timer/robot/component/robot.cpp \
   /home/pi/rpi_timer/robot/component/device.h \
+  /home/pi/rpi_timer/robot/component/device_base.h \
   /home/pi/rpi_timer/robot/component/matrix.h \
   /home/pi/rpi_timer/robot/component/parameter.h \
   /home/pi/rpi_timer/robot/component/robot.h \
+  /home/pi/rpi_timer/robot/component/robot_base.h \
   /home/pi/rpi_timer/robot/component/timer.h \
   /home/pi/rpi_timer/robot/component/wifi.h \
   /home/pi/rpi_timer/robot/config.h \
@@ -5169,10 +5172,12 @@ CMakeFiles/main.dir/share/proto/zss_cmd_type.pb.cc.o: /home/pi/rpi_timer/robot/s
 
 CMakeFiles/main.dir/test/main.cpp.o: /home/pi/rpi_timer/robot/test/main.cpp \
   /home/pi/rpi_timer/robot/component/device.h \
+  /home/pi/rpi_timer/robot/component/device_base.h \
   /home/pi/rpi_timer/robot/component/device_stm32.h \
   /home/pi/rpi_timer/robot/component/matrix.h \
   /home/pi/rpi_timer/robot/component/parameter.h \
   /home/pi/rpi_timer/robot/component/robot.h \
+  /home/pi/rpi_timer/robot/component/robot_base.h \
   /home/pi/rpi_timer/robot/component/robot_stm32.h \
   /home/pi/rpi_timer/robot/component/timer.h \
   /home/pi/rpi_timer/robot/component/wifi.h \
@@ -6549,8 +6554,6 @@ CMakeFiles/main.dir/component/device.cpp.o:
 
 /usr/include/asio/execution/allocator.hpp:
 
-/usr/include/asio/detail/wrapped_handler.hpp:
-
 /usr/include/asio/impl/prepend.hpp:
 
 /usr/include/asio/detail/work_dispatcher.hpp:
@@ -6877,11 +6880,9 @@ CMakeFiles/main.dir/component/parameter.cpp.o:
 
 /usr/include/asio/associated_cancellation_slot.hpp:
 
-/usr/include/asio/socket_base.hpp:
+/usr/include/asio/impl/executor.hpp:
 
-/home/pi/rpi_timer/robot/zos_new/zos/utils/singleton.h:
-
-/usr/include/aarch64-linux-gnu/sys/epoll.h:
+/usr/include/asio/any_io_executor.hpp:
 
 /usr/include/google/protobuf/has_bits.h:
 
@@ -7032,16 +7033,6 @@ CMakeFiles/main.dir/component/parameter.cpp.o:
 /usr/include/aarch64-linux-gnu/bits/types/stack_t.h:
 
 /usr/include/aarch64-linux-gnu/bits/types/struct_statx_timestamp.h:
-
-/usr/include/google/protobuf/io/zero_copy_stream.h:
-
-/usr/include/asio/detail/reactive_socket_recv_op.hpp:
-
-/usr/include/asio/as_tuple.hpp:
-
-/usr/include/c++/14/bits/specfun.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/__sigval_t.h:
 
 /usr/include/google/protobuf/any.h:
 
@@ -7211,10 +7202,6 @@ CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.o:
 
 /usr/include/c++/14/list:
 
-/usr/include/asio/impl/executor.hpp:
-
-/usr/include/asio/any_io_executor.hpp:
-
 /usr/include/yaml-cpp/node/detail/node_data.h:
 
 /usr/include/asio/detail/timer_scheduler_fwd.hpp:
@@ -7268,12 +7255,6 @@ CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.o:
 /usr/include/asio/error.hpp:
 
 /usr/include/aarch64-linux-gnu/bits/fp-fast.h:
-
-/usr/include/aarch64-linux-gnu/sys/poll.h:
-
-/usr/include/c++/14/bits/ranges_uninitialized.h:
-
-/usr/include/aarch64-linux-gnu/bits/termios-c_iflag.h:
 
 /usr/include/aarch64-linux-gnu/gnu/stubs.h:
 
@@ -7349,6 +7330,22 @@ CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.o:
 
 /home/pi/rpi_timer/robot/zos_new/zos/datanode.h:
 
+/usr/include/aarch64-linux-gnu/sys/poll.h:
+
+/usr/include/aarch64-linux-gnu/bits/termios-c_iflag.h:
+
+/usr/include/c++/14/bits/ranges_uninitialized.h:
+
+/usr/include/google/protobuf/io/zero_copy_stream.h:
+
+/usr/include/asio/detail/reactive_socket_recv_op.hpp:
+
+/usr/include/asio/as_tuple.hpp:
+
+/usr/include/c++/14/bits/specfun.h:
+
+/usr/include/aarch64-linux-gnu/bits/types/__sigval_t.h:
+
 /usr/include/c++/14/bits/vector.tcc:
 
 /usr/include/asio/detail/signal_blocker.hpp:
@@ -7393,25 +7390,35 @@ CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o:
 
 /usr/include/aarch64-linux-gnu/bits/mathcalls-narrow.h:
 
+/usr/include/asio/ip/udp.hpp:
+
+/usr/include/asio/ip/impl/network_v6.hpp:
+
+/usr/include/c++/14/condition_variable:
+
+/usr/include/asio/detail/buffered_stream_storage.hpp:
+
+/usr/include/spdlog/details/circular_q.h:
+
+/usr/include/c++/14/bits/locale_classes.h:
+
+/usr/include/c++/14/bits/stl_uninitialized.h:
+
+/usr/include/yaml-cpp/node/detail/node.h:
+
+/usr/include/aarch64-linux-gnu/bits/types/time_t.h:
+
+/usr/include/asio/execution/mapping.hpp:
+
+/usr/include/aarch64-linux-gnu/sys/select.h:
+
+/usr/include/aarch64-linux-gnu/bits/stdlib-float.h:
+
+/usr/include/aarch64-linux-gnu/bits/mathcalls-helper-functions.h:
+
 /usr/include/aarch64-linux-gnu/bits/types/struct_itimerspec.h:
 
 /home/pi/rpi_timer/robot/zos_new/zos/data.h:
-
-/usr/include/c++/14/climits:
-
-/usr/include/asio/windows/overlapped_ptr.hpp:
-
-/usr/include/aarch64-linux-gnu/bits/uio_lim.h:
-
-/usr/include/asio/execution/outstanding_work.hpp:
-
-/usr/include/aarch64-linux-gnu/bits/termios-c_cc.h:
-
-/home/pi/rpi_timer/robot/zos_new/zos/utils/threadpool.h:
-
-/usr/include/c++/14/numbers:
-
-/usr/include/aarch64-linux-gnu/bits/types/sigset_t.h:
 
 /usr/include/c++/14/bits/move.h:
 
@@ -7435,27 +7442,31 @@ CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o:
 
 /usr/include/aarch64-linux-gnu/bits/timesize.h:
 
-/usr/include/asio/ip/udp.hpp:
+/usr/include/c++/14/climits:
 
-/usr/include/asio/ip/impl/network_v6.hpp:
+/usr/include/asio/windows/overlapped_ptr.hpp:
 
-/usr/include/c++/14/condition_variable:
+/usr/include/aarch64-linux-gnu/bits/uio_lim.h:
 
-/usr/include/asio/detail/buffered_stream_storage.hpp:
+/usr/include/asio/execution/outstanding_work.hpp:
 
-/usr/include/spdlog/details/circular_q.h:
+/usr/include/aarch64-linux-gnu/bits/termios-c_cc.h:
 
-/usr/include/c++/14/bits/locale_classes.h:
+/home/pi/rpi_timer/robot/zos_new/zos/utils/threadpool.h:
 
-/usr/include/c++/14/bits/stl_uninitialized.h:
+/usr/include/c++/14/numbers:
 
-/usr/include/yaml-cpp/node/detail/node.h:
+/usr/lib/aarch64-linux-gnu/crti.o:
 
-/usr/include/aarch64-linux-gnu/bits/types/time_t.h:
+/usr/include/google/protobuf/port_undef.inc:
 
-/usr/include/asio/execution/mapping.hpp:
+/usr/include/asio/append.hpp:
 
-/usr/include/aarch64-linux-gnu/sys/select.h:
+/usr/include/c++/14/variant:
+
+/usr/include/c++/14/bits/codecvt.h:
+
+/usr/include/aarch64-linux-gnu/bits/types/sigset_t.h:
 
 /usr/include/aarch64-linux-gnu/bits/atomic_wide_counter.h:
 
@@ -7615,10 +7626,6 @@ CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o:
 
 /usr/include/aarch64-linux-gnu/sys/ioctl.h:
 
-/usr/include/aarch64-linux-gnu/bits/stdlib-float.h:
-
-/usr/include/aarch64-linux-gnu/bits/mathcalls-helper-functions.h:
-
 /usr/include/aarch64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
 
 /usr/include/aarch64-linux-gnu/bits/types/clock_t.h:
@@ -7729,14 +7736,6 @@ CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o:
 
 /usr/include/asm-generic/types.h:
 
-/usr/include/asio/is_write_buffered.hpp:
-
-/usr/include/asio/associated_allocator.hpp:
-
-/usr/include/c++/14/cwctype:
-
-/usr/include/asm-generic/bitsperlong.h:
-
 /usr/include/c++/14/pstl/execution_defs.h:
 
 /usr/include/asio/basic_stream_socket.hpp:
@@ -7825,6 +7824,20 @@ CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o:
 
 /usr/include/c++/14/array:
 
+/usr/include/asio/is_write_buffered.hpp:
+
+/usr/include/asio/associated_allocator.hpp:
+
+/usr/include/asm-generic/bitsperlong.h:
+
+/usr/include/c++/14/cwctype:
+
+/usr/include/asio/socket_base.hpp:
+
+/home/pi/rpi_timer/robot/zos_new/zos/utils/singleton.h:
+
+/usr/include/aarch64-linux-gnu/sys/epoll.h:
+
 /usr/include/asio/detail/completion_handler.hpp:
 
 /usr/include/c++/14/bits/slice_array.h:
@@ -7872,6 +7885,8 @@ CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o:
 /usr/include/c++/14/istream:
 
 /usr/include/c++/14/mutex:
+
+/home/pi/rpi_timer/robot/component/device_base.h:
 
 /usr/lib/linux/uapi/arm64/asm/unistd.h:
 
@@ -8263,6 +8278,10 @@ CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.o:
 
 /usr/include/yaml-cpp/yaml.h:
 
+/usr/include/asio/detail/wrapped_handler.hpp:
+
+/home/pi/rpi_timer/robot/component/robot_base.h:
+
 /usr/lib/aarch64-linux-gnu/libyaml-cpp.so:
 
 /home/pi/rpi_timer/robot/component/timer.h:
@@ -8414,13 +8433,3 @@ CMakeFiles/main.dir/control/geometry.cpp.o:
 /usr/include/aarch64-linux-gnu/sys/ucontext.h:
 
 /usr/include/asio/any_completion_executor.hpp:
-
-/usr/lib/aarch64-linux-gnu/crti.o:
-
-/usr/include/google/protobuf/port_undef.inc:
-
-/usr/include/c++/14/variant:
-
-/usr/include/c++/14/bits/codecvt.h:
-
-/usr/include/asio/append.hpp:

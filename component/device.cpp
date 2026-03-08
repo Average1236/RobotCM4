@@ -2,7 +2,7 @@
 //
 //
 //
-device_::device_()
+DeviceCm::DeviceCm()
 {
     // 检测gpio初始化完成
     auto _code_ = gpioInitialise();
@@ -64,7 +64,7 @@ device_::device_()
 }
 
 #ifndef motor_i2c_same_addr
-int device_::motors_detect()
+int DeviceCm::motors_detect()
 {
     int motors_on = 0;
     for (int i = 0; i < device_num; i++)
@@ -83,12 +83,12 @@ int device_::motors_detect()
     return motors_on;
 }
 
-void device_::set_motors_vel(std::vector<int> &vel_pack)
+void DeviceCm::set_motors_vel(std::vector<int> &vel_pack)
 {
     std::copy_n(vel_pack.begin(), MAX_MOTOR, vel_target_atomic.begin());
 }
 
-std::vector<int> device_::get_motors_pid()
+std::vector<int> DeviceCm::get_motors_pid()
 {
 
     // return vel_encoder;
@@ -121,7 +121,7 @@ std::vector<int> device_::get_motors_pid()
     return pid_real_temp;
 }
 
-void device_::set_motors_pid(std::vector<int> &pid_pack)
+void DeviceCm::set_motors_pid(std::vector<int> &pid_pack)
 {
     char pid_pack_temp_long[8];
     std::copy(begin(pid_pack), end(pid_pack), pid_pack_temp_long);
@@ -159,7 +159,7 @@ void device_::set_motors_pid(std::vector<int> &pid_pack)
     }
 }
 
-void device_::motor_run()
+void DeviceCm::motor_run()
 {
     int count_i2c = 0;
     bool test_output = false;
@@ -203,7 +203,7 @@ void device_::motor_run()
     // zos::log("{},{},{},{}\n",vel_target_atomic[0]-vel_encoders_atomic[0],vel_target_atomic[1]-vel_encoders_atomic[1],vel_target_atomic[2]-vel_encoders_atomic[2],vel_target_atomic[3]-vel_encoders_atomic[3]);
 }
 #else
-void device_::all_motor_run()
+void DeviceCm::all_motor_run()
 {
     int count_i2c = 0;
     bool test_output = false;
@@ -250,7 +250,7 @@ void device_::all_motor_run()
 #endif
 
 #ifdef motor_i2c_same_addr
-void device_::set_all_motor_vel(std::vector<int16_t> &vel_pack)
+void DeviceCm::set_all_motor_vel(std::vector<int16_t> &vel_pack)
 {
     std::scoped_lock lock(vel_tx_mutex);
     for (int i = 0; i < 3; i++)
@@ -260,14 +260,14 @@ void device_::set_all_motor_vel(std::vector<int16_t> &vel_pack)
 }
 #endif
 
-std::array<float, MAX_MOTOR> device_::get_motors_vel()
+std::array<float, MAX_MOTOR> DeviceCm::get_motors_vel()
 {
     std::array<float, MAX_MOTOR> vel_encoders_array;
     std::copy_n(vel_encoders_atomic.begin(), MAX_MOTOR, vel_encoders_array.begin());
     return vel_encoders_array;
 }
 
-std::vector<int> device_::read_nano()
+std::vector<int> DeviceCm::read_nano()
 {
     uint8_t nano_buff[3] = {0};
     std::vector<int> nano_pack(3, 0);
@@ -310,7 +310,7 @@ std::vector<int> device_::read_nano()
 
 
 
-int device_::read_imu(mraa::Uart *uart)
+int DeviceCm::read_imu(mraa::Uart *uart)
 {
     int length = read_imu_raw(imu_uart);
     std::vector<uint8_t> data(buffer, buffer + length);
@@ -428,7 +428,7 @@ int device_::read_imu(mraa::Uart *uart)
     return length;
 }
 
-void device_::set_imu_config(mraa::Uart *uart)
+void DeviceCm::set_imu_config(mraa::Uart *uart)
 {
     char unlock[5] = {0xFF, 0xAA, 0x69, 0x88, 0xB5};
     char save[5] = {0xFF, 0xAA, 0x00, 0x00, 0x00};
@@ -441,7 +441,7 @@ void device_::set_imu_config(mraa::Uart *uart)
     std::this_thread::sleep_for(std::chrono::milliseconds(100));
 }
 
-int device_::read_imu_raw(mraa::Uart *uart)
+int DeviceCm::read_imu_raw(mraa::Uart *uart)
 {
     // std::scoped_lock lock(mutex_uart);
     std::string buff_str = uart->readStr(IMU_DATA_LENGTH);
@@ -464,7 +464,7 @@ int device_::read_imu_raw(mraa::Uart *uart)
     return length;
 }
 
-bool device_::sumcrc(uint8_t *data)
+bool DeviceCm::sumcrc(uint8_t *data)
 {
     uint16_t sum = 0x0;
     for (size_t i = 0; i < 10; i++)
@@ -476,7 +476,7 @@ bool device_::sumcrc(uint8_t *data)
     return (crc == data[10]);
 }
 
-void device_::set_dribbler(int dribble_val)
+void DeviceCm::set_dribbler(int dribble_val)
 {
     // int dribble_val = (0x0c) | (0x03);
     std::scoped_lock lock(mutex_i2c);
@@ -485,7 +485,7 @@ void device_::set_dribbler(int dribble_val)
     // i2cWriteDevice(dribbler_i2c_handle, (char*)dribble_val, 1);
 }
 
-void device_::buzzer_start()
+void DeviceCm::buzzer_start()
 {
     std::thread _buzzer = std::thread([this]
                                       {
@@ -494,7 +494,7 @@ void device_::buzzer_start()
     _buzzer.join();
 }
 
-void device_::buzzer_once(int freq)
+void DeviceCm::buzzer_once(int freq)
 {
     gpioSetPWMfrequency(GPIO_BUZZER, freq);
     gpioPWM(GPIO_BUZZER, 20);
@@ -502,14 +502,14 @@ void device_::buzzer_once(int freq)
     gpioPWM(GPIO_BUZZER, 0);
 }
 
-void device_::buzzer_thread()
+void DeviceCm::buzzer_thread()
 {
     std::thread _buzzer = std::thread([this]
                                       { buzzer_once(1600); });
     _buzzer.join();
 }
 
-float device_::shoot_chip(bool kick_mode, float kick_discharge_time)
+float DeviceCm::shoot_chip(bool kick_mode, float kick_discharge_time)
 {
     int kick_flag = -1;
     int kick_gpio;
