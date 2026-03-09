@@ -885,8 +885,7 @@ CMakeFiles/main.dir/component/robot.cpp.o: \
  /usr/include/yaml-cpp/node/parse.h /usr/include/yaml-cpp/node/emit.h \
  /home/pi/rpi_timer/robot/control/WorldDefine.h \
  /home/pi/rpi_timer/robot/control/geometry.h \
- /home/pi/rpi_timer/robot/component/matrix.h \
- /home/pi/rpi_timer/robot/share/proto/robot_comm.pb.h \
+ /home/pi/rpi_timer/robot/share/proto/zss_cmd.pb.h \
  /usr/include/google/protobuf/port_def.inc \
  /usr/include/google/protobuf/port_undef.inc \
  /usr/include/google/protobuf/io/coded_stream.h \
@@ -934,6 +933,9 @@ CMakeFiles/main.dir/component/robot.cpp.o: \
  /usr/include/google/protobuf/map.h \
  /usr/include/google/protobuf/map_type_handler.h \
  /usr/include/google/protobuf/extension_set.h \
+ /home/pi/rpi_timer/robot/share/proto/zss_cmd_type.pb.h \
+ /home/pi/rpi_timer/robot/component/matrix.h \
+ /home/pi/rpi_timer/robot/share/proto/robot_comm.pb.h \
  /home/pi/rpi_timer/robot/share/proto/vision_detection.pb.h \
  /home/pi/rpi_timer/robot/zos_new/zos/core.h \
  /home/pi/rpi_timer/robot/zos_new/zos/config.h \
@@ -944,8 +946,6 @@ CMakeFiles/main.dir/component/robot.cpp.o: \
  /home/pi/rpi_timer/robot/zos_new/zos/datanode.h \
  /home/pi/rpi_timer/robot/zos_new/zos/semaphore.h \
  /home/pi/rpi_timer/robot/zos_new/zos/manager.h \
- /home/pi/rpi_timer/robot/share/proto/zss_cmd.pb.h \
- /home/pi/rpi_timer/robot/share/proto/zss_cmd_type.pb.h \
  /usr/include/c++/14/fstream \
  /usr/include/aarch64-linux-gnu/c++/14/bits/basic_file.h \
  /usr/include/aarch64-linux-gnu/c++/14/bits/c++io.h \

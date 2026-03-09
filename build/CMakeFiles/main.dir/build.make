@@ -76,169 +76,169 @@ CMakeFiles/main.dir/test/main.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/test/main.cpp.o: /home/pi/rpi_timer/robot/test/main.cpp
 CMakeFiles/main.dir/test/main.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/main.dir/test/main.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/test/main.cpp.o -MF CMakeFiles/main.dir/test/main.cpp.o.d -o CMakeFiles/main.dir/test/main.cpp.o -c /home/pi/rpi_timer/robot/test/main.cpp
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/test/main.cpp.o -MF CMakeFiles/main.dir/test/main.cpp.o.d -o CMakeFiles/main.dir/test/main.cpp.o -c /home/pi/rpi_timer/robot/test/main.cpp
 
 CMakeFiles/main.dir/test/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/test/main.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rpi_timer/robot/test/main.cpp > CMakeFiles/main.dir/test/main.cpp.i
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rpi_timer/robot/test/main.cpp > CMakeFiles/main.dir/test/main.cpp.i
 
 CMakeFiles/main.dir/test/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/test/main.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rpi_timer/robot/test/main.cpp -o CMakeFiles/main.dir/test/main.cpp.s
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rpi_timer/robot/test/main.cpp -o CMakeFiles/main.dir/test/main.cpp.s
 
 CMakeFiles/main.dir/component/device.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/component/device.cpp.o: /home/pi/rpi_timer/robot/component/device.cpp
 CMakeFiles/main.dir/component/device.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/main.dir/component/device.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/component/device.cpp.o -MF CMakeFiles/main.dir/component/device.cpp.o.d -o CMakeFiles/main.dir/component/device.cpp.o -c /home/pi/rpi_timer/robot/component/device.cpp
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/component/device.cpp.o -MF CMakeFiles/main.dir/component/device.cpp.o.d -o CMakeFiles/main.dir/component/device.cpp.o -c /home/pi/rpi_timer/robot/component/device.cpp
 
 CMakeFiles/main.dir/component/device.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/component/device.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rpi_timer/robot/component/device.cpp > CMakeFiles/main.dir/component/device.cpp.i
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rpi_timer/robot/component/device.cpp > CMakeFiles/main.dir/component/device.cpp.i
 
 CMakeFiles/main.dir/component/device.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/component/device.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rpi_timer/robot/component/device.cpp -o CMakeFiles/main.dir/component/device.cpp.s
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rpi_timer/robot/component/device.cpp -o CMakeFiles/main.dir/component/device.cpp.s
 
 CMakeFiles/main.dir/component/parameter.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/component/parameter.cpp.o: /home/pi/rpi_timer/robot/component/parameter.cpp
 CMakeFiles/main.dir/component/parameter.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/main.dir/component/parameter.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/component/parameter.cpp.o -MF CMakeFiles/main.dir/component/parameter.cpp.o.d -o CMakeFiles/main.dir/component/parameter.cpp.o -c /home/pi/rpi_timer/robot/component/parameter.cpp
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/component/parameter.cpp.o -MF CMakeFiles/main.dir/component/parameter.cpp.o.d -o CMakeFiles/main.dir/component/parameter.cpp.o -c /home/pi/rpi_timer/robot/component/parameter.cpp
 
 CMakeFiles/main.dir/component/parameter.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/component/parameter.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rpi_timer/robot/component/parameter.cpp > CMakeFiles/main.dir/component/parameter.cpp.i
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rpi_timer/robot/component/parameter.cpp > CMakeFiles/main.dir/component/parameter.cpp.i
 
 CMakeFiles/main.dir/component/parameter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/component/parameter.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rpi_timer/robot/component/parameter.cpp -o CMakeFiles/main.dir/component/parameter.cpp.s
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rpi_timer/robot/component/parameter.cpp -o CMakeFiles/main.dir/component/parameter.cpp.s
 
 CMakeFiles/main.dir/component/robot.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/component/robot.cpp.o: /home/pi/rpi_timer/robot/component/robot.cpp
 CMakeFiles/main.dir/component/robot.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/main.dir/component/robot.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/component/robot.cpp.o -MF CMakeFiles/main.dir/component/robot.cpp.o.d -o CMakeFiles/main.dir/component/robot.cpp.o -c /home/pi/rpi_timer/robot/component/robot.cpp
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/component/robot.cpp.o -MF CMakeFiles/main.dir/component/robot.cpp.o.d -o CMakeFiles/main.dir/component/robot.cpp.o -c /home/pi/rpi_timer/robot/component/robot.cpp
 
 CMakeFiles/main.dir/component/robot.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/component/robot.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rpi_timer/robot/component/robot.cpp > CMakeFiles/main.dir/component/robot.cpp.i
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rpi_timer/robot/component/robot.cpp > CMakeFiles/main.dir/component/robot.cpp.i
 
 CMakeFiles/main.dir/component/robot.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/component/robot.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rpi_timer/robot/component/robot.cpp -o CMakeFiles/main.dir/component/robot.cpp.s
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rpi_timer/robot/component/robot.cpp -o CMakeFiles/main.dir/component/robot.cpp.s
 
 CMakeFiles/main.dir/component/timer.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/component/timer.cpp.o: /home/pi/rpi_timer/robot/component/timer.cpp
 CMakeFiles/main.dir/component/timer.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/main.dir/component/timer.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/component/timer.cpp.o -MF CMakeFiles/main.dir/component/timer.cpp.o.d -o CMakeFiles/main.dir/component/timer.cpp.o -c /home/pi/rpi_timer/robot/component/timer.cpp
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/component/timer.cpp.o -MF CMakeFiles/main.dir/component/timer.cpp.o.d -o CMakeFiles/main.dir/component/timer.cpp.o -c /home/pi/rpi_timer/robot/component/timer.cpp
 
 CMakeFiles/main.dir/component/timer.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/component/timer.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rpi_timer/robot/component/timer.cpp > CMakeFiles/main.dir/component/timer.cpp.i
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rpi_timer/robot/component/timer.cpp > CMakeFiles/main.dir/component/timer.cpp.i
 
 CMakeFiles/main.dir/component/timer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/component/timer.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rpi_timer/robot/component/timer.cpp -o CMakeFiles/main.dir/component/timer.cpp.s
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rpi_timer/robot/component/timer.cpp -o CMakeFiles/main.dir/component/timer.cpp.s
 
 CMakeFiles/main.dir/component/wifi.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/component/wifi.cpp.o: /home/pi/rpi_timer/robot/component/wifi.cpp
 CMakeFiles/main.dir/component/wifi.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/main.dir/component/wifi.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/component/wifi.cpp.o -MF CMakeFiles/main.dir/component/wifi.cpp.o.d -o CMakeFiles/main.dir/component/wifi.cpp.o -c /home/pi/rpi_timer/robot/component/wifi.cpp
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/component/wifi.cpp.o -MF CMakeFiles/main.dir/component/wifi.cpp.o.d -o CMakeFiles/main.dir/component/wifi.cpp.o -c /home/pi/rpi_timer/robot/component/wifi.cpp
 
 CMakeFiles/main.dir/component/wifi.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/component/wifi.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rpi_timer/robot/component/wifi.cpp > CMakeFiles/main.dir/component/wifi.cpp.i
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rpi_timer/robot/component/wifi.cpp > CMakeFiles/main.dir/component/wifi.cpp.i
 
 CMakeFiles/main.dir/component/wifi.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/component/wifi.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rpi_timer/robot/component/wifi.cpp -o CMakeFiles/main.dir/component/wifi.cpp.s
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rpi_timer/robot/component/wifi.cpp -o CMakeFiles/main.dir/component/wifi.cpp.s
 
 CMakeFiles/main.dir/control/CMmotion.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/control/CMmotion.cpp.o: /home/pi/rpi_timer/robot/control/CMmotion.cpp
 CMakeFiles/main.dir/control/CMmotion.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/main.dir/control/CMmotion.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/control/CMmotion.cpp.o -MF CMakeFiles/main.dir/control/CMmotion.cpp.o.d -o CMakeFiles/main.dir/control/CMmotion.cpp.o -c /home/pi/rpi_timer/robot/control/CMmotion.cpp
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/control/CMmotion.cpp.o -MF CMakeFiles/main.dir/control/CMmotion.cpp.o.d -o CMakeFiles/main.dir/control/CMmotion.cpp.o -c /home/pi/rpi_timer/robot/control/CMmotion.cpp
 
 CMakeFiles/main.dir/control/CMmotion.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/control/CMmotion.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rpi_timer/robot/control/CMmotion.cpp > CMakeFiles/main.dir/control/CMmotion.cpp.i
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rpi_timer/robot/control/CMmotion.cpp > CMakeFiles/main.dir/control/CMmotion.cpp.i
 
 CMakeFiles/main.dir/control/CMmotion.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/control/CMmotion.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rpi_timer/robot/control/CMmotion.cpp -o CMakeFiles/main.dir/control/CMmotion.cpp.s
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rpi_timer/robot/control/CMmotion.cpp -o CMakeFiles/main.dir/control/CMmotion.cpp.s
 
 CMakeFiles/main.dir/control/geometry.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/control/geometry.cpp.o: /home/pi/rpi_timer/robot/control/geometry.cpp
 CMakeFiles/main.dir/control/geometry.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/main.dir/control/geometry.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/control/geometry.cpp.o -MF CMakeFiles/main.dir/control/geometry.cpp.o.d -o CMakeFiles/main.dir/control/geometry.cpp.o -c /home/pi/rpi_timer/robot/control/geometry.cpp
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/control/geometry.cpp.o -MF CMakeFiles/main.dir/control/geometry.cpp.o.d -o CMakeFiles/main.dir/control/geometry.cpp.o -c /home/pi/rpi_timer/robot/control/geometry.cpp
 
 CMakeFiles/main.dir/control/geometry.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/control/geometry.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rpi_timer/robot/control/geometry.cpp > CMakeFiles/main.dir/control/geometry.cpp.i
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rpi_timer/robot/control/geometry.cpp > CMakeFiles/main.dir/control/geometry.cpp.i
 
 CMakeFiles/main.dir/control/geometry.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/control/geometry.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rpi_timer/robot/control/geometry.cpp -o CMakeFiles/main.dir/control/geometry.cpp.s
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rpi_timer/robot/control/geometry.cpp -o CMakeFiles/main.dir/control/geometry.cpp.s
 
 CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.o: /home/pi/rpi_timer/robot/share/proto/robot_comm.pb.cc
 CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.o: CMakeFiles/main.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.o -MF CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.o.d -o CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.o -c /home/pi/rpi_timer/robot/share/proto/robot_comm.pb.cc
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.o -MF CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.o.d -o CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.o -c /home/pi/rpi_timer/robot/share/proto/robot_comm.pb.cc
 
 CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rpi_timer/robot/share/proto/robot_comm.pb.cc > CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.i
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rpi_timer/robot/share/proto/robot_comm.pb.cc > CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.i
 
 CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rpi_timer/robot/share/proto/robot_comm.pb.cc -o CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.s
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rpi_timer/robot/share/proto/robot_comm.pb.cc -o CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.s
 
 CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.o: /home/pi/rpi_timer/robot/share/proto/vision_detection.pb.cc
 CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.o: CMakeFiles/main.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.o -MF CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.o.d -o CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.o -c /home/pi/rpi_timer/robot/share/proto/vision_detection.pb.cc
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.o -MF CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.o.d -o CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.o -c /home/pi/rpi_timer/robot/share/proto/vision_detection.pb.cc
 
 CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rpi_timer/robot/share/proto/vision_detection.pb.cc > CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.i
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rpi_timer/robot/share/proto/vision_detection.pb.cc > CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.i
 
 CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rpi_timer/robot/share/proto/vision_detection.pb.cc -o CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.s
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rpi_timer/robot/share/proto/vision_detection.pb.cc -o CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.s
 
 CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o: /home/pi/rpi_timer/robot/share/proto/zss_cmd.pb.cc
 CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o: CMakeFiles/main.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o -MF CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o.d -o CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o -c /home/pi/rpi_timer/robot/share/proto/zss_cmd.pb.cc
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o -MF CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o.d -o CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o -c /home/pi/rpi_timer/robot/share/proto/zss_cmd.pb.cc
 
 CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rpi_timer/robot/share/proto/zss_cmd.pb.cc > CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.i
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rpi_timer/robot/share/proto/zss_cmd.pb.cc > CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.i
 
 CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rpi_timer/robot/share/proto/zss_cmd.pb.cc -o CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.s
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rpi_timer/robot/share/proto/zss_cmd.pb.cc -o CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.s
 
 CMakeFiles/main.dir/share/proto/zss_cmd_type.pb.cc.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/share/proto/zss_cmd_type.pb.cc.o: /home/pi/rpi_timer/robot/share/proto/zss_cmd_type.pb.cc
 CMakeFiles/main.dir/share/proto/zss_cmd_type.pb.cc.o: CMakeFiles/main.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/main.dir/share/proto/zss_cmd_type.pb.cc.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/share/proto/zss_cmd_type.pb.cc.o -MF CMakeFiles/main.dir/share/proto/zss_cmd_type.pb.cc.o.d -o CMakeFiles/main.dir/share/proto/zss_cmd_type.pb.cc.o -c /home/pi/rpi_timer/robot/share/proto/zss_cmd_type.pb.cc
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/share/proto/zss_cmd_type.pb.cc.o -MF CMakeFiles/main.dir/share/proto/zss_cmd_type.pb.cc.o.d -o CMakeFiles/main.dir/share/proto/zss_cmd_type.pb.cc.o -c /home/pi/rpi_timer/robot/share/proto/zss_cmd_type.pb.cc
 
 CMakeFiles/main.dir/share/proto/zss_cmd_type.pb.cc.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/share/proto/zss_cmd_type.pb.cc.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rpi_timer/robot/share/proto/zss_cmd_type.pb.cc > CMakeFiles/main.dir/share/proto/zss_cmd_type.pb.cc.i
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rpi_timer/robot/share/proto/zss_cmd_type.pb.cc > CMakeFiles/main.dir/share/proto/zss_cmd_type.pb.cc.i
 
 CMakeFiles/main.dir/share/proto/zss_cmd_type.pb.cc.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/share/proto/zss_cmd_type.pb.cc.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rpi_timer/robot/share/proto/zss_cmd_type.pb.cc -o CMakeFiles/main.dir/share/proto/zss_cmd_type.pb.cc.s
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rpi_timer/robot/share/proto/zss_cmd_type.pb.cc -o CMakeFiles/main.dir/share/proto/zss_cmd_type.pb.cc.s
 
 # Object files for target main
 main_OBJECTS = \

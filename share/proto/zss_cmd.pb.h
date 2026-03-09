@@ -736,6 +736,7 @@ class Robot_Status final :
     kWheelEncoderFieldNumber = 9,
     kImuDataFieldNumber = 11,
     kRealPoseFieldNumber = 12,
+    kWheelRefFieldNumber = 15,
     kOdomFieldNumber = 8,
     kRobotIdFieldNumber = 1,
     kInfraredFieldNumber = 2,
@@ -813,6 +814,28 @@ class Robot_Status final :
       real_pose() const;
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >*
       mutable_real_pose();
+
+  // repeated sint32 wheel_ref = 15;
+  int wheel_ref_size() const;
+  private:
+  int _internal_wheel_ref_size() const;
+  public:
+  void clear_wheel_ref();
+  private:
+  int32_t _internal_wheel_ref(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+      _internal_wheel_ref() const;
+  void _internal_add_wheel_ref(int32_t value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+      _internal_mutable_wheel_ref();
+  public:
+  int32_t wheel_ref(int index) const;
+  void set_wheel_ref(int index, int32_t value);
+  void add_wheel_ref(int32_t value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+      wheel_ref() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+      mutable_wheel_ref();
 
   // .ZSS.New.Odom odom = 8;
   bool has_odom() const;
@@ -934,6 +957,8 @@ class Robot_Status final :
     mutable std::atomic<int> _wheel_encoder_cached_byte_size_;
     ::PROTOBUF_NAMESPACE_ID::RepeatedField< float > imu_data_;
     ::PROTOBUF_NAMESPACE_ID::RepeatedField< float > real_pose_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t > wheel_ref_;
+    mutable std::atomic<int> _wheel_ref_cached_byte_size_;
     ::ZSS::New::Odom* odom_;
     int32_t robot_id_;
     int32_t infrared_;
@@ -1349,6 +1374,7 @@ class Robot_Command final :
 
   enum : int {
     kAnglePidFieldNumber = 13,
+    kWheelPidFieldNumber = 19,
     kCmdVelFieldNumber = 8,
     kCmdPoseFieldNumber = 9,
     kCmdChaseFieldNumber = 10,
@@ -1359,10 +1385,13 @@ class Robot_Command final :
     kKickDischargeTimeFieldNumber = 4,
     kDribbleSpinFieldNumber = 5,
     kCmdTypeFieldNumber = 7,
+    kCommTypeFieldNumber = 12,
     kNeedReportFieldNumber = 6,
     kNeedChangeTeamFieldNumber = 14,
-    kIsdebugFieldNumber = 15,
-    kCommTypeFieldNumber = 12,
+    kNeedChangeIdFieldNumber = 15,
+    kIsdebugFieldNumber = 18,
+    kTeamNewFieldNumber = 16,
+    kIdNewFieldNumber = 17,
   };
   // repeated sint32 angle_pid = 13;
   int angle_pid_size() const;
@@ -1385,6 +1414,28 @@ class Robot_Command final :
       angle_pid() const;
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
       mutable_angle_pid();
+
+  // repeated sint32 wheel_pid = 19;
+  int wheel_pid_size() const;
+  private:
+  int _internal_wheel_pid_size() const;
+  public:
+  void clear_wheel_pid();
+  private:
+  int32_t _internal_wheel_pid(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+      _internal_wheel_pid() const;
+  void _internal_add_wheel_pid(int32_t value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+      _internal_mutable_wheel_pid();
+  public:
+  int32_t wheel_pid(int index) const;
+  void set_wheel_pid(int index, int32_t value);
+  void add_wheel_pid(int32_t value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+      wheel_pid() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+      mutable_wheel_pid();
 
   // .ZSS.New.CmdVel cmd_vel = 8;
   bool has_cmd_vel() const;
@@ -1512,6 +1563,15 @@ class Robot_Command final :
   void _internal_set_cmd_type(::ZSS::New::Robot_Command_CmdType value);
   public:
 
+  // .ZSS.New.Robot_Command.CommType comm_type = 12;
+  void clear_comm_type();
+  ::ZSS::New::Robot_Command_CommType comm_type() const;
+  void set_comm_type(::ZSS::New::Robot_Command_CommType value);
+  private:
+  ::ZSS::New::Robot_Command_CommType _internal_comm_type() const;
+  void _internal_set_comm_type(::ZSS::New::Robot_Command_CommType value);
+  public:
+
   // bool need_report = 6;
   void clear_need_report();
   bool need_report() const;
@@ -1530,7 +1590,16 @@ class Robot_Command final :
   void _internal_set_need_change_team(bool value);
   public:
 
-  // bool isdebug = 15;
+  // bool need_change_id = 15;
+  void clear_need_change_id();
+  bool need_change_id() const;
+  void set_need_change_id(bool value);
+  private:
+  bool _internal_need_change_id() const;
+  void _internal_set_need_change_id(bool value);
+  public:
+
+  // bool isdebug = 18;
   void clear_isdebug();
   bool isdebug() const;
   void set_isdebug(bool value);
@@ -1539,13 +1608,22 @@ class Robot_Command final :
   void _internal_set_isdebug(bool value);
   public:
 
-  // .ZSS.New.Robot_Command.CommType comm_type = 12;
-  void clear_comm_type();
-  ::ZSS::New::Robot_Command_CommType comm_type() const;
-  void set_comm_type(::ZSS::New::Robot_Command_CommType value);
+  // .ZSS.New.Team team_new = 16;
+  void clear_team_new();
+  ::ZSS::New::Team team_new() const;
+  void set_team_new(::ZSS::New::Team value);
   private:
-  ::ZSS::New::Robot_Command_CommType _internal_comm_type() const;
-  void _internal_set_comm_type(::ZSS::New::Robot_Command_CommType value);
+  ::ZSS::New::Team _internal_team_new() const;
+  void _internal_set_team_new(::ZSS::New::Team value);
+  public:
+
+  // int32 id_new = 17;
+  void clear_id_new();
+  int32_t id_new() const;
+  void set_id_new(int32_t value);
+  private:
+  int32_t _internal_id_new() const;
+  void _internal_set_id_new(int32_t value);
   public:
 
   // @@protoc_insertion_point(class_scope:ZSS.New.Robot_Command)
@@ -1558,6 +1636,8 @@ class Robot_Command final :
   struct Impl_ {
     ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t > angle_pid_;
     mutable std::atomic<int> _angle_pid_cached_byte_size_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t > wheel_pid_;
+    mutable std::atomic<int> _wheel_pid_cached_byte_size_;
     ::ZSS::New::CmdVel* cmd_vel_;
     ::ZSS::New::CmdPose* cmd_pose_;
     ::ZSS::New::CmdChase* cmd_chase_;
@@ -1568,10 +1648,13 @@ class Robot_Command final :
     int32_t kick_discharge_time_;
     int32_t dribble_spin_;
     int cmd_type_;
+    int comm_type_;
     bool need_report_;
     bool need_change_team_;
+    bool need_change_id_;
     bool isdebug_;
-    int comm_type_;
+    int team_new_;
+    int32_t id_new_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -2463,6 +2546,53 @@ inline void Robot_Status::set_imu_omega_z(int32_t value) {
   // @@protoc_insertion_point(field_set:ZSS.New.Robot_Status.imu_omega_z)
 }
 
+// repeated sint32 wheel_ref = 15;
+inline int Robot_Status::_internal_wheel_ref_size() const {
+  return _impl_.wheel_ref_.size();
+}
+inline int Robot_Status::wheel_ref_size() const {
+  return _internal_wheel_ref_size();
+}
+inline void Robot_Status::clear_wheel_ref() {
+  _impl_.wheel_ref_.Clear();
+}
+inline int32_t Robot_Status::_internal_wheel_ref(int index) const {
+  return _impl_.wheel_ref_.Get(index);
+}
+inline int32_t Robot_Status::wheel_ref(int index) const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Status.wheel_ref)
+  return _internal_wheel_ref(index);
+}
+inline void Robot_Status::set_wheel_ref(int index, int32_t value) {
+  _impl_.wheel_ref_.Set(index, value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robot_Status.wheel_ref)
+}
+inline void Robot_Status::_internal_add_wheel_ref(int32_t value) {
+  _impl_.wheel_ref_.Add(value);
+}
+inline void Robot_Status::add_wheel_ref(int32_t value) {
+  _internal_add_wheel_ref(value);
+  // @@protoc_insertion_point(field_add:ZSS.New.Robot_Status.wheel_ref)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+Robot_Status::_internal_wheel_ref() const {
+  return _impl_.wheel_ref_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+Robot_Status::wheel_ref() const {
+  // @@protoc_insertion_point(field_list:ZSS.New.Robot_Status.wheel_ref)
+  return _internal_wheel_ref();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+Robot_Status::_internal_mutable_wheel_ref() {
+  return &_impl_.wheel_ref_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+Robot_Status::mutable_wheel_ref() {
+  // @@protoc_insertion_point(field_mutable_list:ZSS.New.Robot_Status.wheel_ref)
+  return _internal_mutable_wheel_ref();
+}
+
 // -------------------------------------------------------------------
 
 // Robots_Command
@@ -3106,7 +3236,67 @@ inline void Robot_Command::set_need_change_team(bool value) {
   // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command.need_change_team)
 }
 
-// bool isdebug = 15;
+// bool need_change_id = 15;
+inline void Robot_Command::clear_need_change_id() {
+  _impl_.need_change_id_ = false;
+}
+inline bool Robot_Command::_internal_need_change_id() const {
+  return _impl_.need_change_id_;
+}
+inline bool Robot_Command::need_change_id() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Command.need_change_id)
+  return _internal_need_change_id();
+}
+inline void Robot_Command::_internal_set_need_change_id(bool value) {
+  
+  _impl_.need_change_id_ = value;
+}
+inline void Robot_Command::set_need_change_id(bool value) {
+  _internal_set_need_change_id(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command.need_change_id)
+}
+
+// .ZSS.New.Team team_new = 16;
+inline void Robot_Command::clear_team_new() {
+  _impl_.team_new_ = 0;
+}
+inline ::ZSS::New::Team Robot_Command::_internal_team_new() const {
+  return static_cast< ::ZSS::New::Team >(_impl_.team_new_);
+}
+inline ::ZSS::New::Team Robot_Command::team_new() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Command.team_new)
+  return _internal_team_new();
+}
+inline void Robot_Command::_internal_set_team_new(::ZSS::New::Team value) {
+  
+  _impl_.team_new_ = value;
+}
+inline void Robot_Command::set_team_new(::ZSS::New::Team value) {
+  _internal_set_team_new(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command.team_new)
+}
+
+// int32 id_new = 17;
+inline void Robot_Command::clear_id_new() {
+  _impl_.id_new_ = 0;
+}
+inline int32_t Robot_Command::_internal_id_new() const {
+  return _impl_.id_new_;
+}
+inline int32_t Robot_Command::id_new() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Command.id_new)
+  return _internal_id_new();
+}
+inline void Robot_Command::_internal_set_id_new(int32_t value) {
+  
+  _impl_.id_new_ = value;
+}
+inline void Robot_Command::set_id_new(int32_t value) {
+  _internal_set_id_new(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command.id_new)
+}
+
+// bool isdebug = 18;
 inline void Robot_Command::clear_isdebug() {
   _impl_.isdebug_ = false;
 }
@@ -3124,6 +3314,53 @@ inline void Robot_Command::_internal_set_isdebug(bool value) {
 inline void Robot_Command::set_isdebug(bool value) {
   _internal_set_isdebug(value);
   // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command.isdebug)
+}
+
+// repeated sint32 wheel_pid = 19;
+inline int Robot_Command::_internal_wheel_pid_size() const {
+  return _impl_.wheel_pid_.size();
+}
+inline int Robot_Command::wheel_pid_size() const {
+  return _internal_wheel_pid_size();
+}
+inline void Robot_Command::clear_wheel_pid() {
+  _impl_.wheel_pid_.Clear();
+}
+inline int32_t Robot_Command::_internal_wheel_pid(int index) const {
+  return _impl_.wheel_pid_.Get(index);
+}
+inline int32_t Robot_Command::wheel_pid(int index) const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Command.wheel_pid)
+  return _internal_wheel_pid(index);
+}
+inline void Robot_Command::set_wheel_pid(int index, int32_t value) {
+  _impl_.wheel_pid_.Set(index, value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command.wheel_pid)
+}
+inline void Robot_Command::_internal_add_wheel_pid(int32_t value) {
+  _impl_.wheel_pid_.Add(value);
+}
+inline void Robot_Command::add_wheel_pid(int32_t value) {
+  _internal_add_wheel_pid(value);
+  // @@protoc_insertion_point(field_add:ZSS.New.Robot_Command.wheel_pid)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+Robot_Command::_internal_wheel_pid() const {
+  return _impl_.wheel_pid_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >&
+Robot_Command::wheel_pid() const {
+  // @@protoc_insertion_point(field_list:ZSS.New.Robot_Command.wheel_pid)
+  return _internal_wheel_pid();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+Robot_Command::_internal_mutable_wheel_pid() {
+  return &_impl_.wheel_pid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
+Robot_Command::mutable_wheel_pid() {
+  // @@protoc_insertion_point(field_mutable_list:ZSS.New.Robot_Command.wheel_pid)
+  return _internal_mutable_wheel_pid();
 }
 
 // -------------------------------------------------------------------

@@ -15,6 +15,7 @@
 
 #include <yaml-cpp/yaml.h>
 #include "WorldDefine.h"
+#include "zss_cmd.pb.h"
 
 struct Robot_CMD
 {
@@ -61,7 +62,7 @@ struct Robot_CMD
 struct Robot_STATUS
 {
     int id;
-    int team; // 1 for blue,2 for yellow
+    ZSS::New::Team team; // 1 for blue,2 for yellow
 
     float robot_is_infrared;     // infrared detected time (ms) or -1
     float robot_is_boot_charged; // if capacitance charge finished (60v)

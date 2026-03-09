@@ -62,6 +62,8 @@ PROTOBUF_CONSTEXPR Robot_Status::Robot_Status(
   , /*decltype(_impl_._wheel_encoder_cached_byte_size_)*/{0}
   , /*decltype(_impl_.imu_data_)*/{}
   , /*decltype(_impl_.real_pose_)*/{}
+  , /*decltype(_impl_.wheel_ref_)*/{}
+  , /*decltype(_impl_._wheel_ref_cached_byte_size_)*/{0}
   , /*decltype(_impl_.odom_)*/nullptr
   , /*decltype(_impl_.robot_id_)*/0
   , /*decltype(_impl_.infrared_)*/0
@@ -102,6 +104,8 @@ PROTOBUF_CONSTEXPR Robot_Command::Robot_Command(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.angle_pid_)*/{}
   , /*decltype(_impl_._angle_pid_cached_byte_size_)*/{0}
+  , /*decltype(_impl_.wheel_pid_)*/{}
+  , /*decltype(_impl_._wheel_pid_cached_byte_size_)*/{0}
   , /*decltype(_impl_.cmd_vel_)*/nullptr
   , /*decltype(_impl_.cmd_pose_)*/nullptr
   , /*decltype(_impl_.cmd_chase_)*/nullptr
@@ -112,10 +116,13 @@ PROTOBUF_CONSTEXPR Robot_Command::Robot_Command(
   , /*decltype(_impl_.kick_discharge_time_)*/0
   , /*decltype(_impl_.dribble_spin_)*/0
   , /*decltype(_impl_.cmd_type_)*/0
+  , /*decltype(_impl_.comm_type_)*/0
   , /*decltype(_impl_.need_report_)*/false
   , /*decltype(_impl_.need_change_team_)*/false
+  , /*decltype(_impl_.need_change_id_)*/false
   , /*decltype(_impl_.isdebug_)*/false
-  , /*decltype(_impl_.comm_type_)*/0
+  , /*decltype(_impl_.team_new_)*/0
+  , /*decltype(_impl_.id_new_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct Robot_CommandDefaultTypeInternal {
   PROTOBUF_CONSTEXPR Robot_CommandDefaultTypeInternal()
@@ -189,6 +196,7 @@ const uint32_t TableStruct_zss_5fcmd_2eproto::offsets[] PROTOBUF_SECTION_VARIABL
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, _impl_.real_pose_),
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, _impl_.have_imu_),
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, _impl_.imu_omega_z_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, _impl_.wheel_ref_),
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Robots_Command, _impl_._has_bits_),
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Robots_Command, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -219,7 +227,11 @@ const uint32_t TableStruct_zss_5fcmd_2eproto::offsets[] PROTOBUF_SECTION_VARIABL
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.comm_type_),
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.angle_pid_),
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.need_change_team_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.need_change_id_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.team_new_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.id_new_),
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.isdebug_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.wheel_pid_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command_Mini, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -233,9 +245,9 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 0, -1, -1, sizeof(::ZSS::New::Robots_Status)},
   { 7, -1, -1, sizeof(::ZSS::New::Multicast_Status)},
   { 22, -1, -1, sizeof(::ZSS::New::Robot_Status)},
-  { 42, 50, -1, sizeof(::ZSS::New::Robots_Command)},
-  { 52, -1, -1, sizeof(::ZSS::New::Robot_Command)},
-  { 73, -1, -1, sizeof(::ZSS::New::Robot_Command_Mini)},
+  { 43, 51, -1, sizeof(::ZSS::New::Robots_Command)},
+  { 53, -1, -1, sizeof(::ZSS::New::Robot_Command)},
+  { 78, -1, -1, sizeof(::ZSS::New::Robot_Command_Mini)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -255,7 +267,7 @@ const char descriptor_table_protodef_zss_5fcmd_2eproto[] PROTOBUF_SECTION_VARIAB
   "am\030\003 \001(\0162\r.ZSS.New.Team\022\020\n\010robot_id\030\004 \001("
   "\005\022\017\n\007battery\030\005 \001(\021\022\023\n\013capacitance\030\006 \001(\021\022"
   "\024\n\014vision_valid\030\007 \001(\010\022\020\n\010infrared\030\010 \001(\021\022"
-  "\020\n\010have_imu\030\t \001(\010\"\260\002\n\014Robot_Status\022\020\n\010ro"
+  "\020\n\010have_imu\030\t \001(\010\"\303\002\n\014Robot_Status\022\020\n\010ro"
   "bot_id\030\001 \001(\005\022\020\n\010infrared\030\002 \001(\021\022\021\n\tflat_k"
   "ick\030\003 \001(\021\022\021\n\tchip_kick\030\004 \001(\021\022\023\n\013imu_thet"
   "a_z\030\005 \001(\021\022\017\n\007battery\030\006 \001(\021\022\023\n\013capacitanc"
@@ -263,38 +275,41 @@ const char descriptor_table_protodef_zss_5fcmd_2eproto[] PROTOBUF_SECTION_VARIAB
   "wheel_encoder\030\t \003(\021\022\033\n\004team\030\n \001(\0162\r.ZSS."
   "New.Team\022\020\n\010imu_data\030\013 \003(\002\022\021\n\treal_pose\030"
   "\014 \003(\002\022\020\n\010have_imu\030\r \001(\010\022\023\n\013imu_omega_z\030\016"
-  " \001(\021\"W\n\016Robots_Command\022\'\n\007command\030\001 \003(\0132"
-  "\026.ZSS.New.Robot_Command\022\022\n\005delay\030\002 \001(\005H\000"
-  "\210\001\001B\010\n\006_delay\"\243\005\n\rRobot_Command\022\020\n\010robot"
-  "_id\030\001 \001(\005\0222\n\tkick_mode\030\002 \001(\0162\037.ZSS.New.R"
-  "obot_Command.KickMode\022\024\n\014desire_power\030\003 "
-  "\001(\002\022\033\n\023kick_discharge_time\030\004 \001(\021\022\024\n\014drib"
-  "ble_spin\030\005 \001(\021\022\023\n\013need_report\030\006 \001(\010\0220\n\010c"
-  "md_type\030\007 \001(\0162\036.ZSS.New.Robot_Command.Cm"
-  "dType\022 \n\007cmd_vel\030\010 \001(\0132\017.ZSS.New.CmdVel\022"
-  "\"\n\010cmd_pose\030\t \001(\0132\020.ZSS.New.CmdPose\022$\n\tc"
-  "md_chase\030\n \001(\0132\021.ZSS.New.CmdChase\022$\n\tcmd"
-  "_wheel\030\013 \001(\0132\021.ZSS.New.CmdWheel\0222\n\tcomm_"
-  "type\030\014 \001(\0162\037.ZSS.New.Robot_Command.CommT"
-  "ype\022\021\n\tangle_pid\030\r \003(\021\022\030\n\020need_change_te"
-  "am\030\016 \001(\010\022\017\n\007isdebug\030\017 \001(\010\"(\n\010KickMode\022\010\n"
-  "\004NONE\020\000\022\010\n\004KICK\020\001\022\010\n\004CHIP\020\002\"L\n\007CmdType\022\010"
-  "\n\004STOP\020\000\022\r\n\tCMD_WHEEL\020\001\022\013\n\007CMD_VEL\020\002\022\014\n\010"
-  "CMD_POSE\020\003\022\r\n\tCMD_CHASE\020\004\"@\n\010CommType\022\013\n"
-  "\007DEFAULT\020\000\022\n\n\006SERIAL\020\001\022\r\n\tUDP_24L01\020\002\022\014\n"
-  "\010UDP_WIFI\020\003\"\224\001\n\022Robot_Command_Mini\0227\n\tki"
-  "ck_mode\030\001 \001(\0162$.ZSS.New.Robot_Command_Mi"
-  "ni.KickMode\022\033\n\023kick_discharge_time\030\002 \001(\021"
-  "\"(\n\010KickMode\022\010\n\004NONE\020\000\022\010\n\004KICK\020\001\022\010\n\004CHIP"
-  "\020\002*)\n\004Team\022\013\n\007UNKNOWN\020\000\022\010\n\004BLUE\020\001\022\n\n\006YEL"
-  "LOW\020\002b\006proto3"
+  " \001(\021\022\021\n\twheel_ref\030\017 \003(\021\"W\n\016Robots_Comman"
+  "d\022\'\n\007command\030\001 \003(\0132\026.ZSS.New.Robot_Comma"
+  "nd\022\022\n\005delay\030\002 \001(\005H\000\210\001\001B\010\n\006_delay\"\377\005\n\rRob"
+  "ot_Command\022\020\n\010robot_id\030\001 \001(\005\0222\n\tkick_mod"
+  "e\030\002 \001(\0162\037.ZSS.New.Robot_Command.KickMode"
+  "\022\024\n\014desire_power\030\003 \001(\002\022\033\n\023kick_discharge"
+  "_time\030\004 \001(\021\022\024\n\014dribble_spin\030\005 \001(\021\022\023\n\013nee"
+  "d_report\030\006 \001(\010\0220\n\010cmd_type\030\007 \001(\0162\036.ZSS.N"
+  "ew.Robot_Command.CmdType\022 \n\007cmd_vel\030\010 \001("
+  "\0132\017.ZSS.New.CmdVel\022\"\n\010cmd_pose\030\t \001(\0132\020.Z"
+  "SS.New.CmdPose\022$\n\tcmd_chase\030\n \001(\0132\021.ZSS."
+  "New.CmdChase\022$\n\tcmd_wheel\030\013 \001(\0132\021.ZSS.Ne"
+  "w.CmdWheel\0222\n\tcomm_type\030\014 \001(\0162\037.ZSS.New."
+  "Robot_Command.CommType\022\021\n\tangle_pid\030\r \003("
+  "\021\022\030\n\020need_change_team\030\016 \001(\010\022\026\n\016need_chan"
+  "ge_id\030\017 \001(\010\022\037\n\010team_new\030\020 \001(\0162\r.ZSS.New."
+  "Team\022\016\n\006id_new\030\021 \001(\005\022\017\n\007isdebug\030\022 \001(\010\022\021\n"
+  "\twheel_pid\030\023 \003(\021\"(\n\010KickMode\022\010\n\004NONE\020\000\022\010"
+  "\n\004KICK\020\001\022\010\n\004CHIP\020\002\"L\n\007CmdType\022\010\n\004STOP\020\000\022"
+  "\r\n\tCMD_WHEEL\020\001\022\013\n\007CMD_VEL\020\002\022\014\n\010CMD_POSE\020"
+  "\003\022\r\n\tCMD_CHASE\020\004\"@\n\010CommType\022\013\n\007DEFAULT\020"
+  "\000\022\n\n\006SERIAL\020\001\022\r\n\tUDP_24L01\020\002\022\014\n\010UDP_WIFI"
+  "\020\003\"\224\001\n\022Robot_Command_Mini\0227\n\tkick_mode\030\001"
+  " \001(\0162$.ZSS.New.Robot_Command_Mini.KickMo"
+  "de\022\033\n\023kick_discharge_time\030\002 \001(\021\"(\n\010KickM"
+  "ode\022\010\n\004NONE\020\000\022\010\n\004KICK\020\001\022\010\n\004CHIP\020\002*)\n\004Tea"
+  "m\022\013\n\007UNKNOWN\020\000\022\010\n\004BLUE\020\001\022\n\n\006YELLOW\020\002b\006pr"
+  "oto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_zss_5fcmd_2eproto_deps[1] = {
   &::descriptor_table_zss_5fcmd_5ftype_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_zss_5fcmd_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_zss_5fcmd_2eproto = {
-    false, false, 1573, descriptor_table_protodef_zss_5fcmd_2eproto,
+    false, false, 1684, descriptor_table_protodef_zss_5fcmd_2eproto,
     "zss_cmd.proto",
     &descriptor_table_zss_5fcmd_2eproto_once, descriptor_table_zss_5fcmd_2eproto_deps, 1, 6,
     schemas, file_default_instances, TableStruct_zss_5fcmd_2eproto::offsets,
@@ -1049,6 +1064,8 @@ Robot_Status::Robot_Status(const Robot_Status& from)
     , /*decltype(_impl_._wheel_encoder_cached_byte_size_)*/{0}
     , decltype(_impl_.imu_data_){from._impl_.imu_data_}
     , decltype(_impl_.real_pose_){from._impl_.real_pose_}
+    , decltype(_impl_.wheel_ref_){from._impl_.wheel_ref_}
+    , /*decltype(_impl_._wheel_ref_cached_byte_size_)*/{0}
     , decltype(_impl_.odom_){nullptr}
     , decltype(_impl_.robot_id_){}
     , decltype(_impl_.infrared_){}
@@ -1081,6 +1098,8 @@ inline void Robot_Status::SharedCtor(
     , /*decltype(_impl_._wheel_encoder_cached_byte_size_)*/{0}
     , decltype(_impl_.imu_data_){arena}
     , decltype(_impl_.real_pose_){arena}
+    , decltype(_impl_.wheel_ref_){arena}
+    , /*decltype(_impl_._wheel_ref_cached_byte_size_)*/{0}
     , decltype(_impl_.odom_){nullptr}
     , decltype(_impl_.robot_id_){0}
     , decltype(_impl_.infrared_){0}
@@ -1110,6 +1129,7 @@ inline void Robot_Status::SharedDtor() {
   _impl_.wheel_encoder_.~RepeatedField();
   _impl_.imu_data_.~RepeatedField();
   _impl_.real_pose_.~RepeatedField();
+  _impl_.wheel_ref_.~RepeatedField();
   if (this != internal_default_instance()) delete _impl_.odom_;
 }
 
@@ -1126,6 +1146,7 @@ void Robot_Status::Clear() {
   _impl_.wheel_encoder_.Clear();
   _impl_.imu_data_.Clear();
   _impl_.real_pose_.Clear();
+  _impl_.wheel_ref_.Clear();
   if (GetArenaForAllocation() == nullptr && _impl_.odom_ != nullptr) {
     delete _impl_.odom_;
   }
@@ -1264,6 +1285,17 @@ const char* Robot_Status::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
         } else
           goto handle_unusual;
         continue;
+      // repeated sint32 wheel_ref = 15;
+      case 15:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 122)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedSInt32Parser(_internal_mutable_wheel_ref(), ptr, ctx);
+          CHK_(ptr);
+        } else if (static_cast<uint8_t>(tag) == 120) {
+          _internal_add_wheel_ref(::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr));
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -1380,6 +1412,15 @@ uint8_t* Robot_Status::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteSInt32ToArray(14, this->_internal_imu_omega_z(), target);
   }
 
+  // repeated sint32 wheel_ref = 15;
+  {
+    int byte_size = _impl_._wheel_ref_cached_byte_size_.load(std::memory_order_relaxed);
+    if (byte_size > 0) {
+      target = stream->WriteSInt32Packed(
+          15, _internal_wheel_ref(), byte_size, target);
+    }
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1429,6 +1470,20 @@ size_t Robot_Status::ByteSizeLong() const {
       total_size += 1 +
         ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
     }
+    total_size += data_size;
+  }
+
+  // repeated sint32 wheel_ref = 15;
+  {
+    size_t data_size = ::_pbi::WireFormatLite::
+      SInt32Size(this->_impl_.wheel_ref_);
+    if (data_size > 0) {
+      total_size += 1 +
+        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
+    }
+    int cached_size = ::_pbi::ToCachedSize(data_size);
+    _impl_._wheel_ref_cached_byte_size_.store(cached_size,
+                                    std::memory_order_relaxed);
     total_size += data_size;
   }
 
@@ -1511,6 +1566,7 @@ void Robot_Status::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::P
   _this->_impl_.wheel_encoder_.MergeFrom(from._impl_.wheel_encoder_);
   _this->_impl_.imu_data_.MergeFrom(from._impl_.imu_data_);
   _this->_impl_.real_pose_.MergeFrom(from._impl_.real_pose_);
+  _this->_impl_.wheel_ref_.MergeFrom(from._impl_.wheel_ref_);
   if (from._internal_has_odom()) {
     _this->_internal_mutable_odom()->::ZSS::New::Odom::MergeFrom(
         from._internal_odom());
@@ -1565,6 +1621,7 @@ void Robot_Status::InternalSwap(Robot_Status* other) {
   _impl_.wheel_encoder_.InternalSwap(&other->_impl_.wheel_encoder_);
   _impl_.imu_data_.InternalSwap(&other->_impl_.imu_data_);
   _impl_.real_pose_.InternalSwap(&other->_impl_.real_pose_);
+  _impl_.wheel_ref_.InternalSwap(&other->_impl_.wheel_ref_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(Robot_Status, _impl_.imu_omega_z_)
       + sizeof(Robot_Status::_impl_.imu_omega_z_)
@@ -1865,6 +1922,8 @@ Robot_Command::Robot_Command(const Robot_Command& from)
   new (&_impl_) Impl_{
       decltype(_impl_.angle_pid_){from._impl_.angle_pid_}
     , /*decltype(_impl_._angle_pid_cached_byte_size_)*/{0}
+    , decltype(_impl_.wheel_pid_){from._impl_.wheel_pid_}
+    , /*decltype(_impl_._wheel_pid_cached_byte_size_)*/{0}
     , decltype(_impl_.cmd_vel_){nullptr}
     , decltype(_impl_.cmd_pose_){nullptr}
     , decltype(_impl_.cmd_chase_){nullptr}
@@ -1875,10 +1934,13 @@ Robot_Command::Robot_Command(const Robot_Command& from)
     , decltype(_impl_.kick_discharge_time_){}
     , decltype(_impl_.dribble_spin_){}
     , decltype(_impl_.cmd_type_){}
+    , decltype(_impl_.comm_type_){}
     , decltype(_impl_.need_report_){}
     , decltype(_impl_.need_change_team_){}
+    , decltype(_impl_.need_change_id_){}
     , decltype(_impl_.isdebug_){}
-    , decltype(_impl_.comm_type_){}
+    , decltype(_impl_.team_new_){}
+    , decltype(_impl_.id_new_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
@@ -1895,8 +1957,8 @@ Robot_Command::Robot_Command(const Robot_Command& from)
     _this->_impl_.cmd_wheel_ = new ::ZSS::New::CmdWheel(*from._impl_.cmd_wheel_);
   }
   ::memcpy(&_impl_.robot_id_, &from._impl_.robot_id_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.comm_type_) -
-    reinterpret_cast<char*>(&_impl_.robot_id_)) + sizeof(_impl_.comm_type_));
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.id_new_) -
+    reinterpret_cast<char*>(&_impl_.robot_id_)) + sizeof(_impl_.id_new_));
   // @@protoc_insertion_point(copy_constructor:ZSS.New.Robot_Command)
 }
 
@@ -1907,6 +1969,8 @@ inline void Robot_Command::SharedCtor(
   new (&_impl_) Impl_{
       decltype(_impl_.angle_pid_){arena}
     , /*decltype(_impl_._angle_pid_cached_byte_size_)*/{0}
+    , decltype(_impl_.wheel_pid_){arena}
+    , /*decltype(_impl_._wheel_pid_cached_byte_size_)*/{0}
     , decltype(_impl_.cmd_vel_){nullptr}
     , decltype(_impl_.cmd_pose_){nullptr}
     , decltype(_impl_.cmd_chase_){nullptr}
@@ -1917,10 +1981,13 @@ inline void Robot_Command::SharedCtor(
     , decltype(_impl_.kick_discharge_time_){0}
     , decltype(_impl_.dribble_spin_){0}
     , decltype(_impl_.cmd_type_){0}
+    , decltype(_impl_.comm_type_){0}
     , decltype(_impl_.need_report_){false}
     , decltype(_impl_.need_change_team_){false}
+    , decltype(_impl_.need_change_id_){false}
     , decltype(_impl_.isdebug_){false}
-    , decltype(_impl_.comm_type_){0}
+    , decltype(_impl_.team_new_){0}
+    , decltype(_impl_.id_new_){0}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -1937,6 +2004,7 @@ Robot_Command::~Robot_Command() {
 inline void Robot_Command::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   _impl_.angle_pid_.~RepeatedField();
+  _impl_.wheel_pid_.~RepeatedField();
   if (this != internal_default_instance()) delete _impl_.cmd_vel_;
   if (this != internal_default_instance()) delete _impl_.cmd_pose_;
   if (this != internal_default_instance()) delete _impl_.cmd_chase_;
@@ -1954,6 +2022,7 @@ void Robot_Command::Clear() {
   (void) cached_has_bits;
 
   _impl_.angle_pid_.Clear();
+  _impl_.wheel_pid_.Clear();
   if (GetArenaForAllocation() == nullptr && _impl_.cmd_vel_ != nullptr) {
     delete _impl_.cmd_vel_;
   }
@@ -1971,8 +2040,8 @@ void Robot_Command::Clear() {
   }
   _impl_.cmd_wheel_ = nullptr;
   ::memset(&_impl_.robot_id_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.comm_type_) -
-      reinterpret_cast<char*>(&_impl_.robot_id_)) + sizeof(_impl_.comm_type_));
+      reinterpret_cast<char*>(&_impl_.id_new_) -
+      reinterpret_cast<char*>(&_impl_.robot_id_)) + sizeof(_impl_.id_new_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2100,10 +2169,46 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
         } else
           goto handle_unusual;
         continue;
-      // bool isdebug = 15;
+      // bool need_change_id = 15;
       case 15:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 120)) {
+          _impl_.need_change_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .ZSS.New.Team team_new = 16;
+      case 16:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 128)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_team_new(static_cast<::ZSS::New::Team>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // int32 id_new = 17;
+      case 17:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 136)) {
+          _impl_.id_new_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool isdebug = 18;
+      case 18:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 144)) {
           _impl_.isdebug_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated sint32 wheel_pid = 19;
+      case 19:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 154)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedSInt32Parser(_internal_mutable_wheel_pid(), ptr, ctx);
+          CHK_(ptr);
+        } else if (static_cast<uint8_t>(tag) == 152) {
+          _internal_add_wheel_pid(::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr));
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2235,10 +2340,38 @@ uint8_t* Robot_Command::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteBoolToArray(14, this->_internal_need_change_team(), target);
   }
 
-  // bool isdebug = 15;
+  // bool need_change_id = 15;
+  if (this->_internal_need_change_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(15, this->_internal_need_change_id(), target);
+  }
+
+  // .ZSS.New.Team team_new = 16;
+  if (this->_internal_team_new() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      16, this->_internal_team_new(), target);
+  }
+
+  // int32 id_new = 17;
+  if (this->_internal_id_new() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(17, this->_internal_id_new(), target);
+  }
+
+  // bool isdebug = 18;
   if (this->_internal_isdebug() != 0) {
     target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteBoolToArray(15, this->_internal_isdebug(), target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(18, this->_internal_isdebug(), target);
+  }
+
+  // repeated sint32 wheel_pid = 19;
+  {
+    int byte_size = _impl_._wheel_pid_cached_byte_size_.load(std::memory_order_relaxed);
+    if (byte_size > 0) {
+      target = stream->WriteSInt32Packed(
+          19, _internal_wheel_pid(), byte_size, target);
+    }
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -2267,6 +2400,20 @@ size_t Robot_Command::ByteSizeLong() const {
     }
     int cached_size = ::_pbi::ToCachedSize(data_size);
     _impl_._angle_pid_cached_byte_size_.store(cached_size,
+                                    std::memory_order_relaxed);
+    total_size += data_size;
+  }
+
+  // repeated sint32 wheel_pid = 19;
+  {
+    size_t data_size = ::_pbi::WireFormatLite::
+      SInt32Size(this->_impl_.wheel_pid_);
+    if (data_size > 0) {
+      total_size += 2 +
+        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
+    }
+    int cached_size = ::_pbi::ToCachedSize(data_size);
+    _impl_._wheel_pid_cached_byte_size_.store(cached_size,
                                     std::memory_order_relaxed);
     total_size += data_size;
   }
@@ -2335,6 +2482,12 @@ size_t Robot_Command::ByteSizeLong() const {
       ::_pbi::WireFormatLite::EnumSize(this->_internal_cmd_type());
   }
 
+  // .ZSS.New.Robot_Command.CommType comm_type = 12;
+  if (this->_internal_comm_type() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_comm_type());
+  }
+
   // bool need_report = 6;
   if (this->_internal_need_report() != 0) {
     total_size += 1 + 1;
@@ -2345,15 +2498,27 @@ size_t Robot_Command::ByteSizeLong() const {
     total_size += 1 + 1;
   }
 
-  // bool isdebug = 15;
-  if (this->_internal_isdebug() != 0) {
+  // bool need_change_id = 15;
+  if (this->_internal_need_change_id() != 0) {
     total_size += 1 + 1;
   }
 
-  // .ZSS.New.Robot_Command.CommType comm_type = 12;
-  if (this->_internal_comm_type() != 0) {
-    total_size += 1 +
-      ::_pbi::WireFormatLite::EnumSize(this->_internal_comm_type());
+  // bool isdebug = 18;
+  if (this->_internal_isdebug() != 0) {
+    total_size += 2 + 1;
+  }
+
+  // .ZSS.New.Team team_new = 16;
+  if (this->_internal_team_new() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_team_new());
+  }
+
+  // int32 id_new = 17;
+  if (this->_internal_id_new() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::Int32Size(
+        this->_internal_id_new());
   }
 
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
@@ -2375,6 +2540,7 @@ void Robot_Command::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::
   (void) cached_has_bits;
 
   _this->_impl_.angle_pid_.MergeFrom(from._impl_.angle_pid_);
+  _this->_impl_.wheel_pid_.MergeFrom(from._impl_.wheel_pid_);
   if (from._internal_has_cmd_vel()) {
     _this->_internal_mutable_cmd_vel()->::ZSS::New::CmdVel::MergeFrom(
         from._internal_cmd_vel());
@@ -2413,17 +2579,26 @@ void Robot_Command::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::
   if (from._internal_cmd_type() != 0) {
     _this->_internal_set_cmd_type(from._internal_cmd_type());
   }
+  if (from._internal_comm_type() != 0) {
+    _this->_internal_set_comm_type(from._internal_comm_type());
+  }
   if (from._internal_need_report() != 0) {
     _this->_internal_set_need_report(from._internal_need_report());
   }
   if (from._internal_need_change_team() != 0) {
     _this->_internal_set_need_change_team(from._internal_need_change_team());
   }
+  if (from._internal_need_change_id() != 0) {
+    _this->_internal_set_need_change_id(from._internal_need_change_id());
+  }
   if (from._internal_isdebug() != 0) {
     _this->_internal_set_isdebug(from._internal_isdebug());
   }
-  if (from._internal_comm_type() != 0) {
-    _this->_internal_set_comm_type(from._internal_comm_type());
+  if (from._internal_team_new() != 0) {
+    _this->_internal_set_team_new(from._internal_team_new());
+  }
+  if (from._internal_id_new() != 0) {
+    _this->_internal_set_id_new(from._internal_id_new());
   }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -2443,9 +2618,10 @@ void Robot_Command::InternalSwap(Robot_Command* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   _impl_.angle_pid_.InternalSwap(&other->_impl_.angle_pid_);
+  _impl_.wheel_pid_.InternalSwap(&other->_impl_.wheel_pid_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Robot_Command, _impl_.comm_type_)
-      + sizeof(Robot_Command::_impl_.comm_type_)
+      PROTOBUF_FIELD_OFFSET(Robot_Command, _impl_.id_new_)
+      + sizeof(Robot_Command::_impl_.id_new_)
       - PROTOBUF_FIELD_OFFSET(Robot_Command, _impl_.cmd_vel_)>(
           reinterpret_cast<char*>(&_impl_.cmd_vel_),
           reinterpret_cast<char*>(&other->_impl_.cmd_vel_));

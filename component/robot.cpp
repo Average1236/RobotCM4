@@ -269,22 +269,27 @@ void RobotCm::cmd_callback(const zos::Data &data)
             }
             send_is_debug_ = _p.isdebug();
 
-            last_need_change_team = (need_change_team)?true:false;
-            need_change_team = _p.need_change_team();
+            now_time = std::chrono::steady_clock::now();
 
-            if(last_need_change_team == false && need_change_team == true)
+            need_change_team.store(_p.need_change_team());
+            need_change_id.store(_p.need_change_id());
+
+            // if(last_need_change_team == false && need_change_team == true)
+            if (std::chrono::duration_cast<std::chrono::microseconds>(now_time - last_change_time.load()).count() > 1000000 && (need_change_team.load() || need_change_id.load())) // 1s
             {
-                Robot_STATUS _s;
+                if (need_change_team.load())
                 {
-                    std::scoped_lock lock{_robot_status_mutex};
-                    robot_status.team = (robot_status.team - 1)?1:2;
-                    _s = robot_status;
+                    change_team(_p.team_new());
+                    need_change_team.store(false);
                 }
-                save_freq((_s.team - 1)?6:8);
-                // zos::log("{}\n",_s.team);
+                if (need_change_id.load())
+                {
+                    change_id(_p.id_new());
+                    need_change_id.store(false);
+                }
+                last_change_time.store(now_time);
             }
 
-            now_time = std::chrono::steady_clock::now();
             debug_dt = std::chrono::duration_cast<std::chrono::microseconds>(now_time - last_time).count();
             last_time = now_time;
             
@@ -307,6 +312,110 @@ void RobotCm::cmd_callback(const zos::Data &data)
             // _c.imu_is_used = _p.use_pid();
         }
     }
+}
+
+void RobotCm::change_team(ZSS::New::Team team_new) {
+    Robot_STATUS _s;
+    {
+        std::scoped_lock lock{_robot_status_mutex};
+        robot_status.team = team_new;
+        _s = robot_status;
+    }
+    save_team(team_new);
+    zos::log("change team: {}\n",int(_s.team));
+}
+
+void RobotCm::change_id(int id_new) {
+    Robot_STATUS _s;
+    {
+        std::scoped_lock lock{_robot_status_mutex};
+        robot_status.id = id_new;
+        _s = robot_status;
+    }
+    save_id(id_new);
+    zos::log("change id: {}\n",_s.id);
+}
+
+void RobotCm::read_config_yaml()
+{
+    try
+    {
+        // zos::log("read_config_yaml\n");
+        config_yaml_ = YAML::LoadFile("/home/pi/rpi_timer/robot/config.yaml");
+        // id
+        robot_id = config_yaml_["id"].as<int>();
+        // zos::log("robot id: {}\n", robot_id);
+        {
+            std::scoped_lock lock{_robot_status_mutex};
+            auto &_s = robot_status;
+            _s.id = robot_id;
+        }
+        // team
+        ZSS::New::Team team = static_cast<ZSS::New::Team>(config_yaml_["team"].as<int>());
+        // zos::log("team: {}\n", team);
+        //  team: 1 for blue,2 for yellow
+        {
+            std::scoped_lock lock{_robot_status_mutex};
+            auto &_s = robot_status;
+            _s.team = team;
+            if (team == ZSS::New::Team::YELLOW)
+            {
+                vision_to_imu_ = -1;
+            }
+            else if (team == ZSS::New::Team::BLUE)
+            {
+                vision_to_imu_ = 1;
+            }
+        }
+        zos::warning("id: {}, team: {}\n", robot_status.id, int(robot_status.team));
+
+        // motors pid
+        for (auto motor : config_yaml_["motor_pid"])
+        {
+            int motor_id = motor["id"].as<int>();
+            // zos::log("motor{}  p: {}  i: {}\n", motor_id, motor["p"].as<int>(), motor["i"].as<int>());
+            pid_pack_[motor_id * 2] = motor["p"].as<int>();
+            pid_pack_[motor_id * 2 + 1] = motor["i"].as<int>();
+        }
+    }
+    catch (const YAML::BadFile &e)
+    {
+        std::cerr << e.msg << std::endl;
+    }
+    catch (const YAML::ParserException &e)
+    {
+        std::cerr << e.msg << std::endl;
+    }
+    catch (...)
+    {
+        zos::error("read config.yaml failed, use default id #{}\n", robot_id);
+    }
+}
+
+void RobotCm::save_id(int robot_id_new)
+{
+    if (config_yaml_.IsNull())
+    {
+        config_yaml_ = YAML::LoadFile("/home/pi/rpi_timer/robot/config.yaml");
+    }
+    config_yaml_["id"] = robot_id_new;
+    std::ofstream file_stream("/home/pi/rpi_timer/robot/config.yaml");
+    file_stream << config_yaml_; // dump it back into the file
+    file_stream.close();
+    // zos::log("robot id save\n");
+}
+
+void RobotCm::save_team(ZSS::New::Team team_new)
+{
+    if (config_yaml_.IsNull())
+    {
+        config_yaml_ = YAML::LoadFile("/home/pi/rpi_timer/robot/config.yaml");
+    }
+    config_yaml_["team"] = static_cast<int>(team_new);
+    std::ofstream file_stream("/home/pi/rpi_timer/robot/config.yaml");
+    file_stream << config_yaml_; // dump it back into the file
+    file_stream.close();
+    // zos::log("robot team save\n");
 }
 
 void RobotCm::update_imu()
@@ -353,11 +462,7 @@ void RobotCm::update_imu()
 void RobotCm::update_expansion_board(const double dt)
 {
 
-#ifndef CM4_stm32
     std::vector<int> expansion_board_pack = device_.read_nano();
-#else
-    std::vector<int> expansion_board_pack = device_.read_write_stm32();
-#endif
     
     {
         std::scoped_lock lock{_robot_status_mutex};
@@ -365,7 +470,7 @@ void RobotCm::update_expansion_board(const double dt)
         // Arduino nano外接板 or stm32 拓展板获取一部分信息
         if (expansion_board_pack[0] == 0xaa)
         {
-            int freq_temp = expansion_board_pack[1];
+            int team_temp = expansion_board_pack[1];
             int id_temp = expansion_board_pack[2];
             if (id_temp != _s.id)
             {
@@ -374,16 +479,16 @@ void RobotCm::update_expansion_board(const double dt)
                 device_.buzzer_thread();
                 zos::warning("change num: {}\n", id_temp);
             }
-            if (freq_temp == 6 && _s.team != 2)
+            if (team_temp == 6 && _s.team != ZSS::New::Team::YELLOW)
             {
-                _s.team = 2;
-                save_freq(freq_temp);
+                _s.team = ZSS::New::Team::YELLOW;
+                save_team(_s.team);
                 device_.buzzer_thread();
             }
-            else if (freq_temp == 8 && _s.team != 1)
+            else if (team_temp == 8 && _s.team != ZSS::New::Team::BLUE)
             {
-                _s.team = 1;
-                save_freq(freq_temp);
+                _s.team = ZSS::New::Team::BLUE;
+                save_team(_s.team);
                 device_.buzzer_thread();
             }
         }
@@ -1048,75 +1153,7 @@ void RobotCm::stand()
     wifi_.udp_restart();
 }
 
-void RobotCm::read_config_yaml()
-{
-    try
-    {
-        // zos::log("read_config_yaml\n");
-        config_yaml_ = YAML::LoadFile("/home/pi/rpi_timer/robot/config.yaml");
-        // id
-        robot_id = config_yaml_["id"].as<int>();
-        // zos::log("robot id: {}\n", robot_id);
-        {
-            std::scoped_lock lock{_robot_status_mutex};
-            auto &_s = robot_status;
-            _s.id = robot_id;
-        }
-        // freq
-        nrf2401_freq_ = config_yaml_["freq"].as<int>();
-        // zos::log("nrf2401 freq: {}\n", nrf2401_freq_);
-        //  team: 1 for blue,2 for yellow
-        {
-            std::scoped_lock lock{_robot_status_mutex};
-            auto &_s = robot_status;
-            if (nrf2401_freq_ == 6)
-            {
-                _s.team = 2;
-                vision_to_imu_ = -1;
-            }
-            else if (nrf2401_freq_ == 8)
-            {
-                _s.team = 1;
-                vision_to_imu_ = 1;
-            }
-        }
-        zos::warning("id: {}, team: {}\n", robot_status.id, robot_status.team);
 
-        // motors pid
-        for (auto motor : config_yaml_["motor_pid"])
-        {
-            int motor_id = motor["id"].as<int>();
-            // zos::log("motor{}  p: {}  i: {}\n", motor_id, motor["p"].as<int>(), motor["i"].as<int>());
-            pid_pack_[motor_id * 2] = motor["p"].as<int>();
-            pid_pack_[motor_id * 2 + 1] = motor["i"].as<int>();
-        }
-    }
-    catch (const YAML::BadFile &e)
-    {
-        std::cerr << e.msg << std::endl;
-    }
-    catch (const YAML::ParserException &e)
-    {
-        std::cerr << e.msg << std::endl;
-    }
-    catch (...)
-    {
-        zos::error("read config.yaml failed, use default id #{}\n", robot_id);
-    }
-}
-
-void RobotCm::save_id(int robot_id_new)
-{
-    if (config_yaml_.IsNull())
-    {
-        config_yaml_ = YAML::LoadFile("/home/pi/rpi_timer/robot/config.yaml");
-    }
-    config_yaml_["id"] = robot_id_new;
-    std::ofstream file_stream("/home/pi/rpi_timer/robot/config.yaml");
-    file_stream << config_yaml_; // dump it back into the file
-    file_stream.close();
-    // zos::log("robot id save\n");
-}
 
 void RobotCm::save_pid()
 {
@@ -1158,18 +1195,7 @@ void RobotCm::set_pid()
 }
 #endif
 
-void RobotCm::save_freq(int freq_new)
-{
-    if (config_yaml_.IsNull())
-    {
-        config_yaml_ = YAML::LoadFile("/home/pi/rpi_timer/robot/config.yaml");
-    }
-    config_yaml_["freq"] = freq_new;
-    std::ofstream file_stream("/home/pi/rpi_timer/robot/config.yaml");
-    file_stream << config_yaml_; // dump it back into the file
-    file_stream.close();
-    // zos::log("robot id save\n");
-}
+
 
 double RobotCm::ms_since_last_cmd_pack()
 {

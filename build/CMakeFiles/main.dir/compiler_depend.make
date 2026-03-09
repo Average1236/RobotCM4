@@ -395,6 +395,8 @@ CMakeFiles/main.dir/component/parameter.cpp.o: /home/pi/rpi_timer/robot/componen
   /home/pi/rpi_timer/robot/component/parameter.h \
   /home/pi/rpi_timer/robot/control/WorldDefine.h \
   /home/pi/rpi_timer/robot/control/geometry.h \
+  /home/pi/rpi_timer/robot/share/proto/zss_cmd.pb.h \
+  /home/pi/rpi_timer/robot/share/proto/zss_cmd_type.pb.h \
   /usr/include/aarch64-linux-gnu/bits/atomic_wide_counter.h \
   /usr/include/aarch64-linux-gnu/bits/byteswap.h \
   /usr/include/aarch64-linux-gnu/bits/confname.h \
@@ -507,6 +509,8 @@ CMakeFiles/main.dir/component/parameter.cpp.o: /home/pi/rpi_timer/robot/componen
   /usr/include/asm-generic/int-ll64.h \
   /usr/include/asm-generic/posix_types.h \
   /usr/include/asm-generic/types.h \
+  /usr/include/assert.h \
+  /usr/include/byteswap.h \
   /usr/include/c++/14/algorithm \
   /usr/include/c++/14/array \
   /usr/include/c++/14/atomic \
@@ -594,6 +598,7 @@ CMakeFiles/main.dir/component/parameter.cpp.o: /home/pi/rpi_timer/robot/componen
   /usr/include/c++/14/bits/specfun.h \
   /usr/include/c++/14/bits/sstream.tcc \
   /usr/include/c++/14/bits/std_abs.h \
+  /usr/include/c++/14/bits/std_function.h \
   /usr/include/c++/14/bits/std_mutex.h \
   /usr/include/c++/14/bits/std_thread.h \
   /usr/include/c++/14/bits/stl_algo.h \
@@ -631,6 +636,7 @@ CMakeFiles/main.dir/component/parameter.cpp.o: /home/pi/rpi_timer/robot/componen
   /usr/include/c++/14/bits/unique_lock.h \
   /usr/include/c++/14/bits/unique_ptr.h \
   /usr/include/c++/14/bits/unordered_map.h \
+  /usr/include/c++/14/bits/unordered_set.h \
   /usr/include/c++/14/bits/uses_allocator.h \
   /usr/include/c++/14/bits/uses_allocator_args.h \
   /usr/include/c++/14/bits/utility.h \
@@ -640,6 +646,7 @@ CMakeFiles/main.dir/component/parameter.cpp.o: /home/pi/rpi_timer/robot/componen
   /usr/include/c++/14/bits/valarray_before.h \
   /usr/include/c++/14/bits/vector.tcc \
   /usr/include/c++/14/bits/version.h \
+  /usr/include/c++/14/cassert \
   /usr/include/c++/14/cctype \
   /usr/include/c++/14/cerrno \
   /usr/include/c++/14/charconv \
@@ -653,6 +660,7 @@ CMakeFiles/main.dir/component/parameter.cpp.o: /home/pi/rpi_timer/robot/componen
   /usr/include/c++/14/cstdint \
   /usr/include/c++/14/cstdio \
   /usr/include/c++/14/cstdlib \
+  /usr/include/c++/14/cstring \
   /usr/include/c++/14/ctime \
   /usr/include/c++/14/cwchar \
   /usr/include/c++/14/cwctype \
@@ -668,6 +676,7 @@ CMakeFiles/main.dir/component/parameter.cpp.o: /home/pi/rpi_timer/robot/componen
   /usr/include/c++/14/ext/string_conversions.h \
   /usr/include/c++/14/ext/type_traits.h \
   /usr/include/c++/14/format \
+  /usr/include/c++/14/functional \
   /usr/include/c++/14/initializer_list \
   /usr/include/c++/14/iomanip \
   /usr/include/c++/14/ios \
@@ -719,6 +728,7 @@ CMakeFiles/main.dir/component/parameter.cpp.o: /home/pi/rpi_timer/robot/componen
   /usr/include/c++/14/type_traits \
   /usr/include/c++/14/typeinfo \
   /usr/include/c++/14/unordered_map \
+  /usr/include/c++/14/unordered_set \
   /usr/include/c++/14/utility \
   /usr/include/c++/14/valarray \
   /usr/include/c++/14/variant \
@@ -728,6 +738,52 @@ CMakeFiles/main.dir/component/parameter.cpp.o: /home/pi/rpi_timer/robot/componen
   /usr/include/errno.h \
   /usr/include/features-time64.h \
   /usr/include/features.h \
+  /usr/include/google/protobuf/any.h \
+  /usr/include/google/protobuf/arena.h \
+  /usr/include/google/protobuf/arena_impl.h \
+  /usr/include/google/protobuf/arenastring.h \
+  /usr/include/google/protobuf/arenaz_sampler.h \
+  /usr/include/google/protobuf/descriptor.h \
+  /usr/include/google/protobuf/endian.h \
+  /usr/include/google/protobuf/explicitly_constructed.h \
+  /usr/include/google/protobuf/extension_set.h \
+  /usr/include/google/protobuf/generated_enum_reflection.h \
+  /usr/include/google/protobuf/generated_enum_util.h \
+  /usr/include/google/protobuf/generated_message_reflection.h \
+  /usr/include/google/protobuf/generated_message_util.h \
+  /usr/include/google/protobuf/has_bits.h \
+  /usr/include/google/protobuf/implicit_weak_message.h \
+  /usr/include/google/protobuf/inlined_string_field.h \
+  /usr/include/google/protobuf/io/coded_stream.h \
+  /usr/include/google/protobuf/io/zero_copy_stream.h \
+  /usr/include/google/protobuf/io/zero_copy_stream_impl_lite.h \
+  /usr/include/google/protobuf/map.h \
+  /usr/include/google/protobuf/map_type_handler.h \
+  /usr/include/google/protobuf/message.h \
+  /usr/include/google/protobuf/message_lite.h \
+  /usr/include/google/protobuf/metadata_lite.h \
+  /usr/include/google/protobuf/parse_context.h \
+  /usr/include/google/protobuf/port.h \
+  /usr/include/google/protobuf/port_def.inc \
+  /usr/include/google/protobuf/port_undef.inc \
+  /usr/include/google/protobuf/repeated_field.h \
+  /usr/include/google/protobuf/repeated_ptr_field.h \
+  /usr/include/google/protobuf/stubs/callback.h \
+  /usr/include/google/protobuf/stubs/casts.h \
+  /usr/include/google/protobuf/stubs/common.h \
+  /usr/include/google/protobuf/stubs/hash.h \
+  /usr/include/google/protobuf/stubs/logging.h \
+  /usr/include/google/protobuf/stubs/macros.h \
+  /usr/include/google/protobuf/stubs/mutex.h \
+  /usr/include/google/protobuf/stubs/once.h \
+  /usr/include/google/protobuf/stubs/platform_macros.h \
+  /usr/include/google/protobuf/stubs/port.h \
+  /usr/include/google/protobuf/stubs/status.h \
+  /usr/include/google/protobuf/stubs/stl_util.h \
+  /usr/include/google/protobuf/stubs/stringpiece.h \
+  /usr/include/google/protobuf/stubs/strutil.h \
+  /usr/include/google/protobuf/unknown_field_set.h \
+  /usr/include/google/protobuf/wire_format_lite.h \
   /usr/include/libintl.h \
   /usr/include/limits.h \
   /usr/include/linux/close_range.h \
@@ -746,6 +802,8 @@ CMakeFiles/main.dir/component/parameter.cpp.o: /home/pi/rpi_timer/robot/componen
   /usr/include/stdint.h \
   /usr/include/stdio.h \
   /usr/include/stdlib.h \
+  /usr/include/string.h \
+  /usr/include/strings.h \
   /usr/include/syscall.h \
   /usr/include/time.h \
   /usr/include/unistd.h \
@@ -3092,6 +3150,8 @@ CMakeFiles/main.dir/control/CMmotion.cpp.o: /home/pi/rpi_timer/robot/control/CMm
   /home/pi/rpi_timer/robot/control/CMmotion.h \
   /home/pi/rpi_timer/robot/control/WorldDefine.h \
   /home/pi/rpi_timer/robot/control/geometry.h \
+  /home/pi/rpi_timer/robot/share/proto/zss_cmd.pb.h \
+  /home/pi/rpi_timer/robot/share/proto/zss_cmd_type.pb.h \
   /usr/include/aarch64-linux-gnu/bits/atomic_wide_counter.h \
   /usr/include/aarch64-linux-gnu/bits/byteswap.h \
   /usr/include/aarch64-linux-gnu/bits/confname.h \
@@ -3206,6 +3266,8 @@ CMakeFiles/main.dir/control/CMmotion.cpp.o: /home/pi/rpi_timer/robot/control/CMm
   /usr/include/asm-generic/int-ll64.h \
   /usr/include/asm-generic/posix_types.h \
   /usr/include/asm-generic/types.h \
+  /usr/include/assert.h \
+  /usr/include/byteswap.h \
   /usr/include/c++/14/algorithm \
   /usr/include/c++/14/array \
   /usr/include/c++/14/atomic \
@@ -3294,6 +3356,7 @@ CMakeFiles/main.dir/control/CMmotion.cpp.o: /home/pi/rpi_timer/robot/control/CMm
   /usr/include/c++/14/bits/specfun.h \
   /usr/include/c++/14/bits/sstream.tcc \
   /usr/include/c++/14/bits/std_abs.h \
+  /usr/include/c++/14/bits/std_function.h \
   /usr/include/c++/14/bits/std_mutex.h \
   /usr/include/c++/14/bits/std_thread.h \
   /usr/include/c++/14/bits/stl_algo.h \
@@ -3331,6 +3394,7 @@ CMakeFiles/main.dir/control/CMmotion.cpp.o: /home/pi/rpi_timer/robot/control/CMm
   /usr/include/c++/14/bits/unique_lock.h \
   /usr/include/c++/14/bits/unique_ptr.h \
   /usr/include/c++/14/bits/unordered_map.h \
+  /usr/include/c++/14/bits/unordered_set.h \
   /usr/include/c++/14/bits/uses_allocator.h \
   /usr/include/c++/14/bits/uses_allocator_args.h \
   /usr/include/c++/14/bits/utility.h \
@@ -3340,6 +3404,7 @@ CMakeFiles/main.dir/control/CMmotion.cpp.o: /home/pi/rpi_timer/robot/control/CMm
   /usr/include/c++/14/bits/valarray_before.h \
   /usr/include/c++/14/bits/vector.tcc \
   /usr/include/c++/14/bits/version.h \
+  /usr/include/c++/14/cassert \
   /usr/include/c++/14/cctype \
   /usr/include/c++/14/cerrno \
   /usr/include/c++/14/charconv \
@@ -3353,6 +3418,7 @@ CMakeFiles/main.dir/control/CMmotion.cpp.o: /home/pi/rpi_timer/robot/control/CMm
   /usr/include/c++/14/cstdint \
   /usr/include/c++/14/cstdio \
   /usr/include/c++/14/cstdlib \
+  /usr/include/c++/14/cstring \
   /usr/include/c++/14/ctime \
   /usr/include/c++/14/cwchar \
   /usr/include/c++/14/cwctype \
@@ -3369,6 +3435,7 @@ CMakeFiles/main.dir/control/CMmotion.cpp.o: /home/pi/rpi_timer/robot/control/CMm
   /usr/include/c++/14/ext/type_traits.h \
   /usr/include/c++/14/format \
   /usr/include/c++/14/fstream \
+  /usr/include/c++/14/functional \
   /usr/include/c++/14/initializer_list \
   /usr/include/c++/14/iomanip \
   /usr/include/c++/14/ios \
@@ -3421,6 +3488,7 @@ CMakeFiles/main.dir/control/CMmotion.cpp.o: /home/pi/rpi_timer/robot/control/CMm
   /usr/include/c++/14/type_traits \
   /usr/include/c++/14/typeinfo \
   /usr/include/c++/14/unordered_map \
+  /usr/include/c++/14/unordered_set \
   /usr/include/c++/14/utility \
   /usr/include/c++/14/valarray \
   /usr/include/c++/14/variant \
@@ -3430,6 +3498,52 @@ CMakeFiles/main.dir/control/CMmotion.cpp.o: /home/pi/rpi_timer/robot/control/CMm
   /usr/include/errno.h \
   /usr/include/features-time64.h \
   /usr/include/features.h \
+  /usr/include/google/protobuf/any.h \
+  /usr/include/google/protobuf/arena.h \
+  /usr/include/google/protobuf/arena_impl.h \
+  /usr/include/google/protobuf/arenastring.h \
+  /usr/include/google/protobuf/arenaz_sampler.h \
+  /usr/include/google/protobuf/descriptor.h \
+  /usr/include/google/protobuf/endian.h \
+  /usr/include/google/protobuf/explicitly_constructed.h \
+  /usr/include/google/protobuf/extension_set.h \
+  /usr/include/google/protobuf/generated_enum_reflection.h \
+  /usr/include/google/protobuf/generated_enum_util.h \
+  /usr/include/google/protobuf/generated_message_reflection.h \
+  /usr/include/google/protobuf/generated_message_util.h \
+  /usr/include/google/protobuf/has_bits.h \
+  /usr/include/google/protobuf/implicit_weak_message.h \
+  /usr/include/google/protobuf/inlined_string_field.h \
+  /usr/include/google/protobuf/io/coded_stream.h \
+  /usr/include/google/protobuf/io/zero_copy_stream.h \
+  /usr/include/google/protobuf/io/zero_copy_stream_impl_lite.h \
+  /usr/include/google/protobuf/map.h \
+  /usr/include/google/protobuf/map_type_handler.h \
+  /usr/include/google/protobuf/message.h \
+  /usr/include/google/protobuf/message_lite.h \
+  /usr/include/google/protobuf/metadata_lite.h \
+  /usr/include/google/protobuf/parse_context.h \
+  /usr/include/google/protobuf/port.h \
+  /usr/include/google/protobuf/port_def.inc \
+  /usr/include/google/protobuf/port_undef.inc \
+  /usr/include/google/protobuf/repeated_field.h \
+  /usr/include/google/protobuf/repeated_ptr_field.h \
+  /usr/include/google/protobuf/stubs/callback.h \
+  /usr/include/google/protobuf/stubs/casts.h \
+  /usr/include/google/protobuf/stubs/common.h \
+  /usr/include/google/protobuf/stubs/hash.h \
+  /usr/include/google/protobuf/stubs/logging.h \
+  /usr/include/google/protobuf/stubs/macros.h \
+  /usr/include/google/protobuf/stubs/mutex.h \
+  /usr/include/google/protobuf/stubs/once.h \
+  /usr/include/google/protobuf/stubs/platform_macros.h \
+  /usr/include/google/protobuf/stubs/port.h \
+  /usr/include/google/protobuf/stubs/status.h \
+  /usr/include/google/protobuf/stubs/stl_util.h \
+  /usr/include/google/protobuf/stubs/stringpiece.h \
+  /usr/include/google/protobuf/stubs/strutil.h \
+  /usr/include/google/protobuf/unknown_field_set.h \
+  /usr/include/google/protobuf/wire_format_lite.h \
   /usr/include/libintl.h \
   /usr/include/limits.h \
   /usr/include/linux/close_range.h \
@@ -3448,6 +3562,8 @@ CMakeFiles/main.dir/control/CMmotion.cpp.o: /home/pi/rpi_timer/robot/control/CMm
   /usr/include/stdint.h \
   /usr/include/stdio.h \
   /usr/include/stdlib.h \
+  /usr/include/string.h \
+  /usr/include/strings.h \
   /usr/include/syscall.h \
   /usr/include/time.h \
   /usr/include/unistd.h \
@@ -6308,55 +6424,9 @@ CMakeFiles/main.dir/component/robot.cpp.o:
 
 /usr/include/linux/stat.h:
 
-/usr/include/google/protobuf/unknown_field_set.h:
-
-/usr/include/google/protobuf/stubs/stl_util.h:
-
-/usr/include/google/protobuf/stubs/status.h:
-
-/usr/include/google/protobuf/stubs/platform_macros.h:
-
-/usr/include/google/protobuf/stubs/logging.h:
-
-/usr/include/google/protobuf/stubs/hash.h:
-
-/usr/include/google/protobuf/stubs/common.h:
-
-/usr/include/google/protobuf/repeated_field.h:
-
-/usr/include/google/protobuf/port.h:
-
-/usr/include/google/protobuf/parse_context.h:
-
-/usr/include/google/protobuf/message_lite.h:
-
-/usr/include/google/protobuf/message.h:
-
-/usr/include/google/protobuf/map_type_handler.h:
-
-/usr/include/google/protobuf/io/zero_copy_stream_impl_lite.h:
-
-/usr/include/google/protobuf/generated_enum_util.h:
-
-/usr/include/google/protobuf/generated_enum_reflection.h:
-
-/usr/include/google/protobuf/explicitly_constructed.h:
-
-/usr/include/google/protobuf/endian.h:
-
-/usr/lib/aarch64-linux-gnu/libspdlog.so.1.15.2:
-
-/usr/include/google/protobuf/arena_impl.h:
-
 /usr/include/fcntl.h:
 
-/usr/include/c++/14/unordered_set:
-
-/usr/include/c++/14/bits/unordered_set.h:
-
 /usr/include/c++/14/any:
-
-/usr/include/byteswap.h:
 
 /usr/include/asm-generic/ioctl.h:
 
@@ -6395,10 +6465,6 @@ CMakeFiles/main.dir/component/robot.cpp.o:
 /usr/include/asio/stream_file.hpp:
 
 /usr/include/asio/strand.hpp:
-
-/usr/include/google/protobuf/repeated_ptr_field.h:
-
-/usr/include/asio/signal_set_base.hpp:
 
 /usr/include/asio/signal_set.hpp:
 
@@ -6461,10 +6527,6 @@ CMakeFiles/main.dir/component/device.cpp.o:
 /usr/include/asio/ip/impl/address_v4.hpp:
 
 /usr/include/asio/ip/impl/address.ipp:
-
-/usr/include/google/protobuf/arenaz_sampler.h:
-
-/usr/include/asio/ip/detail/socket_option.hpp:
 
 /usr/include/asio/ip/detail/endpoint.hpp:
 
@@ -6638,10 +6700,6 @@ CMakeFiles/main.dir/control/CMmotion.cpp.o:
 
 /usr/include/asio/detail/posix_thread.hpp:
 
-/usr/include/google/protobuf/io/coded_stream.h:
-
-/usr/include/asio/detail/posix_static_mutex.hpp:
-
 /usr/include/asio/detail/operation.hpp:
 
 /usr/include/asio/detail/op_queue.hpp:
@@ -6742,12 +6800,6 @@ CMakeFiles/main.dir/control/CMmotion.cpp.o:
 
 /usr/include/asio/detail/descriptor_read_op.hpp:
 
-/usr/include/google/protobuf/stubs/mutex.h:
-
-/usr/include/asio/high_resolution_timer.hpp:
-
-/usr/include/asio/detail/descriptor_ops.hpp:
-
 /usr/include/asio/detail/date_time_fwd.hpp:
 
 /usr/include/asio/detail/functional.hpp:
@@ -6779,10 +6831,6 @@ CMakeFiles/main.dir/component/parameter.cpp.o:
 /usr/include/asio/detail/reactive_socket_accept_op.hpp:
 
 /usr/include/asio/detail/chrono.hpp:
-
-/usr/include/google/protobuf/stubs/casts.h:
-
-/usr/include/asio/detail/buffer_sequence_adapter.hpp:
 
 /usr/include/asio/detail/bind_handler.hpp:
 
@@ -6884,9 +6932,93 @@ CMakeFiles/main.dir/component/parameter.cpp.o:
 
 /usr/include/asio/any_io_executor.hpp:
 
-/usr/include/google/protobuf/has_bits.h:
+/usr/include/asio/any_completion_executor.hpp:
 
-/usr/include/asio.hpp:
+/usr/include/arpa/inet.h:
+
+/usr/include/asio/impl/detached.hpp:
+
+/usr/include/asio/detail/impl/epoll_reactor.hpp:
+
+/usr/include/aarch64-linux-gnu/sys/user.h:
+
+/usr/include/aarch64-linux-gnu/sys/ucontext.h:
+
+/usr/include/aarch64-linux-gnu/sys/ttydefaults.h:
+
+/usr/include/aarch64-linux-gnu/sys/stat.h:
+
+/usr/lib/gcc/aarch64-linux-gnu/14/crtbeginS.o:
+
+/usr/include/asio/traits/prefer_free.hpp:
+
+/usr/include/asio/detail/thread.hpp:
+
+/usr/include/aarch64-linux-gnu/sys/ioctl.h:
+
+/usr/include/aarch64-linux-gnu/sys/eventfd.h:
+
+/usr/include/aarch64-linux-gnu/sys/epoll.h:
+
+/usr/include/asio/detail/impl/reactive_socket_service_base.ipp:
+
+/usr/include/aarch64-linux-gnu/c++/14/bits/basic_file.h:
+
+/usr/include/aarch64-linux-gnu/bits/uio-ext.h:
+
+/usr/include/aarch64-linux-gnu/bits/types/struct_statx_timestamp.h:
+
+/usr/include/aarch64-linux-gnu/bits/types/struct_statx.h:
+
+/usr/include/aarch64-linux-gnu/bits/types/struct_iovec.h:
+
+/usr/include/aarch64-linux-gnu/bits/types/stack_t.h:
+
+/usr/include/aarch64-linux-gnu/bits/types/__sigval_t.h:
+
+/usr/include/aarch64-linux-gnu/bits/timerfd.h:
+
+/usr/include/asio/detail/select_interrupter.hpp:
+
+/usr/include/aarch64-linux-gnu/bits/termios.h:
+
+/usr/include/aarch64-linux-gnu/bits/termios-struct.h:
+
+/usr/include/aarch64-linux-gnu/bits/termios-c_oflag.h:
+
+/usr/include/aarch64-linux-gnu/bits/termios-c_lflag.h:
+
+/usr/include/aarch64-linux-gnu/c++/14/bits/c++io.h:
+
+/usr/include/aarch64-linux-gnu/bits/termios-c_cflag.h:
+
+/usr/include/asio/execution/outstanding_work.hpp:
+
+/usr/include/aarch64-linux-gnu/bits/termios-c_cc.h:
+
+/usr/include/asio/detail/type_traits.hpp:
+
+/usr/include/aarch64-linux-gnu/bits/struct_stat.h:
+
+/usr/include/aarch64-linux-gnu/bits/statx-generic.h:
+
+/usr/include/asio/impl/system_context.hpp:
+
+/usr/include/aarch64-linux-gnu/bits/stat.h:
+
+/usr/include/aarch64-linux-gnu/bits/ss_flags.h:
+
+/lib/aarch64-linux-gnu/libz.so.1:
+
+/usr/include/aarch64-linux-gnu/bits/socket_type.h:
+
+/usr/include/aarch64-linux-gnu/bits/socket.h:
+
+/usr/include/asio/detail/impl/service_registry.hpp:
+
+/usr/include/aarch64-linux-gnu/bits/types/sigval_t.h:
+
+/usr/include/c++/14/ext/numeric_traits.h:
 
 /usr/include/asio/traits/require_free.hpp:
 
@@ -6896,11 +7028,11 @@ CMakeFiles/main.dir/component/parameter.cpp.o:
 
 /usr/include/c++/14/cstdint:
 
-/usr/include/google/protobuf/port_def.inc:
+/usr/include/google/protobuf/repeated_field.h:
 
-/usr/include/asio/ip/impl/network_v6.ipp:
+/usr/include/asio/signal_set_base.hpp:
 
-/usr/include/c++/14/cstddef:
+/usr/include/google/protobuf/repeated_ptr_field.h:
 
 /usr/local/include/mraa/spi.h:
 
@@ -6921,8 +7053,6 @@ CMakeFiles/main.dir/component/parameter.cpp.o:
 /usr/include/c++/14/bits/uses_allocator.h:
 
 /usr/include/c++/14/bits/unique_lock.h:
-
-/usr/include/aarch64-linux-gnu/sys/eventfd.h:
 
 /usr/include/linux/ioctl.h:
 
@@ -7014,6 +7144,10 @@ CMakeFiles/main.dir/component/parameter.cpp.o:
 
 /usr/include/c++/14/bits/std_thread.h:
 
+/usr/include/aarch64-linux-gnu/bits/types/sigevent_t.h:
+
+/usr/include/c++/14/bits/shared_ptr_atomic.h:
+
 /home/pi/rpi_timer/robot/zos_new/zos/utils/rate.h:
 
 /usr/include/c++/14/bits/shared_ptr.h:
@@ -7030,21 +7164,9 @@ CMakeFiles/main.dir/component/parameter.cpp.o:
 
 /usr/include/c++/14/bits/requires_hosted.h:
 
-/usr/include/aarch64-linux-gnu/bits/types/stack_t.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/struct_statx_timestamp.h:
-
-/usr/include/google/protobuf/any.h:
-
-/usr/include/c++/14/bits/streambuf_iterator.h:
-
 CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.o:
 
 /usr/include/c++/14/bits/ranges_base.h:
-
-/usr/include/google/protobuf/stubs/stringpiece.h:
-
-/usr/include/c++/14/bits/quoted_string.h:
 
 /usr/include/c++/14/bits/locale_facets_nonio.tcc:
 
@@ -7064,8 +7186,6 @@ CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.o:
 
 /usr/include/c++/14/bits/postypes.h:
 
-/usr/include/aarch64-linux-gnu/bits/termios-c_oflag.h:
-
 /usr/include/c++/14/bits/nested_exception.h:
 
 /home/pi/rpi_timer/robot/share/proto/robot_comm.pb.cc:
@@ -7075,6 +7195,10 @@ CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.o:
 /usr/include/asio/query.hpp:
 
 /usr/include/c++/14/bits/memoryfwd.h:
+
+/usr/include/byteswap.h:
+
+/usr/include/c++/14/bits/unordered_set.h:
 
 /usr/include/asio/traits/static_query.hpp:
 
@@ -7130,6 +7254,10 @@ CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.o:
 
 /usr/include/c++/14/bits/algorithmfwd.h:
 
+/usr/include/aarch64-linux-gnu/bits/types/siginfo_t.h:
+
+/usr/include/c++/14/bits/this_thread_sleep.h:
+
 /usr/include/aarch64-linux-gnu/bits/typesizes.h:
 
 /usr/include/yaml-cpp/noexcept.h:
@@ -7158,13 +7286,11 @@ CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.o:
 
 /usr/include/c++/14/bits/erase_if.h:
 
+/usr/include/google/protobuf/map_type_handler.h:
+
 /usr/include/c++/14/cmath:
 
 /usr/include/yaml-cpp/node/detail/iterator_fwd.h:
-
-/usr/include/google/protobuf/generated_message_reflection.h:
-
-/usr/include/aarch64-linux-gnu/sys/socket.h:
 
 /usr/include/c++/14/bits/stringfwd.h:
 
@@ -7184,12 +7310,6 @@ CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.o:
 
 /usr/include/c++/14/bits/charconv.h:
 
-/usr/include/google/protobuf/descriptor.h:
-
-/usr/include/aarch64-linux-gnu/bits/confname.h:
-
-/usr/include/c++/14/bits/basic_ios.tcc:
-
 /usr/include/asio/execution/impl/bad_executor.ipp:
 
 /usr/include/c++/14/bits/stl_raw_storage_iter.h:
@@ -7201,6 +7321,12 @@ CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.o:
 /usr/include/c++/14/bits/hash_bytes.h:
 
 /usr/include/c++/14/list:
+
+/usr/include/google/protobuf/port.h:
+
+/usr/include/aarch64-linux-gnu/sys/un.h:
+
+/usr/include/c++/14/bits/stl_pair.h:
 
 /usr/include/yaml-cpp/node/detail/node_data.h:
 
@@ -7237,6 +7363,8 @@ CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.o:
 /usr/include/aarch64-linux-gnu/bits/types/wint_t.h:
 
 /usr/include/aarch64-linux-gnu/c++/14/bits/cpu_defines.h:
+
+/usr/include/google/protobuf/stubs/common.h:
 
 /usr/lib/linux/uapi/arm64/asm/ioctl.h:
 
@@ -7322,6 +7450,8 @@ CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.o:
 
 /usr/include/features.h:
 
+/usr/include/google/protobuf/message.h:
+
 /usr/include/asio/cancellation_state.hpp:
 
 /usr/include/yaml-cpp/node/detail/memory.h:
@@ -7335,16 +7465,6 @@ CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.o:
 /usr/include/aarch64-linux-gnu/bits/termios-c_iflag.h:
 
 /usr/include/c++/14/bits/ranges_uninitialized.h:
-
-/usr/include/google/protobuf/io/zero_copy_stream.h:
-
-/usr/include/asio/detail/reactive_socket_recv_op.hpp:
-
-/usr/include/asio/as_tuple.hpp:
-
-/usr/include/c++/14/bits/specfun.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/__sigval_t.h:
 
 /usr/include/c++/14/bits/vector.tcc:
 
@@ -7362,27 +7482,29 @@ CMakeFiles/main.dir/component/wifi.cpp.o:
 
 /usr/include/aarch64-linux-gnu/bits/errno.h:
 
+/usr/include/asio/detail/posix_global.hpp:
+
+/usr/include/aarch64-linux-gnu/bits/types/sig_atomic_t.h:
+
+/usr/include/c++/14/tr1/poly_laguerre.tcc:
+
 /usr/include/yaml-cpp/traits.h:
 
 /usr/include/aarch64-linux-gnu/c++/14/bits/messages_members.h:
 
-/usr/include/aarch64-linux-gnu/sys/stat.h:
-
 /usr/include/aarch64-linux-gnu/c++/14/bits/gthr-default.h:
 
 /usr/include/c++/14/bits/uses_allocator_args.h:
-
-/usr/include/google/protobuf/arenastring.h:
-
-/usr/include/c++/14/bits/version.h:
-
-/usr/include/c++/14/bits/stl_queue.h:
 
 CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o:
 
 /usr/include/asio/is_read_buffered.hpp:
 
 /usr/include/aarch64-linux-gnu/bits/stdio_lim.h:
+
+/usr/include/asio.hpp:
+
+/usr/include/google/protobuf/has_bits.h:
 
 /usr/include/ifaddrs.h:
 
@@ -7438,8 +7560,6 @@ CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o:
 
 /usr/include/c++/14/optional:
 
-/usr/include/aarch64-linux-gnu/bits/socket.h:
-
 /usr/include/aarch64-linux-gnu/bits/timesize.h:
 
 /usr/include/c++/14/climits:
@@ -7448,21 +7568,17 @@ CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o:
 
 /usr/include/aarch64-linux-gnu/bits/uio_lim.h:
 
-/usr/include/asio/execution/outstanding_work.hpp:
-
-/usr/include/aarch64-linux-gnu/bits/termios-c_cc.h:
-
 /home/pi/rpi_timer/robot/zos_new/zos/utils/threadpool.h:
 
 /usr/include/c++/14/numbers:
 
 /usr/lib/aarch64-linux-gnu/crti.o:
 
-/usr/include/google/protobuf/port_undef.inc:
-
 /usr/include/asio/append.hpp:
 
 /usr/include/c++/14/variant:
+
+/usr/include/google/protobuf/port_undef.inc:
 
 /usr/include/c++/14/bits/codecvt.h:
 
@@ -7540,6 +7656,8 @@ CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o:
 
 /usr/include/c++/14/valarray:
 
+/usr/include/google/protobuf/generated_enum_reflection.h:
+
 /usr/include/asio/awaitable.hpp:
 
 /usr/include/aarch64-linux-gnu/bits/types/__locale_t.h:
@@ -7547,6 +7665,10 @@ CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o:
 /usr/include/c++/14/bits/unique_ptr.h:
 
 /usr/include/c++/14/bits/stl_deque.h:
+
+/usr/include/aarch64-linux-gnu/bits/types/struct_osockaddr.h:
+
+/usr/include/c++/14/iterator:
 
 /usr/include/asio/any_completion_handler.hpp:
 
@@ -7564,8 +7686,6 @@ CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o:
 
 /usr/include/aarch64-linux-gnu/bits/posix_opt.h:
 
-/usr/include/aarch64-linux-gnu/bits/timerfd.h:
-
 /usr/include/aarch64-linux-gnu/bits/posix1_lim.h:
 
 /usr/include/aarch64-linux-gnu/bits/long-double.h:
@@ -7582,8 +7702,6 @@ CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o:
 
 /usr/include/c++/14/functional:
 
-/usr/include/aarch64-linux-gnu/sys/ttydefaults.h:
-
 /usr/include/asio/detail/reactive_socket_sendto_op.hpp:
 
 /usr/include/asio/compose.hpp:
@@ -7598,33 +7716,15 @@ CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o:
 
 /usr/include/c++/14/bits/ostream.tcc:
 
-/usr/include/google/protobuf/stubs/once.h:
-
-/usr/include/asio/buffered_read_stream.hpp:
-
-/usr/include/c++/14/ext/aligned_buffer.h:
-
 /usr/include/asio/detail/blocking_executor_op.hpp:
 
 /usr/include/aarch64-linux-gnu/bits/getopt_core.h:
-
-/usr/include/google/protobuf/stubs/port.h:
-
-/usr/include/c++/14/bits/iterator_concepts.h:
 
 /usr/include/asio/detail/event.hpp:
 
 /usr/include/aarch64-linux-gnu/bits/endianness.h:
 
 /usr/include/aarch64-linux-gnu/bits/thread-shared-types.h:
-
-/usr/lib/gcc/aarch64-linux-gnu/14/crtbeginS.o:
-
-/usr/include/asio/traits/prefer_free.hpp:
-
-/usr/include/asio/detail/thread.hpp:
-
-/usr/include/aarch64-linux-gnu/sys/ioctl.h:
 
 /usr/include/aarch64-linux-gnu/bits/types/struct___jmp_buf_tag.h:
 
@@ -7643,6 +7743,10 @@ CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o:
 /usr/include/c++/14/bits/gslice_array.h:
 
 /usr/include/aarch64-linux-gnu/bits/types/struct_sched_param.h:
+
+/usr/include/asio/ip/detail/socket_option.hpp:
+
+/usr/include/google/protobuf/arenaz_sampler.h:
 
 /home/pi/rpi_timer/robot/zos_new/zos/semadata.h:
 
@@ -7688,9 +7792,11 @@ CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o:
 
 /usr/include/aarch64-linux-gnu/bits/waitstatus.h:
 
-/lib/aarch64-linux-gnu/libz.so.1:
+/usr/include/aarch64-linux-gnu/bits/termios-baud.h:
 
-/usr/include/aarch64-linux-gnu/bits/socket_type.h:
+/usr/include/google/protobuf/metadata_lite.h:
+
+/usr/include/c++/14/cctype:
 
 /usr/include/c++/14/bits/exception.h:
 
@@ -7754,9 +7860,9 @@ CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o:
 
 /usr/include/ctype.h:
 
-/usr/include/google/protobuf/extension_set.h:
-
 /usr/include/aarch64-linux-gnu/bits/mathcalls-macros.h:
+
+/usr/include/google/protobuf/extension_set.h:
 
 /usr/include/aarch64-linux-gnu/sys/single_threaded.h:
 
@@ -7775,6 +7881,10 @@ CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o:
 /usr/include/yaml-cpp/binary.h:
 
 /usr/include/c++/14/bits/atomic_timed_wait.h:
+
+/usr/include/aarch64-linux-gnu/sys/timerfd.h:
+
+/usr/include/aarch64-linux-gnu/bits/time64.h:
 
 /usr/include/alloca.h:
 
@@ -7800,6 +7910,8 @@ CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o:
 
 /usr/include/asm-generic/posix_types.h:
 
+/usr/include/google/protobuf/endian.h:
+
 /usr/include/aarch64-linux-gnu/c++/14/bits/c++allocator.h:
 
 /usr/include/aarch64-linux-gnu/c++/14/bits/c++config.h:
@@ -7813,6 +7925,14 @@ CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o:
 /usr/include/asio/impl/use_future.hpp:
 
 /usr/lib/linux/uapi/arm64/asm/posix_types.h:
+
+/usr/include/asio/detail/reactive_socket_recv_op.hpp:
+
+/usr/include/asio/as_tuple.hpp:
+
+/usr/include/c++/14/bits/specfun.h:
+
+/usr/include/google/protobuf/io/zero_copy_stream.h:
 
 /usr/include/aarch64-linux-gnu/bits/byteswap.h:
 
@@ -7835,8 +7955,6 @@ CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o:
 /usr/include/asio/socket_base.hpp:
 
 /home/pi/rpi_timer/robot/zos_new/zos/utils/singleton.h:
-
-/usr/include/aarch64-linux-gnu/sys/epoll.h:
 
 /usr/include/asio/detail/completion_handler.hpp:
 
@@ -7870,7 +7988,11 @@ CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o:
 
 /usr/include/c++/14/ext/string_conversions.h:
 
+/usr/include/google/protobuf/stubs/logging.h:
+
 /usr/include/c++/14/ext/type_traits.h:
+
+/usr/include/google/protobuf/parse_context.h:
 
 /usr/include/c++/14/iosfwd:
 
@@ -7891,6 +8013,10 @@ CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o:
 /usr/lib/linux/uapi/arm64/asm/unistd.h:
 
 /usr/include/c++/14/pstl/glue_algorithm_defs.h:
+
+/usr/include/aarch64-linux-gnu/sys/socket.h:
+
+/usr/include/google/protobuf/generated_message_reflection.h:
 
 /usr/include/c++/14/pstl/glue_memory_defs.h:
 
@@ -7948,21 +8074,11 @@ CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o:
 
 /usr/include/c++/14/tr1/bessel_function.tcc:
 
-/usr/include/google/protobuf/arena.h:
-
-/usr/include/asio/impl/system_context.ipp:
-
-/usr/include/c++/14/tr1/exp_integral.tcc:
-
 /usr/include/c++/14/tr1/gamma.tcc:
 
 /usr/include/aarch64-linux-gnu/sys/cdefs.h:
 
 /usr/include/c++/14/tr1/legendre_function.tcc:
-
-/usr/include/google/protobuf/inlined_string_field.h:
-
-/usr/include/c++/14/tr1/modified_bessel_func.tcc:
 
 /usr/include/asio/detail/call_stack.hpp:
 
@@ -7990,17 +8106,23 @@ CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o:
 
 /usr/include/errno.h:
 
-/usr/include/aarch64-linux-gnu/bits/procfs-prregset.h:
+/usr/lib/gcc/aarch64-linux-gnu/14/libatomic.so:
+
+/usr/include/aarch64-linux-gnu/bits/statx.h:
+
+/usr/include/linux/sched/types.h:
+
+/usr/include/google/protobuf/generated_message_util.h:
 
 /usr/include/aarch64-linux-gnu/bits/termios-misc.h:
+
+/usr/include/aarch64-linux-gnu/bits/procfs-prregset.h:
 
 /usr/include/features-time64.h:
 
 /usr/include/fmt/chrono.h:
 
 /home/pi/rpi_timer/robot/component/matrix.h:
-
-/usr/include/arpa/inet.h:
 
 /usr/include/asio/is_applicable_property.hpp:
 
@@ -8047,10 +8169,6 @@ CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o:
 /usr/include/semaphore.h:
 
 /usr/include/spdlog/common.h:
-
-/usr/include/google/protobuf/wire_format_lite.h:
-
-/usr/include/syscall.h:
 
 /usr/include/spdlog/details/backtracer.h:
 
@@ -8104,9 +8222,9 @@ CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o:
 
 /usr/include/unistd.h:
 
-/usr/include/google/protobuf/stubs/strutil.h:
-
 /usr/include/asio/generic/stream_protocol.hpp:
+
+/usr/include/google/protobuf/stubs/strutil.h:
 
 /usr/include/wchar.h:
 
@@ -8116,9 +8234,9 @@ CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o:
 
 /usr/lib/gcc/aarch64-linux-gnu/14/include/limits.h:
 
-/usr/include/c++/14/bits/stl_pair.h:
+/usr/include/asio/detail/buffer_sequence_adapter.hpp:
 
-/usr/include/aarch64-linux-gnu/sys/un.h:
+/usr/include/google/protobuf/stubs/casts.h:
 
 /usr/lib/gcc/aarch64-linux-gnu/14/include/stdarg.h:
 
@@ -8134,14 +8252,6 @@ CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o:
 
 /usr/lib/gcc/aarch64-linux-gnu/14/include/stdint.h:
 
-/usr/include/aarch64-linux-gnu/bits/ss_flags.h:
-
-/usr/include/google/protobuf/stubs/macros.h:
-
-/usr/include/c++/14/bits/predefined_ops.h:
-
-/usr/lib/gcc/aarch64-linux-gnu/14/include/syslimits.h:
-
 /usr/include/asio/bind_cancellation_slot.hpp:
 
 /usr/local/include/mraa/common.h:
@@ -8149,6 +8259,12 @@ CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o:
 /usr/include/asio/windows/basic_object_handle.hpp:
 
 /usr/local/include/mraa/common.hpp:
+
+/usr/include/asio/buffered_read_stream.hpp:
+
+/usr/include/c++/14/ext/aligned_buffer.h:
+
+/usr/include/google/protobuf/stubs/once.h:
 
 /usr/include/aarch64-linux-gnu/sys/procfs.h:
 
@@ -8164,12 +8280,6 @@ CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o:
 
 /usr/local/include/pigpio.h:
 
-/usr/include/asio/impl/detached.hpp:
-
-/usr/include/asio/detail/impl/epoll_reactor.hpp:
-
-/usr/include/aarch64-linux-gnu/sys/user.h:
-
 /usr/include/aarch64-linux-gnu/c++/14/bits/time_members.h:
 
 /home/pi/rpi_timer/robot/component/parameter.cpp:
@@ -8179,8 +8289,6 @@ CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.o:
 /usr/include/asio/io_context.hpp:
 
 /usr/include/c++/14/bits/valarray_before.h:
-
-/usr/include/aarch64-linux-gnu/bits/uio-ext.h:
 
 /usr/include/wctype.h:
 
@@ -8204,7 +8312,11 @@ CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.o:
 
 /usr/include/c++/14/bits/stl_multiset.h:
 
+/usr/include/google/protobuf/stubs/stl_util.h:
+
 /usr/include/c++/14/bits/valarray_after.h:
+
+/usr/include/c++/14/unordered_set:
 
 /usr/include/c++/14/bits/valarray_array.h:
 
@@ -8212,13 +8324,117 @@ CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.o:
 
 /usr/include/c++/14/bits/valarray_array.tcc:
 
-/usr/include/aarch64-linux-gnu/bits/termios-c_lflag.h:
-
 /usr/include/c++/14/bits/unicode.h:
 
 /usr/include/c++/14/map:
 
 /home/pi/rpi_timer/robot/component/wifi.h:
+
+/usr/include/c++/14/bits/streambuf_iterator.h:
+
+/usr/include/google/protobuf/any.h:
+
+/usr/include/asio/impl/system_context.ipp:
+
+/usr/include/c++/14/tr1/exp_integral.tcc:
+
+/usr/include/google/protobuf/arena.h:
+
+/lib/aarch64-linux-gnu/libm.so.6:
+
+/usr/include/yaml-cpp/node/detail/impl.h:
+
+/usr/lib/aarch64-linux-gnu/libspdlog.so.1.15.2:
+
+/usr/include/google/protobuf/arena_impl.h:
+
+/usr/include/c++/14/bits/version.h:
+
+/usr/include/c++/14/bits/stl_queue.h:
+
+/usr/include/google/protobuf/arenastring.h:
+
+/usr/include/aarch64-linux-gnu/bits/confname.h:
+
+/usr/include/c++/14/bits/basic_ios.tcc:
+
+/usr/include/google/protobuf/descriptor.h:
+
+/usr/include/google/protobuf/explicitly_constructed.h:
+
+/usr/include/google/protobuf/generated_enum_util.h:
+
+/usr/include/asio/local/stream_protocol.hpp:
+
+/usr/include/asio/ip/impl/address.hpp:
+
+/usr/include/aarch64-linux-gnu/bits/in.h:
+
+CMakeFiles/main.dir/test/main.cpp.o:
+
+/usr/include/aarch64-linux-gnu/bits/signum-generic.h:
+
+/usr/include/c++/14/tr1/modified_bessel_func.tcc:
+
+/usr/include/google/protobuf/inlined_string_field.h:
+
+/usr/include/asio/detail/posix_static_mutex.hpp:
+
+/usr/include/google/protobuf/io/coded_stream.h:
+
+/usr/include/google/protobuf/io/zero_copy_stream_impl_lite.h:
+
+/usr/include/c++/14/bits/cxxabi_init_exception.h:
+
+/usr/include/aarch64-linux-gnu/bits/ioctls.h:
+
+/usr/include/google/protobuf/message_lite.h:
+
+/usr/include/asio/ip/impl/network_v6.ipp:
+
+/usr/include/c++/14/cstddef:
+
+/usr/include/google/protobuf/port_def.inc:
+
+/usr/include/asio/high_resolution_timer.hpp:
+
+/usr/include/asio/detail/descriptor_ops.hpp:
+
+/usr/include/google/protobuf/stubs/mutex.h:
+
+/usr/include/google/protobuf/stubs/hash.h:
+
+/usr/include/c++/14/bits/predefined_ops.h:
+
+/usr/lib/gcc/aarch64-linux-gnu/14/include/syslimits.h:
+
+/usr/include/google/protobuf/stubs/macros.h:
+
+/usr/include/yaml-cpp/node/impl.h:
+
+/usr/include/aarch64-linux-gnu/bits/sigstksz.h:
+
+/usr/include/google/protobuf/stubs/platform_macros.h:
+
+/usr/include/c++/14/bits/iterator_concepts.h:
+
+/usr/include/google/protobuf/stubs/port.h:
+
+/usr/include/google/protobuf/stubs/status.h:
+
+/usr/include/c++/14/initializer_list:
+
+/home/pi/rpi_timer/robot/zos_new/zos/type.h:
+
+/usr/include/c++/14/bits/quoted_string.h:
+
+/usr/include/google/protobuf/stubs/stringpiece.h:
+
+/usr/include/google/protobuf/unknown_field_set.h:
+
+/usr/include/syscall.h:
+
+/usr/include/google/protobuf/wire_format_lite.h:
 
 /usr/include/asio/detail/io_control.hpp:
 
@@ -8234,15 +8450,21 @@ CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.o:
 
 /usr/include/yaml-cpp/node/convert.h:
 
-/lib/aarch64-linux-gnu/libm.so.6:
-
-/usr/include/yaml-cpp/node/detail/impl.h:
-
 /usr/include/asio/require.hpp:
 
 /usr/include/c++/14/cerrno:
 
 /usr/include/yaml-cpp/node/detail/node_ref.h:
+
+CMakeFiles/main.dir/control/geometry.cpp.o:
+
+/usr/include/asio/ip/impl/basic_endpoint.hpp:
+
+/usr/include/asio/detail/service_registry.hpp:
+
+/usr/include/aarch64-linux-gnu/bits/types/struct_sigstack.h:
+
+/usr/include/yaml-cpp/node/emit.h:
 
 /home/pi/rpi_timer/robot/control/geometry.cpp:
 
@@ -8252,9 +8474,9 @@ CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.o:
 
 /usr/include/yaml-cpp/node/parse.h:
 
-/usr/include/google/protobuf/implicit_weak_message.h:
-
 /usr/include/c++/14/bits/basic_string.tcc:
+
+/usr/include/google/protobuf/implicit_weak_message.h:
 
 /usr/include/yaml-cpp/node/ptr.h:
 
@@ -8302,10 +8524,6 @@ CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.o:
 
 /home/pi/rpi_timer/robot/zos_new/zos/semaphore.h:
 
-/usr/include/c++/14/initializer_list:
-
-/home/pi/rpi_timer/robot/zos_new/zos/type.h:
-
 /usr/include/asio/placeholders.hpp:
 
 /usr/include/asio/impl/executor.ipp:
@@ -8318,17 +8536,7 @@ CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.o:
 
 /usr/include/aarch64-linux-gnu/bits/fcntl-linux.h:
 
-/usr/include/asio/local/stream_protocol.hpp:
-
-/usr/include/asio/ip/impl/address.hpp:
-
-/usr/include/aarch64-linux-gnu/bits/in.h:
-
 /usr/include/aarch64-linux-gnu/bits/ioctl-types.h:
-
-/usr/include/c++/14/bits/cxxabi_init_exception.h:
-
-/usr/include/aarch64-linux-gnu/bits/ioctls.h:
 
 /usr/include/aarch64-linux-gnu/bits/poll.h:
 
@@ -8338,98 +8546,6 @@ CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.o:
 
 /usr/include/aarch64-linux-gnu/bits/siginfo-consts-arch.h:
 
-CMakeFiles/main.dir/test/main.cpp.o:
-
-/usr/include/aarch64-linux-gnu/bits/signum-generic.h:
-
-/usr/include/yaml-cpp/node/impl.h:
-
-/usr/include/aarch64-linux-gnu/bits/sigstksz.h:
-
 /usr/include/yaml-cpp/node/detail/node_iterator.h:
 
 /usr/include/aarch64-linux-gnu/bits/sigthread.h:
-
-/usr/include/asio/impl/system_context.hpp:
-
-/usr/include/aarch64-linux-gnu/bits/stat.h:
-
-/usr/include/aarch64-linux-gnu/bits/statx-generic.h:
-
-/usr/lib/gcc/aarch64-linux-gnu/14/libatomic.so:
-
-/usr/include/google/protobuf/generated_message_util.h:
-
-/usr/include/linux/sched/types.h:
-
-/usr/include/aarch64-linux-gnu/bits/statx.h:
-
-/usr/include/asio/detail/type_traits.hpp:
-
-/usr/include/aarch64-linux-gnu/bits/struct_stat.h:
-
-/usr/include/google/protobuf/metadata_lite.h:
-
-/usr/include/c++/14/cctype:
-
-/usr/include/aarch64-linux-gnu/bits/termios-baud.h:
-
-/usr/include/aarch64-linux-gnu/bits/termios-struct.h:
-
-/usr/include/asio/detail/select_interrupter.hpp:
-
-/usr/include/aarch64-linux-gnu/bits/termios.h:
-
-/usr/include/asio/detail/posix_global.hpp:
-
-/usr/include/c++/14/tr1/poly_laguerre.tcc:
-
-/usr/include/aarch64-linux-gnu/bits/types/sig_atomic_t.h:
-
-/usr/include/c++/14/bits/shared_ptr_atomic.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/sigevent_t.h:
-
-/usr/include/c++/14/bits/this_thread_sleep.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/siginfo_t.h:
-
-/usr/include/asio/detail/impl/service_registry.hpp:
-
-/usr/include/c++/14/ext/numeric_traits.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/sigval_t.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/struct_iovec.h:
-
-/usr/include/aarch64-linux-gnu/bits/time64.h:
-
-/usr/include/aarch64-linux-gnu/sys/timerfd.h:
-
-/usr/include/c++/14/iterator:
-
-/usr/include/aarch64-linux-gnu/bits/types/struct_osockaddr.h:
-
-CMakeFiles/main.dir/control/geometry.cpp.o:
-
-/usr/include/asio/ip/impl/basic_endpoint.hpp:
-
-/usr/include/asio/detail/service_registry.hpp:
-
-/usr/include/yaml-cpp/node/emit.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/struct_sigstack.h:
-
-/usr/include/aarch64-linux-gnu/bits/types/struct_statx.h:
-
-/usr/include/asio/detail/impl/reactive_socket_service_base.ipp:
-
-/usr/include/aarch64-linux-gnu/c++/14/bits/basic_file.h:
-
-/usr/include/aarch64-linux-gnu/bits/termios-c_cflag.h:
-
-/usr/include/aarch64-linux-gnu/c++/14/bits/c++io.h:
-
-/usr/include/aarch64-linux-gnu/sys/ucontext.h:
-
-/usr/include/asio/any_completion_executor.hpp:
