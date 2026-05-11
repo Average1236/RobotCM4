@@ -100,10 +100,24 @@ CMakeFiles/main.dir/component/device.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/component/device.cpp.s"
 	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rpi_timer/robot/component/device.cpp -o CMakeFiles/main.dir/component/device.cpp.s
 
+CMakeFiles/main.dir/component/device_stm32.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/component/device_stm32.cpp.o: /home/pi/rpi_timer/robot/component/device_stm32.cpp
+CMakeFiles/main.dir/component/device_stm32.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/main.dir/component/device_stm32.cpp.o"
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/component/device_stm32.cpp.o -MF CMakeFiles/main.dir/component/device_stm32.cpp.o.d -o CMakeFiles/main.dir/component/device_stm32.cpp.o -c /home/pi/rpi_timer/robot/component/device_stm32.cpp
+
+CMakeFiles/main.dir/component/device_stm32.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/component/device_stm32.cpp.i"
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rpi_timer/robot/component/device_stm32.cpp > CMakeFiles/main.dir/component/device_stm32.cpp.i
+
+CMakeFiles/main.dir/component/device_stm32.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/component/device_stm32.cpp.s"
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rpi_timer/robot/component/device_stm32.cpp -o CMakeFiles/main.dir/component/device_stm32.cpp.s
+
 CMakeFiles/main.dir/component/parameter.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/component/parameter.cpp.o: /home/pi/rpi_timer/robot/component/parameter.cpp
 CMakeFiles/main.dir/component/parameter.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/main.dir/component/parameter.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/main.dir/component/parameter.cpp.o"
 	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/component/parameter.cpp.o -MF CMakeFiles/main.dir/component/parameter.cpp.o.d -o CMakeFiles/main.dir/component/parameter.cpp.o -c /home/pi/rpi_timer/robot/component/parameter.cpp
 
 CMakeFiles/main.dir/component/parameter.cpp.i: cmake_force
@@ -117,7 +131,7 @@ CMakeFiles/main.dir/component/parameter.cpp.s: cmake_force
 CMakeFiles/main.dir/component/robot.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/component/robot.cpp.o: /home/pi/rpi_timer/robot/component/robot.cpp
 CMakeFiles/main.dir/component/robot.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/main.dir/component/robot.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/main.dir/component/robot.cpp.o"
 	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/component/robot.cpp.o -MF CMakeFiles/main.dir/component/robot.cpp.o.d -o CMakeFiles/main.dir/component/robot.cpp.o -c /home/pi/rpi_timer/robot/component/robot.cpp
 
 CMakeFiles/main.dir/component/robot.cpp.i: cmake_force
@@ -128,10 +142,24 @@ CMakeFiles/main.dir/component/robot.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/component/robot.cpp.s"
 	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rpi_timer/robot/component/robot.cpp -o CMakeFiles/main.dir/component/robot.cpp.s
 
+CMakeFiles/main.dir/component/robot_stm32.cpp.o: CMakeFiles/main.dir/flags.make
+CMakeFiles/main.dir/component/robot_stm32.cpp.o: /home/pi/rpi_timer/robot/component/robot_stm32.cpp
+CMakeFiles/main.dir/component/robot_stm32.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/main.dir/component/robot_stm32.cpp.o"
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/component/robot_stm32.cpp.o -MF CMakeFiles/main.dir/component/robot_stm32.cpp.o.d -o CMakeFiles/main.dir/component/robot_stm32.cpp.o -c /home/pi/rpi_timer/robot/component/robot_stm32.cpp
+
+CMakeFiles/main.dir/component/robot_stm32.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/main.dir/component/robot_stm32.cpp.i"
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/pi/rpi_timer/robot/component/robot_stm32.cpp > CMakeFiles/main.dir/component/robot_stm32.cpp.i
+
+CMakeFiles/main.dir/component/robot_stm32.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/main.dir/component/robot_stm32.cpp.s"
+	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/pi/rpi_timer/robot/component/robot_stm32.cpp -o CMakeFiles/main.dir/component/robot_stm32.cpp.s
+
 CMakeFiles/main.dir/component/timer.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/component/timer.cpp.o: /home/pi/rpi_timer/robot/component/timer.cpp
 CMakeFiles/main.dir/component/timer.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/main.dir/component/timer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/main.dir/component/timer.cpp.o"
 	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/component/timer.cpp.o -MF CMakeFiles/main.dir/component/timer.cpp.o.d -o CMakeFiles/main.dir/component/timer.cpp.o -c /home/pi/rpi_timer/robot/component/timer.cpp
 
 CMakeFiles/main.dir/component/timer.cpp.i: cmake_force
@@ -145,7 +173,7 @@ CMakeFiles/main.dir/component/timer.cpp.s: cmake_force
 CMakeFiles/main.dir/component/wifi.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/component/wifi.cpp.o: /home/pi/rpi_timer/robot/component/wifi.cpp
 CMakeFiles/main.dir/component/wifi.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/main.dir/component/wifi.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/main.dir/component/wifi.cpp.o"
 	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/component/wifi.cpp.o -MF CMakeFiles/main.dir/component/wifi.cpp.o.d -o CMakeFiles/main.dir/component/wifi.cpp.o -c /home/pi/rpi_timer/robot/component/wifi.cpp
 
 CMakeFiles/main.dir/component/wifi.cpp.i: cmake_force
@@ -159,7 +187,7 @@ CMakeFiles/main.dir/component/wifi.cpp.s: cmake_force
 CMakeFiles/main.dir/control/CMmotion.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/control/CMmotion.cpp.o: /home/pi/rpi_timer/robot/control/CMmotion.cpp
 CMakeFiles/main.dir/control/CMmotion.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/main.dir/control/CMmotion.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/main.dir/control/CMmotion.cpp.o"
 	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/control/CMmotion.cpp.o -MF CMakeFiles/main.dir/control/CMmotion.cpp.o.d -o CMakeFiles/main.dir/control/CMmotion.cpp.o -c /home/pi/rpi_timer/robot/control/CMmotion.cpp
 
 CMakeFiles/main.dir/control/CMmotion.cpp.i: cmake_force
@@ -173,7 +201,7 @@ CMakeFiles/main.dir/control/CMmotion.cpp.s: cmake_force
 CMakeFiles/main.dir/control/geometry.cpp.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/control/geometry.cpp.o: /home/pi/rpi_timer/robot/control/geometry.cpp
 CMakeFiles/main.dir/control/geometry.cpp.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/main.dir/control/geometry.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/main.dir/control/geometry.cpp.o"
 	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/control/geometry.cpp.o -MF CMakeFiles/main.dir/control/geometry.cpp.o.d -o CMakeFiles/main.dir/control/geometry.cpp.o -c /home/pi/rpi_timer/robot/control/geometry.cpp
 
 CMakeFiles/main.dir/control/geometry.cpp.i: cmake_force
@@ -187,7 +215,7 @@ CMakeFiles/main.dir/control/geometry.cpp.s: cmake_force
 CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.o: /home/pi/rpi_timer/robot/share/proto/robot_comm.pb.cc
 CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.o"
 	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.o -MF CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.o.d -o CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.o -c /home/pi/rpi_timer/robot/share/proto/robot_comm.pb.cc
 
 CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.i: cmake_force
@@ -201,7 +229,7 @@ CMakeFiles/main.dir/share/proto/robot_comm.pb.cc.s: cmake_force
 CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.o: /home/pi/rpi_timer/robot/share/proto/vision_detection.pb.cc
 CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.o"
 	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.o -MF CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.o.d -o CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.o -c /home/pi/rpi_timer/robot/share/proto/vision_detection.pb.cc
 
 CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.i: cmake_force
@@ -215,7 +243,7 @@ CMakeFiles/main.dir/share/proto/vision_detection.pb.cc.s: cmake_force
 CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o: /home/pi/rpi_timer/robot/share/proto/zss_cmd.pb.cc
 CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o"
 	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o -MF CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o.d -o CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.o -c /home/pi/rpi_timer/robot/share/proto/zss_cmd.pb.cc
 
 CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.i: cmake_force
@@ -229,7 +257,7 @@ CMakeFiles/main.dir/share/proto/zss_cmd.pb.cc.s: cmake_force
 CMakeFiles/main.dir/share/proto/zss_cmd_type.pb.cc.o: CMakeFiles/main.dir/flags.make
 CMakeFiles/main.dir/share/proto/zss_cmd_type.pb.cc.o: /home/pi/rpi_timer/robot/share/proto/zss_cmd_type.pb.cc
 CMakeFiles/main.dir/share/proto/zss_cmd_type.pb.cc.o: CMakeFiles/main.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/main.dir/share/proto/zss_cmd_type.pb.cc.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/main.dir/share/proto/zss_cmd_type.pb.cc.o"
 	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/main.dir/share/proto/zss_cmd_type.pb.cc.o -MF CMakeFiles/main.dir/share/proto/zss_cmd_type.pb.cc.o.d -o CMakeFiles/main.dir/share/proto/zss_cmd_type.pb.cc.o -c /home/pi/rpi_timer/robot/share/proto/zss_cmd_type.pb.cc
 
 CMakeFiles/main.dir/share/proto/zss_cmd_type.pb.cc.i: cmake_force
@@ -244,8 +272,10 @@ CMakeFiles/main.dir/share/proto/zss_cmd_type.pb.cc.s: cmake_force
 main_OBJECTS = \
 "CMakeFiles/main.dir/test/main.cpp.o" \
 "CMakeFiles/main.dir/component/device.cpp.o" \
+"CMakeFiles/main.dir/component/device_stm32.cpp.o" \
 "CMakeFiles/main.dir/component/parameter.cpp.o" \
 "CMakeFiles/main.dir/component/robot.cpp.o" \
+"CMakeFiles/main.dir/component/robot_stm32.cpp.o" \
 "CMakeFiles/main.dir/component/timer.cpp.o" \
 "CMakeFiles/main.dir/component/wifi.cpp.o" \
 "CMakeFiles/main.dir/control/CMmotion.cpp.o" \
@@ -260,8 +290,10 @@ main_EXTERNAL_OBJECTS =
 
 main: CMakeFiles/main.dir/test/main.cpp.o
 main: CMakeFiles/main.dir/component/device.cpp.o
+main: CMakeFiles/main.dir/component/device_stm32.cpp.o
 main: CMakeFiles/main.dir/component/parameter.cpp.o
 main: CMakeFiles/main.dir/component/robot.cpp.o
+main: CMakeFiles/main.dir/component/robot_stm32.cpp.o
 main: CMakeFiles/main.dir/component/timer.cpp.o
 main: CMakeFiles/main.dir/component/wifi.cpp.o
 main: CMakeFiles/main.dir/control/CMmotion.cpp.o
@@ -279,7 +311,7 @@ main: /usr/lib/aarch64-linux-gnu/libprotobuf.so
 main: /usr/lib/aarch64-linux-gnu/libspdlog.so.1.15.2
 main: /usr/lib/aarch64-linux-gnu/libfmt.so.10.1.0
 main: CMakeFiles/main.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Linking CXX executable main"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/pi/rpi_timer/robot/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX executable main"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/main.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

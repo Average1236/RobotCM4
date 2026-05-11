@@ -78,19 +78,20 @@ private:
 
     void read_config_yaml();
 
-    void save_id(int robot_id_new);
-    void save_freq(int nrf2401_freq_new);
+    void save_id(int id_new);
+    void save_team(ZSS::New::Team team_new);
+    void change_team(ZSS::New::Team team_new);
+    void change_id(int id_new);
 
     YAML::Node config_yaml_;
     std::atomic_bool need_change_team = false;
-    std::atomic_bool last_need_change_team = false;
+    std::atomic_bool need_change_id = false;
+    std::atomic<std::chrono::_V2::steady_clock::time_point> last_change_time;
 
     ZSS::New::Robot_Command pb_cmd_;
     ZSS::New::Robot_Command_Mini pb_cmd_mini_;
 
     std::atomic<double> _time_since_last_pack = 0; // ms
-
-    int nrf2401_freq_;
 
     std::vector<int> pid_pack_ = {0, 0, 0, 0, 0, 0, 0, 0};
     std::vector<int> pid_real_ = {0, 0, 0, 0, 0, 0, 0, 0};

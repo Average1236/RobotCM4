@@ -176,7 +176,7 @@ void RobotStm32::cmd_callback(const zos::Data &data)
 
     if (initFinish)
     {
-
+        // zos::log("cmd_callback\n");
         std::scoped_lock lock{cmd_data_mutex_};
         auto res = pb_cmd_.ParseFromArray(cmd_data_.data(), cmd_data_.size());
         if (res)
@@ -185,35 +185,203 @@ void RobotStm32::cmd_callback(const zos::Data &data)
             std::scoped_lock lock{_robot_cmd_mutex};
             auto &_c = robot_cmd;
             _time_since_last_pack.store(0);
+            // zos::log("{}\n", _p.DebugString());
+            //  TODO update
+            
+            // _c.id = _p.robot_id(); // maybe need to check if id correct
             _c.kick_en = (_p.kick_mode() != PB::NONE);
             _c.kick_mode = (_p.kick_mode() == PB::CHIP);
+            // _c.desire_power = _p.desire_power();
             _c.kick_discharge_time = _p.kick_discharge_time();
             _c.drib_power = _p.dribble_spin();
+            // _c.cmd_type = int(_p.cmd_type());
+            // switch (_p.cmd_type())
+            // {
+            //     case PB::CMD_WHEEL:
+            //     {
+            //         _c.motor_vel_target[0] = _p.cmd_wheel().wheel1();
+            //         _c.motor_vel_target[1] = _p.cmd_wheel().wheel2();
+            //         _c.motor_vel_target[2] = _p.cmd_wheel().wheel3();
+            //         _c.motor_vel_target[3] = _p.cmd_wheel().wheel4();
+            //         break;
+            //     }
+            //     case PB::CMD_VEL:
+            //     {
+            //         _c.vx_target = _p.cmd_vel().velocity_x();
+            //         _c.vy_target = _p.cmd_vel().velocity_y();
+            //         _c.use_dir = _p.cmd_vel().use_imu();
+            //         // _c.vr_target = _c.use_dir ? _p.cmd_vel().imu_theta() : _p.cmd_vel().velocity_r();
+            //         _c.vr_target = _p.cmd_vel().velocity_r();
+            //         zos::log("vel,{},{},{}\n",_c.vx_target,_c.vy_target,_c.vr_target);
+            //         break;
+            //     }
+            //     default:
+            //     {
+            //         // zos::error("current cmd_type not supported:{}\n", _p.cmd_type());
+            //         break;
+            //     }
+            // }
             _c.vx_target = ((float)(int32_t)_p.cmd_vel().velocity_x())/1000.0;
             _c.vy_target = ((float)(int32_t)_p.cmd_vel().velocity_y())/1000.0;
             _c.use_dir = _p.cmd_vel().use_imu();
             _c.vr_target = _c.use_dir ? ((float)(int32_t)_p.cmd_vel().imu_theta())/1000.0 : ((float)(int32_t)_p.cmd_vel().velocity_r())/1000.0;
-            _c.angle_pid[0] = ((float)(int32_t)_p.angle_pid(0)/1000.0);
-            _c.angle_pid[1] = ((float)(int32_t)_p.angle_pid(1)/1000.0);
-            _c.angle_pid[2] = ((float)(int32_t)_p.angle_pid(2)/1000.0);
+            // _c.vr_target = _p.cmd_vel().velocity_r();
+            // zos::log("vel,{},{},{}\n",_c.vx_target,_c.vy_target,_c.vr_target);
+            if (_p.angle_pid_size() >= 3) {
+                _c.angle_pid[0] = ((float)(int32_t)_p.angle_pid(0)/1000.0);
+                _c.angle_pid[1] = ((float)(int32_t)_p.angle_pid(1)/1000.0);
+                _c.angle_pid[2] = ((float)(int32_t)_p.angle_pid(2)/1000.0);
+            }
             send_is_debug_ = _p.isdebug();
 
-            last_need_change_team = (need_change_team)?true:false;
-            need_change_team = _p.need_change_team();
+            now_time = std::chrono::steady_clock::now();
 
-            if(last_need_change_team == false && need_change_team == true)
+            need_change_team.store(_p.need_change_team());
+            need_change_id.store(_p.need_change_id());
+
+            // if(last_need_change_team == false && need_change_team == true)
+            if (std::chrono::duration_cast<std::chrono::microseconds>(now_time - last_change_time.load()).count() > 1000000 && (need_change_team.load() || need_change_id.load())) // 1s
             {
-                Robot_STATUS _s;
+                if (need_change_team.load())
                 {
-                    std::scoped_lock lock{_robot_status_mutex};
-                    robot_status.team = (robot_status.team - 1)?1:2;
-                    _s = robot_status;
+                    change_team(_p.team_new());
+                    need_change_team.store(false);
                 }
-                save_freq((_s.team - 1)?6:8);
-                // zos::log("{}\n",_s.team);
-            }            
+                if (need_change_id.load())
+                {
+                    change_id(_p.id_new());
+                    need_change_id.store(false);
+                }
+                last_change_time.store(now_time);
+            }
+
+            debug_dt = std::chrono::duration_cast<std::chrono::microseconds>(now_time - last_time).count();
+            last_time = now_time;
+            
+            // zos::log("debug,{}\n",debug_dt);
+
+            // _c.angle_pid[0] = 4;
+            // _c.angle_pid[1] = 3;
+            // _c.angle_pid[2] = 0.5;
+            // pid_pack_[0]=_p.kp(0);
+            // pid_pack_[1]=_p.ki(0);
+            // pid_pack_[2]=_p.kp(1);
+            // pid_pack_[3]=_p.ki(1);
+            // pid_pack_[4]=_p.kp(2);
+            // pid_pack_[5]=_p.ki(2);
+            // pid_pack_[6]=_p.kp(3);
+            // pid_pack_[7]=_p.ki(3);
+            // for(int i=0;i<8;i++){
+            //     zos::status("------------{}------------\n",pid_pack_[i]);
+            // }
+            // _c.imu_is_used = _p.use_pid();
         }
     }
+}
+
+void RobotStm32::change_team(ZSS::New::Team team_new) {
+    Robot_STATUS _s;
+    {
+        std::scoped_lock lock{_robot_status_mutex};
+        robot_status.team = team_new;
+        _s = robot_status;
+    }
+    save_team(team_new);
+    zos::log("change team: {}\n",int(_s.team));
+}
+
+void RobotStm32::change_id(int id_new)
+{
+    Robot_STATUS _s;
+    {
+        std::scoped_lock lock{_robot_status_mutex};
+        robot_status.id = id_new;
+        _s = robot_status;
+    }
+    save_id(id_new);
+    zos::log("change id: {}\n", _s.id);
+}
+
+void RobotStm32::read_config_yaml()
+{
+    try
+    {
+        // zos::log("read_config_yaml\n");
+        config_yaml_ = YAML::LoadFile("/home/pi/rpi_timer/robot/config.yaml");
+        // id
+        robot_id = config_yaml_["id"].as<int>();
+        // zos::log("robot id: {}\n", robot_id);
+        {
+            std::scoped_lock lock{_robot_status_mutex};
+            auto &_s = robot_status;
+            _s.id = robot_id;
+        }
+        // team
+        ZSS::New::Team team = static_cast<ZSS::New::Team>(config_yaml_["team"].as<int>());
+        // zos::log("team: {}\n", team);
+        //  team: 1 for blue,2 for yellow
+        {
+            std::scoped_lock lock{_robot_status_mutex};
+            auto &_s = robot_status;
+            _s.team = team;
+            if (team == ZSS::New::Team::YELLOW)
+            {
+                vision_to_imu_ = -1;
+            }
+            else if (team == ZSS::New::Team::BLUE)
+            {
+                vision_to_imu_ = 1;
+            }
+        }
+        zos::warning("id: {}, team: {}\n", robot_status.id, int(robot_status.team));
+
+        // motors pid
+        for (auto motor : config_yaml_["motor_pid"])
+        {
+            int motor_id = motor["id"].as<int>();
+            // zos::log("motor{}  p: {}  i: {}\n", motor_id, motor["p"].as<int>(), motor["i"].as<int>());
+            pid_pack_[motor_id * 2] = motor["p"].as<int>();
+            pid_pack_[motor_id * 2 + 1] = motor["i"].as<int>();
+        }
+    }
+    catch (const YAML::BadFile &e)
+    {
+        std::cerr << e.msg << std::endl;
+    }
+    catch (const YAML::ParserException &e)
+    {
+        std::cerr << e.msg << std::endl;
+    }
+    catch (...)
+    {
+        zos::error("read config.yaml failed, use default id #{}\n", robot_id);
+    }
+}
+
+void RobotStm32::save_id(int robot_id_new)
+{
+    if (config_yaml_.IsNull())
+    {
+        config_yaml_ = YAML::LoadFile("/home/pi/rpi_timer/robot/config.yaml");
+    }
+    config_yaml_["id"] = robot_id_new;
+    std::ofstream file_stream("/home/pi/rpi_timer/robot/config.yaml");
+    file_stream << config_yaml_; // dump it back into the file
+    file_stream.close();
+    // zos::log("robot id save\n");
+}
+
+void RobotStm32::save_team(ZSS::New::Team team_new)
+{
+    if (config_yaml_.IsNull())
+    {
+        config_yaml_ = YAML::LoadFile("/home/pi/rpi_timer/robot/config.yaml");
+    }
+    config_yaml_["team"] = static_cast<int>(team_new);
+    std::ofstream file_stream("/home/pi/rpi_timer/robot/config.yaml");
+    file_stream << config_yaml_; // dump it back into the file
+    file_stream.close();
+    // zos::log("robot team save\n");
 }
 
 void RobotStm32::update_expansion_board(const double dt)
@@ -419,8 +587,10 @@ void RobotStm32::shoot()
     }
     // kick
     int kick_status = -1;
-    if (_s.robot_is_infrared > 0 && _c.kick_en && _s.last_kick_time > 300)
+    // if (_s.robot_is_infrared > 0 && _c.kick_en && _s.last_kick_time > 300)
+    if (_c.kick_en && _s.last_kick_time > 300)
     {
+#ifdef need_store_data
         if (initFinish)
         {
             std::ofstream file(logcsv, std::ios::app);
@@ -431,7 +601,8 @@ void RobotStm32::shoot()
             file << _c.kick_en << "," << _c.kick_mode << "," << _c.kick_discharge_time << "," << _s.robot_is_infrared << "," <<_s.last_kick_time<< std::endl;
             file.close();
         }
-        zos::log("kick info   en:{}, mode:{}, time:{}   ir: {}, last_time: {}\n", _c.kick_en, _c.kick_mode, _c.kick_discharge_time, _s.robot_is_infrared, _s.last_kick_time);
+#endif
+        // zos::log("kick info   en:{}, mode:{}, time:{}   ir: {}, last_time: {}\n", _c.kick_en, _c.kick_mode, _c.kick_discharge_time, _s.robot_is_infrared, _s.last_kick_time);
         kick_status = device_.shoot_chip(_c.kick_mode, _c.kick_discharge_time);
         // TODO: _s.robot_is_shooted/chipped
         {
@@ -449,9 +620,13 @@ void RobotStm32::shoot()
                 break;
             }
             robot_status.last_kick_time = 0;
-            robot_cmd.kick_en = false;
-            robot_cmd.kick_discharge_time = 0;
+            // robot_cmd.kick_en = false;
+            // robot_cmd.kick_discharge_time = 0;
         }
+    }
+    else if (!_c.kick_en)
+    {
+        device_.shoot_chip(0, 0);
     }
 }
 
@@ -575,89 +750,6 @@ void RobotStm32::stand()
     std::fill_n(begin(vel_pack_), MAX_MOTOR, 0);
 
     wifi_.udp_restart();
-}
-
-void RobotStm32::read_config_yaml()
-{
-    try
-    {
-        // zos::log("read_config_yaml\n");
-        config_yaml_ = YAML::LoadFile("/home/pi/rpi_timer/robot/config.yaml");
-        // id
-        robot_id = config_yaml_["id"].as<int>();
-        // zos::log("robot id: {}\n", robot_id);
-        {
-            std::scoped_lock lock{_robot_status_mutex};
-            auto &_s = robot_status;
-            _s.id = robot_id;
-        }
-        // freq
-        nrf2401_freq_ = config_yaml_["freq"].as<int>();
-        // zos::log("nrf2401 freq: {}\n", nrf2401_freq_);
-        //  team: 1 for blue,2 for yellow
-        {
-            std::scoped_lock lock{_robot_status_mutex};
-            auto &_s = robot_status;
-            if (nrf2401_freq_ == 6)
-            {
-                _s.team = 2;
-                vision_to_imu_ = -1;
-            }
-            else if (nrf2401_freq_ == 8)
-            {
-                _s.team = 1;
-                vision_to_imu_ = 1;
-            }
-        }
-        zos::warning("id: {}, team: {}\n", robot_status.id, robot_status.team);
-
-        // motors pid
-        for (auto motor : config_yaml_["motor_pid"])
-        {
-            int motor_id = motor["id"].as<int>();
-            // zos::log("motor{}  p: {}  i: {}\n", motor_id, motor["p"].as<int>(), motor["i"].as<int>());
-            pid_pack_[motor_id * 2] = motor["p"].as<int>();
-            pid_pack_[motor_id * 2 + 1] = motor["i"].as<int>();
-        }
-    }
-    catch (const YAML::BadFile &e)
-    {
-        std::cerr << e.msg << std::endl;
-    }
-    catch (const YAML::ParserException &e)
-    {
-        std::cerr << e.msg << std::endl;
-    }
-    catch (...)
-    {
-        zos::error("read config.yaml failed, use default id #{}\n", robot_id);
-    }
-}
-
-void RobotStm32::save_id(int robot_id_new)
-{
-    if (config_yaml_.IsNull())
-    {
-        config_yaml_ = YAML::LoadFile("/home/pi/rpi_timer/robot/config.yaml");
-    }
-    config_yaml_["id"] = robot_id_new;
-    std::ofstream file_stream("/home/pi/rpi_timer/robot/config.yaml");
-    file_stream << config_yaml_; // dump it back into the file
-    file_stream.close();
-    // zos::log("robot id save\n");
-}
-
-void RobotStm32::save_freq(int nrf2401_freq_new)
-{
-    if (config_yaml_.IsNull())
-    {
-        config_yaml_ = YAML::LoadFile("/home/pi/rpi_timer/robot/config.yaml");
-    }
-    config_yaml_["freq"] = nrf2401_freq_new;
-    std::ofstream file_stream("/home/pi/rpi_timer/robot/config.yaml");
-    file_stream << config_yaml_; // dump it back into the file
-    file_stream.close();
-    // zos::log("robot id save\n");
 }
 
 double RobotStm32::ms_since_last_cmd_pack()

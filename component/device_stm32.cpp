@@ -6,6 +6,7 @@ static auto last_time = now_time - std::chrono::microseconds(1000000) / config::
 DeviceStm32::DeviceStm32()
 {
     // 检测gpio初始化完成
+    gpioCfgSetInternals(gpioCfgGetInternals() | PI_CFG_NOSIGHANDLER);
     auto _code_ = gpioInitialise();
     if (_code_ < 0)
     {
@@ -44,7 +45,7 @@ DeviceStm32::DeviceStm32()
     }
 
     stm32_spi->mode(mraa::SPI_MODE0);
-    stm32_spi->frequency(10000000);
+    stm32_spi->frequency(1000000);
 
     buzzer_start();
 
@@ -58,6 +59,9 @@ void DeviceStm32::read_write_stm32()
 
     tx.drib_power = drib_power;
     tx.use_imu = true;
+    tx.kick_mode = kick_mode.load();
+    tx.kick_discharge_time = (uint16_t)kick_discharge_time.load();
+    // zos::log("kick_mode: {}, kick_discharge_time: {}\n", kick_mode.load(), kick_discharge_time.load());
 
     for(int i=0;i<3;i++)
     {
@@ -78,10 +82,11 @@ void DeviceStm32::read_write_stm32()
     // zos::log("{},{},{}\n",vel_all[0],vel_all[1],vel_all[2]);
     // zos::log("{},{},{}\n",tx.vel[0],tx.vel[1],tx.vel[2]);
     memcpy(tx_data_spi,&tx,sizeof(tx));
-    // zos::log("{},{}\n",tx_data_spi[1],tx_data_spi[2]);
+    // zos::log("tx_data_spi: {},{}, {}\n",tx_data_spi[0],tx_data_spi[1],tx_data_spi[2]);
 
     int result = stm32_spi->transfer(tx_data_spi,rx_data_spi,spi_length);
     // zos::log("tmp :{},rx:{},{},{},{},{}\n",tmp,rx_data_spi[0],rx_data_spi[1],rx_data_spi[2],rx_data_spi[3],rx_data_spi[4]);
+    // zos::log("stm32 spi transfer result: {}\n", result);
 
     memcpy(&rx,rx_data_spi,sizeof(rx));
 
@@ -146,48 +151,48 @@ void DeviceStm32::buzzer_thread()
     _buzzer.join();
 }
 
-float DeviceStm32::shoot_chip(bool kick_mode, float kick_discharge_time)
-{
-    int kick_flag = -1;
-    int kick_gpio;
-    if (kick_mode == SHOOT_MODE)
-    {
-        kick_gpio = GPIO_SHOOT;
-    }
-    else if (kick_mode == CHIP_MODE)
-    {
-        kick_gpio = GPIO_CHIP;
-    }
-    else
-    {
-        zos::error("wrong kick mode\n");
-        return -1;
-    }
+// float DeviceStm32::shoot_chip(bool kick_mode, float kick_discharge_time)
+// {
+//     int kick_flag = -1;
+//     int kick_gpio;
+//     if (kick_mode == SHOOT_MODE)
+//     {
+//         kick_gpio = GPIO_SHOOT;
+//     }
+//     else if (kick_mode == CHIP_MODE)
+//     {
+//         kick_gpio = GPIO_CHIP;
+//     }
+//     else
+//     {
+//         zos::error("wrong kick mode\n");
+//         return -1;
+//     }
 
-    if (kick_discharge_time > 0)
-    {
-        // std::jthread th_shoot([this, kick_gpio, kick_discharge_time] {
-        // 获取时间，用于时间间隔
-        auto time_pre = std::chrono::steady_clock::now();
-        // 设置时间间隔
-        std::chrono::duration<int, std::nano> _step = std::chrono::microseconds(1);
-        gpioWrite(kick_gpio, PI_HIGH);
-        zos::log("shoot: {}     ", _step * kick_discharge_time);
-        std::this_thread::sleep_for(_step * (int)kick_discharge_time);
-        gpioWrite(kick_gpio, PI_LOW);
-        auto time_now = std::chrono::steady_clock::now();
-        auto step = (time_now - time_pre);
-        // zos::status("kick power: {}, period time: {}, vol remain: {}\n", (int)kick_discharge_time, step.count() / 1000, cap_vol);
-        // });
-        // th_shoot.detach();
-        kick_flag = kick_mode;
-    }
-    else
-    {
-        // zos::log("kick power: {}, low voltage: {}, boot power: {}\n", (int)kick_discharge_time, cap_vol, (int)kick_discharge_time);
-    }
-    // gpioWrite(kick_gpio, PI_LOW);
+//     if (kick_discharge_time > 0)
+//     {
+//         // std::jthread th_shoot([this, kick_gpio, kick_discharge_time] {
+//         // 获取时间，用于时间间隔
+//         auto time_pre = std::chrono::steady_clock::now();
+//         // 设置时间间隔
+//         std::chrono::duration<int, std::nano> _step = std::chrono::microseconds(1);
+//         gpioWrite(kick_gpio, PI_HIGH);
+//         zos::log("shoot: {}     ", _step * kick_discharge_time);
+//         std::this_thread::sleep_for(_step * (int)kick_discharge_time);
+//         gpioWrite(kick_gpio, PI_LOW);
+//         auto time_now = std::chrono::steady_clock::now();
+//         auto step = (time_now - time_pre);
+//         // zos::status("kick power: {}, period time: {}, vol remain: {}\n", (int)kick_discharge_time, step.count() / 1000, cap_vol);
+//         // });
+//         // th_shoot.detach();
+//         kick_flag = kick_mode;
+//     }
+//     else
+//     {
+//         // zos::log("kick power: {}, low voltage: {}, boot power: {}\n", (int)kick_discharge_time, cap_vol, (int)kick_discharge_time);
+//     }
+//     // gpioWrite(kick_gpio, PI_LOW);
 
-    zos::status("shoot\n");
-    return kick_flag;
-}
+//     zos::status("shoot\n");
+//     return kick_flag;
+// }

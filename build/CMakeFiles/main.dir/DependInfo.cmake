@@ -9,8 +9,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/pi/rpi_timer/robot/component/device.cpp" "CMakeFiles/main.dir/component/device.cpp.o" "gcc" "CMakeFiles/main.dir/component/device.cpp.o.d"
+  "/home/pi/rpi_timer/robot/component/device_stm32.cpp" "CMakeFiles/main.dir/component/device_stm32.cpp.o" "gcc" "CMakeFiles/main.dir/component/device_stm32.cpp.o.d"
   "/home/pi/rpi_timer/robot/component/parameter.cpp" "CMakeFiles/main.dir/component/parameter.cpp.o" "gcc" "CMakeFiles/main.dir/component/parameter.cpp.o.d"
   "/home/pi/rpi_timer/robot/component/robot.cpp" "CMakeFiles/main.dir/component/robot.cpp.o" "gcc" "CMakeFiles/main.dir/component/robot.cpp.o.d"
+  "/home/pi/rpi_timer/robot/component/robot_stm32.cpp" "CMakeFiles/main.dir/component/robot_stm32.cpp.o" "gcc" "CMakeFiles/main.dir/component/robot_stm32.cpp.o.d"
   "/home/pi/rpi_timer/robot/component/timer.cpp" "CMakeFiles/main.dir/component/timer.cpp.o" "gcc" "CMakeFiles/main.dir/component/timer.cpp.o.d"
   "/home/pi/rpi_timer/robot/component/wifi.cpp" "CMakeFiles/main.dir/component/wifi.cpp.o" "gcc" "CMakeFiles/main.dir/component/wifi.cpp.o.d"
   "/home/pi/rpi_timer/robot/control/CMmotion.cpp" "CMakeFiles/main.dir/control/CMmotion.cpp.o" "gcc" "CMakeFiles/main.dir/control/CMmotion.cpp.o.d"

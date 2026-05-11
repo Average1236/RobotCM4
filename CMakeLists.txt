@@ -67,9 +67,11 @@ file(GLOB SHARED_SOURCE_FILES
     # ${CMAKE_CURRENT_SOURCE_DIR}/control/*.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/share/utils/*.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/component/robot.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/component/robot_stm32.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/component/wifi.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/component/timer.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/component/device.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/component/device_stm32.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/component/parameter.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/control/CMmotion.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/control/controlal.cpp

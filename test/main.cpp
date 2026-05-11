@@ -8,7 +8,7 @@
 
 #define CLOCKID CLOCK_REALTIME
 
-// #define CM4_stm32
+#define CM4_stm32
 
 #ifdef CM4_stm32
 using ActiveRobot = RobotStm32;
@@ -85,16 +85,20 @@ void callback_device(void)
 
 void callback_update_expansion_board(void)
 {
-    auto now_time = std::chrono::steady_clock::now();
-    auto last_time = now_time - std::chrono::microseconds(1000000) / 1000.0;
+    constexpr auto period = std::chrono::milliseconds(10); // 100 Hz
+    auto last_time = std::chrono::steady_clock::now();
+    auto next_tick = last_time;
     int dt = 0;
     while (!g_stop.load())
     {
-        now_time = std::chrono::steady_clock::now();
+        next_tick += period;
+        std::this_thread::sleep_until(next_tick);
+
+        auto now_time = std::chrono::steady_clock::now();
         dt = std::chrono::duration_cast<std::chrono::microseconds>(now_time - last_time).count();
         last_time = now_time;
         if (g_robot)
-            g_robot->update_expansion_board(dt/1000.0);
+            g_robot->update_expansion_board(dt / 1000.0);
     }
 }
 

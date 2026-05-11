@@ -5,6 +5,7 @@
 DeviceCm::DeviceCm()
 {
     // 检测gpio初始化完成
+    gpioCfgSetInternals(gpioCfgGetInternals() | PI_CFG_NOSIGHANDLER);
     auto _code_ = gpioInitialise();
     if (_code_ < 0)
     {
@@ -277,6 +278,7 @@ std::vector<int> DeviceCm::read_nano()
     // std::scoped_lock lock(mutex_uart);
     std::string buff_str = nano_uart->readStr(UART_BUFF_SIZE);
     // std::cout << "read pack: " << buff_str << std::endl;
+    nano_uart->flush();
     if (nano_buff != NULL)
     {
         std::copy(buff_str.begin(), buff_str.begin() + UART_BUFF_SIZE, nano_buff);

@@ -85,6 +85,8 @@ private:
         int16_t angle_pid[3];
         int16_t wheel_pid[3];
         bool use_imu;
+        bool kick_mode;
+        uint16_t kick_discharge_time;
     };
 
     struct __attribute__((packed)) stm32_to_CM4_spi
@@ -150,7 +152,15 @@ private:
 
     // shoot
 public:
-    float shoot_chip(bool kick_mode, float kick_discharge_time);
+    float shoot_chip(bool kick_mode, float kick_discharge_time) {
+        this->kick_mode.store(kick_mode);
+        this->kick_discharge_time.store(kick_discharge_time);
+        return (float)kick_mode;
+    };
+
+private:
+    std::atomic<bool> kick_mode;
+    std::atomic<float> kick_discharge_time;
 
 private:
 };

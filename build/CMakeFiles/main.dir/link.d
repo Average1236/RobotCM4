@@ -4,8 +4,10 @@ main: \
   /usr/lib/gcc/aarch64-linux-gnu/14/crtbeginS.o \
   CMakeFiles/main.dir/test/main.cpp.o \
   CMakeFiles/main.dir/component/device.cpp.o \
+  CMakeFiles/main.dir/component/device_stm32.cpp.o \
   CMakeFiles/main.dir/component/parameter.cpp.o \
   CMakeFiles/main.dir/component/robot.cpp.o \
+  CMakeFiles/main.dir/component/robot_stm32.cpp.o \
   CMakeFiles/main.dir/component/timer.cpp.o \
   CMakeFiles/main.dir/component/wifi.cpp.o \
   CMakeFiles/main.dir/control/CMmotion.cpp.o \
@@ -52,7 +54,6 @@ main: \
   /usr/lib/gcc/aarch64-linux-gnu/14/libgcc.a \
   /usr/lib/gcc/aarch64-linux-gnu/14/crtendS.o \
   /usr/lib/gcc/aarch64-linux-gnu/14/../../../aarch64-linux-gnu/crtn.o \
-  /lib/aarch64-linux-gnu/libjson-c.so.5 \
   /lib/aarch64-linux-gnu/libz.so.1 \
   /lib/ld-linux-aarch64.so.1
 
@@ -66,9 +67,13 @@ CMakeFiles/main.dir/test/main.cpp.o:
 
 CMakeFiles/main.dir/component/device.cpp.o:
 
+CMakeFiles/main.dir/component/device_stm32.cpp.o:
+
 CMakeFiles/main.dir/component/parameter.cpp.o:
 
 CMakeFiles/main.dir/component/robot.cpp.o:
+
+CMakeFiles/main.dir/component/robot_stm32.cpp.o:
 
 CMakeFiles/main.dir/component/timer.cpp.o:
 
@@ -161,8 +166,6 @@ CMakeFiles/main.dir/share/proto/zss_cmd_type.pb.cc.o:
 /usr/lib/gcc/aarch64-linux-gnu/14/crtendS.o:
 
 /usr/lib/gcc/aarch64-linux-gnu/14/../../../aarch64-linux-gnu/crtn.o:
-
-/lib/aarch64-linux-gnu/libjson-c.so.5:
 
 /lib/aarch64-linux-gnu/libz.so.1:
 

@@ -153,6 +153,30 @@ component/device.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/component/device.cpp.s
 .PHONY : component/device.cpp.s
 
+component/device_stm32.o: component/device_stm32.cpp.o
+.PHONY : component/device_stm32.o
+
+# target to build an object file
+component/device_stm32.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/component/device_stm32.cpp.o
+.PHONY : component/device_stm32.cpp.o
+
+component/device_stm32.i: component/device_stm32.cpp.i
+.PHONY : component/device_stm32.i
+
+# target to preprocess a source file
+component/device_stm32.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/component/device_stm32.cpp.i
+.PHONY : component/device_stm32.cpp.i
+
+component/device_stm32.s: component/device_stm32.cpp.s
+.PHONY : component/device_stm32.s
+
+# target to generate assembly for a file
+component/device_stm32.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/component/device_stm32.cpp.s
+.PHONY : component/device_stm32.cpp.s
+
 component/parameter.o: component/parameter.cpp.o
 .PHONY : component/parameter.o
 
@@ -200,6 +224,30 @@ component/robot.s: component/robot.cpp.s
 component/robot.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/component/robot.cpp.s
 .PHONY : component/robot.cpp.s
+
+component/robot_stm32.o: component/robot_stm32.cpp.o
+.PHONY : component/robot_stm32.o
+
+# target to build an object file
+component/robot_stm32.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/component/robot_stm32.cpp.o
+.PHONY : component/robot_stm32.cpp.o
+
+component/robot_stm32.i: component/robot_stm32.cpp.i
+.PHONY : component/robot_stm32.i
+
+# target to preprocess a source file
+component/robot_stm32.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/component/robot_stm32.cpp.i
+.PHONY : component/robot_stm32.cpp.i
+
+component/robot_stm32.s: component/robot_stm32.cpp.s
+.PHONY : component/robot_stm32.s
+
+# target to generate assembly for a file
+component/robot_stm32.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/component/robot_stm32.cpp.s
+.PHONY : component/robot_stm32.cpp.s
 
 component/timer.o: component/timer.cpp.o
 .PHONY : component/timer.o
@@ -429,12 +477,18 @@ help:
 	@echo "... component/device.o"
 	@echo "... component/device.i"
 	@echo "... component/device.s"
+	@echo "... component/device_stm32.o"
+	@echo "... component/device_stm32.i"
+	@echo "... component/device_stm32.s"
 	@echo "... component/parameter.o"
 	@echo "... component/parameter.i"
 	@echo "... component/parameter.s"
 	@echo "... component/robot.o"
 	@echo "... component/robot.i"
 	@echo "... component/robot.s"
+	@echo "... component/robot_stm32.o"
+	@echo "... component/robot_stm32.i"
+	@echo "... component/robot_stm32.s"
 	@echo "... component/timer.o"
 	@echo "... component/timer.i"
 	@echo "... component/timer.s"
