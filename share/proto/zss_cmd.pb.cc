@@ -115,8 +115,6 @@ PROTOBUF_CONSTEXPR Robot_Command::Robot_Command(
   , /*decltype(_impl_.desire_power_)*/0
   , /*decltype(_impl_.kick_discharge_time_)*/0
   , /*decltype(_impl_.dribble_spin_)*/0
-  , /*decltype(_impl_.dribble_velocity_)*/0
-  , /*decltype(_impl_.dribble_torque_ff_)*/0
   , /*decltype(_impl_.cmd_type_)*/0
   , /*decltype(_impl_.comm_type_)*/0
   , /*decltype(_impl_.need_report_)*/false
@@ -1940,8 +1938,6 @@ Robot_Command::Robot_Command(const Robot_Command& from)
     , decltype(_impl_.desire_power_){}
     , decltype(_impl_.kick_discharge_time_){}
     , decltype(_impl_.dribble_spin_){}
-    , decltype(_impl_.dribble_velocity_){}
-    , decltype(_impl_.dribble_torque_ff_){}
     , decltype(_impl_.cmd_type_){}
     , decltype(_impl_.comm_type_){}
     , decltype(_impl_.need_report_){}
@@ -1991,8 +1987,6 @@ inline void Robot_Command::SharedCtor(
     , decltype(_impl_.desire_power_){0}
     , decltype(_impl_.kick_discharge_time_){0}
     , decltype(_impl_.dribble_spin_){0}
-    , decltype(_impl_.dribble_velocity_){0}
-    , decltype(_impl_.dribble_torque_ff_){0}
     , decltype(_impl_.cmd_type_){0}
     , decltype(_impl_.comm_type_){0}
     , decltype(_impl_.need_report_){false}
@@ -2551,18 +2545,6 @@ size_t Robot_Command::ByteSizeLong() const {
     total_size += 2 + 1;
   }
 
-  // sint32 dribble_velocity = 20;
-  if (this->_internal_dribble_velocity() != 0) {
-    total_size += 2 +
-      ::_pbi::WireFormatLite::SInt32Size(this->_internal_dribble_velocity());
-  }
-
-  // sint32 dribble_torque_ff = 21;
-  if (this->_internal_dribble_torque_ff() != 0) {
-    total_size += 2 +
-      ::_pbi::WireFormatLite::SInt32Size(this->_internal_dribble_torque_ff());
-  }
-
   // .ZSS.New.Team team_new = 16;
   if (this->_internal_team_new() != 0) {
     total_size += 2 +
@@ -2644,12 +2626,6 @@ void Robot_Command::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::
   }
   if (from._internal_dribble_spin() != 0) {
     _this->_internal_set_dribble_spin(from._internal_dribble_spin());
-  }
-  if (from._internal_dribble_velocity() != 0) {
-    _this->_internal_set_dribble_velocity(from._internal_dribble_velocity());
-  }
-  if (from._internal_dribble_torque_ff() != 0) {
-    _this->_internal_set_dribble_torque_ff(from._internal_dribble_torque_ff());
   }
   if (from._internal_cmd_type() != 0) {
     _this->_internal_set_cmd_type(from._internal_cmd_type());
