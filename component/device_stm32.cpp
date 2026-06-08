@@ -58,7 +58,7 @@ void DeviceStm32::read_write_stm32()
     stm32_to_CM4_spi rx = {0};
 
     tx.drib_power = drib_power;
-    tx.use_imu = true;
+    tx.use_imu = use_imu;
     tx.kick_mode = kick_mode.load();
     tx.kick_discharge_time = (uint16_t)kick_discharge_time.load();
     // zos::log("kick_mode: {}, kick_discharge_time: {}\n", kick_mode.load(), kick_discharge_time.load());

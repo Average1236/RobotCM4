@@ -739,8 +739,11 @@ void RobotStm32::stand()
 
     robot_cmd.vy_target = 0;
     robot_cmd.vx_target = 0;
-    robot_cmd.vr_target = 0;
-    robot_cmd.use_dir = 0;
+    // robot_cmd.vr_target = 0;
+    // robot_cmd.use_dir = 0;
+    if (!robot_cmd.use_dir) {
+        robot_cmd.vr_target = 0;
+    }
     if (_time_since_last_pack.load() > 1000)
     {
         robot_cmd.drib_power = 0;
