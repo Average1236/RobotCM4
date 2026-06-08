@@ -1392,6 +1392,8 @@ class Robot_Command final :
     kIsdebugFieldNumber = 18,
     kTeamNewFieldNumber = 16,
     kIdNewFieldNumber = 17,
+    kDribbleVelocityFieldNumber = 20,
+    kDribbleTorqueFfFieldNumber = 21,
   };
   // repeated sint32 angle_pid = 13;
   int angle_pid_size() const;
@@ -1626,6 +1628,24 @@ class Robot_Command final :
   void _internal_set_id_new(int32_t value);
   public:
 
+  // sint32 dribble_velocity = 20;
+  void clear_dribble_velocity();
+  int32_t dribble_velocity() const;
+  void set_dribble_velocity(int32_t value);
+  private:
+  int32_t _internal_dribble_velocity() const;
+  void _internal_set_dribble_velocity(int32_t value);
+  public:
+
+  // sint32 dribble_torque_ff = 21;
+  void clear_dribble_torque_ff();
+  int32_t dribble_torque_ff() const;
+  void set_dribble_torque_ff(int32_t value);
+  private:
+  int32_t _internal_dribble_torque_ff() const;
+  void _internal_set_dribble_torque_ff(int32_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:ZSS.New.Robot_Command)
  private:
   class _Internal;
@@ -1655,6 +1675,8 @@ class Robot_Command final :
     bool isdebug_;
     int team_new_;
     int32_t id_new_;
+    int32_t dribble_velocity_;
+    int32_t dribble_torque_ff_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -3361,6 +3383,46 @@ inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t >*
 Robot_Command::mutable_wheel_pid() {
   // @@protoc_insertion_point(field_mutable_list:ZSS.New.Robot_Command.wheel_pid)
   return _internal_mutable_wheel_pid();
+}
+
+// sint32 dribble_velocity = 20;
+inline void Robot_Command::clear_dribble_velocity() {
+  _impl_.dribble_velocity_ = 0;
+}
+inline int32_t Robot_Command::_internal_dribble_velocity() const {
+  return _impl_.dribble_velocity_;
+}
+inline int32_t Robot_Command::dribble_velocity() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Command.dribble_velocity)
+  return _internal_dribble_velocity();
+}
+inline void Robot_Command::_internal_set_dribble_velocity(int32_t value) {
+  
+  _impl_.dribble_velocity_ = value;
+}
+inline void Robot_Command::set_dribble_velocity(int32_t value) {
+  _internal_set_dribble_velocity(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command.dribble_velocity)
+}
+
+// sint32 dribble_torque_ff = 21;
+inline void Robot_Command::clear_dribble_torque_ff() {
+  _impl_.dribble_torque_ff_ = 0;
+}
+inline int32_t Robot_Command::_internal_dribble_torque_ff() const {
+  return _impl_.dribble_torque_ff_;
+}
+inline int32_t Robot_Command::dribble_torque_ff() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Command.dribble_torque_ff)
+  return _internal_dribble_torque_ff();
+}
+inline void Robot_Command::_internal_set_dribble_torque_ff(int32_t value) {
+  
+  _impl_.dribble_torque_ff_ = value;
+}
+inline void Robot_Command::set_dribble_torque_ff(int32_t value) {
+  _internal_set_dribble_torque_ff(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command.dribble_torque_ff)
 }
 
 // -------------------------------------------------------------------

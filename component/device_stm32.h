@@ -87,7 +87,11 @@ private:
         bool use_imu;
         bool kick_mode;
         uint16_t kick_discharge_time;
+        int16_t drib_velocity;  // turns/s * 100
+        int16_t drib_torque_ff; // Nm * 1000
     };
+
+    static_assert(sizeof(CM4_to_stm32_spi) <= spi_length, "CM4_to_stm32_spi exceeds spi_length");
 
     struct __attribute__((packed)) stm32_to_CM4_spi
     {
@@ -104,8 +108,16 @@ private:
     // dribbler
 public:
     void set_dribbler(int dribble_val){drib_power = dribble_val;};
+    void set_dribbler(int dribble_val, float dribble_velocity, float dribble_torque_ff)
+    {
+        drib_power = dribble_val;
+        drib_velocity = dribble_velocity;
+        drib_torque_ff = dribble_torque_ff;
+    };
 private:
     std::atomic<int> drib_power;
+    std::atomic<float> drib_velocity = -50.0f;
+    std::atomic<float> drib_torque_ff = 0.1f;
 
     // vel
 public:

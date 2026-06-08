@@ -61,6 +61,8 @@ void DeviceStm32::read_write_stm32()
     tx.use_imu = true;
     tx.kick_mode = kick_mode.load();
     tx.kick_discharge_time = (uint16_t)kick_discharge_time.load();
+    tx.drib_velocity = (int16_t)(drib_velocity.load() * 100);
+    tx.drib_torque_ff = (int16_t)(drib_torque_ff.load() * 1000);
     // zos::log("kick_mode: {}, kick_discharge_time: {}\n", kick_mode.load(), kick_discharge_time.load());
 
     for(int i=0;i<3;i++)

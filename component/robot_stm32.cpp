@@ -194,6 +194,8 @@ void RobotStm32::cmd_callback(const zos::Data &data)
             // _c.desire_power = _p.desire_power();
             _c.kick_discharge_time = _p.kick_discharge_time();
             _c.drib_power = _p.dribble_spin();
+            _c.drib_velocity = (_p.dribble_velocity() != 0) ? _p.dribble_velocity() / 100.0f : -50.0f;
+            _c.drib_torque_ff = (_p.dribble_torque_ff() != 0) ? _p.dribble_torque_ff() / 1000.0f : 0.1f;
             // _c.cmd_type = int(_p.cmd_type());
             // switch (_p.cmd_type())
             // {
@@ -440,7 +442,7 @@ void RobotStm32::update_expansion_board(const double dt)
         }
 
         device_.set_angle_pid(_c.angle_pid[0],_c.angle_pid[1],_c.angle_pid[2]);
-        device_.set_dribbler(_c.drib_power);
+        device_.set_dribbler(_c.drib_power, _c.drib_velocity, _c.drib_torque_ff);
         device_.use_imu = _c.use_dir;
         device_.set_vel(_c.vx_target,_c.vy_target,_c.vr_target);
     }
@@ -744,6 +746,8 @@ void RobotStm32::stand()
     if (_time_since_last_pack.load() > 1000)
     {
         robot_cmd.drib_power = 0;
+        robot_cmd.drib_velocity = 0;
+        robot_cmd.drib_torque_ff = 0;
     }
     
 

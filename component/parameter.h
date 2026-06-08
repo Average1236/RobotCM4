@@ -27,6 +27,8 @@ struct Robot_CMD
     float desire_power;        // speed(m/s) for flatkick or distance(m) for chip
     float kick_discharge_time; // us
     float drib_power;          // -1 ~ 1
+    float drib_velocity;       // turns/s
+    float drib_torque_ff;      // Nm
 
     // cmd_wheel
     std::array<float, 4> motor_vel_target; // rad/s
