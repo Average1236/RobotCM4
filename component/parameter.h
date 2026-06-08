@@ -16,7 +16,7 @@
 #include <yaml-cpp/yaml.h>
 #include "WorldDefine.h"
 #include "zss_cmd.pb.h"
-
+  
 struct Robot_CMD
 {
     int comm_type; // 1:24L01,2:WIFI
@@ -27,6 +27,8 @@ struct Robot_CMD
     float desire_power;        // speed(m/s) for flatkick or distance(m) for chip
     float kick_discharge_time; // us
     float drib_power;          // -1 ~ 1
+    float drib_velocity;       // turns/s
+    float drib_torque_ff;      // Nm
 
     // cmd_wheel
     std::array<float, 4> motor_vel_target; // rad/s

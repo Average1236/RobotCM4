@@ -11,6 +11,7 @@
 #include <thread>
 #include <mutex>
 #include <cstring>
+#include <atomic>
 
 #include "zos/utils/threadpool.h"
 #include "zos/utils/rate.h"
@@ -35,7 +36,7 @@
 #define GPIO_LED1 20
 #define GPIO_LED2 21
 
-const int spi_length = 32;
+const int spi_length = 36;
 
 class DeviceStm32 : public DeviceBase
 {
@@ -87,7 +88,11 @@ private:
         bool use_imu;
         bool kick_mode;
         uint16_t kick_discharge_time;
+        int16_t drib_velocity;  // turns/s * 100
+        int16_t drib_torque_ff; // Nm * 1000
     };
+
+    static_assert(sizeof(CM4_to_stm32_spi) <= spi_length, "CM4_to_stm32_spi exceeds spi_length");
 
     struct __attribute__((packed)) stm32_to_CM4_spi
     {
@@ -98,19 +103,32 @@ private:
         int8_t battery_vol;
         int16_t cap_vol;
         int16_t wheel[4];
+        int16_t odom_vel[2]; // vx, vy in mm/s
 
     };
+
+    static_assert(sizeof(stm32_to_CM4_spi) <= spi_length, "stm32_to_CM4_spi exceeds spi_length");
 
     // dribbler
 public:
     void set_dribbler(int dribble_val){drib_power = dribble_val;};
+    void set_dribbler(int dribble_val, float dribble_velocity, float dribble_torque_ff)
+    {
+        drib_power = dribble_val;
+        drib_velocity = dribble_velocity;
+        drib_torque_ff = dribble_torque_ff;
+    };
 private:
     std::atomic<int> drib_power;
+    std::atomic<float> drib_velocity = -50.0f;
+    std::atomic<float> drib_torque_ff = 0.1f;
 
     // vel
 public:
     void set_vel(float vel_x,float vel_y,float vel_w){vel_all[0]=vel_x;vel_all[1]=vel_y;vel_all[2]=vel_w;};
     std::array<std::atomic<float>,4> wheel = {0};
+    std::atomic<float> odom_vx = 0.0f;
+    std::atomic<float> odom_vy = 0.0f;
 private:
     std::array<std::atomic<float>,3> vel_all = {0};
 
