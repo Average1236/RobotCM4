@@ -11,6 +11,7 @@
 #include <thread>
 #include <mutex>
 #include <cstring>
+#include <atomic>
 
 #include "zos/utils/threadpool.h"
 #include "zos/utils/rate.h"
@@ -35,7 +36,7 @@
 #define GPIO_LED1 20
 #define GPIO_LED2 21
 
-const int spi_length = 32;
+const int spi_length = 36;
 
 class DeviceStm32 : public DeviceBase
 {
@@ -102,8 +103,11 @@ private:
         int8_t battery_vol;
         int16_t cap_vol;
         int16_t wheel[4];
+        int16_t odom_vel[2]; // vx, vy in mm/s
 
     };
+
+    static_assert(sizeof(stm32_to_CM4_spi) <= spi_length, "stm32_to_CM4_spi exceeds spi_length");
 
     // dribbler
 public:
@@ -123,6 +127,8 @@ private:
 public:
     void set_vel(float vel_x,float vel_y,float vel_w){vel_all[0]=vel_x;vel_all[1]=vel_y;vel_all[2]=vel_w;};
     std::array<std::atomic<float>,4> wheel = {0};
+    std::atomic<float> odom_vx = 0.0f;
+    std::atomic<float> odom_vy = 0.0f;
 private:
     std::array<std::atomic<float>,3> vel_all = {0};
 

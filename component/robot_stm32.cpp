@@ -76,7 +76,9 @@ RobotStm32::RobotStm32() : device_{},
         robot_status.motor_encoder[3] = 0; // [-4096~4095]
 
         robot_status.robotX = visionX / 1000;
-        robot_status.robotX = visionY / 1000;
+        robot_status.robotY = visionY / 1000;
+        robot_status.robotXd = 0;
+        robot_status.robotYd = 0;
     }
 
     filter_x_.P_k = matrix::creatMatrix<float>(3, 3, 0);
@@ -418,6 +420,8 @@ void RobotStm32::update_expansion_board(const double dt)
         {
             _s.motor_encoder[i] = device_.wheel[i];
         }
+        _s.robotXd = device_.odom_vx.load();
+        _s.robotYd = device_.odom_vy.load();
 
         _s.last_kick_time = std::min(_s.last_kick_time + dt, 10000.0);
         _s.robot_is_shooted = std::min(_s.robot_is_shooted + dt, 100.0);
@@ -741,8 +745,11 @@ void RobotStm32::stand()
 
     robot_cmd.vy_target = 0;
     robot_cmd.vx_target = 0;
-    robot_cmd.vr_target = 0;
-    robot_cmd.use_dir = 0;
+    // robot_cmd.vr_target = 0;
+    // robot_cmd.use_dir = 0;
+    if (!robot_cmd.use_dir) {
+        robot_cmd.vr_target = 0;
+    }
     if (_time_since_last_pack.load() > 1000)
     {
         robot_cmd.drib_power = 0;
