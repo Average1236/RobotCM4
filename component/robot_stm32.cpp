@@ -61,6 +61,12 @@ RobotStm32::RobotStm32() : device_{},
         robot_cmd.angle_pid[0] = 6.5;
         robot_cmd.angle_pid[1] = 0;
         robot_cmd.angle_pid[2] = 0.5;
+        robot_cmd.xy_max_acc = {7.0f, 7.0f};
+        robot_cmd.xy_max_jerk = {1000.0f, 1000.0f};
+        robot_cmd.xy_max_dec = {10.0f, 10.0f};
+        robot_cmd.yaw_max_vel = 25.0f;
+        robot_cmd.yaw_max_acc = 40.0f;
+        robot_cmd.yaw_max_jerk = 200.0f;
     }
     {
         std::scoped_lock lock{_robot_status_mutex};
@@ -79,6 +85,16 @@ RobotStm32::RobotStm32() : device_{},
         robot_status.robotY = visionY / 1000;
         robot_status.robotXd = 0;
         robot_status.robotYd = 0;
+        for (int i = 0; i < 2; i++)
+        {
+            robot_status.xy_max_vel[i] = 0;
+            robot_status.xy_max_acc[i] = 0;
+            robot_status.xy_max_jerk[i] = 0;
+            robot_status.xy_max_dec[i] = 0;
+        }
+        robot_status.yaw_max_vel = 0;
+        robot_status.yaw_max_acc = 0;
+        robot_status.yaw_max_jerk = 0;
     }
 
     filter_x_.P_k = matrix::creatMatrix<float>(3, 3, 0);
@@ -198,6 +214,15 @@ void RobotStm32::cmd_callback(const zos::Data &data)
             _c.drib_power = _p.dribble_spin();
             _c.drib_velocity = (_p.dribble_velocity() != 0) ? _p.dribble_velocity() / 100.0f : -50.0f;
             _c.drib_torque_ff = (_p.dribble_torque_ff() != 0) ? _p.dribble_torque_ff() / 1000.0f : 0.1f;
+            if (_p.xy_max_acc_x() > 0) _c.xy_max_acc[0] = _p.xy_max_acc_x() / 1000.0f;
+            if (_p.xy_max_acc_y() > 0) _c.xy_max_acc[1] = _p.xy_max_acc_y() / 1000.0f;
+            if (_p.xy_max_jerk_x() > 0) _c.xy_max_jerk[0] = _p.xy_max_jerk_x() / 1000.0f;
+            if (_p.xy_max_jerk_y() > 0) _c.xy_max_jerk[1] = _p.xy_max_jerk_y() / 1000.0f;
+            if (_p.xy_max_dec_x() > 0) _c.xy_max_dec[0] = _p.xy_max_dec_x() / 1000.0f;
+            if (_p.xy_max_dec_y() > 0) _c.xy_max_dec[1] = _p.xy_max_dec_y() / 1000.0f;
+            if (_p.yaw_max_vel() > 0) _c.yaw_max_vel = _p.yaw_max_vel() / 1000.0f;
+            if (_p.yaw_max_acc() > 0) _c.yaw_max_acc = _p.yaw_max_acc() / 1000.0f;
+            if (_p.yaw_max_jerk() > 0) _c.yaw_max_jerk = _p.yaw_max_jerk() / 1000.0f;
             // _c.cmd_type = int(_p.cmd_type());
             // switch (_p.cmd_type())
             // {
@@ -422,6 +447,16 @@ void RobotStm32::update_expansion_board(const double dt)
         }
         _s.robotXd = device_.odom_vx.load();
         _s.robotYd = device_.odom_vy.load();
+        for (int i = 0; i < 2; i++)
+        {
+            _s.xy_max_vel[i] = device_.xy_max_vel[i].load();
+            _s.xy_max_acc[i] = device_.xy_max_acc[i].load();
+            _s.xy_max_jerk[i] = device_.xy_max_jerk[i].load();
+            _s.xy_max_dec[i] = device_.xy_max_dec[i].load();
+        }
+        _s.yaw_max_vel = device_.yaw_max_vel.load();
+        _s.yaw_max_acc = device_.yaw_max_acc.load();
+        _s.yaw_max_jerk = device_.yaw_max_jerk.load();
 
         _s.last_kick_time = std::min(_s.last_kick_time + dt, 10000.0);
         _s.robot_is_shooted = std::min(_s.robot_is_shooted + dt, 100.0);
@@ -447,6 +482,8 @@ void RobotStm32::update_expansion_board(const double dt)
 
         device_.set_angle_pid(_c.angle_pid[0],_c.angle_pid[1],_c.angle_pid[2]);
         device_.set_dribbler(_c.drib_power, _c.drib_velocity, _c.drib_torque_ff);
+        device_.set_motion_limits(_c.xy_max_acc, _c.xy_max_jerk, _c.xy_max_dec,
+                                  _c.yaw_max_vel, _c.yaw_max_acc, _c.yaw_max_jerk);
         device_.use_imu = _c.use_dir;
         device_.set_vel(_c.vx_target,_c.vy_target,_c.vr_target);
     }
@@ -497,6 +534,17 @@ void RobotStm32::send_status()
             pb_status.add_real_pose(_s.robotXd);
             pb_status.add_real_pose(_s.robotY);
             pb_status.add_real_pose(_s.robotYd);
+            auto add_odom_pose = [](ZSS::New::Odom *odom, float x, float y, float w) {
+                auto *pose = odom->add_poses();
+                pose->set_x(x);
+                pose->set_y(y);
+                pose->set_w(w);
+            };
+            auto *odom = pb_status.mutable_odom();
+            add_odom_pose(odom, _s.xy_max_vel[0], _s.xy_max_vel[1], _s.yaw_max_vel);
+            add_odom_pose(odom, _s.xy_max_acc[0], _s.xy_max_acc[1], _s.yaw_max_acc);
+            add_odom_pose(odom, _s.xy_max_jerk[0], _s.xy_max_jerk[1], _s.yaw_max_jerk);
+            add_odom_pose(odom, _s.xy_max_dec[0], _s.xy_max_dec[1], 0.0f);
             pb_status.set_have_imu(imu_online);
         }
         else

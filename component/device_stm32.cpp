@@ -63,6 +63,15 @@ void DeviceStm32::read_write_stm32()
     tx.kick_discharge_time = (uint16_t)kick_discharge_time.load();
     tx.drib_velocity = (int16_t)(drib_velocity.load() * 100);
     tx.drib_torque_ff = (int16_t)(drib_torque_ff.load() * 1000);
+    for (int i = 0; i < 2; ++i)
+    {
+        tx.xy_max_acc[i] = (int16_t)(xy_cmd_acc[i].load() * 1000);
+        tx.xy_max_jerk[i] = (int16_t)(xy_cmd_jerk[i].load() * 10);
+        tx.xy_max_dec[i] = (int16_t)(xy_cmd_dec[i].load() * 1000);
+    }
+    tx.yaw_max_vel = (int16_t)(yaw_cmd_vel.load() * 100);
+    tx.yaw_max_acc = (int16_t)(yaw_cmd_acc.load() * 100);
+    tx.yaw_max_jerk = (int16_t)(yaw_cmd_jerk.load() * 100);
     // zos::log("kick_mode: {}, kick_discharge_time: {}\n", kick_mode.load(), kick_discharge_time.load());
 
     for(int i=0;i<3;i++)
@@ -83,6 +92,7 @@ void DeviceStm32::read_write_stm32()
 
     // zos::log("{},{},{}\n",vel_all[0],vel_all[1],vel_all[2]);
     // zos::log("{},{},{}\n",tx.vel[0],tx.vel[1],tx.vel[2]);
+    memset(tx_data_spi, 0, sizeof(tx_data_spi));
     memcpy(tx_data_spi,&tx,sizeof(tx));
     // zos::log("tx_data_spi: {},{}, {}\n",tx_data_spi[0],tx_data_spi[1],tx_data_spi[2]);
 
@@ -119,6 +129,17 @@ void DeviceStm32::read_write_stm32()
 
     odom_vx.store(rx.odom_vel[0] / 1000.0f);
     odom_vy.store(rx.odom_vel[1] / 1000.0f);
+
+    for (int i = 0; i < 2; i++)
+    {
+        xy_max_vel[i].store(rx.xy_max_vel[i] / 1000.0f);
+        xy_max_acc[i].store(rx.xy_max_acc[i] / 1000.0f);
+        xy_max_jerk[i].store(rx.xy_max_jerk[i] / 10.0f);
+        xy_max_dec[i].store(rx.xy_max_dec[i] / 1000.0f);
+    }
+    yaw_max_vel.store(rx.yaw_max_vel / 100.0f);
+    yaw_max_acc.store(rx.yaw_max_acc / 100.0f);
+    yaw_max_jerk.store(rx.yaw_max_jerk / 100.0f);
 
     // int dt = 0;
 

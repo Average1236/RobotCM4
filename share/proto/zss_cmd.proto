@@ -40,7 +40,9 @@ message Robot_Status {
     sint32 battery = 6;
     // capacitance
     sint32 capacitance = 7;
-    // odom of imu
+    // debug odom/motion-limit report from STM32:
+    // poses[0] = max velocity (x,y,w), poses[1] = max acceleration (x,y,w),
+    // poses[2] = max jerk (x,y,w), poses[3] = max deceleration (x,y,0).
     Odom odom = 8;
     // wheel encoder value
     repeated sint32 wheel_encoder = 9;
@@ -109,6 +111,19 @@ message Robot_Command {
     sint32 dribble_velocity = 20;
     // dribbler torque feed-forward command, Nm * 1000
     sint32 dribble_torque_ff = 21;
+    // x/y axis acceleration limits, m/s^2 * 1000
+    sint32 xy_max_acc_x = 22;
+    sint32 xy_max_acc_y = 23;
+    // x/y axis jerk limits, m/s^3 * 1000
+    sint32 xy_max_jerk_x = 24;
+    sint32 xy_max_jerk_y = 25;
+    // x/y axis deceleration limits, m/s^2 * 1000
+    sint32 xy_max_dec_x = 26;
+    sint32 xy_max_dec_y = 27;
+    // yaw velocity/acceleration/jerk limits, rad/s^n * 1000
+    sint32 yaw_max_vel = 28;
+    sint32 yaw_max_acc = 29;
+    sint32 yaw_max_jerk = 30;
 }
 
 message Robot_Command_Mini{

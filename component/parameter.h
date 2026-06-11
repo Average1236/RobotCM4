@@ -29,6 +29,12 @@ struct Robot_CMD
     float drib_power;          // -1 ~ 1
     float drib_velocity;       // turns/s
     float drib_torque_ff;      // Nm
+    std::array<float, 2> xy_max_acc;   // m/s^2
+    std::array<float, 2> xy_max_jerk;  // m/s^3
+    std::array<float, 2> xy_max_dec;   // m/s^2
+    float yaw_max_vel;                 // rad/s
+    float yaw_max_acc;                 // rad/s^2
+    float yaw_max_jerk;                // rad/s^3
 
     // cmd_wheel
     std::array<float, 4> motor_vel_target; // rad/s
@@ -85,6 +91,14 @@ struct Robot_STATUS
     float robotXd;
     float robotY;
     float robotYd;
+
+    std::array<float, 2> xy_max_vel;
+    std::array<float, 2> xy_max_acc;
+    std::array<float, 2> xy_max_jerk;
+    std::array<float, 2> xy_max_dec;
+    float yaw_max_vel;
+    float yaw_max_acc;
+    float yaw_max_jerk;
     
     // uint8_t robot_status = 0, last_robot_status = 0;
 };

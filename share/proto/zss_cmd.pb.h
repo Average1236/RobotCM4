@@ -1394,6 +1394,15 @@ class Robot_Command final :
     kIdNewFieldNumber = 17,
     kDribbleVelocityFieldNumber = 20,
     kDribbleTorqueFfFieldNumber = 21,
+    kXyMaxAccXFieldNumber = 22,
+    kXyMaxAccYFieldNumber = 23,
+    kXyMaxJerkXFieldNumber = 24,
+    kXyMaxJerkYFieldNumber = 25,
+    kXyMaxDecXFieldNumber = 26,
+    kXyMaxDecYFieldNumber = 27,
+    kYawMaxVelFieldNumber = 28,
+    kYawMaxAccFieldNumber = 29,
+    kYawMaxJerkFieldNumber = 30,
   };
   // repeated sint32 angle_pid = 13;
   int angle_pid_size() const;
@@ -1646,6 +1655,87 @@ class Robot_Command final :
   void _internal_set_dribble_torque_ff(int32_t value);
   public:
 
+  // sint32 xy_max_acc_x = 22;
+  void clear_xy_max_acc_x();
+  int32_t xy_max_acc_x() const;
+  void set_xy_max_acc_x(int32_t value);
+  private:
+  int32_t _internal_xy_max_acc_x() const;
+  void _internal_set_xy_max_acc_x(int32_t value);
+  public:
+
+  // sint32 xy_max_acc_y = 23;
+  void clear_xy_max_acc_y();
+  int32_t xy_max_acc_y() const;
+  void set_xy_max_acc_y(int32_t value);
+  private:
+  int32_t _internal_xy_max_acc_y() const;
+  void _internal_set_xy_max_acc_y(int32_t value);
+  public:
+
+  // sint32 xy_max_jerk_x = 24;
+  void clear_xy_max_jerk_x();
+  int32_t xy_max_jerk_x() const;
+  void set_xy_max_jerk_x(int32_t value);
+  private:
+  int32_t _internal_xy_max_jerk_x() const;
+  void _internal_set_xy_max_jerk_x(int32_t value);
+  public:
+
+  // sint32 xy_max_jerk_y = 25;
+  void clear_xy_max_jerk_y();
+  int32_t xy_max_jerk_y() const;
+  void set_xy_max_jerk_y(int32_t value);
+  private:
+  int32_t _internal_xy_max_jerk_y() const;
+  void _internal_set_xy_max_jerk_y(int32_t value);
+  public:
+
+  // sint32 xy_max_dec_x = 26;
+  void clear_xy_max_dec_x();
+  int32_t xy_max_dec_x() const;
+  void set_xy_max_dec_x(int32_t value);
+  private:
+  int32_t _internal_xy_max_dec_x() const;
+  void _internal_set_xy_max_dec_x(int32_t value);
+  public:
+
+  // sint32 xy_max_dec_y = 27;
+  void clear_xy_max_dec_y();
+  int32_t xy_max_dec_y() const;
+  void set_xy_max_dec_y(int32_t value);
+  private:
+  int32_t _internal_xy_max_dec_y() const;
+  void _internal_set_xy_max_dec_y(int32_t value);
+  public:
+
+  // sint32 yaw_max_vel = 28;
+  void clear_yaw_max_vel();
+  int32_t yaw_max_vel() const;
+  void set_yaw_max_vel(int32_t value);
+  private:
+  int32_t _internal_yaw_max_vel() const;
+  void _internal_set_yaw_max_vel(int32_t value);
+  public:
+
+  // sint32 yaw_max_acc = 29;
+  void clear_yaw_max_acc();
+  int32_t yaw_max_acc() const;
+  void set_yaw_max_acc(int32_t value);
+  private:
+  int32_t _internal_yaw_max_acc() const;
+  void _internal_set_yaw_max_acc(int32_t value);
+  public:
+
+  // sint32 yaw_max_jerk = 30;
+  void clear_yaw_max_jerk();
+  int32_t yaw_max_jerk() const;
+  void set_yaw_max_jerk(int32_t value);
+  private:
+  int32_t _internal_yaw_max_jerk() const;
+  void _internal_set_yaw_max_jerk(int32_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:ZSS.New.Robot_Command)
  private:
   class _Internal;
@@ -1677,6 +1767,15 @@ class Robot_Command final :
     int32_t id_new_;
     int32_t dribble_velocity_;
     int32_t dribble_torque_ff_;
+    int32_t xy_max_acc_x_;
+    int32_t xy_max_acc_y_;
+    int32_t xy_max_jerk_x_;
+    int32_t xy_max_jerk_y_;
+    int32_t xy_max_dec_x_;
+    int32_t xy_max_dec_y_;
+    int32_t yaw_max_vel_;
+    int32_t yaw_max_acc_;
+    int32_t yaw_max_jerk_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -3423,6 +3522,186 @@ inline void Robot_Command::_internal_set_dribble_torque_ff(int32_t value) {
 inline void Robot_Command::set_dribble_torque_ff(int32_t value) {
   _internal_set_dribble_torque_ff(value);
   // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command.dribble_torque_ff)
+}
+
+// sint32 xy_max_acc_x = 22;
+inline void Robot_Command::clear_xy_max_acc_x() {
+  _impl_.xy_max_acc_x_ = 0;
+}
+inline int32_t Robot_Command::_internal_xy_max_acc_x() const {
+  return _impl_.xy_max_acc_x_;
+}
+inline int32_t Robot_Command::xy_max_acc_x() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Command.xy_max_acc_x)
+  return _internal_xy_max_acc_x();
+}
+inline void Robot_Command::_internal_set_xy_max_acc_x(int32_t value) {
+  
+  _impl_.xy_max_acc_x_ = value;
+}
+inline void Robot_Command::set_xy_max_acc_x(int32_t value) {
+  _internal_set_xy_max_acc_x(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command.xy_max_acc_x)
+}
+
+// sint32 xy_max_acc_y = 23;
+inline void Robot_Command::clear_xy_max_acc_y() {
+  _impl_.xy_max_acc_y_ = 0;
+}
+inline int32_t Robot_Command::_internal_xy_max_acc_y() const {
+  return _impl_.xy_max_acc_y_;
+}
+inline int32_t Robot_Command::xy_max_acc_y() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Command.xy_max_acc_y)
+  return _internal_xy_max_acc_y();
+}
+inline void Robot_Command::_internal_set_xy_max_acc_y(int32_t value) {
+  
+  _impl_.xy_max_acc_y_ = value;
+}
+inline void Robot_Command::set_xy_max_acc_y(int32_t value) {
+  _internal_set_xy_max_acc_y(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command.xy_max_acc_y)
+}
+
+// sint32 xy_max_jerk_x = 24;
+inline void Robot_Command::clear_xy_max_jerk_x() {
+  _impl_.xy_max_jerk_x_ = 0;
+}
+inline int32_t Robot_Command::_internal_xy_max_jerk_x() const {
+  return _impl_.xy_max_jerk_x_;
+}
+inline int32_t Robot_Command::xy_max_jerk_x() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Command.xy_max_jerk_x)
+  return _internal_xy_max_jerk_x();
+}
+inline void Robot_Command::_internal_set_xy_max_jerk_x(int32_t value) {
+  
+  _impl_.xy_max_jerk_x_ = value;
+}
+inline void Robot_Command::set_xy_max_jerk_x(int32_t value) {
+  _internal_set_xy_max_jerk_x(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command.xy_max_jerk_x)
+}
+
+// sint32 xy_max_jerk_y = 25;
+inline void Robot_Command::clear_xy_max_jerk_y() {
+  _impl_.xy_max_jerk_y_ = 0;
+}
+inline int32_t Robot_Command::_internal_xy_max_jerk_y() const {
+  return _impl_.xy_max_jerk_y_;
+}
+inline int32_t Robot_Command::xy_max_jerk_y() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Command.xy_max_jerk_y)
+  return _internal_xy_max_jerk_y();
+}
+inline void Robot_Command::_internal_set_xy_max_jerk_y(int32_t value) {
+  
+  _impl_.xy_max_jerk_y_ = value;
+}
+inline void Robot_Command::set_xy_max_jerk_y(int32_t value) {
+  _internal_set_xy_max_jerk_y(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command.xy_max_jerk_y)
+}
+
+// sint32 xy_max_dec_x = 26;
+inline void Robot_Command::clear_xy_max_dec_x() {
+  _impl_.xy_max_dec_x_ = 0;
+}
+inline int32_t Robot_Command::_internal_xy_max_dec_x() const {
+  return _impl_.xy_max_dec_x_;
+}
+inline int32_t Robot_Command::xy_max_dec_x() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Command.xy_max_dec_x)
+  return _internal_xy_max_dec_x();
+}
+inline void Robot_Command::_internal_set_xy_max_dec_x(int32_t value) {
+  
+  _impl_.xy_max_dec_x_ = value;
+}
+inline void Robot_Command::set_xy_max_dec_x(int32_t value) {
+  _internal_set_xy_max_dec_x(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command.xy_max_dec_x)
+}
+
+// sint32 xy_max_dec_y = 27;
+inline void Robot_Command::clear_xy_max_dec_y() {
+  _impl_.xy_max_dec_y_ = 0;
+}
+inline int32_t Robot_Command::_internal_xy_max_dec_y() const {
+  return _impl_.xy_max_dec_y_;
+}
+inline int32_t Robot_Command::xy_max_dec_y() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Command.xy_max_dec_y)
+  return _internal_xy_max_dec_y();
+}
+inline void Robot_Command::_internal_set_xy_max_dec_y(int32_t value) {
+  
+  _impl_.xy_max_dec_y_ = value;
+}
+inline void Robot_Command::set_xy_max_dec_y(int32_t value) {
+  _internal_set_xy_max_dec_y(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command.xy_max_dec_y)
+}
+
+// sint32 yaw_max_vel = 28;
+inline void Robot_Command::clear_yaw_max_vel() {
+  _impl_.yaw_max_vel_ = 0;
+}
+inline int32_t Robot_Command::_internal_yaw_max_vel() const {
+  return _impl_.yaw_max_vel_;
+}
+inline int32_t Robot_Command::yaw_max_vel() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Command.yaw_max_vel)
+  return _internal_yaw_max_vel();
+}
+inline void Robot_Command::_internal_set_yaw_max_vel(int32_t value) {
+  
+  _impl_.yaw_max_vel_ = value;
+}
+inline void Robot_Command::set_yaw_max_vel(int32_t value) {
+  _internal_set_yaw_max_vel(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command.yaw_max_vel)
+}
+
+// sint32 yaw_max_acc = 29;
+inline void Robot_Command::clear_yaw_max_acc() {
+  _impl_.yaw_max_acc_ = 0;
+}
+inline int32_t Robot_Command::_internal_yaw_max_acc() const {
+  return _impl_.yaw_max_acc_;
+}
+inline int32_t Robot_Command::yaw_max_acc() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Command.yaw_max_acc)
+  return _internal_yaw_max_acc();
+}
+inline void Robot_Command::_internal_set_yaw_max_acc(int32_t value) {
+  
+  _impl_.yaw_max_acc_ = value;
+}
+inline void Robot_Command::set_yaw_max_acc(int32_t value) {
+  _internal_set_yaw_max_acc(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command.yaw_max_acc)
+}
+
+// sint32 yaw_max_jerk = 30;
+inline void Robot_Command::clear_yaw_max_jerk() {
+  _impl_.yaw_max_jerk_ = 0;
+}
+inline int32_t Robot_Command::_internal_yaw_max_jerk() const {
+  return _impl_.yaw_max_jerk_;
+}
+inline int32_t Robot_Command::yaw_max_jerk() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Command.yaw_max_jerk)
+  return _internal_yaw_max_jerk();
+}
+inline void Robot_Command::_internal_set_yaw_max_jerk(int32_t value) {
+  
+  _impl_.yaw_max_jerk_ = value;
+}
+inline void Robot_Command::set_yaw_max_jerk(int32_t value) {
+  _internal_set_yaw_max_jerk(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command.yaw_max_jerk)
 }
 
 // -------------------------------------------------------------------

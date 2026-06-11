@@ -125,6 +125,15 @@ PROTOBUF_CONSTEXPR Robot_Command::Robot_Command(
   , /*decltype(_impl_.id_new_)*/0
   , /*decltype(_impl_.dribble_velocity_)*/0
   , /*decltype(_impl_.dribble_torque_ff_)*/0
+  , /*decltype(_impl_.xy_max_acc_x_)*/0
+  , /*decltype(_impl_.xy_max_acc_y_)*/0
+  , /*decltype(_impl_.xy_max_jerk_x_)*/0
+  , /*decltype(_impl_.xy_max_jerk_y_)*/0
+  , /*decltype(_impl_.xy_max_dec_x_)*/0
+  , /*decltype(_impl_.xy_max_dec_y_)*/0
+  , /*decltype(_impl_.yaw_max_vel_)*/0
+  , /*decltype(_impl_.yaw_max_acc_)*/0
+  , /*decltype(_impl_.yaw_max_jerk_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct Robot_CommandDefaultTypeInternal {
   PROTOBUF_CONSTEXPR Robot_CommandDefaultTypeInternal()
@@ -236,6 +245,15 @@ const uint32_t TableStruct_zss_5fcmd_2eproto::offsets[] PROTOBUF_SECTION_VARIABL
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.wheel_pid_),
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.dribble_velocity_),
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.dribble_torque_ff_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.xy_max_acc_x_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.xy_max_acc_y_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.xy_max_jerk_x_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.xy_max_jerk_y_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.xy_max_dec_x_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.xy_max_dec_y_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.yaw_max_vel_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.yaw_max_acc_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.yaw_max_jerk_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command_Mini, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -251,7 +269,7 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 22, -1, -1, sizeof(::ZSS::New::Robot_Status)},
   { 43, 51, -1, sizeof(::ZSS::New::Robots_Command)},
   { 53, -1, -1, sizeof(::ZSS::New::Robot_Command)},
-  { 80, -1, -1, sizeof(::ZSS::New::Robot_Command_Mini)},
+  { 89, -1, -1, sizeof(::ZSS::New::Robot_Command_Mini)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -281,7 +299,7 @@ const char descriptor_table_protodef_zss_5fcmd_2eproto[] PROTOBUF_SECTION_VARIAB
   "\014 \003(\002\022\020\n\010have_imu\030\r \001(\010\022\023\n\013imu_omega_z\030\016"
   " \001(\021\022\021\n\twheel_ref\030\017 \003(\021\"W\n\016Robots_Comman"
   "d\022\'\n\007command\030\001 \003(\0132\026.ZSS.New.Robot_Comma"
-  "nd\022\022\n\005delay\030\002 \001(\005H\000\210\001\001B\010\n\006_delay\"\264\006\n\rRob"
+  "nd\022\022\n\005delay\030\002 \001(\005H\000\210\001\001B\010\n\006_delay\"\372\007\n\rRob"
   "ot_Command\022\020\n\010robot_id\030\001 \001(\005\0222\n\tkick_mod"
   "e\030\002 \001(\0162\037.ZSS.New.Robot_Command.KickMode"
   "\022\024\n\014desire_power\030\003 \001(\002\022\033\n\023kick_discharge"
@@ -297,24 +315,29 @@ const char descriptor_table_protodef_zss_5fcmd_2eproto[] PROTOBUF_SECTION_VARIAB
   "ge_id\030\017 \001(\010\022\037\n\010team_new\030\020 \001(\0162\r.ZSS.New."
   "Team\022\016\n\006id_new\030\021 \001(\005\022\017\n\007isdebug\030\022 \001(\010\022\021\n"
   "\twheel_pid\030\023 \003(\021\022\030\n\020dribble_velocity\030\024 \001"
-  "(\021\022\031\n\021dribble_torque_ff\030\025 \001(\021\"(\n\010KickMod"
-  "e\022\010\n\004NONE\020\000\022\010\n\004KICK\020\001\022\010\n\004CHIP\020\002\"L\n\007CmdTy"
-  "pe\022\010\n\004STOP\020\000\022\r\n\tCMD_WHEEL\020\001\022\013\n\007CMD_VEL\020\002"
-  "\022\014\n\010CMD_POSE\020\003\022\r\n\tCMD_CHASE\020\004\"@\n\010CommTyp"
-  "e\022\013\n\007DEFAULT\020\000\022\n\n\006SERIAL\020\001\022\r\n\tUDP_24L01\020"
-  "\002\022\014\n\010UDP_WIFI\020\003\"\224\001\n\022Robot_Command_Mini\0227"
-  "\n\tkick_mode\030\001 \001(\0162$.ZSS.New.Robot_Comman"
-  "d_Mini.KickMode\022\033\n\023kick_discharge_time\030\002"
-  " \001(\021\"(\n\010KickMode\022\010\n\004NONE\020\000\022\010\n\004KICK\020\001\022\010\n\004"
-  "CHIP\020\002*)\n\004Team\022\013\n\007UNKNOWN\020\000\022\010\n\004BLUE\020\001\022\n\n"
-  "\006YELLOW\020\002b\006proto3"
+  "(\021\022\031\n\021dribble_torque_ff\030\025 \001(\021\022\024\n\014xy_max_"
+  "acc_x\030\026 \001(\021\022\024\n\014xy_max_acc_y\030\027 \001(\021\022\025\n\rxy_"
+  "max_jerk_x\030\030 \001(\021\022\025\n\rxy_max_jerk_y\030\031 \001(\021\022"
+  "\024\n\014xy_max_dec_x\030\032 \001(\021\022\024\n\014xy_max_dec_y\030\033 "
+  "\001(\021\022\023\n\013yaw_max_vel\030\034 \001(\021\022\023\n\013yaw_max_acc\030"
+  "\035 \001(\021\022\024\n\014yaw_max_jerk\030\036 \001(\021\"(\n\010KickMode\022"
+  "\010\n\004NONE\020\000\022\010\n\004KICK\020\001\022\010\n\004CHIP\020\002\"L\n\007CmdType"
+  "\022\010\n\004STOP\020\000\022\r\n\tCMD_WHEEL\020\001\022\013\n\007CMD_VEL\020\002\022\014"
+  "\n\010CMD_POSE\020\003\022\r\n\tCMD_CHASE\020\004\"@\n\010CommType\022"
+  "\013\n\007DEFAULT\020\000\022\n\n\006SERIAL\020\001\022\r\n\tUDP_24L01\020\002\022"
+  "\014\n\010UDP_WIFI\020\003\"\224\001\n\022Robot_Command_Mini\0227\n\t"
+  "kick_mode\030\001 \001(\0162$.ZSS.New.Robot_Command_"
+  "Mini.KickMode\022\033\n\023kick_discharge_time\030\002 \001"
+  "(\021\"(\n\010KickMode\022\010\n\004NONE\020\000\022\010\n\004KICK\020\001\022\010\n\004CH"
+  "IP\020\002*)\n\004Team\022\013\n\007UNKNOWN\020\000\022\010\n\004BLUE\020\001\022\n\n\006Y"
+  "ELLOW\020\002b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_zss_5fcmd_2eproto_deps[1] = {
   &::descriptor_table_zss_5fcmd_5ftype_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_zss_5fcmd_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_zss_5fcmd_2eproto = {
-    false, false, 1737, descriptor_table_protodef_zss_5fcmd_2eproto,
+    false, false, 1935, descriptor_table_protodef_zss_5fcmd_2eproto,
     "zss_cmd.proto",
     &descriptor_table_zss_5fcmd_2eproto_once, descriptor_table_zss_5fcmd_2eproto_deps, 1, 6,
     schemas, file_default_instances, TableStruct_zss_5fcmd_2eproto::offsets,
@@ -1948,6 +1971,15 @@ Robot_Command::Robot_Command(const Robot_Command& from)
     , decltype(_impl_.id_new_){}
     , decltype(_impl_.dribble_velocity_){}
     , decltype(_impl_.dribble_torque_ff_){}
+    , decltype(_impl_.xy_max_acc_x_){}
+    , decltype(_impl_.xy_max_acc_y_){}
+    , decltype(_impl_.xy_max_jerk_x_){}
+    , decltype(_impl_.xy_max_jerk_y_){}
+    , decltype(_impl_.xy_max_dec_x_){}
+    , decltype(_impl_.xy_max_dec_y_){}
+    , decltype(_impl_.yaw_max_vel_){}
+    , decltype(_impl_.yaw_max_acc_){}
+    , decltype(_impl_.yaw_max_jerk_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
@@ -1964,8 +1996,8 @@ Robot_Command::Robot_Command(const Robot_Command& from)
     _this->_impl_.cmd_wheel_ = new ::ZSS::New::CmdWheel(*from._impl_.cmd_wheel_);
   }
   ::memcpy(&_impl_.robot_id_, &from._impl_.robot_id_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.dribble_torque_ff_) -
-    reinterpret_cast<char*>(&_impl_.robot_id_)) + sizeof(_impl_.dribble_torque_ff_));
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.yaw_max_jerk_) -
+    reinterpret_cast<char*>(&_impl_.robot_id_)) + sizeof(_impl_.yaw_max_jerk_));
   // @@protoc_insertion_point(copy_constructor:ZSS.New.Robot_Command)
 }
 
@@ -1997,6 +2029,15 @@ inline void Robot_Command::SharedCtor(
     , decltype(_impl_.id_new_){0}
     , decltype(_impl_.dribble_velocity_){0}
     , decltype(_impl_.dribble_torque_ff_){0}
+    , decltype(_impl_.xy_max_acc_x_){0}
+    , decltype(_impl_.xy_max_acc_y_){0}
+    , decltype(_impl_.xy_max_jerk_x_){0}
+    , decltype(_impl_.xy_max_jerk_y_){0}
+    , decltype(_impl_.xy_max_dec_x_){0}
+    , decltype(_impl_.xy_max_dec_y_){0}
+    , decltype(_impl_.yaw_max_vel_){0}
+    , decltype(_impl_.yaw_max_acc_){0}
+    , decltype(_impl_.yaw_max_jerk_){0}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -2049,8 +2090,8 @@ void Robot_Command::Clear() {
   }
   _impl_.cmd_wheel_ = nullptr;
   ::memset(&_impl_.robot_id_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.dribble_torque_ff_) -
-      reinterpret_cast<char*>(&_impl_.robot_id_)) + sizeof(_impl_.dribble_torque_ff_));
+      reinterpret_cast<char*>(&_impl_.yaw_max_jerk_) -
+      reinterpret_cast<char*>(&_impl_.robot_id_)) + sizeof(_impl_.yaw_max_jerk_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2238,6 +2279,78 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
         } else
           goto handle_unusual;
         continue;
+      // sint32 xy_max_acc_x = 22;
+      case 22:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 176)) {
+          _impl_.xy_max_acc_x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // sint32 xy_max_acc_y = 23;
+      case 23:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 184)) {
+          _impl_.xy_max_acc_y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // sint32 xy_max_jerk_x = 24;
+      case 24:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 192)) {
+          _impl_.xy_max_jerk_x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // sint32 xy_max_jerk_y = 25;
+      case 25:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 200)) {
+          _impl_.xy_max_jerk_y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // sint32 xy_max_dec_x = 26;
+      case 26:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 208)) {
+          _impl_.xy_max_dec_x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // sint32 xy_max_dec_y = 27;
+      case 27:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 216)) {
+          _impl_.xy_max_dec_y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // sint32 yaw_max_vel = 28;
+      case 28:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 224)) {
+          _impl_.yaw_max_vel_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // sint32 yaw_max_acc = 29;
+      case 29:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 232)) {
+          _impl_.yaw_max_acc_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // sint32 yaw_max_jerk = 30;
+      case 30:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 240)) {
+          _impl_.yaw_max_jerk_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -2411,6 +2524,60 @@ uint8_t* Robot_Command::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteSInt32ToArray(21, this->_internal_dribble_torque_ff(), target);
   }
 
+  // sint32 xy_max_acc_x = 22;
+  if (this->_internal_xy_max_acc_x() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteSInt32ToArray(22, this->_internal_xy_max_acc_x(), target);
+  }
+
+  // sint32 xy_max_acc_y = 23;
+  if (this->_internal_xy_max_acc_y() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteSInt32ToArray(23, this->_internal_xy_max_acc_y(), target);
+  }
+
+  // sint32 xy_max_jerk_x = 24;
+  if (this->_internal_xy_max_jerk_x() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteSInt32ToArray(24, this->_internal_xy_max_jerk_x(), target);
+  }
+
+  // sint32 xy_max_jerk_y = 25;
+  if (this->_internal_xy_max_jerk_y() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteSInt32ToArray(25, this->_internal_xy_max_jerk_y(), target);
+  }
+
+  // sint32 xy_max_dec_x = 26;
+  if (this->_internal_xy_max_dec_x() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteSInt32ToArray(26, this->_internal_xy_max_dec_x(), target);
+  }
+
+  // sint32 xy_max_dec_y = 27;
+  if (this->_internal_xy_max_dec_y() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteSInt32ToArray(27, this->_internal_xy_max_dec_y(), target);
+  }
+
+  // sint32 yaw_max_vel = 28;
+  if (this->_internal_yaw_max_vel() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteSInt32ToArray(28, this->_internal_yaw_max_vel(), target);
+  }
+
+  // sint32 yaw_max_acc = 29;
+  if (this->_internal_yaw_max_acc() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteSInt32ToArray(29, this->_internal_yaw_max_acc(), target);
+  }
+
+  // sint32 yaw_max_jerk = 30;
+  if (this->_internal_yaw_max_jerk() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteSInt32ToArray(30, this->_internal_yaw_max_jerk(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -2572,6 +2739,69 @@ size_t Robot_Command::ByteSizeLong() const {
         this->_internal_dribble_torque_ff());
   }
 
+  // sint32 xy_max_acc_x = 22;
+  if (this->_internal_xy_max_acc_x() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::SInt32Size(
+        this->_internal_xy_max_acc_x());
+  }
+
+  // sint32 xy_max_acc_y = 23;
+  if (this->_internal_xy_max_acc_y() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::SInt32Size(
+        this->_internal_xy_max_acc_y());
+  }
+
+  // sint32 xy_max_jerk_x = 24;
+  if (this->_internal_xy_max_jerk_x() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::SInt32Size(
+        this->_internal_xy_max_jerk_x());
+  }
+
+  // sint32 xy_max_jerk_y = 25;
+  if (this->_internal_xy_max_jerk_y() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::SInt32Size(
+        this->_internal_xy_max_jerk_y());
+  }
+
+  // sint32 xy_max_dec_x = 26;
+  if (this->_internal_xy_max_dec_x() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::SInt32Size(
+        this->_internal_xy_max_dec_x());
+  }
+
+  // sint32 xy_max_dec_y = 27;
+  if (this->_internal_xy_max_dec_y() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::SInt32Size(
+        this->_internal_xy_max_dec_y());
+  }
+
+  // sint32 yaw_max_vel = 28;
+  if (this->_internal_yaw_max_vel() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::SInt32Size(
+        this->_internal_yaw_max_vel());
+  }
+
+  // sint32 yaw_max_acc = 29;
+  if (this->_internal_yaw_max_acc() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::SInt32Size(
+        this->_internal_yaw_max_acc());
+  }
+
+  // sint32 yaw_max_jerk = 30;
+  if (this->_internal_yaw_max_jerk() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::SInt32Size(
+        this->_internal_yaw_max_jerk());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -2657,6 +2887,33 @@ void Robot_Command::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::
   if (from._internal_dribble_torque_ff() != 0) {
     _this->_internal_set_dribble_torque_ff(from._internal_dribble_torque_ff());
   }
+  if (from._internal_xy_max_acc_x() != 0) {
+    _this->_internal_set_xy_max_acc_x(from._internal_xy_max_acc_x());
+  }
+  if (from._internal_xy_max_acc_y() != 0) {
+    _this->_internal_set_xy_max_acc_y(from._internal_xy_max_acc_y());
+  }
+  if (from._internal_xy_max_jerk_x() != 0) {
+    _this->_internal_set_xy_max_jerk_x(from._internal_xy_max_jerk_x());
+  }
+  if (from._internal_xy_max_jerk_y() != 0) {
+    _this->_internal_set_xy_max_jerk_y(from._internal_xy_max_jerk_y());
+  }
+  if (from._internal_xy_max_dec_x() != 0) {
+    _this->_internal_set_xy_max_dec_x(from._internal_xy_max_dec_x());
+  }
+  if (from._internal_xy_max_dec_y() != 0) {
+    _this->_internal_set_xy_max_dec_y(from._internal_xy_max_dec_y());
+  }
+  if (from._internal_yaw_max_vel() != 0) {
+    _this->_internal_set_yaw_max_vel(from._internal_yaw_max_vel());
+  }
+  if (from._internal_yaw_max_acc() != 0) {
+    _this->_internal_set_yaw_max_acc(from._internal_yaw_max_acc());
+  }
+  if (from._internal_yaw_max_jerk() != 0) {
+    _this->_internal_set_yaw_max_jerk(from._internal_yaw_max_jerk());
+  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -2677,8 +2934,8 @@ void Robot_Command::InternalSwap(Robot_Command* other) {
   _impl_.angle_pid_.InternalSwap(&other->_impl_.angle_pid_);
   _impl_.wheel_pid_.InternalSwap(&other->_impl_.wheel_pid_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Robot_Command, _impl_.dribble_torque_ff_)
-      + sizeof(Robot_Command::_impl_.dribble_torque_ff_)
+      PROTOBUF_FIELD_OFFSET(Robot_Command, _impl_.yaw_max_jerk_)
+      + sizeof(Robot_Command::_impl_.yaw_max_jerk_)
       - PROTOBUF_FIELD_OFFSET(Robot_Command, _impl_.cmd_vel_)>(
           reinterpret_cast<char*>(&_impl_.cmd_vel_),
           reinterpret_cast<char*>(&other->_impl_.cmd_vel_));

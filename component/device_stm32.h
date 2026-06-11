@@ -36,7 +36,7 @@
 #define GPIO_LED1 20
 #define GPIO_LED2 21
 
-const int spi_length = 36;
+const int spi_length = 60;
 
 class DeviceStm32 : public DeviceBase
 {
@@ -90,6 +90,12 @@ private:
         uint16_t kick_discharge_time;
         int16_t drib_velocity;  // turns/s * 100
         int16_t drib_torque_ff; // Nm * 1000
+        int16_t xy_max_acc[2];   // vx, vy acceleration limits in mm/s^2
+        int16_t xy_max_jerk[2];  // vx, vy jerk limits in (m/s^3) * 10
+        int16_t xy_max_dec[2];   // vx, vy deceleration limits in mm/s^2
+        int16_t yaw_max_vel;     // rad/s * 100
+        int16_t yaw_max_acc;     // rad/s^2 * 100
+        int16_t yaw_max_jerk;    // rad/s^3 * 100
     };
 
     static_assert(sizeof(CM4_to_stm32_spi) <= spi_length, "CM4_to_stm32_spi exceeds spi_length");
@@ -104,6 +110,14 @@ private:
         int16_t cap_vol;
         int16_t wheel[4];
         int16_t odom_vel[2]; // vx, vy in mm/s
+        int16_t xy_max_vel[2];   // vx, vy axis limits in mm/s
+        int16_t xy_max_acc[2];   // vx, vy acceleration limits in mm/s^2
+        int16_t xy_max_jerk[2];  // vx, vy jerk limits in (m/s^3) * 10
+        int16_t xy_max_dec[2];   // vx, vy deceleration limits in mm/s^2
+        int16_t yaw_max_vel;     // rad/s * 100
+        int16_t yaw_max_acc;     // rad/s^2 * 100
+        int16_t yaw_max_jerk;    // rad/s^3 * 100
+        int16_t reserved;
 
     };
 
@@ -118,10 +132,33 @@ public:
         drib_velocity = dribble_velocity;
         drib_torque_ff = dribble_torque_ff;
     };
+    void set_motion_limits(const std::array<float, 2>& xy_acc,
+                           const std::array<float, 2>& xy_jerk,
+                           const std::array<float, 2>& xy_dec,
+                           float yaw_vel,
+                           float yaw_acc,
+                           float yaw_jerk)
+    {
+        for (int i = 0; i < 2; ++i)
+        {
+            xy_cmd_acc[i] = xy_acc[i];
+            xy_cmd_jerk[i] = xy_jerk[i];
+            xy_cmd_dec[i] = xy_dec[i];
+        }
+        yaw_cmd_vel = yaw_vel;
+        yaw_cmd_acc = yaw_acc;
+        yaw_cmd_jerk = yaw_jerk;
+    };
 private:
     std::atomic<int> drib_power;
     std::atomic<float> drib_velocity = -50.0f;
     std::atomic<float> drib_torque_ff = 0.1f;
+    std::array<std::atomic<float>,2> xy_cmd_acc = {7.0f, 7.0f};
+    std::array<std::atomic<float>,2> xy_cmd_jerk = {1000.0f, 1000.0f};
+    std::array<std::atomic<float>,2> xy_cmd_dec = {10.0f, 10.0f};
+    std::atomic<float> yaw_cmd_vel = 25.0f;
+    std::atomic<float> yaw_cmd_acc = 40.0f;
+    std::atomic<float> yaw_cmd_jerk = 200.0f;
 
     // vel
 public:
@@ -129,6 +166,13 @@ public:
     std::array<std::atomic<float>,4> wheel = {0};
     std::atomic<float> odom_vx = 0.0f;
     std::atomic<float> odom_vy = 0.0f;
+    std::array<std::atomic<float>,2> xy_max_vel = {0.0f, 0.0f};
+    std::array<std::atomic<float>,2> xy_max_acc = {0.0f, 0.0f};
+    std::array<std::atomic<float>,2> xy_max_jerk = {0.0f, 0.0f};
+    std::array<std::atomic<float>,2> xy_max_dec = {0.0f, 0.0f};
+    std::atomic<float> yaw_max_vel = 0.0f;
+    std::atomic<float> yaw_max_acc = 0.0f;
+    std::atomic<float> yaw_max_jerk = 0.0f;
 private:
     std::array<std::atomic<float>,3> vel_all = {0};
 
