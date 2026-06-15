@@ -124,6 +124,8 @@ message Robot_Command {
     sint32 yaw_max_vel = 28;
     sint32 yaw_max_acc = 29;
     sint32 yaw_max_jerk = 30;
+    // 1: pure torque, 2: pure speed, 3: torque + speed hybrid
+    sint32 dribble_mode = 34;
 }
 
 message Robot_Command_Mini{
