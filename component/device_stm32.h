@@ -7,6 +7,7 @@
 #include <vector>
 #include <array>
 #include <cmath>
+#include <algorithm>
 #include <chrono>
 #include <thread>
 #include <mutex>
@@ -36,7 +37,7 @@
 #define GPIO_LED1 20
 #define GPIO_LED2 21
 
-const int spi_length = 60;
+const int spi_length = 80;
 
 class DeviceStm32 : public DeviceBase
 {
@@ -96,6 +97,8 @@ private:
         int16_t yaw_max_vel;     // rad/s * 100
         int16_t yaw_max_acc;     // rad/s^2 * 100
         int16_t yaw_max_jerk;    // rad/s^3 * 100
+        int16_t raw_vision_vel[2]; // vx, vy in mm/s
+        uint8_t vision_source;     // 3: optflow + vision, 4: wheel + vision
     };
 
     static_assert(sizeof(CM4_to_stm32_spi) <= spi_length, "CM4_to_stm32_spi exceeds spi_length");
@@ -110,6 +113,10 @@ private:
         int16_t cap_vol;
         int16_t wheel[4];
         int16_t odom_vel[2]; // vx, vy in mm/s
+        int16_t optflow_body_vel[2]; // raw body vx, vy before optflow Kalman in mm/s
+        int16_t optflow_kf_vel[2];   // optflow Kalman vx, vy in mm/s
+        int16_t wheel_chassis_vel[2]; // wheel-only chassis vx, vy in mm/s
+        int16_t fused_chassis_vel[2]; // wheel + optflow Kalman fused vx, vy in mm/s
         int16_t xy_max_vel[2];   // vx, vy axis limits in mm/s
         int16_t xy_max_acc[2];   // vx, vy acceleration limits in mm/s^2
         int16_t xy_max_jerk[2];  // vx, vy jerk limits in (m/s^3) * 10
@@ -117,6 +124,7 @@ private:
         int16_t yaw_max_vel;     // rad/s * 100
         int16_t yaw_max_acc;     // rad/s^2 * 100
         int16_t yaw_max_jerk;    // rad/s^3 * 100
+        int16_t planned_vel[2];  // planned robot velocity vx, vy in mm/s
         int16_t reserved;
 
     };
@@ -163,9 +171,20 @@ private:
     // vel
 public:
     void set_vel(float vel_x,float vel_y,float vel_w){vel_all[0]=vel_x;vel_all[1]=vel_y;vel_all[2]=vel_w;};
+    void set_vision_velocity(float vel_x_mm_s, float vel_y_mm_s, int source)
+    {
+        raw_vision_vel[0] = vel_x_mm_s;
+        raw_vision_vel[1] = vel_y_mm_s;
+        vision_source = source;
+    };
     std::array<std::atomic<float>,4> wheel = {0};
     std::atomic<float> odom_vx = 0.0f;
     std::atomic<float> odom_vy = 0.0f;
+    std::array<std::atomic<float>,2> optflow_body_vel = {0.0f, 0.0f};
+    std::array<std::atomic<float>,2> optflow_kf_vel = {0.0f, 0.0f};
+    std::array<std::atomic<float>,2> wheel_chassis_vel = {0.0f, 0.0f};
+    std::array<std::atomic<float>,2> fused_chassis_vel = {0.0f, 0.0f};
+    std::array<std::atomic<float>,2> planned_vel = {0.0f, 0.0f};
     std::array<std::atomic<float>,2> xy_max_vel = {0.0f, 0.0f};
     std::array<std::atomic<float>,2> xy_max_acc = {0.0f, 0.0f};
     std::array<std::atomic<float>,2> xy_max_jerk = {0.0f, 0.0f};
@@ -175,6 +194,8 @@ public:
     std::atomic<float> yaw_max_jerk = 0.0f;
 private:
     std::array<std::atomic<float>,3> vel_all = {0};
+    std::array<std::atomic<float>,2> raw_vision_vel = {0.0f, 0.0f};
+    std::atomic<int> vision_source = 0;
 
     //imu
 public:

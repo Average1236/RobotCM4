@@ -35,6 +35,8 @@ struct Robot_CMD
     float yaw_max_vel;                 // rad/s
     float yaw_max_acc;                 // rad/s^2
     float yaw_max_jerk;                // rad/s^3
+    std::array<float, 2> raw_vision_vel; // mm/s, robot local frame
+    int vision_source;                   // 3: raw vision + optflow, 4: raw vision + wheel
 
     // cmd_wheel
     std::array<float, 4> motor_vel_target; // rad/s

@@ -57,12 +57,18 @@ extern Robot_CommandDefaultTypeInternal _Robot_Command_default_instance_;
 class Robot_Command_Mini;
 struct Robot_Command_MiniDefaultTypeInternal;
 extern Robot_Command_MiniDefaultTypeInternal _Robot_Command_Mini_default_instance_;
+class Robot_Command_Sim;
+struct Robot_Command_SimDefaultTypeInternal;
+extern Robot_Command_SimDefaultTypeInternal _Robot_Command_Sim_default_instance_;
 class Robot_Status;
 struct Robot_StatusDefaultTypeInternal;
 extern Robot_StatusDefaultTypeInternal _Robot_Status_default_instance_;
 class Robots_Command;
 struct Robots_CommandDefaultTypeInternal;
 extern Robots_CommandDefaultTypeInternal _Robots_Command_default_instance_;
+class Robots_Command_Sim;
+struct Robots_Command_SimDefaultTypeInternal;
+extern Robots_Command_SimDefaultTypeInternal _Robots_Command_Sim_default_instance_;
 class Robots_Status;
 struct Robots_StatusDefaultTypeInternal;
 extern Robots_StatusDefaultTypeInternal _Robots_Status_default_instance_;
@@ -72,8 +78,10 @@ PROTOBUF_NAMESPACE_OPEN
 template<> ::ZSS::New::Multicast_Status* Arena::CreateMaybeMessage<::ZSS::New::Multicast_Status>(Arena*);
 template<> ::ZSS::New::Robot_Command* Arena::CreateMaybeMessage<::ZSS::New::Robot_Command>(Arena*);
 template<> ::ZSS::New::Robot_Command_Mini* Arena::CreateMaybeMessage<::ZSS::New::Robot_Command_Mini>(Arena*);
+template<> ::ZSS::New::Robot_Command_Sim* Arena::CreateMaybeMessage<::ZSS::New::Robot_Command_Sim>(Arena*);
 template<> ::ZSS::New::Robot_Status* Arena::CreateMaybeMessage<::ZSS::New::Robot_Status>(Arena*);
 template<> ::ZSS::New::Robots_Command* Arena::CreateMaybeMessage<::ZSS::New::Robots_Command>(Arena*);
+template<> ::ZSS::New::Robots_Command_Sim* Arena::CreateMaybeMessage<::ZSS::New::Robots_Command_Sim>(Arena*);
 template<> ::ZSS::New::Robots_Status* Arena::CreateMaybeMessage<::ZSS::New::Robots_Status>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace ZSS {
@@ -1403,6 +1411,9 @@ class Robot_Command final :
     kYawMaxVelFieldNumber = 28,
     kYawMaxAccFieldNumber = 29,
     kYawMaxJerkFieldNumber = 30,
+    kRawVisionVelXFieldNumber = 31,
+    kRawVisionVelYFieldNumber = 32,
+    kVisionSourceFieldNumber = 33,
   };
   // repeated sint32 angle_pid = 13;
   int angle_pid_size() const;
@@ -1736,6 +1747,33 @@ class Robot_Command final :
   void _internal_set_yaw_max_jerk(int32_t value);
   public:
 
+  // sint32 raw_vision_vel_x = 31;
+  void clear_raw_vision_vel_x();
+  int32_t raw_vision_vel_x() const;
+  void set_raw_vision_vel_x(int32_t value);
+  private:
+  int32_t _internal_raw_vision_vel_x() const;
+  void _internal_set_raw_vision_vel_x(int32_t value);
+  public:
+
+  // sint32 raw_vision_vel_y = 32;
+  void clear_raw_vision_vel_y();
+  int32_t raw_vision_vel_y() const;
+  void set_raw_vision_vel_y(int32_t value);
+  private:
+  int32_t _internal_raw_vision_vel_y() const;
+  void _internal_set_raw_vision_vel_y(int32_t value);
+  public:
+
+  // sint32 vision_source = 33;
+  void clear_vision_source();
+  int32_t vision_source() const;
+  void set_vision_source(int32_t value);
+  private:
+  int32_t _internal_vision_source() const;
+  void _internal_set_vision_source(int32_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:ZSS.New.Robot_Command)
  private:
   class _Internal;
@@ -1776,6 +1814,394 @@ class Robot_Command final :
     int32_t yaw_max_vel_;
     int32_t yaw_max_acc_;
     int32_t yaw_max_jerk_;
+    int32_t raw_vision_vel_x_;
+    int32_t raw_vision_vel_y_;
+    int32_t vision_source_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_zss_5fcmd_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Robots_Command_Sim final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:ZSS.New.Robots_Command_Sim) */ {
+ public:
+  inline Robots_Command_Sim() : Robots_Command_Sim(nullptr) {}
+  ~Robots_Command_Sim() override;
+  explicit PROTOBUF_CONSTEXPR Robots_Command_Sim(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Robots_Command_Sim(const Robots_Command_Sim& from);
+  Robots_Command_Sim(Robots_Command_Sim&& from) noexcept
+    : Robots_Command_Sim() {
+    *this = ::std::move(from);
+  }
+
+  inline Robots_Command_Sim& operator=(const Robots_Command_Sim& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Robots_Command_Sim& operator=(Robots_Command_Sim&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Robots_Command_Sim& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Robots_Command_Sim* internal_default_instance() {
+    return reinterpret_cast<const Robots_Command_Sim*>(
+               &_Robots_Command_Sim_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(Robots_Command_Sim& a, Robots_Command_Sim& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Robots_Command_Sim* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Robots_Command_Sim* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Robots_Command_Sim* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Robots_Command_Sim>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Robots_Command_Sim& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const Robots_Command_Sim& from) {
+    Robots_Command_Sim::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Robots_Command_Sim* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "ZSS.New.Robots_Command_Sim";
+  }
+  protected:
+  explicit Robots_Command_Sim(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCommandFieldNumber = 1,
+    kDelayFieldNumber = 2,
+  };
+  // repeated .ZSS.New.Robot_Command_Sim command = 1;
+  int command_size() const;
+  private:
+  int _internal_command_size() const;
+  public:
+  void clear_command();
+  ::ZSS::New::Robot_Command_Sim* mutable_command(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::ZSS::New::Robot_Command_Sim >*
+      mutable_command();
+  private:
+  const ::ZSS::New::Robot_Command_Sim& _internal_command(int index) const;
+  ::ZSS::New::Robot_Command_Sim* _internal_add_command();
+  public:
+  const ::ZSS::New::Robot_Command_Sim& command(int index) const;
+  ::ZSS::New::Robot_Command_Sim* add_command();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::ZSS::New::Robot_Command_Sim >&
+      command() const;
+
+  // optional int32 delay = 2;
+  bool has_delay() const;
+  private:
+  bool _internal_has_delay() const;
+  public:
+  void clear_delay();
+  int32_t delay() const;
+  void set_delay(int32_t value);
+  private:
+  int32_t _internal_delay() const;
+  void _internal_set_delay(int32_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:ZSS.New.Robots_Command_Sim)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::ZSS::New::Robot_Command_Sim > command_;
+    int32_t delay_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_zss_5fcmd_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Robot_Command_Sim final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:ZSS.New.Robot_Command_Sim) */ {
+ public:
+  inline Robot_Command_Sim() : Robot_Command_Sim(nullptr) {}
+  ~Robot_Command_Sim() override;
+  explicit PROTOBUF_CONSTEXPR Robot_Command_Sim(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  Robot_Command_Sim(const Robot_Command_Sim& from);
+  Robot_Command_Sim(Robot_Command_Sim&& from) noexcept
+    : Robot_Command_Sim() {
+    *this = ::std::move(from);
+  }
+
+  inline Robot_Command_Sim& operator=(const Robot_Command_Sim& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Robot_Command_Sim& operator=(Robot_Command_Sim&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Robot_Command_Sim& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const Robot_Command_Sim* internal_default_instance() {
+    return reinterpret_cast<const Robot_Command_Sim*>(
+               &_Robot_Command_Sim_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    6;
+
+  friend void swap(Robot_Command_Sim& a, Robot_Command_Sim& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Robot_Command_Sim* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Robot_Command_Sim* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Robot_Command_Sim* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<Robot_Command_Sim>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const Robot_Command_Sim& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const Robot_Command_Sim& from) {
+    Robot_Command_Sim::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Robot_Command_Sim* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "ZSS.New.Robot_Command_Sim";
+  }
+  protected:
+  explicit Robot_Command_Sim(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCmdVelFieldNumber = 6,
+    kRobotIdFieldNumber = 1,
+    kKickModeFieldNumber = 2,
+    kDesirePowerFieldNumber = 3,
+    kDribbleSpinFieldNumber = 4,
+    kCmdTypeFieldNumber = 5,
+  };
+  // .ZSS.New.CmdVel cmd_vel = 6;
+  bool has_cmd_vel() const;
+  private:
+  bool _internal_has_cmd_vel() const;
+  public:
+  void clear_cmd_vel();
+  const ::ZSS::New::CmdVel& cmd_vel() const;
+  PROTOBUF_NODISCARD ::ZSS::New::CmdVel* release_cmd_vel();
+  ::ZSS::New::CmdVel* mutable_cmd_vel();
+  void set_allocated_cmd_vel(::ZSS::New::CmdVel* cmd_vel);
+  private:
+  const ::ZSS::New::CmdVel& _internal_cmd_vel() const;
+  ::ZSS::New::CmdVel* _internal_mutable_cmd_vel();
+  public:
+  void unsafe_arena_set_allocated_cmd_vel(
+      ::ZSS::New::CmdVel* cmd_vel);
+  ::ZSS::New::CmdVel* unsafe_arena_release_cmd_vel();
+
+  // int32 robot_id = 1;
+  void clear_robot_id();
+  int32_t robot_id() const;
+  void set_robot_id(int32_t value);
+  private:
+  int32_t _internal_robot_id() const;
+  void _internal_set_robot_id(int32_t value);
+  public:
+
+  // .ZSS.New.Robot_Command.KickMode kick_mode = 2;
+  void clear_kick_mode();
+  ::ZSS::New::Robot_Command_KickMode kick_mode() const;
+  void set_kick_mode(::ZSS::New::Robot_Command_KickMode value);
+  private:
+  ::ZSS::New::Robot_Command_KickMode _internal_kick_mode() const;
+  void _internal_set_kick_mode(::ZSS::New::Robot_Command_KickMode value);
+  public:
+
+  // float desire_power = 3;
+  void clear_desire_power();
+  float desire_power() const;
+  void set_desire_power(float value);
+  private:
+  float _internal_desire_power() const;
+  void _internal_set_desire_power(float value);
+  public:
+
+  // sint32 dribble_spin = 4;
+  void clear_dribble_spin();
+  int32_t dribble_spin() const;
+  void set_dribble_spin(int32_t value);
+  private:
+  int32_t _internal_dribble_spin() const;
+  void _internal_set_dribble_spin(int32_t value);
+  public:
+
+  // .ZSS.New.Robot_Command.CmdType cmd_type = 5;
+  void clear_cmd_type();
+  ::ZSS::New::Robot_Command_CmdType cmd_type() const;
+  void set_cmd_type(::ZSS::New::Robot_Command_CmdType value);
+  private:
+  ::ZSS::New::Robot_Command_CmdType _internal_cmd_type() const;
+  void _internal_set_cmd_type(::ZSS::New::Robot_Command_CmdType value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:ZSS.New.Robot_Command_Sim)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::ZSS::New::CmdVel* cmd_vel_;
+    int32_t robot_id_;
+    int kick_mode_;
+    float desire_power_;
+    int32_t dribble_spin_;
+    int cmd_type_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -1831,7 +2257,7 @@ class Robot_Command_Mini final :
                &_Robot_Command_Mini_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    7;
 
   friend void swap(Robot_Command_Mini& a, Robot_Command_Mini& b) {
     a.Swap(&b);
@@ -3704,6 +4130,327 @@ inline void Robot_Command::set_yaw_max_jerk(int32_t value) {
   // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command.yaw_max_jerk)
 }
 
+// sint32 raw_vision_vel_x = 31;
+inline void Robot_Command::clear_raw_vision_vel_x() {
+  _impl_.raw_vision_vel_x_ = 0;
+}
+inline int32_t Robot_Command::_internal_raw_vision_vel_x() const {
+  return _impl_.raw_vision_vel_x_;
+}
+inline int32_t Robot_Command::raw_vision_vel_x() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Command.raw_vision_vel_x)
+  return _internal_raw_vision_vel_x();
+}
+inline void Robot_Command::_internal_set_raw_vision_vel_x(int32_t value) {
+  
+  _impl_.raw_vision_vel_x_ = value;
+}
+inline void Robot_Command::set_raw_vision_vel_x(int32_t value) {
+  _internal_set_raw_vision_vel_x(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command.raw_vision_vel_x)
+}
+
+// sint32 raw_vision_vel_y = 32;
+inline void Robot_Command::clear_raw_vision_vel_y() {
+  _impl_.raw_vision_vel_y_ = 0;
+}
+inline int32_t Robot_Command::_internal_raw_vision_vel_y() const {
+  return _impl_.raw_vision_vel_y_;
+}
+inline int32_t Robot_Command::raw_vision_vel_y() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Command.raw_vision_vel_y)
+  return _internal_raw_vision_vel_y();
+}
+inline void Robot_Command::_internal_set_raw_vision_vel_y(int32_t value) {
+  
+  _impl_.raw_vision_vel_y_ = value;
+}
+inline void Robot_Command::set_raw_vision_vel_y(int32_t value) {
+  _internal_set_raw_vision_vel_y(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command.raw_vision_vel_y)
+}
+
+// sint32 vision_source = 33;
+inline void Robot_Command::clear_vision_source() {
+  _impl_.vision_source_ = 0;
+}
+inline int32_t Robot_Command::_internal_vision_source() const {
+  return _impl_.vision_source_;
+}
+inline int32_t Robot_Command::vision_source() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Command.vision_source)
+  return _internal_vision_source();
+}
+inline void Robot_Command::_internal_set_vision_source(int32_t value) {
+  
+  _impl_.vision_source_ = value;
+}
+inline void Robot_Command::set_vision_source(int32_t value) {
+  _internal_set_vision_source(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command.vision_source)
+}
+
+// -------------------------------------------------------------------
+
+// Robots_Command_Sim
+
+// repeated .ZSS.New.Robot_Command_Sim command = 1;
+inline int Robots_Command_Sim::_internal_command_size() const {
+  return _impl_.command_.size();
+}
+inline int Robots_Command_Sim::command_size() const {
+  return _internal_command_size();
+}
+inline void Robots_Command_Sim::clear_command() {
+  _impl_.command_.Clear();
+}
+inline ::ZSS::New::Robot_Command_Sim* Robots_Command_Sim::mutable_command(int index) {
+  // @@protoc_insertion_point(field_mutable:ZSS.New.Robots_Command_Sim.command)
+  return _impl_.command_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::ZSS::New::Robot_Command_Sim >*
+Robots_Command_Sim::mutable_command() {
+  // @@protoc_insertion_point(field_mutable_list:ZSS.New.Robots_Command_Sim.command)
+  return &_impl_.command_;
+}
+inline const ::ZSS::New::Robot_Command_Sim& Robots_Command_Sim::_internal_command(int index) const {
+  return _impl_.command_.Get(index);
+}
+inline const ::ZSS::New::Robot_Command_Sim& Robots_Command_Sim::command(int index) const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robots_Command_Sim.command)
+  return _internal_command(index);
+}
+inline ::ZSS::New::Robot_Command_Sim* Robots_Command_Sim::_internal_add_command() {
+  return _impl_.command_.Add();
+}
+inline ::ZSS::New::Robot_Command_Sim* Robots_Command_Sim::add_command() {
+  ::ZSS::New::Robot_Command_Sim* _add = _internal_add_command();
+  // @@protoc_insertion_point(field_add:ZSS.New.Robots_Command_Sim.command)
+  return _add;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::ZSS::New::Robot_Command_Sim >&
+Robots_Command_Sim::command() const {
+  // @@protoc_insertion_point(field_list:ZSS.New.Robots_Command_Sim.command)
+  return _impl_.command_;
+}
+
+// optional int32 delay = 2;
+inline bool Robots_Command_Sim::_internal_has_delay() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool Robots_Command_Sim::has_delay() const {
+  return _internal_has_delay();
+}
+inline void Robots_Command_Sim::clear_delay() {
+  _impl_.delay_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline int32_t Robots_Command_Sim::_internal_delay() const {
+  return _impl_.delay_;
+}
+inline int32_t Robots_Command_Sim::delay() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robots_Command_Sim.delay)
+  return _internal_delay();
+}
+inline void Robots_Command_Sim::_internal_set_delay(int32_t value) {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.delay_ = value;
+}
+inline void Robots_Command_Sim::set_delay(int32_t value) {
+  _internal_set_delay(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robots_Command_Sim.delay)
+}
+
+// -------------------------------------------------------------------
+
+// Robot_Command_Sim
+
+// int32 robot_id = 1;
+inline void Robot_Command_Sim::clear_robot_id() {
+  _impl_.robot_id_ = 0;
+}
+inline int32_t Robot_Command_Sim::_internal_robot_id() const {
+  return _impl_.robot_id_;
+}
+inline int32_t Robot_Command_Sim::robot_id() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Command_Sim.robot_id)
+  return _internal_robot_id();
+}
+inline void Robot_Command_Sim::_internal_set_robot_id(int32_t value) {
+  
+  _impl_.robot_id_ = value;
+}
+inline void Robot_Command_Sim::set_robot_id(int32_t value) {
+  _internal_set_robot_id(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command_Sim.robot_id)
+}
+
+// .ZSS.New.Robot_Command.KickMode kick_mode = 2;
+inline void Robot_Command_Sim::clear_kick_mode() {
+  _impl_.kick_mode_ = 0;
+}
+inline ::ZSS::New::Robot_Command_KickMode Robot_Command_Sim::_internal_kick_mode() const {
+  return static_cast< ::ZSS::New::Robot_Command_KickMode >(_impl_.kick_mode_);
+}
+inline ::ZSS::New::Robot_Command_KickMode Robot_Command_Sim::kick_mode() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Command_Sim.kick_mode)
+  return _internal_kick_mode();
+}
+inline void Robot_Command_Sim::_internal_set_kick_mode(::ZSS::New::Robot_Command_KickMode value) {
+  
+  _impl_.kick_mode_ = value;
+}
+inline void Robot_Command_Sim::set_kick_mode(::ZSS::New::Robot_Command_KickMode value) {
+  _internal_set_kick_mode(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command_Sim.kick_mode)
+}
+
+// float desire_power = 3;
+inline void Robot_Command_Sim::clear_desire_power() {
+  _impl_.desire_power_ = 0;
+}
+inline float Robot_Command_Sim::_internal_desire_power() const {
+  return _impl_.desire_power_;
+}
+inline float Robot_Command_Sim::desire_power() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Command_Sim.desire_power)
+  return _internal_desire_power();
+}
+inline void Robot_Command_Sim::_internal_set_desire_power(float value) {
+  
+  _impl_.desire_power_ = value;
+}
+inline void Robot_Command_Sim::set_desire_power(float value) {
+  _internal_set_desire_power(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command_Sim.desire_power)
+}
+
+// sint32 dribble_spin = 4;
+inline void Robot_Command_Sim::clear_dribble_spin() {
+  _impl_.dribble_spin_ = 0;
+}
+inline int32_t Robot_Command_Sim::_internal_dribble_spin() const {
+  return _impl_.dribble_spin_;
+}
+inline int32_t Robot_Command_Sim::dribble_spin() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Command_Sim.dribble_spin)
+  return _internal_dribble_spin();
+}
+inline void Robot_Command_Sim::_internal_set_dribble_spin(int32_t value) {
+  
+  _impl_.dribble_spin_ = value;
+}
+inline void Robot_Command_Sim::set_dribble_spin(int32_t value) {
+  _internal_set_dribble_spin(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command_Sim.dribble_spin)
+}
+
+// .ZSS.New.Robot_Command.CmdType cmd_type = 5;
+inline void Robot_Command_Sim::clear_cmd_type() {
+  _impl_.cmd_type_ = 0;
+}
+inline ::ZSS::New::Robot_Command_CmdType Robot_Command_Sim::_internal_cmd_type() const {
+  return static_cast< ::ZSS::New::Robot_Command_CmdType >(_impl_.cmd_type_);
+}
+inline ::ZSS::New::Robot_Command_CmdType Robot_Command_Sim::cmd_type() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Command_Sim.cmd_type)
+  return _internal_cmd_type();
+}
+inline void Robot_Command_Sim::_internal_set_cmd_type(::ZSS::New::Robot_Command_CmdType value) {
+  
+  _impl_.cmd_type_ = value;
+}
+inline void Robot_Command_Sim::set_cmd_type(::ZSS::New::Robot_Command_CmdType value) {
+  _internal_set_cmd_type(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command_Sim.cmd_type)
+}
+
+// .ZSS.New.CmdVel cmd_vel = 6;
+inline bool Robot_Command_Sim::_internal_has_cmd_vel() const {
+  return this != internal_default_instance() && _impl_.cmd_vel_ != nullptr;
+}
+inline bool Robot_Command_Sim::has_cmd_vel() const {
+  return _internal_has_cmd_vel();
+}
+inline const ::ZSS::New::CmdVel& Robot_Command_Sim::_internal_cmd_vel() const {
+  const ::ZSS::New::CmdVel* p = _impl_.cmd_vel_;
+  return p != nullptr ? *p : reinterpret_cast<const ::ZSS::New::CmdVel&>(
+      ::ZSS::New::_CmdVel_default_instance_);
+}
+inline const ::ZSS::New::CmdVel& Robot_Command_Sim::cmd_vel() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Command_Sim.cmd_vel)
+  return _internal_cmd_vel();
+}
+inline void Robot_Command_Sim::unsafe_arena_set_allocated_cmd_vel(
+    ::ZSS::New::CmdVel* cmd_vel) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.cmd_vel_);
+  }
+  _impl_.cmd_vel_ = cmd_vel;
+  if (cmd_vel) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:ZSS.New.Robot_Command_Sim.cmd_vel)
+}
+inline ::ZSS::New::CmdVel* Robot_Command_Sim::release_cmd_vel() {
+  
+  ::ZSS::New::CmdVel* temp = _impl_.cmd_vel_;
+  _impl_.cmd_vel_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::ZSS::New::CmdVel* Robot_Command_Sim::unsafe_arena_release_cmd_vel() {
+  // @@protoc_insertion_point(field_release:ZSS.New.Robot_Command_Sim.cmd_vel)
+  
+  ::ZSS::New::CmdVel* temp = _impl_.cmd_vel_;
+  _impl_.cmd_vel_ = nullptr;
+  return temp;
+}
+inline ::ZSS::New::CmdVel* Robot_Command_Sim::_internal_mutable_cmd_vel() {
+  
+  if (_impl_.cmd_vel_ == nullptr) {
+    auto* p = CreateMaybeMessage<::ZSS::New::CmdVel>(GetArenaForAllocation());
+    _impl_.cmd_vel_ = p;
+  }
+  return _impl_.cmd_vel_;
+}
+inline ::ZSS::New::CmdVel* Robot_Command_Sim::mutable_cmd_vel() {
+  ::ZSS::New::CmdVel* _msg = _internal_mutable_cmd_vel();
+  // @@protoc_insertion_point(field_mutable:ZSS.New.Robot_Command_Sim.cmd_vel)
+  return _msg;
+}
+inline void Robot_Command_Sim::set_allocated_cmd_vel(::ZSS::New::CmdVel* cmd_vel) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.cmd_vel_);
+  }
+  if (cmd_vel) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(cmd_vel));
+    if (message_arena != submessage_arena) {
+      cmd_vel = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, cmd_vel, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.cmd_vel_ = cmd_vel;
+  // @@protoc_insertion_point(field_set_allocated:ZSS.New.Robot_Command_Sim.cmd_vel)
+}
+
 // -------------------------------------------------------------------
 
 // Robot_Command_Mini
@@ -3751,6 +4498,10 @@ inline void Robot_Command_Mini::set_kick_discharge_time(int32_t value) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

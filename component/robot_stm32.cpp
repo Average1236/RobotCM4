@@ -1,4 +1,3 @@
-
 #include "robot_stm32.h"
 
 #define need_store_data
@@ -16,6 +15,7 @@ static std::atomic<bool> initFinish = false;
 
 #ifdef need_store_data
 static std::string logcsv = "/home/pi/log.csv";
+static std::string stm32_velocity_logcsv = "/home/pi/rpi_timer/robot/stm32_velocity_log.csv";
 #endif
 
 RobotStm32::RobotStm32() : device_{},
@@ -67,6 +67,8 @@ RobotStm32::RobotStm32() : device_{},
         robot_cmd.yaw_max_vel = 25.0f;
         robot_cmd.yaw_max_acc = 40.0f;
         robot_cmd.yaw_max_jerk = 200.0f;
+        robot_cmd.raw_vision_vel = {0.0f, 0.0f};
+        robot_cmd.vision_source = 0;
     }
     {
         std::scoped_lock lock{_robot_status_mutex};
@@ -152,6 +154,22 @@ RobotStm32::RobotStm32() : device_{},
 
     fileCsv << "open" << std::endl;
     fileCsv.close();
+
+    std::ofstream velocityCsv(stm32_velocity_logcsv);
+    if (!velocityCsv.is_open())
+    {
+        zos::log("stm32 velocity csv open false\n");
+    }
+    velocityCsv << "time_ms,target_vx,target_vy,target_vr,"
+                << "planned_vx,planned_vy,"
+                << "optflow_body_vx,optflow_body_vy,"
+                << "optflow_kf_vx,optflow_kf_vy,"
+                << "wheel_chassis_vx,wheel_chassis_vy,"
+                << "fused_chassis_vx,fused_chassis_vy,"
+                << "raw_vision_vel_x,raw_vision_vel_y,vision_source,"
+                << "odom_vx,odom_vy"
+                << std::endl;
+    velocityCsv.close();
 #endif
 
     initFinish = true;
@@ -223,6 +241,9 @@ void RobotStm32::cmd_callback(const zos::Data &data)
             if (_p.yaw_max_vel() > 0) _c.yaw_max_vel = _p.yaw_max_vel() / 1000.0f;
             if (_p.yaw_max_acc() > 0) _c.yaw_max_acc = _p.yaw_max_acc() / 1000.0f;
             if (_p.yaw_max_jerk() > 0) _c.yaw_max_jerk = _p.yaw_max_jerk() / 1000.0f;
+            _c.raw_vision_vel[0] = static_cast<float>(_p.raw_vision_vel_x());
+            _c.raw_vision_vel[1] = static_cast<float>(_p.raw_vision_vel_y());
+            _c.vision_source = _p.vision_source();
             // _c.cmd_type = int(_p.cmd_type());
             // switch (_p.cmd_type())
             // {
@@ -329,6 +350,41 @@ void RobotStm32::change_id(int id_new)
     }
     save_id(id_new);
     zos::log("change id: {}\n", _s.id);
+}
+
+std::array<float, 2> RobotStm32::filter_raw_vision_velocity(const std::array<float, 2> &raw_vision_vel, int vision_source)
+{
+    constexpr float kMaxVisionVelocityMmS = 6000.0f;
+    constexpr float kMaxVisionAccelMmS2 = 10000.0f;
+    const float dt_s = 1.0f / static_cast<float>(config::robot_freq);
+    const float max_delta_mm_s = kMaxVisionAccelMmS2 * dt_s;
+
+    if (vision_source != 3 && vision_source != 4)
+    {
+        raw_vision_vel_limiter_initialized_ = false;
+        return raw_vision_vel;
+    }
+
+    std::array<float, 2> limited = raw_vision_vel;
+    for (int i = 0; i < 2; ++i)
+    {
+        const float target = std::clamp(raw_vision_vel[i], -kMaxVisionVelocityMmS, kMaxVisionVelocityMmS);
+        if (!raw_vision_vel_limiter_initialized_)
+        {
+            limited_raw_vision_vel_[i] = target;
+        }
+        else
+        {
+            const float delta = std::clamp(target - limited_raw_vision_vel_[i],
+                                           -max_delta_mm_s,
+                                           max_delta_mm_s);
+            limited_raw_vision_vel_[i] += delta;
+        }
+        limited[i] = limited_raw_vision_vel_[i];
+    }
+
+    raw_vision_vel_limiter_initialized_ = true;
+    return limited;
 }
 
 void RobotStm32::read_config_yaml()
@@ -484,8 +540,37 @@ void RobotStm32::update_expansion_board(const double dt)
         device_.set_dribbler(_c.drib_power, _c.drib_velocity, _c.drib_torque_ff);
         device_.set_motion_limits(_c.xy_max_acc, _c.xy_max_jerk, _c.xy_max_dec,
                                   _c.yaw_max_vel, _c.yaw_max_acc, _c.yaw_max_jerk);
+        const auto filtered_raw_vision_vel = filter_raw_vision_velocity(_c.raw_vision_vel, _c.vision_source);
+        device_.set_vision_velocity(filtered_raw_vision_vel[0], filtered_raw_vision_vel[1], _c.vision_source);
         device_.use_imu = _c.use_dir;
         device_.set_vel(_c.vx_target,_c.vy_target,_c.vr_target);
+
+#ifdef need_store_data
+        if (initFinish)
+        {
+            const auto now_ms = std::chrono::duration_cast<std::chrono::milliseconds>(
+                                    std::chrono::steady_clock::now().time_since_epoch())
+                                    .count();
+            std::ofstream file(stm32_velocity_logcsv, std::ios::app);
+            if (!file.is_open())
+            {
+                zos::log("stm32 velocity csv open false\n");
+            }
+            else
+            {
+                file << now_ms << ","
+                     << _c.vx_target << "," << _c.vy_target << "," << _c.vr_target << ","
+                     << device_.planned_vel[0].load() << "," << device_.planned_vel[1].load() << ","
+                     << device_.optflow_body_vel[0].load() << "," << device_.optflow_body_vel[1].load() << ","
+                     << device_.optflow_kf_vel[0].load() << "," << device_.optflow_kf_vel[1].load() << ","
+                     << device_.wheel_chassis_vel[0].load() << "," << device_.wheel_chassis_vel[1].load() << ","
+                     << device_.fused_chassis_vel[0].load() << "," << device_.fused_chassis_vel[1].load() << ","
+                     << filtered_raw_vision_vel[0] << "," << filtered_raw_vision_vel[1] << "," << _c.vision_source << ","
+                     << device_.odom_vx.load() << "," << device_.odom_vy.load()
+                     << std::endl;
+            }
+        }
+#endif
     }
 }
 
@@ -804,8 +889,11 @@ void RobotStm32::stand()
         robot_cmd.drib_velocity = 0;
         robot_cmd.drib_torque_ff = 0;
     }
-    
 
+    robot_cmd.vision_source = 2;
+    robot_cmd.raw_vision_vel[0] = 0;
+    robot_cmd.raw_vision_vel[1] = 0;
+    
     std::fill_n(begin(vel_pack_), MAX_MOTOR, 0);
 
     wifi_.udp_restart();

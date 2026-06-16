@@ -45,7 +45,7 @@ DeviceStm32::DeviceStm32()
     }
 
     stm32_spi->mode(mraa::SPI_MODE0);
-    stm32_spi->frequency(1000000);
+    stm32_spi->frequency(4000000);
 
     buzzer_start();
 
@@ -72,6 +72,9 @@ void DeviceStm32::read_write_stm32()
     tx.yaw_max_vel = (int16_t)(yaw_cmd_vel.load() * 100);
     tx.yaw_max_acc = (int16_t)(yaw_cmd_acc.load() * 100);
     tx.yaw_max_jerk = (int16_t)(yaw_cmd_jerk.load() * 100);
+    tx.raw_vision_vel[0] = (int16_t)(raw_vision_vel[0].load());
+    tx.raw_vision_vel[1] = (int16_t)(raw_vision_vel[1].load());
+    tx.vision_source = static_cast<uint8_t>(std::clamp(vision_source.load(), 0, 255));
     // zos::log("kick_mode: {}, kick_discharge_time: {}\n", kick_mode.load(), kick_discharge_time.load());
 
     for(int i=0;i<3;i++)
@@ -129,6 +132,14 @@ void DeviceStm32::read_write_stm32()
 
     odom_vx.store(rx.odom_vel[0] / 1000.0f);
     odom_vy.store(rx.odom_vel[1] / 1000.0f);
+    for (int i = 0; i < 2; i++)
+    {
+        optflow_body_vel[i].store(rx.optflow_body_vel[i] / 1000.0f);
+        optflow_kf_vel[i].store(rx.optflow_kf_vel[i] / 1000.0f);
+        wheel_chassis_vel[i].store(rx.wheel_chassis_vel[i] / 1000.0f);
+        fused_chassis_vel[i].store(rx.fused_chassis_vel[i] / 1000.0f);
+        planned_vel[i].store(rx.planned_vel[i] / 1000.0f);
+    }
 
     for (int i = 0; i < 2; i++)
     {

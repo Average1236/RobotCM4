@@ -14,6 +14,9 @@
 #include "zss_cmd.pb.h"
 #include <fstream>
 #include <sstream>
+#include <algorithm>
+#include <array>
+#include <cmath>
 
 class RobotStm32 : public RobotBase
 {
@@ -82,6 +85,7 @@ private:
     void save_team(ZSS::New::Team team_new);
     void change_team(ZSS::New::Team team_new);
     void change_id(int id_new);
+    std::array<float, 2> filter_raw_vision_velocity(const std::array<float, 2> &raw_vision_vel, int vision_source);
 
     YAML::Node config_yaml_;
     std::atomic_bool need_change_team = false;
@@ -104,6 +108,9 @@ private:
     const int CMD_TYPE_VEL = 2;
     const int CMD_TYPE_POSE = 3;
     const int CMD_TYPE_CHASE = 4;
+
+    std::array<float, 2> limited_raw_vision_vel_ = {0.0f, 0.0f};
+    bool raw_vision_vel_limiter_initialized_ = false;
 
     DeviceStm32 device_;
 
