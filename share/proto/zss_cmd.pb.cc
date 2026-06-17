@@ -137,6 +137,7 @@ PROTOBUF_CONSTEXPR Robot_Command::Robot_Command(
   , /*decltype(_impl_.raw_vision_vel_x_)*/0
   , /*decltype(_impl_.raw_vision_vel_y_)*/0
   , /*decltype(_impl_.vision_source_)*/0
+  , /*decltype(_impl_.dribble_mode_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct Robot_CommandDefaultTypeInternal {
   PROTOBUF_CONSTEXPR Robot_CommandDefaultTypeInternal()
@@ -293,6 +294,7 @@ const uint32_t TableStruct_zss_5fcmd_2eproto::offsets[] PROTOBUF_SECTION_VARIABL
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.raw_vision_vel_x_),
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.raw_vision_vel_y_),
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.vision_source_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.dribble_mode_),
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Robots_Command_Sim, _impl_._has_bits_),
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Robots_Command_Sim, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -330,9 +332,9 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 22, -1, -1, sizeof(::ZSS::New::Robot_Status)},
   { 43, 51, -1, sizeof(::ZSS::New::Robots_Command)},
   { 53, -1, -1, sizeof(::ZSS::New::Robot_Command)},
-  { 92, 100, -1, sizeof(::ZSS::New::Robots_Command_Sim)},
-  { 102, -1, -1, sizeof(::ZSS::New::Robot_Command_Sim)},
-  { 114, -1, -1, sizeof(::ZSS::New::Robot_Command_Mini)},
+  { 93, 101, -1, sizeof(::ZSS::New::Robots_Command_Sim)},
+  { 103, -1, -1, sizeof(::ZSS::New::Robot_Command_Sim)},
+  { 115, -1, -1, sizeof(::ZSS::New::Robot_Command_Mini)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -364,7 +366,7 @@ const char descriptor_table_protodef_zss_5fcmd_2eproto[] PROTOBUF_SECTION_VARIAB
   "\014 \003(\002\022\020\n\010have_imu\030\r \001(\010\022\023\n\013imu_omega_z\030\016"
   " \001(\021\022\021\n\twheel_ref\030\017 \003(\021\"W\n\016Robots_Comman"
   "d\022\'\n\007command\030\001 \003(\0132\026.ZSS.New.Robot_Comma"
-  "nd\022\022\n\005delay\030\002 \001(\005H\000\210\001\001B\010\n\006_delay\"\305\010\n\rRob"
+  "nd\022\022\n\005delay\030\002 \001(\005H\000\210\001\001B\010\n\006_delay\"\333\010\n\rRob"
   "ot_Command\022\020\n\010robot_id\030\001 \001(\005\0222\n\tkick_mod"
   "e\030\002 \001(\0162\037.ZSS.New.Robot_Command.KickMode"
   "\022\024\n\014desire_power\030\003 \001(\002\022\033\n\023kick_discharge"
@@ -387,32 +389,32 @@ const char descriptor_table_protodef_zss_5fcmd_2eproto[] PROTOBUF_SECTION_VARIAB
   "\001(\021\022\023\n\013yaw_max_vel\030\034 \001(\021\022\023\n\013yaw_max_acc\030"
   "\035 \001(\021\022\024\n\014yaw_max_jerk\030\036 \001(\021\022\030\n\020raw_visio"
   "n_vel_x\030\037 \001(\021\022\030\n\020raw_vision_vel_y\030  \001(\021\022"
-  "\025\n\rvision_source\030! \001(\021\"(\n\010KickMode\022\010\n\004NO"
-  "NE\020\000\022\010\n\004KICK\020\001\022\010\n\004CHIP\020\002\"L\n\007CmdType\022\010\n\004S"
-  "TOP\020\000\022\r\n\tCMD_WHEEL\020\001\022\013\n\007CMD_VEL\020\002\022\014\n\010CMD"
-  "_POSE\020\003\022\r\n\tCMD_CHASE\020\004\"@\n\010CommType\022\013\n\007DE"
-  "FAULT\020\000\022\n\n\006SERIAL\020\001\022\r\n\tUDP_24L01\020\002\022\014\n\010UD"
-  "P_WIFI\020\003\"_\n\022Robots_Command_Sim\022+\n\007comman"
-  "d\030\001 \003(\0132\032.ZSS.New.Robot_Command_Sim\022\022\n\005d"
-  "elay\030\002 \001(\005H\000\210\001\001B\010\n\006_delay\"\331\001\n\021Robot_Comm"
-  "and_Sim\022\020\n\010robot_id\030\001 \001(\005\0222\n\tkick_mode\030\002"
-  " \001(\0162\037.ZSS.New.Robot_Command.KickMode\022\024\n"
-  "\014desire_power\030\003 \001(\002\022\024\n\014dribble_spin\030\004 \001("
-  "\021\0220\n\010cmd_type\030\005 \001(\0162\036.ZSS.New.Robot_Comm"
-  "and.CmdType\022 \n\007cmd_vel\030\006 \001(\0132\017.ZSS.New.C"
-  "mdVel\"\224\001\n\022Robot_Command_Mini\0227\n\tkick_mod"
-  "e\030\001 \001(\0162$.ZSS.New.Robot_Command_Mini.Kic"
-  "kMode\022\033\n\023kick_discharge_time\030\002 \001(\021\"(\n\010Ki"
-  "ckMode\022\010\n\004NONE\020\000\022\010\n\004KICK\020\001\022\010\n\004CHIP\020\002*)\n\004"
-  "Team\022\013\n\007UNKNOWN\020\000\022\010\n\004BLUE\020\001\022\n\n\006YELLOW\020\002b"
-  "\006proto3"
+  "\025\n\rvision_source\030! \001(\021\022\024\n\014dribble_mode\030\""
+  " \001(\021\"(\n\010KickMode\022\010\n\004NONE\020\000\022\010\n\004KICK\020\001\022\010\n\004"
+  "CHIP\020\002\"L\n\007CmdType\022\010\n\004STOP\020\000\022\r\n\tCMD_WHEEL"
+  "\020\001\022\013\n\007CMD_VEL\020\002\022\014\n\010CMD_POSE\020\003\022\r\n\tCMD_CHA"
+  "SE\020\004\"@\n\010CommType\022\013\n\007DEFAULT\020\000\022\n\n\006SERIAL\020"
+  "\001\022\r\n\tUDP_24L01\020\002\022\014\n\010UDP_WIFI\020\003\"_\n\022Robots"
+  "_Command_Sim\022+\n\007command\030\001 \003(\0132\032.ZSS.New."
+  "Robot_Command_Sim\022\022\n\005delay\030\002 \001(\005H\000\210\001\001B\010\n"
+  "\006_delay\"\331\001\n\021Robot_Command_Sim\022\020\n\010robot_i"
+  "d\030\001 \001(\005\0222\n\tkick_mode\030\002 \001(\0162\037.ZSS.New.Rob"
+  "ot_Command.KickMode\022\024\n\014desire_power\030\003 \001("
+  "\002\022\024\n\014dribble_spin\030\004 \001(\021\0220\n\010cmd_type\030\005 \001("
+  "\0162\036.ZSS.New.Robot_Command.CmdType\022 \n\007cmd"
+  "_vel\030\006 \001(\0132\017.ZSS.New.CmdVel\"\224\001\n\022Robot_Co"
+  "mmand_Mini\0227\n\tkick_mode\030\001 \001(\0162$.ZSS.New."
+  "Robot_Command_Mini.KickMode\022\033\n\023kick_disc"
+  "harge_time\030\002 \001(\021\"(\n\010KickMode\022\010\n\004NONE\020\000\022\010"
+  "\n\004KICK\020\001\022\010\n\004CHIP\020\002*)\n\004Team\022\013\n\007UNKNOWN\020\000\022"
+  "\010\n\004BLUE\020\001\022\n\n\006YELLOW\020\002b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_zss_5fcmd_2eproto_deps[1] = {
   &::descriptor_table_zss_5fcmd_5ftype_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_zss_5fcmd_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_zss_5fcmd_2eproto = {
-    false, false, 2327, descriptor_table_protodef_zss_5fcmd_2eproto,
+    false, false, 2349, descriptor_table_protodef_zss_5fcmd_2eproto,
     "zss_cmd.proto",
     &descriptor_table_zss_5fcmd_2eproto_once, descriptor_table_zss_5fcmd_2eproto_deps, 1, 8,
     schemas, file_default_instances, TableStruct_zss_5fcmd_2eproto::offsets,
@@ -2058,6 +2060,7 @@ Robot_Command::Robot_Command(const Robot_Command& from)
     , decltype(_impl_.raw_vision_vel_x_){}
     , decltype(_impl_.raw_vision_vel_y_){}
     , decltype(_impl_.vision_source_){}
+    , decltype(_impl_.dribble_mode_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
@@ -2074,8 +2077,8 @@ Robot_Command::Robot_Command(const Robot_Command& from)
     _this->_impl_.cmd_wheel_ = new ::ZSS::New::CmdWheel(*from._impl_.cmd_wheel_);
   }
   ::memcpy(&_impl_.robot_id_, &from._impl_.robot_id_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.vision_source_) -
-    reinterpret_cast<char*>(&_impl_.robot_id_)) + sizeof(_impl_.vision_source_));
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.dribble_mode_) -
+    reinterpret_cast<char*>(&_impl_.robot_id_)) + sizeof(_impl_.dribble_mode_));
   // @@protoc_insertion_point(copy_constructor:ZSS.New.Robot_Command)
 }
 
@@ -2119,6 +2122,7 @@ inline void Robot_Command::SharedCtor(
     , decltype(_impl_.raw_vision_vel_x_){0}
     , decltype(_impl_.raw_vision_vel_y_){0}
     , decltype(_impl_.vision_source_){0}
+    , decltype(_impl_.dribble_mode_){0}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -2171,8 +2175,8 @@ void Robot_Command::Clear() {
   }
   _impl_.cmd_wheel_ = nullptr;
   ::memset(&_impl_.robot_id_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.vision_source_) -
-      reinterpret_cast<char*>(&_impl_.robot_id_)) + sizeof(_impl_.vision_source_));
+      reinterpret_cast<char*>(&_impl_.dribble_mode_) -
+      reinterpret_cast<char*>(&_impl_.robot_id_)) + sizeof(_impl_.dribble_mode_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2456,6 +2460,14 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
         } else
           goto handle_unusual;
         continue;
+      // sint32 dribble_mode = 34;
+      case 34:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _impl_.dribble_mode_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -2699,6 +2711,12 @@ uint8_t* Robot_Command::_InternalSerialize(
   if (this->_internal_vision_source() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteSInt32ToArray(33, this->_internal_vision_source(), target);
+  }
+
+  // sint32 dribble_mode = 34;
+  if (this->_internal_dribble_mode() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteSInt32ToArray(34, this->_internal_dribble_mode(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -2946,6 +2964,13 @@ size_t Robot_Command::ByteSizeLong() const {
         this->_internal_vision_source());
   }
 
+  // sint32 dribble_mode = 34;
+  if (this->_internal_dribble_mode() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::SInt32Size(
+        this->_internal_dribble_mode());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -3067,6 +3092,9 @@ void Robot_Command::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::
   if (from._internal_vision_source() != 0) {
     _this->_internal_set_vision_source(from._internal_vision_source());
   }
+  if (from._internal_dribble_mode() != 0) {
+    _this->_internal_set_dribble_mode(from._internal_dribble_mode());
+  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -3087,8 +3115,8 @@ void Robot_Command::InternalSwap(Robot_Command* other) {
   _impl_.angle_pid_.InternalSwap(&other->_impl_.angle_pid_);
   _impl_.wheel_pid_.InternalSwap(&other->_impl_.wheel_pid_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Robot_Command, _impl_.vision_source_)
-      + sizeof(Robot_Command::_impl_.vision_source_)
+      PROTOBUF_FIELD_OFFSET(Robot_Command, _impl_.dribble_mode_)
+      + sizeof(Robot_Command::_impl_.dribble_mode_)
       - PROTOBUF_FIELD_OFFSET(Robot_Command, _impl_.cmd_vel_)>(
           reinterpret_cast<char*>(&_impl_.cmd_vel_),
           reinterpret_cast<char*>(&other->_impl_.cmd_vel_));

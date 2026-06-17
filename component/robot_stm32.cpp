@@ -69,6 +69,7 @@ RobotStm32::RobotStm32() : device_{},
         robot_cmd.yaw_max_jerk = 200.0f;
         robot_cmd.raw_vision_vel = {0.0f, 0.0f};
         robot_cmd.vision_source = 0;
+        robot_cmd.drib_mode = 3;
     }
     {
         std::scoped_lock lock{_robot_status_mutex};
@@ -232,6 +233,7 @@ void RobotStm32::cmd_callback(const zos::Data &data)
             _c.drib_power = _p.dribble_spin();
             _c.drib_velocity = (_p.dribble_velocity() != 0) ? _p.dribble_velocity() / 100.0f : -50.0f;
             _c.drib_torque_ff = (_p.dribble_torque_ff() != 0) ? _p.dribble_torque_ff() / 1000.0f : 0.1f;
+            _c.drib_mode = (_p.dribble_mode() >= 1 && _p.dribble_mode() <= 3) ? _p.dribble_mode() : 3;
             if (_p.xy_max_acc_x() > 0) _c.xy_max_acc[0] = _p.xy_max_acc_x() / 1000.0f;
             if (_p.xy_max_acc_y() > 0) _c.xy_max_acc[1] = _p.xy_max_acc_y() / 1000.0f;
             if (_p.xy_max_jerk_x() > 0) _c.xy_max_jerk[0] = _p.xy_max_jerk_x() / 1000.0f;
@@ -537,7 +539,7 @@ void RobotStm32::update_expansion_board(const double dt)
         }
 
         device_.set_angle_pid(_c.angle_pid[0],_c.angle_pid[1],_c.angle_pid[2]);
-        device_.set_dribbler(_c.drib_power, _c.drib_velocity, _c.drib_torque_ff);
+        device_.set_dribbler(_c.drib_power, _c.drib_velocity, _c.drib_torque_ff, _c.drib_mode);
         device_.set_motion_limits(_c.xy_max_acc, _c.xy_max_jerk, _c.xy_max_dec,
                                   _c.yaw_max_vel, _c.yaw_max_acc, _c.yaw_max_jerk);
         const auto filtered_raw_vision_vel = filter_raw_vision_velocity(_c.raw_vision_vel, _c.vision_source);
@@ -888,6 +890,7 @@ void RobotStm32::stand()
         robot_cmd.drib_power = 0;
         robot_cmd.drib_velocity = 0;
         robot_cmd.drib_torque_ff = 0;
+        robot_cmd.drib_mode = 3;
     }
 
     robot_cmd.vision_source = 2;

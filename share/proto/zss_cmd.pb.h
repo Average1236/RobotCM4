@@ -1414,6 +1414,7 @@ class Robot_Command final :
     kRawVisionVelXFieldNumber = 31,
     kRawVisionVelYFieldNumber = 32,
     kVisionSourceFieldNumber = 33,
+    kDribbleModeFieldNumber = 34,
   };
   // repeated sint32 angle_pid = 13;
   int angle_pid_size() const;
@@ -1774,6 +1775,15 @@ class Robot_Command final :
   void _internal_set_vision_source(int32_t value);
   public:
 
+  // sint32 dribble_mode = 34;
+  void clear_dribble_mode();
+  int32_t dribble_mode() const;
+  void set_dribble_mode(int32_t value);
+  private:
+  int32_t _internal_dribble_mode() const;
+  void _internal_set_dribble_mode(int32_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:ZSS.New.Robot_Command)
  private:
   class _Internal;
@@ -1817,6 +1827,7 @@ class Robot_Command final :
     int32_t raw_vision_vel_x_;
     int32_t raw_vision_vel_y_;
     int32_t vision_source_;
+    int32_t dribble_mode_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -4188,6 +4199,26 @@ inline void Robot_Command::_internal_set_vision_source(int32_t value) {
 inline void Robot_Command::set_vision_source(int32_t value) {
   _internal_set_vision_source(value);
   // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command.vision_source)
+}
+
+// sint32 dribble_mode = 34;
+inline void Robot_Command::clear_dribble_mode() {
+  _impl_.dribble_mode_ = 0;
+}
+inline int32_t Robot_Command::_internal_dribble_mode() const {
+  return _impl_.dribble_mode_;
+}
+inline int32_t Robot_Command::dribble_mode() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Command.dribble_mode)
+  return _internal_dribble_mode();
+}
+inline void Robot_Command::_internal_set_dribble_mode(int32_t value) {
+  
+  _impl_.dribble_mode_ = value;
+}
+inline void Robot_Command::set_dribble_mode(int32_t value) {
+  _internal_set_dribble_mode(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command.dribble_mode)
 }
 
 // -------------------------------------------------------------------

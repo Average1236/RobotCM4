@@ -1,5 +1,7 @@
 #include "device_stm32.h"
 
+#include <algorithm>
+
 static auto now_time = std::chrono::steady_clock::now();
 static auto last_time = now_time - std::chrono::microseconds(1000000) / config::robot_freq;
 
@@ -58,6 +60,7 @@ void DeviceStm32::read_write_stm32()
     stm32_to_CM4_spi rx = {0};
 
     tx.drib_power = drib_power;
+    tx.drib_mode = (uint8_t)std::clamp(drib_mode.load(), 1, 3);
     tx.use_imu = use_imu;
     tx.kick_mode = kick_mode.load();
     tx.kick_discharge_time = (uint16_t)kick_discharge_time.load();

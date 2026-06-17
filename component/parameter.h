@@ -26,9 +26,10 @@ struct Robot_CMD
     bool kick_mode;            // chip:1  shoot:0
     float desire_power;        // speed(m/s) for flatkick or distance(m) for chip
     float kick_discharge_time; // us
-    float drib_power;          // -1 ~ 1
+    float drib_power;          // dribble level; in speed mode 10/20/30 => 10/50/100 turns/s
     float drib_velocity;       // turns/s
     float drib_torque_ff;      // Nm
+    int drib_mode;             // 1: torque, 2: speed, 3: hybrid
     std::array<float, 2> xy_max_acc;   // m/s^2
     std::array<float, 2> xy_max_jerk;  // m/s^3
     std::array<float, 2> xy_max_dec;   // m/s^2

@@ -83,6 +83,7 @@ private:
     struct __attribute__((packed)) CM4_to_stm32_spi
     {
         uint8_t drib_power;
+        uint8_t drib_mode;     // 1: torque, 2: speed, 3: hybrid
         int16_t vel[3];
         int16_t angle_pid[3];
         int16_t wheel_pid[3];
@@ -134,11 +135,12 @@ private:
     // dribbler
 public:
     void set_dribbler(int dribble_val){drib_power = dribble_val;};
-    void set_dribbler(int dribble_val, float dribble_velocity, float dribble_torque_ff)
+    void set_dribbler(int dribble_val, float dribble_velocity, float dribble_torque_ff, int dribble_mode)
     {
         drib_power = dribble_val;
         drib_velocity = dribble_velocity;
         drib_torque_ff = dribble_torque_ff;
+        drib_mode = dribble_mode;
     };
     void set_motion_limits(const std::array<float, 2>& xy_acc,
                            const std::array<float, 2>& xy_jerk,
@@ -159,6 +161,7 @@ public:
     };
 private:
     std::atomic<int> drib_power;
+    std::atomic<int> drib_mode = 3;
     std::atomic<float> drib_velocity = -50.0f;
     std::atomic<float> drib_torque_ff = 0.1f;
     std::array<std::atomic<float>,2> xy_cmd_acc = {7.0f, 7.0f};
