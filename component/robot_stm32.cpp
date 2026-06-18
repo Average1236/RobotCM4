@@ -168,7 +168,9 @@ RobotStm32::RobotStm32() : device_{},
                 << "wheel_chassis_vx,wheel_chassis_vy,"
                 << "fused_chassis_vx,fused_chassis_vy,"
                 << "raw_vision_vel_x,raw_vision_vel_y,vision_source,"
-                << "odom_vx,odom_vy"
+                << "odom_vx,odom_vy,"
+                << "chassis_yaw_rad,chassis_omega_z,controller_omega_ref,"
+                << "controller_f_task_x,controller_f_task_y,controller_f_task_psi"
                 << std::endl;
     velocityCsv.close();
 #endif
@@ -568,7 +570,11 @@ void RobotStm32::update_expansion_board(const double dt)
                      << device_.wheel_chassis_vel[0].load() << "," << device_.wheel_chassis_vel[1].load() << ","
                      << device_.fused_chassis_vel[0].load() << "," << device_.fused_chassis_vel[1].load() << ","
                      << filtered_raw_vision_vel[0] << "," << filtered_raw_vision_vel[1] << "," << _c.vision_source << ","
-                     << device_.odom_vx.load() << "," << device_.odom_vy.load()
+                     << device_.odom_vx.load() << "," << device_.odom_vy.load() << ","
+                     << device_.chassis_yaw_rad.load() << "," << device_.chassis_omega_z.load() << ","
+                     << device_.controller_omega_ref.load() << ","
+                     << device_.controller_f_task[0].load() << "," << device_.controller_f_task[1].load() << ","
+                     << device_.controller_f_task[2].load()
                      << std::endl;
             }
         }

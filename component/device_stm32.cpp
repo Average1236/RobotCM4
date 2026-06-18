@@ -154,6 +154,13 @@ void DeviceStm32::read_write_stm32()
     yaw_max_vel.store(rx.yaw_max_vel / 100.0f);
     yaw_max_acc.store(rx.yaw_max_acc / 100.0f);
     yaw_max_jerk.store(rx.yaw_max_jerk / 100.0f);
+    chassis_yaw_rad.store(rx.chassis_yaw_rad / 1000.0f);
+    chassis_omega_z.store(rx.chassis_omega_z / 100.0f);
+    controller_omega_ref.store(rx.controller_omega_ref / 100.0f);
+    for (int i = 0; i < 3; ++i)
+    {
+        controller_f_task[i].store(rx.controller_f_task[i] / 100.0f);
+    }
 
     // int dt = 0;
 

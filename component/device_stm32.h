@@ -37,7 +37,7 @@
 #define GPIO_LED1 20
 #define GPIO_LED2 21
 
-const int spi_length = 80;
+const int spi_length = 96;
 
 class DeviceStm32 : public DeviceBase
 {
@@ -126,6 +126,10 @@ private:
         int16_t yaw_max_acc;     // rad/s^2 * 100
         int16_t yaw_max_jerk;    // rad/s^3 * 100
         int16_t planned_vel[2];  // planned robot velocity vx, vy in mm/s
+        int16_t chassis_yaw_rad;       // rad * 1000
+        int16_t chassis_omega_z;       // rad/s * 100
+        int16_t controller_omega_ref;  // rad/s * 100
+        int16_t controller_f_task[3];  // Fx, Fy, Fpsi * 100
         int16_t reserved;
 
     };
@@ -195,6 +199,10 @@ public:
     std::atomic<float> yaw_max_vel = 0.0f;
     std::atomic<float> yaw_max_acc = 0.0f;
     std::atomic<float> yaw_max_jerk = 0.0f;
+    std::atomic<float> chassis_yaw_rad = 0.0f;
+    std::atomic<float> chassis_omega_z = 0.0f;
+    std::atomic<float> controller_omega_ref = 0.0f;
+    std::array<std::atomic<float>,3> controller_f_task = {0.0f, 0.0f, 0.0f};
 private:
     std::array<std::atomic<float>,3> vel_all = {0};
     std::array<std::atomic<float>,2> raw_vision_vel = {0.0f, 0.0f};
