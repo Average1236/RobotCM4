@@ -494,9 +494,13 @@ void RobotStm32::update_expansion_board(const double dt)
                 _s.robot_is_infrared = 1;
             }
         }
-        else
+        else if (_s.robot_is_infrared < 0)
         {
             _s.robot_is_infrared = std::max(_s.robot_is_infrared - dt, -10000.0);
+        }
+        else
+        {
+            _s.robot_is_infrared = -1;
         }
         _s.cap_vol = device_.cap_vol;
         _s.bat_vol = device_.battery_vol;
