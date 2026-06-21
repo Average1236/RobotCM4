@@ -130,7 +130,8 @@ private:
         int16_t chassis_omega_z;       // rad/s * 100
         int16_t controller_omega_ref;  // rad/s * 100
         int16_t controller_f_task[3];  // Fx, Fy, Fpsi * 100
-        int16_t reserved;
+        int16_t wheel1_target;  // wheel 1 target RPM * 10
+        int16_t wheel3_target;  // wheel 3 target RPM * 10
 
     };
 
@@ -203,6 +204,8 @@ public:
     std::atomic<float> chassis_omega_z = 0.0f;
     std::atomic<float> controller_omega_ref = 0.0f;
     std::array<std::atomic<float>,3> controller_f_task = {0.0f, 0.0f, 0.0f};
+    std::atomic<float> wheel1_target = 0.0f;
+    std::atomic<float> wheel3_target = 0.0f;
 private:
     std::array<std::atomic<float>,3> vel_all = {0};
     std::array<std::atomic<float>,2> raw_vision_vel = {0.0f, 0.0f};

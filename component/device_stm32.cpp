@@ -161,6 +161,8 @@ void DeviceStm32::read_write_stm32()
     {
         controller_f_task[i].store(rx.controller_f_task[i] / 100.0f);
     }
+    wheel1_target.store(rx.wheel1_target / 10.0f);
+    wheel3_target.store(rx.wheel3_target / 10.0f);
 
     // int dt = 0;
 

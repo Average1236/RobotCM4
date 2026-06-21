@@ -162,6 +162,8 @@ RobotStm32::RobotStm32() : device_{},
         zos::log("stm32 velocity csv open false\n");
     }
     velocityCsv << "time_ms,target_vx,target_vy,target_vr,"
+                << "xy_max_acc_x,xy_max_acc_y,"
+                << "xy_max_dec_x,xy_max_dec_y,"
                 << "planned_vx,planned_vy,"
                 << "optflow_body_vx,optflow_body_vy,"
                 << "optflow_kf_vx,optflow_kf_vy,"
@@ -170,7 +172,8 @@ RobotStm32::RobotStm32() : device_{},
                 << "raw_vision_vel_x,raw_vision_vel_y,vision_source,"
                 << "odom_vx,odom_vy,"
                 << "chassis_yaw_rad,chassis_omega_z,controller_omega_ref,"
-                << "controller_f_task_x,controller_f_task_y,controller_f_task_psi"
+                << "controller_f_task_x,controller_f_task_y,controller_f_task_psi,"
+                << "wheel1_target_rpm,wheel1_actual_rpm,wheel3_target_rpm,wheel3_actual_rpm"
                 << std::endl;
     velocityCsv.close();
 #endif
@@ -568,6 +571,8 @@ void RobotStm32::update_expansion_board(const double dt)
             {
                 file << now_ms << ","
                      << _c.vx_target << "," << _c.vy_target << "," << _c.vr_target << ","
+                     << _c.xy_max_acc[0] << "," << _c.xy_max_acc[1] << ","
+                     << _c.xy_max_dec[0] << "," << _c.xy_max_dec[1] << ","
                      << device_.planned_vel[0].load() << "," << device_.planned_vel[1].load() << ","
                      << device_.optflow_body_vel[0].load() << "," << device_.optflow_body_vel[1].load() << ","
                      << device_.optflow_kf_vel[0].load() << "," << device_.optflow_kf_vel[1].load() << ","
@@ -578,7 +583,9 @@ void RobotStm32::update_expansion_board(const double dt)
                      << device_.chassis_yaw_rad.load() << "," << device_.chassis_omega_z.load() << ","
                      << device_.controller_omega_ref.load() << ","
                      << device_.controller_f_task[0].load() << "," << device_.controller_f_task[1].load() << ","
-                     << device_.controller_f_task[2].load()
+                     << device_.controller_f_task[2].load() << ","
+                     << device_.wheel1_target.load() << "," << device_.wheel[0].load() << ","
+                     << device_.wheel3_target.load() << "," << device_.wheel[2].load()
                      << std::endl;
             }
         }
