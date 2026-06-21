@@ -78,6 +78,14 @@ void DeviceStm32::read_write_stm32()
     tx.raw_vision_vel[0] = (int16_t)(raw_vision_vel[0].load());
     tx.raw_vision_vel[1] = (int16_t)(raw_vision_vel[1].load());
     tx.vision_source = static_cast<uint8_t>(std::clamp(vision_source.load(), 0, 255));
+    for (int axis = 0; axis < 2; ++axis)
+    {
+        for (int gain = 0; gain < 3; ++gain)
+        {
+            tx.chassis_vel_pid[axis][gain] = static_cast<int16_t>(
+                std::clamp(chassis_vel_pid_cmd[axis][gain].load() * 100.0f, 0.0f, 32767.0f));
+        }
+    }
     // zos::log("kick_mode: {}, kick_discharge_time: {}\n", kick_mode.load(), kick_discharge_time.load());
 
     for(int i=0;i<3;i++)
@@ -160,6 +168,13 @@ void DeviceStm32::read_write_stm32()
     for (int i = 0; i < 3; ++i)
     {
         controller_f_task[i].store(rx.controller_f_task[i] / 100.0f);
+    }
+    for (int axis = 0; axis < 2; ++axis)
+    {
+        for (int gain = 0; gain < 3; ++gain)
+        {
+            chassis_vel_pid[axis][gain].store(rx.chassis_vel_pid[axis][gain] / 100.0f);
+        }
     }
     wheel1_target.store(rx.wheel1_target / 10.0f);
     wheel3_target.store(rx.wheel3_target / 10.0f);

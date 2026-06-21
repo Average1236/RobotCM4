@@ -36,6 +36,8 @@ struct Robot_CMD
     float yaw_max_vel;                 // rad/s
     float yaw_max_acc;                 // rad/s^2
     float yaw_max_jerk;                // rad/s^3
+    std::array<float, 3> chassis_vel_pid_x; // Kp, Ki, Kd
+    std::array<float, 3> chassis_vel_pid_y; // Kp, Ki, Kd
     std::array<float, 2> raw_vision_vel; // mm/s, robot local frame
     int vision_source;                   // 3: raw vision + optflow, 4: raw vision + wheel
 
@@ -102,6 +104,8 @@ struct Robot_STATUS
     float yaw_max_vel;
     float yaw_max_acc;
     float yaw_max_jerk;
+    std::array<float, 3> chassis_vel_pid_x;
+    std::array<float, 3> chassis_vel_pid_y;
     
     // uint8_t robot_status = 0, last_robot_status = 0;
 };

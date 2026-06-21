@@ -67,6 +67,8 @@ RobotStm32::RobotStm32() : device_{},
         robot_cmd.yaw_max_vel = 25.0f;
         robot_cmd.yaw_max_acc = 40.0f;
         robot_cmd.yaw_max_jerk = 200.0f;
+        robot_cmd.chassis_vel_pid_x = {30.0f, 300.0f, 0.0f};
+        robot_cmd.chassis_vel_pid_y = {30.0f, 300.0f, 0.0f};
         robot_cmd.raw_vision_vel = {0.0f, 0.0f};
         robot_cmd.vision_source = 0;
         robot_cmd.drib_mode = 3;
@@ -98,6 +100,8 @@ RobotStm32::RobotStm32() : device_{},
         robot_status.yaw_max_vel = 0;
         robot_status.yaw_max_acc = 0;
         robot_status.yaw_max_jerk = 0;
+        robot_status.chassis_vel_pid_x = {0.0f, 0.0f, 0.0f};
+        robot_status.chassis_vel_pid_y = {0.0f, 0.0f, 0.0f};
     }
 
     filter_x_.P_k = matrix::creatMatrix<float>(3, 3, 0);
@@ -248,6 +252,18 @@ void RobotStm32::cmd_callback(const zos::Data &data)
             if (_p.yaw_max_vel() > 0) _c.yaw_max_vel = _p.yaw_max_vel() / 1000.0f;
             if (_p.yaw_max_acc() > 0) _c.yaw_max_acc = _p.yaw_max_acc() / 1000.0f;
             if (_p.yaw_max_jerk() > 0) _c.yaw_max_jerk = _p.yaw_max_jerk() / 1000.0f;
+            if (_p.has_chassis_vel_pid_kp_x() && _p.chassis_vel_pid_kp_x() >= 0)
+                _c.chassis_vel_pid_x[0] = _p.chassis_vel_pid_kp_x() / 100.0f;
+            if (_p.has_chassis_vel_pid_ki_x() && _p.chassis_vel_pid_ki_x() >= 0)
+                _c.chassis_vel_pid_x[1] = _p.chassis_vel_pid_ki_x() / 100.0f;
+            if (_p.has_chassis_vel_pid_kd_x() && _p.chassis_vel_pid_kd_x() >= 0)
+                _c.chassis_vel_pid_x[2] = _p.chassis_vel_pid_kd_x() / 100.0f;
+            if (_p.has_chassis_vel_pid_kp_y() && _p.chassis_vel_pid_kp_y() >= 0)
+                _c.chassis_vel_pid_y[0] = _p.chassis_vel_pid_kp_y() / 100.0f;
+            if (_p.has_chassis_vel_pid_ki_y() && _p.chassis_vel_pid_ki_y() >= 0)
+                _c.chassis_vel_pid_y[1] = _p.chassis_vel_pid_ki_y() / 100.0f;
+            if (_p.has_chassis_vel_pid_kd_y() && _p.chassis_vel_pid_kd_y() >= 0)
+                _c.chassis_vel_pid_y[2] = _p.chassis_vel_pid_kd_y() / 100.0f;
             _c.raw_vision_vel[0] = static_cast<float>(_p.raw_vision_vel_x());
             _c.raw_vision_vel[1] = static_cast<float>(_p.raw_vision_vel_y());
             _c.vision_source = _p.vision_source();
@@ -524,6 +540,11 @@ void RobotStm32::update_expansion_board(const double dt)
         _s.yaw_max_vel = device_.yaw_max_vel.load();
         _s.yaw_max_acc = device_.yaw_max_acc.load();
         _s.yaw_max_jerk = device_.yaw_max_jerk.load();
+        for (int gain = 0; gain < 3; ++gain)
+        {
+            _s.chassis_vel_pid_x[gain] = device_.chassis_vel_pid[0][gain].load();
+            _s.chassis_vel_pid_y[gain] = device_.chassis_vel_pid[1][gain].load();
+        }
 
         _s.last_kick_time = std::min(_s.last_kick_time + dt, 10000.0);
         _s.robot_is_shooted = std::min(_s.robot_is_shooted + dt, 100.0);
@@ -551,6 +572,7 @@ void RobotStm32::update_expansion_board(const double dt)
         device_.set_dribbler(_c.drib_power, _c.drib_velocity, _c.drib_torque_ff, _c.drib_mode);
         device_.set_motion_limits(_c.xy_max_acc, _c.xy_max_jerk, _c.xy_max_dec,
                                   _c.yaw_max_vel, _c.yaw_max_acc, _c.yaw_max_jerk);
+        device_.set_chassis_velocity_pid(_c.chassis_vel_pid_x, _c.chassis_vel_pid_y);
         const auto filtered_raw_vision_vel = filter_raw_vision_velocity(_c.raw_vision_vel, _c.vision_source);
         device_.set_vision_velocity(filtered_raw_vision_vel[0], filtered_raw_vision_vel[1], _c.vision_source);
         device_.use_imu = _c.use_dir;
@@ -649,6 +671,8 @@ void RobotStm32::send_status()
             add_odom_pose(odom, _s.xy_max_acc[0], _s.xy_max_acc[1], _s.yaw_max_acc);
             add_odom_pose(odom, _s.xy_max_jerk[0], _s.xy_max_jerk[1], _s.yaw_max_jerk);
             add_odom_pose(odom, _s.xy_max_dec[0], _s.xy_max_dec[1], 0.0f);
+            add_odom_pose(odom, _s.chassis_vel_pid_x[0], _s.chassis_vel_pid_x[1], _s.chassis_vel_pid_x[2]);
+            add_odom_pose(odom, _s.chassis_vel_pid_y[0], _s.chassis_vel_pid_y[1], _s.chassis_vel_pid_y[2]);
             pb_status.set_have_imu(imu_online);
         }
         else

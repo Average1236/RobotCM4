@@ -102,7 +102,9 @@ struct Robots_CommandDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Robots_CommandDefaultTypeInternal _Robots_Command_default_instance_;
 PROTOBUF_CONSTEXPR Robot_Command::Robot_Command(
     ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.angle_pid_)*/{}
+    /*decltype(_impl_._has_bits_)*/{}
+  , /*decltype(_impl_._cached_size_)*/{}
+  , /*decltype(_impl_.angle_pid_)*/{}
   , /*decltype(_impl_._angle_pid_cached_byte_size_)*/{0}
   , /*decltype(_impl_.wheel_pid_)*/{}
   , /*decltype(_impl_._wheel_pid_cached_byte_size_)*/{0}
@@ -138,7 +140,12 @@ PROTOBUF_CONSTEXPR Robot_Command::Robot_Command(
   , /*decltype(_impl_.raw_vision_vel_y_)*/0
   , /*decltype(_impl_.vision_source_)*/0
   , /*decltype(_impl_.dribble_mode_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+  , /*decltype(_impl_.chassis_vel_pid_kp_x_)*/0
+  , /*decltype(_impl_.chassis_vel_pid_ki_x_)*/0
+  , /*decltype(_impl_.chassis_vel_pid_kd_x_)*/0
+  , /*decltype(_impl_.chassis_vel_pid_kp_y_)*/0
+  , /*decltype(_impl_.chassis_vel_pid_ki_y_)*/0
+  , /*decltype(_impl_.chassis_vel_pid_kd_y_)*/0} {}
 struct Robot_CommandDefaultTypeInternal {
   PROTOBUF_CONSTEXPR Robot_CommandDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -255,7 +262,7 @@ const uint32_t TableStruct_zss_5fcmd_2eproto::offsets[] PROTOBUF_SECTION_VARIABL
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Robots_Command, _impl_.delay_),
   ~0u,
   0,
-  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_._has_bits_),
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -295,6 +302,52 @@ const uint32_t TableStruct_zss_5fcmd_2eproto::offsets[] PROTOBUF_SECTION_VARIABL
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.raw_vision_vel_y_),
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.vision_source_),
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.dribble_mode_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.chassis_vel_pid_kp_x_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.chassis_vel_pid_ki_x_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.chassis_vel_pid_kd_x_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.chassis_vel_pid_kp_y_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.chassis_vel_pid_ki_y_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.chassis_vel_pid_kd_y_),
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Robots_Command_Sim, _impl_._has_bits_),
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Robots_Command_Sim, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -331,10 +384,10 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 7, -1, -1, sizeof(::ZSS::New::Multicast_Status)},
   { 22, -1, -1, sizeof(::ZSS::New::Robot_Status)},
   { 43, 51, -1, sizeof(::ZSS::New::Robots_Command)},
-  { 53, -1, -1, sizeof(::ZSS::New::Robot_Command)},
-  { 93, 101, -1, sizeof(::ZSS::New::Robots_Command_Sim)},
-  { 103, -1, -1, sizeof(::ZSS::New::Robot_Command_Sim)},
-  { 115, -1, -1, sizeof(::ZSS::New::Robot_Command_Mini)},
+  { 53, 99, -1, sizeof(::ZSS::New::Robot_Command)},
+  { 139, 147, -1, sizeof(::ZSS::New::Robots_Command_Sim)},
+  { 149, -1, -1, sizeof(::ZSS::New::Robot_Command_Sim)},
+  { 161, -1, -1, sizeof(::ZSS::New::Robot_Command_Mini)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -366,7 +419,7 @@ const char descriptor_table_protodef_zss_5fcmd_2eproto[] PROTOBUF_SECTION_VARIAB
   "\014 \003(\002\022\020\n\010have_imu\030\r \001(\010\022\023\n\013imu_omega_z\030\016"
   " \001(\021\022\021\n\twheel_ref\030\017 \003(\021\"W\n\016Robots_Comman"
   "d\022\'\n\007command\030\001 \003(\0132\026.ZSS.New.Robot_Comma"
-  "nd\022\022\n\005delay\030\002 \001(\005H\000\210\001\001B\010\n\006_delay\"\333\010\n\rRob"
+  "nd\022\022\n\005delay\030\002 \001(\005H\000\210\001\001B\010\n\006_delay\"\303\013\n\rRob"
   "ot_Command\022\020\n\010robot_id\030\001 \001(\005\0222\n\tkick_mod"
   "e\030\002 \001(\0162\037.ZSS.New.Robot_Command.KickMode"
   "\022\024\n\014desire_power\030\003 \001(\002\022\033\n\023kick_discharge"
@@ -390,11 +443,20 @@ const char descriptor_table_protodef_zss_5fcmd_2eproto[] PROTOBUF_SECTION_VARIAB
   "\035 \001(\021\022\024\n\014yaw_max_jerk\030\036 \001(\021\022\030\n\020raw_visio"
   "n_vel_x\030\037 \001(\021\022\030\n\020raw_vision_vel_y\030  \001(\021\022"
   "\025\n\rvision_source\030! \001(\021\022\024\n\014dribble_mode\030\""
-  " \001(\021\"(\n\010KickMode\022\010\n\004NONE\020\000\022\010\n\004KICK\020\001\022\010\n\004"
-  "CHIP\020\002\"L\n\007CmdType\022\010\n\004STOP\020\000\022\r\n\tCMD_WHEEL"
-  "\020\001\022\013\n\007CMD_VEL\020\002\022\014\n\010CMD_POSE\020\003\022\r\n\tCMD_CHA"
-  "SE\020\004\"@\n\010CommType\022\013\n\007DEFAULT\020\000\022\n\n\006SERIAL\020"
-  "\001\022\r\n\tUDP_24L01\020\002\022\014\n\010UDP_WIFI\020\003\"_\n\022Robots"
+  " \001(\021\022!\n\024chassis_vel_pid_kp_x\030# \001(\021H\000\210\001\001\022"
+  "!\n\024chassis_vel_pid_ki_x\030$ \001(\021H\001\210\001\001\022!\n\024ch"
+  "assis_vel_pid_kd_x\030% \001(\021H\002\210\001\001\022!\n\024chassis"
+  "_vel_pid_kp_y\030& \001(\021H\003\210\001\001\022!\n\024chassis_vel_"
+  "pid_ki_y\030\' \001(\021H\004\210\001\001\022!\n\024chassis_vel_pid_k"
+  "d_y\030( \001(\021H\005\210\001\001\"(\n\010KickMode\022\010\n\004NONE\020\000\022\010\n\004"
+  "KICK\020\001\022\010\n\004CHIP\020\002\"L\n\007CmdType\022\010\n\004STOP\020\000\022\r\n"
+  "\tCMD_WHEEL\020\001\022\013\n\007CMD_VEL\020\002\022\014\n\010CMD_POSE\020\003\022"
+  "\r\n\tCMD_CHASE\020\004\"@\n\010CommType\022\013\n\007DEFAULT\020\000\022"
+  "\n\n\006SERIAL\020\001\022\r\n\tUDP_24L01\020\002\022\014\n\010UDP_WIFI\020\003"
+  "B\027\n\025_chassis_vel_pid_kp_xB\027\n\025_chassis_ve"
+  "l_pid_ki_xB\027\n\025_chassis_vel_pid_kd_xB\027\n\025_"
+  "chassis_vel_pid_kp_yB\027\n\025_chassis_vel_pid"
+  "_ki_yB\027\n\025_chassis_vel_pid_kd_y\"_\n\022Robots"
   "_Command_Sim\022+\n\007command\030\001 \003(\0132\032.ZSS.New."
   "Robot_Command_Sim\022\022\n\005delay\030\002 \001(\005H\000\210\001\001B\010\n"
   "\006_delay\"\331\001\n\021Robot_Command_Sim\022\020\n\010robot_i"
@@ -414,7 +476,7 @@ static const ::_pbi::DescriptorTable* const descriptor_table_zss_5fcmd_2eproto_d
 };
 static ::_pbi::once_flag descriptor_table_zss_5fcmd_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_zss_5fcmd_2eproto = {
-    false, false, 2349, descriptor_table_protodef_zss_5fcmd_2eproto,
+    false, false, 2709, descriptor_table_protodef_zss_5fcmd_2eproto,
     "zss_cmd.proto",
     &descriptor_table_zss_5fcmd_2eproto_once, descriptor_table_zss_5fcmd_2eproto_deps, 1, 8,
     schemas, file_default_instances, TableStruct_zss_5fcmd_2eproto::offsets,
@@ -1969,10 +2031,29 @@ void Robots_Command::InternalSwap(Robots_Command* other) {
 
 class Robot_Command::_Internal {
  public:
+  using HasBits = decltype(std::declval<Robot_Command>()._impl_._has_bits_);
   static const ::ZSS::New::CmdVel& cmd_vel(const Robot_Command* msg);
   static const ::ZSS::New::CmdPose& cmd_pose(const Robot_Command* msg);
   static const ::ZSS::New::CmdChase& cmd_chase(const Robot_Command* msg);
   static const ::ZSS::New::CmdWheel& cmd_wheel(const Robot_Command* msg);
+  static void set_has_chassis_vel_pid_kp_x(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+  static void set_has_chassis_vel_pid_ki_x(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
+  static void set_has_chassis_vel_pid_kd_x(HasBits* has_bits) {
+    (*has_bits)[0] |= 4u;
+  }
+  static void set_has_chassis_vel_pid_kp_y(HasBits* has_bits) {
+    (*has_bits)[0] |= 8u;
+  }
+  static void set_has_chassis_vel_pid_ki_y(HasBits* has_bits) {
+    (*has_bits)[0] |= 16u;
+  }
+  static void set_has_chassis_vel_pid_kd_y(HasBits* has_bits) {
+    (*has_bits)[0] |= 32u;
+  }
 };
 
 const ::ZSS::New::CmdVel&
@@ -2025,7 +2106,9 @@ Robot_Command::Robot_Command(const Robot_Command& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
   Robot_Command* const _this = this; (void)_this;
   new (&_impl_) Impl_{
-      decltype(_impl_.angle_pid_){from._impl_.angle_pid_}
+      decltype(_impl_._has_bits_){from._impl_._has_bits_}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.angle_pid_){from._impl_.angle_pid_}
     , /*decltype(_impl_._angle_pid_cached_byte_size_)*/{0}
     , decltype(_impl_.wheel_pid_){from._impl_.wheel_pid_}
     , /*decltype(_impl_._wheel_pid_cached_byte_size_)*/{0}
@@ -2061,7 +2144,12 @@ Robot_Command::Robot_Command(const Robot_Command& from)
     , decltype(_impl_.raw_vision_vel_y_){}
     , decltype(_impl_.vision_source_){}
     , decltype(_impl_.dribble_mode_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
+    , decltype(_impl_.chassis_vel_pid_kp_x_){}
+    , decltype(_impl_.chassis_vel_pid_ki_x_){}
+    , decltype(_impl_.chassis_vel_pid_kd_x_){}
+    , decltype(_impl_.chassis_vel_pid_kp_y_){}
+    , decltype(_impl_.chassis_vel_pid_ki_y_){}
+    , decltype(_impl_.chassis_vel_pid_kd_y_){}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_cmd_vel()) {
@@ -2077,8 +2165,8 @@ Robot_Command::Robot_Command(const Robot_Command& from)
     _this->_impl_.cmd_wheel_ = new ::ZSS::New::CmdWheel(*from._impl_.cmd_wheel_);
   }
   ::memcpy(&_impl_.robot_id_, &from._impl_.robot_id_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.dribble_mode_) -
-    reinterpret_cast<char*>(&_impl_.robot_id_)) + sizeof(_impl_.dribble_mode_));
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.chassis_vel_pid_kd_y_) -
+    reinterpret_cast<char*>(&_impl_.robot_id_)) + sizeof(_impl_.chassis_vel_pid_kd_y_));
   // @@protoc_insertion_point(copy_constructor:ZSS.New.Robot_Command)
 }
 
@@ -2087,7 +2175,9 @@ inline void Robot_Command::SharedCtor(
   (void)arena;
   (void)is_message_owned;
   new (&_impl_) Impl_{
-      decltype(_impl_.angle_pid_){arena}
+      decltype(_impl_._has_bits_){}
+    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.angle_pid_){arena}
     , /*decltype(_impl_._angle_pid_cached_byte_size_)*/{0}
     , decltype(_impl_.wheel_pid_){arena}
     , /*decltype(_impl_._wheel_pid_cached_byte_size_)*/{0}
@@ -2123,7 +2213,12 @@ inline void Robot_Command::SharedCtor(
     , decltype(_impl_.raw_vision_vel_y_){0}
     , decltype(_impl_.vision_source_){0}
     , decltype(_impl_.dribble_mode_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
+    , decltype(_impl_.chassis_vel_pid_kp_x_){0}
+    , decltype(_impl_.chassis_vel_pid_ki_x_){0}
+    , decltype(_impl_.chassis_vel_pid_kd_x_){0}
+    , decltype(_impl_.chassis_vel_pid_kp_y_){0}
+    , decltype(_impl_.chassis_vel_pid_ki_y_){0}
+    , decltype(_impl_.chassis_vel_pid_kd_y_){0}
   };
 }
 
@@ -2177,11 +2272,19 @@ void Robot_Command::Clear() {
   ::memset(&_impl_.robot_id_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&_impl_.dribble_mode_) -
       reinterpret_cast<char*>(&_impl_.robot_id_)) + sizeof(_impl_.dribble_mode_));
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x0000003fu) {
+    ::memset(&_impl_.chassis_vel_pid_kp_x_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&_impl_.chassis_vel_pid_kd_y_) -
+        reinterpret_cast<char*>(&_impl_.chassis_vel_pid_kp_x_)) + sizeof(_impl_.chassis_vel_pid_kd_y_));
+  }
+  _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
@@ -2468,6 +2571,60 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
         } else
           goto handle_unusual;
         continue;
+      // optional sint32 chassis_vel_pid_kp_x = 35;
+      case 35:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          _Internal::set_has_chassis_vel_pid_kp_x(&has_bits);
+          _impl_.chassis_vel_pid_kp_x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional sint32 chassis_vel_pid_ki_x = 36;
+      case 36:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
+          _Internal::set_has_chassis_vel_pid_ki_x(&has_bits);
+          _impl_.chassis_vel_pid_ki_x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional sint32 chassis_vel_pid_kd_x = 37;
+      case 37:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
+          _Internal::set_has_chassis_vel_pid_kd_x(&has_bits);
+          _impl_.chassis_vel_pid_kd_x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional sint32 chassis_vel_pid_kp_y = 38;
+      case 38:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
+          _Internal::set_has_chassis_vel_pid_kp_y(&has_bits);
+          _impl_.chassis_vel_pid_kp_y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional sint32 chassis_vel_pid_ki_y = 39;
+      case 39:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
+          _Internal::set_has_chassis_vel_pid_ki_y(&has_bits);
+          _impl_.chassis_vel_pid_ki_y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional sint32 chassis_vel_pid_kd_y = 40;
+      case 40:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 64)) {
+          _Internal::set_has_chassis_vel_pid_kd_y(&has_bits);
+          _impl_.chassis_vel_pid_kd_y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -2484,6 +2641,7 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
     CHK_(ptr != nullptr);
   }  // while
 message_done:
+  _impl_._has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -2717,6 +2875,42 @@ uint8_t* Robot_Command::_InternalSerialize(
   if (this->_internal_dribble_mode() != 0) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteSInt32ToArray(34, this->_internal_dribble_mode(), target);
+  }
+
+  // optional sint32 chassis_vel_pid_kp_x = 35;
+  if (_internal_has_chassis_vel_pid_kp_x()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteSInt32ToArray(35, this->_internal_chassis_vel_pid_kp_x(), target);
+  }
+
+  // optional sint32 chassis_vel_pid_ki_x = 36;
+  if (_internal_has_chassis_vel_pid_ki_x()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteSInt32ToArray(36, this->_internal_chassis_vel_pid_ki_x(), target);
+  }
+
+  // optional sint32 chassis_vel_pid_kd_x = 37;
+  if (_internal_has_chassis_vel_pid_kd_x()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteSInt32ToArray(37, this->_internal_chassis_vel_pid_kd_x(), target);
+  }
+
+  // optional sint32 chassis_vel_pid_kp_y = 38;
+  if (_internal_has_chassis_vel_pid_kp_y()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteSInt32ToArray(38, this->_internal_chassis_vel_pid_kp_y(), target);
+  }
+
+  // optional sint32 chassis_vel_pid_ki_y = 39;
+  if (_internal_has_chassis_vel_pid_ki_y()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteSInt32ToArray(39, this->_internal_chassis_vel_pid_ki_y(), target);
+  }
+
+  // optional sint32 chassis_vel_pid_kd_y = 40;
+  if (_internal_has_chassis_vel_pid_kd_y()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteSInt32ToArray(40, this->_internal_chassis_vel_pid_kd_y(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -2971,6 +3165,51 @@ size_t Robot_Command::ByteSizeLong() const {
         this->_internal_dribble_mode());
   }
 
+  cached_has_bits = _impl_._has_bits_[0];
+  if (cached_has_bits & 0x0000003fu) {
+    // optional sint32 chassis_vel_pid_kp_x = 35;
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 2 +
+        ::_pbi::WireFormatLite::SInt32Size(
+          this->_internal_chassis_vel_pid_kp_x());
+    }
+
+    // optional sint32 chassis_vel_pid_ki_x = 36;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += 2 +
+        ::_pbi::WireFormatLite::SInt32Size(
+          this->_internal_chassis_vel_pid_ki_x());
+    }
+
+    // optional sint32 chassis_vel_pid_kd_x = 37;
+    if (cached_has_bits & 0x00000004u) {
+      total_size += 2 +
+        ::_pbi::WireFormatLite::SInt32Size(
+          this->_internal_chassis_vel_pid_kd_x());
+    }
+
+    // optional sint32 chassis_vel_pid_kp_y = 38;
+    if (cached_has_bits & 0x00000008u) {
+      total_size += 2 +
+        ::_pbi::WireFormatLite::SInt32Size(
+          this->_internal_chassis_vel_pid_kp_y());
+    }
+
+    // optional sint32 chassis_vel_pid_ki_y = 39;
+    if (cached_has_bits & 0x00000010u) {
+      total_size += 2 +
+        ::_pbi::WireFormatLite::SInt32Size(
+          this->_internal_chassis_vel_pid_ki_y());
+    }
+
+    // optional sint32 chassis_vel_pid_kd_y = 40;
+    if (cached_has_bits & 0x00000020u) {
+      total_size += 2 +
+        ::_pbi::WireFormatLite::SInt32Size(
+          this->_internal_chassis_vel_pid_kd_y());
+    }
+
+  }
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -3095,6 +3334,28 @@ void Robot_Command::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::
   if (from._internal_dribble_mode() != 0) {
     _this->_internal_set_dribble_mode(from._internal_dribble_mode());
   }
+  cached_has_bits = from._impl_._has_bits_[0];
+  if (cached_has_bits & 0x0000003fu) {
+    if (cached_has_bits & 0x00000001u) {
+      _this->_impl_.chassis_vel_pid_kp_x_ = from._impl_.chassis_vel_pid_kp_x_;
+    }
+    if (cached_has_bits & 0x00000002u) {
+      _this->_impl_.chassis_vel_pid_ki_x_ = from._impl_.chassis_vel_pid_ki_x_;
+    }
+    if (cached_has_bits & 0x00000004u) {
+      _this->_impl_.chassis_vel_pid_kd_x_ = from._impl_.chassis_vel_pid_kd_x_;
+    }
+    if (cached_has_bits & 0x00000008u) {
+      _this->_impl_.chassis_vel_pid_kp_y_ = from._impl_.chassis_vel_pid_kp_y_;
+    }
+    if (cached_has_bits & 0x00000010u) {
+      _this->_impl_.chassis_vel_pid_ki_y_ = from._impl_.chassis_vel_pid_ki_y_;
+    }
+    if (cached_has_bits & 0x00000020u) {
+      _this->_impl_.chassis_vel_pid_kd_y_ = from._impl_.chassis_vel_pid_kd_y_;
+    }
+    _this->_impl_._has_bits_[0] |= cached_has_bits;
+  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -3112,11 +3373,12 @@ bool Robot_Command::IsInitialized() const {
 void Robot_Command::InternalSwap(Robot_Command* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   _impl_.angle_pid_.InternalSwap(&other->_impl_.angle_pid_);
   _impl_.wheel_pid_.InternalSwap(&other->_impl_.wheel_pid_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Robot_Command, _impl_.dribble_mode_)
-      + sizeof(Robot_Command::_impl_.dribble_mode_)
+      PROTOBUF_FIELD_OFFSET(Robot_Command, _impl_.chassis_vel_pid_kd_y_)
+      + sizeof(Robot_Command::_impl_.chassis_vel_pid_kd_y_)
       - PROTOBUF_FIELD_OFFSET(Robot_Command, _impl_.cmd_vel_)>(
           reinterpret_cast<char*>(&_impl_.cmd_vel_),
           reinterpret_cast<char*>(&other->_impl_.cmd_vel_));

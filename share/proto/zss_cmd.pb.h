@@ -1415,6 +1415,12 @@ class Robot_Command final :
     kRawVisionVelYFieldNumber = 32,
     kVisionSourceFieldNumber = 33,
     kDribbleModeFieldNumber = 34,
+    kChassisVelPidKpXFieldNumber = 35,
+    kChassisVelPidKiXFieldNumber = 36,
+    kChassisVelPidKdXFieldNumber = 37,
+    kChassisVelPidKpYFieldNumber = 38,
+    kChassisVelPidKiYFieldNumber = 39,
+    kChassisVelPidKdYFieldNumber = 40,
   };
   // repeated sint32 angle_pid = 13;
   int angle_pid_size() const;
@@ -1784,6 +1790,84 @@ class Robot_Command final :
   void _internal_set_dribble_mode(int32_t value);
   public:
 
+  // optional sint32 chassis_vel_pid_kp_x = 35;
+  bool has_chassis_vel_pid_kp_x() const;
+  private:
+  bool _internal_has_chassis_vel_pid_kp_x() const;
+  public:
+  void clear_chassis_vel_pid_kp_x();
+  int32_t chassis_vel_pid_kp_x() const;
+  void set_chassis_vel_pid_kp_x(int32_t value);
+  private:
+  int32_t _internal_chassis_vel_pid_kp_x() const;
+  void _internal_set_chassis_vel_pid_kp_x(int32_t value);
+  public:
+
+  // optional sint32 chassis_vel_pid_ki_x = 36;
+  bool has_chassis_vel_pid_ki_x() const;
+  private:
+  bool _internal_has_chassis_vel_pid_ki_x() const;
+  public:
+  void clear_chassis_vel_pid_ki_x();
+  int32_t chassis_vel_pid_ki_x() const;
+  void set_chassis_vel_pid_ki_x(int32_t value);
+  private:
+  int32_t _internal_chassis_vel_pid_ki_x() const;
+  void _internal_set_chassis_vel_pid_ki_x(int32_t value);
+  public:
+
+  // optional sint32 chassis_vel_pid_kd_x = 37;
+  bool has_chassis_vel_pid_kd_x() const;
+  private:
+  bool _internal_has_chassis_vel_pid_kd_x() const;
+  public:
+  void clear_chassis_vel_pid_kd_x();
+  int32_t chassis_vel_pid_kd_x() const;
+  void set_chassis_vel_pid_kd_x(int32_t value);
+  private:
+  int32_t _internal_chassis_vel_pid_kd_x() const;
+  void _internal_set_chassis_vel_pid_kd_x(int32_t value);
+  public:
+
+  // optional sint32 chassis_vel_pid_kp_y = 38;
+  bool has_chassis_vel_pid_kp_y() const;
+  private:
+  bool _internal_has_chassis_vel_pid_kp_y() const;
+  public:
+  void clear_chassis_vel_pid_kp_y();
+  int32_t chassis_vel_pid_kp_y() const;
+  void set_chassis_vel_pid_kp_y(int32_t value);
+  private:
+  int32_t _internal_chassis_vel_pid_kp_y() const;
+  void _internal_set_chassis_vel_pid_kp_y(int32_t value);
+  public:
+
+  // optional sint32 chassis_vel_pid_ki_y = 39;
+  bool has_chassis_vel_pid_ki_y() const;
+  private:
+  bool _internal_has_chassis_vel_pid_ki_y() const;
+  public:
+  void clear_chassis_vel_pid_ki_y();
+  int32_t chassis_vel_pid_ki_y() const;
+  void set_chassis_vel_pid_ki_y(int32_t value);
+  private:
+  int32_t _internal_chassis_vel_pid_ki_y() const;
+  void _internal_set_chassis_vel_pid_ki_y(int32_t value);
+  public:
+
+  // optional sint32 chassis_vel_pid_kd_y = 40;
+  bool has_chassis_vel_pid_kd_y() const;
+  private:
+  bool _internal_has_chassis_vel_pid_kd_y() const;
+  public:
+  void clear_chassis_vel_pid_kd_y();
+  int32_t chassis_vel_pid_kd_y() const;
+  void set_chassis_vel_pid_kd_y(int32_t value);
+  private:
+  int32_t _internal_chassis_vel_pid_kd_y() const;
+  void _internal_set_chassis_vel_pid_kd_y(int32_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:ZSS.New.Robot_Command)
  private:
   class _Internal;
@@ -1792,6 +1876,8 @@ class Robot_Command final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
     ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t > angle_pid_;
     mutable std::atomic<int> _angle_pid_cached_byte_size_;
     ::PROTOBUF_NAMESPACE_ID::RepeatedField< int32_t > wheel_pid_;
@@ -1828,7 +1914,12 @@ class Robot_Command final :
     int32_t raw_vision_vel_y_;
     int32_t vision_source_;
     int32_t dribble_mode_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+    int32_t chassis_vel_pid_kp_x_;
+    int32_t chassis_vel_pid_ki_x_;
+    int32_t chassis_vel_pid_kd_x_;
+    int32_t chassis_vel_pid_kp_y_;
+    int32_t chassis_vel_pid_ki_y_;
+    int32_t chassis_vel_pid_kd_y_;
   };
   union { Impl_ _impl_; };
   friend struct ::TableStruct_zss_5fcmd_2eproto;
@@ -4219,6 +4310,174 @@ inline void Robot_Command::_internal_set_dribble_mode(int32_t value) {
 inline void Robot_Command::set_dribble_mode(int32_t value) {
   _internal_set_dribble_mode(value);
   // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command.dribble_mode)
+}
+
+// optional sint32 chassis_vel_pid_kp_x = 35;
+inline bool Robot_Command::_internal_has_chassis_vel_pid_kp_x() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool Robot_Command::has_chassis_vel_pid_kp_x() const {
+  return _internal_has_chassis_vel_pid_kp_x();
+}
+inline void Robot_Command::clear_chassis_vel_pid_kp_x() {
+  _impl_.chassis_vel_pid_kp_x_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline int32_t Robot_Command::_internal_chassis_vel_pid_kp_x() const {
+  return _impl_.chassis_vel_pid_kp_x_;
+}
+inline int32_t Robot_Command::chassis_vel_pid_kp_x() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Command.chassis_vel_pid_kp_x)
+  return _internal_chassis_vel_pid_kp_x();
+}
+inline void Robot_Command::_internal_set_chassis_vel_pid_kp_x(int32_t value) {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.chassis_vel_pid_kp_x_ = value;
+}
+inline void Robot_Command::set_chassis_vel_pid_kp_x(int32_t value) {
+  _internal_set_chassis_vel_pid_kp_x(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command.chassis_vel_pid_kp_x)
+}
+
+// optional sint32 chassis_vel_pid_ki_x = 36;
+inline bool Robot_Command::_internal_has_chassis_vel_pid_ki_x() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool Robot_Command::has_chassis_vel_pid_ki_x() const {
+  return _internal_has_chassis_vel_pid_ki_x();
+}
+inline void Robot_Command::clear_chassis_vel_pid_ki_x() {
+  _impl_.chassis_vel_pid_ki_x_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline int32_t Robot_Command::_internal_chassis_vel_pid_ki_x() const {
+  return _impl_.chassis_vel_pid_ki_x_;
+}
+inline int32_t Robot_Command::chassis_vel_pid_ki_x() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Command.chassis_vel_pid_ki_x)
+  return _internal_chassis_vel_pid_ki_x();
+}
+inline void Robot_Command::_internal_set_chassis_vel_pid_ki_x(int32_t value) {
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.chassis_vel_pid_ki_x_ = value;
+}
+inline void Robot_Command::set_chassis_vel_pid_ki_x(int32_t value) {
+  _internal_set_chassis_vel_pid_ki_x(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command.chassis_vel_pid_ki_x)
+}
+
+// optional sint32 chassis_vel_pid_kd_x = 37;
+inline bool Robot_Command::_internal_has_chassis_vel_pid_kd_x() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline bool Robot_Command::has_chassis_vel_pid_kd_x() const {
+  return _internal_has_chassis_vel_pid_kd_x();
+}
+inline void Robot_Command::clear_chassis_vel_pid_kd_x() {
+  _impl_.chassis_vel_pid_kd_x_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline int32_t Robot_Command::_internal_chassis_vel_pid_kd_x() const {
+  return _impl_.chassis_vel_pid_kd_x_;
+}
+inline int32_t Robot_Command::chassis_vel_pid_kd_x() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Command.chassis_vel_pid_kd_x)
+  return _internal_chassis_vel_pid_kd_x();
+}
+inline void Robot_Command::_internal_set_chassis_vel_pid_kd_x(int32_t value) {
+  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_.chassis_vel_pid_kd_x_ = value;
+}
+inline void Robot_Command::set_chassis_vel_pid_kd_x(int32_t value) {
+  _internal_set_chassis_vel_pid_kd_x(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command.chassis_vel_pid_kd_x)
+}
+
+// optional sint32 chassis_vel_pid_kp_y = 38;
+inline bool Robot_Command::_internal_has_chassis_vel_pid_kp_y() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  return value;
+}
+inline bool Robot_Command::has_chassis_vel_pid_kp_y() const {
+  return _internal_has_chassis_vel_pid_kp_y();
+}
+inline void Robot_Command::clear_chassis_vel_pid_kp_y() {
+  _impl_.chassis_vel_pid_kp_y_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000008u;
+}
+inline int32_t Robot_Command::_internal_chassis_vel_pid_kp_y() const {
+  return _impl_.chassis_vel_pid_kp_y_;
+}
+inline int32_t Robot_Command::chassis_vel_pid_kp_y() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Command.chassis_vel_pid_kp_y)
+  return _internal_chassis_vel_pid_kp_y();
+}
+inline void Robot_Command::_internal_set_chassis_vel_pid_kp_y(int32_t value) {
+  _impl_._has_bits_[0] |= 0x00000008u;
+  _impl_.chassis_vel_pid_kp_y_ = value;
+}
+inline void Robot_Command::set_chassis_vel_pid_kp_y(int32_t value) {
+  _internal_set_chassis_vel_pid_kp_y(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command.chassis_vel_pid_kp_y)
+}
+
+// optional sint32 chassis_vel_pid_ki_y = 39;
+inline bool Robot_Command::_internal_has_chassis_vel_pid_ki_y() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
+  return value;
+}
+inline bool Robot_Command::has_chassis_vel_pid_ki_y() const {
+  return _internal_has_chassis_vel_pid_ki_y();
+}
+inline void Robot_Command::clear_chassis_vel_pid_ki_y() {
+  _impl_.chassis_vel_pid_ki_y_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000010u;
+}
+inline int32_t Robot_Command::_internal_chassis_vel_pid_ki_y() const {
+  return _impl_.chassis_vel_pid_ki_y_;
+}
+inline int32_t Robot_Command::chassis_vel_pid_ki_y() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Command.chassis_vel_pid_ki_y)
+  return _internal_chassis_vel_pid_ki_y();
+}
+inline void Robot_Command::_internal_set_chassis_vel_pid_ki_y(int32_t value) {
+  _impl_._has_bits_[0] |= 0x00000010u;
+  _impl_.chassis_vel_pid_ki_y_ = value;
+}
+inline void Robot_Command::set_chassis_vel_pid_ki_y(int32_t value) {
+  _internal_set_chassis_vel_pid_ki_y(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command.chassis_vel_pid_ki_y)
+}
+
+// optional sint32 chassis_vel_pid_kd_y = 40;
+inline bool Robot_Command::_internal_has_chassis_vel_pid_kd_y() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000020u) != 0;
+  return value;
+}
+inline bool Robot_Command::has_chassis_vel_pid_kd_y() const {
+  return _internal_has_chassis_vel_pid_kd_y();
+}
+inline void Robot_Command::clear_chassis_vel_pid_kd_y() {
+  _impl_.chassis_vel_pid_kd_y_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000020u;
+}
+inline int32_t Robot_Command::_internal_chassis_vel_pid_kd_y() const {
+  return _impl_.chassis_vel_pid_kd_y_;
+}
+inline int32_t Robot_Command::chassis_vel_pid_kd_y() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.Robot_Command.chassis_vel_pid_kd_y)
+  return _internal_chassis_vel_pid_kd_y();
+}
+inline void Robot_Command::_internal_set_chassis_vel_pid_kd_y(int32_t value) {
+  _impl_._has_bits_[0] |= 0x00000020u;
+  _impl_.chassis_vel_pid_kd_y_ = value;
+}
+inline void Robot_Command::set_chassis_vel_pid_kd_y(int32_t value) {
+  _internal_set_chassis_vel_pid_kd_y(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.Robot_Command.chassis_vel_pid_kd_y)
 }
 
 // -------------------------------------------------------------------

@@ -37,7 +37,7 @@
 #define GPIO_LED1 20
 #define GPIO_LED2 21
 
-const int spi_length = 96;
+const int spi_length = 112;
 
 class DeviceStm32 : public DeviceBase
 {
@@ -100,6 +100,7 @@ private:
         int16_t yaw_max_jerk;    // rad/s^3 * 100
         int16_t raw_vision_vel[2]; // vx, vy in mm/s
         uint8_t vision_source;     // 3: optflow + vision, 4: wheel + vision
+        int16_t chassis_vel_pid[2][3]; // x/y Kp, Ki, Kd * 100
     };
 
     static_assert(sizeof(CM4_to_stm32_spi) <= spi_length, "CM4_to_stm32_spi exceeds spi_length");
@@ -130,6 +131,7 @@ private:
         int16_t chassis_omega_z;       // rad/s * 100
         int16_t controller_omega_ref;  // rad/s * 100
         int16_t controller_f_task[3];  // Fx, Fy, Fpsi * 100
+        int16_t chassis_vel_pid[2][3]; // applied x/y Kp, Ki, Kd * 100
         int16_t wheel1_target;  // wheel 1 target RPM * 10
         int16_t wheel3_target;  // wheel 3 target RPM * 10
 
@@ -164,6 +166,15 @@ public:
         yaw_cmd_acc = yaw_acc;
         yaw_cmd_jerk = yaw_jerk;
     };
+    void set_chassis_velocity_pid(const std::array<float, 3>& pid_x,
+                                  const std::array<float, 3>& pid_y)
+    {
+        for (int i = 0; i < 3; ++i)
+        {
+            chassis_vel_pid_cmd[0][i] = pid_x[i];
+            chassis_vel_pid_cmd[1][i] = pid_y[i];
+        }
+    };
 private:
     std::atomic<int> drib_power;
     std::atomic<int> drib_mode = 3;
@@ -175,6 +186,10 @@ private:
     std::atomic<float> yaw_cmd_vel = 25.0f;
     std::atomic<float> yaw_cmd_acc = 40.0f;
     std::atomic<float> yaw_cmd_jerk = 200.0f;
+    std::array<std::array<std::atomic<float>, 3>, 2> chassis_vel_pid_cmd = {{
+        {30.0f, 300.0f, 0.0f},
+        {30.0f, 300.0f, 0.0f}
+    }};
 
     // vel
 public:
@@ -204,6 +219,10 @@ public:
     std::atomic<float> chassis_omega_z = 0.0f;
     std::atomic<float> controller_omega_ref = 0.0f;
     std::array<std::atomic<float>,3> controller_f_task = {0.0f, 0.0f, 0.0f};
+    std::array<std::array<std::atomic<float>, 3>, 2> chassis_vel_pid = {{
+        {0.0f, 0.0f, 0.0f},
+        {0.0f, 0.0f, 0.0f}
+    }};
     std::atomic<float> wheel1_target = 0.0f;
     std::atomic<float> wheel3_target = 0.0f;
 private:
