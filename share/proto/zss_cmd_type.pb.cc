@@ -88,6 +88,8 @@ PROTOBUF_CONSTEXPR CmdVel::CmdVel(
   , /*decltype(_impl_.use_imu_)*/false
   , /*decltype(_impl_.velocity_r_)*/0
   , /*decltype(_impl_.imu_theta_)*/0
+  , /*decltype(_impl_.acceleration_x_)*/0
+  , /*decltype(_impl_.acceleration_y_)*/0
   , /*decltype(_impl_._cached_size_)*/{}} {}
 struct CmdVelDefaultTypeInternal {
   PROTOBUF_CONSTEXPR CmdVelDefaultTypeInternal()
@@ -98,6 +100,23 @@ struct CmdVelDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CmdVelDefaultTypeInternal _CmdVel_default_instance_;
+PROTOBUF_CONSTEXPR CmdVel_Sim::CmdVel_Sim(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.velocity_x_)*/0
+  , /*decltype(_impl_.velocity_y_)*/0
+  , /*decltype(_impl_.use_imu_)*/false
+  , /*decltype(_impl_.velocity_r_)*/0
+  , /*decltype(_impl_.imu_theta_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct CmdVel_SimDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR CmdVel_SimDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~CmdVel_SimDefaultTypeInternal() {}
+  union {
+    CmdVel_Sim _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CmdVel_SimDefaultTypeInternal _CmdVel_Sim_default_instance_;
 PROTOBUF_CONSTEXPR CmdPoseConfig::CmdPoseConfig(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.max_vx_)*/0
@@ -153,7 +172,7 @@ struct CmdChaseDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CmdChaseDefaultTypeInternal _CmdChase_default_instance_;
 }  // namespace New
 }  // namespace ZSS
-static ::_pb::Metadata file_level_metadata_zss_5fcmd_5ftype_2eproto[8];
+static ::_pb::Metadata file_level_metadata_zss_5fcmd_5ftype_2eproto[9];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_zss_5fcmd_5ftype_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_zss_5fcmd_5ftype_2eproto = nullptr;
 
@@ -204,6 +223,19 @@ const uint32_t TableStruct_zss_5fcmd_5ftype_2eproto::offsets[] PROTOBUF_SECTION_
   PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel, _impl_.use_imu_),
   PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel, _impl_.velocity_r_),
   PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel, _impl_.imu_theta_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel, _impl_.acceleration_x_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel, _impl_.acceleration_y_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel_Sim, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel_Sim, _impl_.velocity_x_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel_Sim, _impl_.velocity_y_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel_Sim, _impl_.use_imu_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel_Sim, _impl_.velocity_r_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel_Sim, _impl_.imu_theta_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdPoseConfig, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -246,9 +278,10 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 18, -1, -1, sizeof(::ZSS::New::Odom)},
   { 25, -1, -1, sizeof(::ZSS::New::CmdWheel)},
   { 35, -1, -1, sizeof(::ZSS::New::CmdVel)},
-  { 46, -1, -1, sizeof(::ZSS::New::CmdPoseConfig)},
-  { 58, -1, -1, sizeof(::ZSS::New::CmdPose)},
-  { 71, -1, -1, sizeof(::ZSS::New::CmdChase)},
+  { 48, -1, -1, sizeof(::ZSS::New::CmdVel_Sim)},
+  { 59, -1, -1, sizeof(::ZSS::New::CmdPoseConfig)},
+  { 71, -1, -1, sizeof(::ZSS::New::CmdPose)},
+  { 84, -1, -1, sizeof(::ZSS::New::CmdChase)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -257,6 +290,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::ZSS::New::_Odom_default_instance_._instance,
   &::ZSS::New::_CmdWheel_default_instance_._instance,
   &::ZSS::New::_CmdVel_default_instance_._instance,
+  &::ZSS::New::_CmdVel_Sim_default_instance_._instance,
   &::ZSS::New::_CmdPoseConfig_default_instance_._instance,
   &::ZSS::New::_CmdPose_default_instance_._instance,
   &::ZSS::New::_CmdChase_default_instance_._instance,
@@ -268,28 +302,32 @@ const char descriptor_table_protodef_zss_5fcmd_5ftype_2eproto[] PROTOBUF_SECTION
   "\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\022\t\n\001w\030\003 \001(\002\"$\n\004Odom"
   "\022\034\n\005poses\030\001 \003(\0132\r.ZSS.New.Pose\"J\n\010CmdWhe"
   "el\022\016\n\006wheel1\030\001 \001(\002\022\016\n\006wheel2\030\002 \001(\002\022\016\n\006wh"
-  "eel3\030\003 \001(\002\022\016\n\006wheel4\030\004 \001(\002\"h\n\006CmdVel\022\022\n\n"
-  "velocity_x\030\001 \001(\021\022\022\n\nvelocity_y\030\002 \001(\021\022\017\n\007"
-  "use_imu\030\003 \001(\010\022\022\n\nvelocity_r\030\004 \001(\021\022\021\n\timu"
-  "_theta\030\005 \001(\021\"o\n\rCmdPoseConfig\022\016\n\006max_vx\030"
-  "\001 \001(\002\022\016\n\006max_vy\030\002 \001(\002\022\016\n\006max_vw\030\003 \001(\002\022\016\n"
-  "\006max_ax\030\004 \001(\002\022\016\n\006max_ay\030\005 \001(\002\022\016\n\006max_aw\030"
-  "\006 \001(\002\"\335\001\n\007CmdPose\022\034\n\005start\030\001 \001(\0132\r.ZSS.N"
-  "ew.Pose\022\037\n\007start_v\030\002 \001(\0132\016.ZSS.New.Twist"
-  "\022\035\n\006target\030\003 \001(\0132\r.ZSS.New.Pose\022 \n\010targe"
-  "t_v\030\004 \001(\0132\016.ZSS.New.Twist\022\026\n\016rotation_se"
-  "nse\030\005 \001(\005\022\022\n\nuse_config\030\006 \001(\010\022&\n\006config\030"
-  "\007 \001(\0132\026.ZSS.New.CmdPoseConfig\"\206\001\n\010CmdCha"
-  "se\022\034\n\005start\030\001 \001(\0132\r.ZSS.New.Pose\022\037\n\007star"
-  "t_v\030\002 \001(\0132\016.ZSS.New.Twist\022\033\n\004ball\030\003 \001(\0132"
-  "\r.ZSS.New.Pose\022\036\n\006ball_v\030\004 \001(\0132\016.ZSS.New"
-  ".Twistb\006proto3"
+  "eel3\030\003 \001(\002\022\016\n\006wheel4\030\004 \001(\002\"\230\001\n\006CmdVel\022\022\n"
+  "\nvelocity_x\030\001 \001(\021\022\022\n\nvelocity_y\030\002 \001(\021\022\017\n"
+  "\007use_imu\030\003 \001(\010\022\022\n\nvelocity_r\030\004 \001(\021\022\021\n\tim"
+  "u_theta\030\005 \001(\021\022\026\n\016acceleration_x\030\006 \001(\021\022\026\n"
+  "\016acceleration_y\030\007 \001(\021\"l\n\nCmdVel_Sim\022\022\n\nv"
+  "elocity_x\030\001 \001(\002\022\022\n\nvelocity_y\030\002 \001(\002\022\017\n\007u"
+  "se_imu\030\003 \001(\010\022\022\n\nvelocity_r\030\004 \001(\002\022\021\n\timu_"
+  "theta\030\005 \001(\002\"o\n\rCmdPoseConfig\022\016\n\006max_vx\030\001"
+  " \001(\002\022\016\n\006max_vy\030\002 \001(\002\022\016\n\006max_vw\030\003 \001(\002\022\016\n\006"
+  "max_ax\030\004 \001(\002\022\016\n\006max_ay\030\005 \001(\002\022\016\n\006max_aw\030\006"
+  " \001(\002\"\335\001\n\007CmdPose\022\034\n\005start\030\001 \001(\0132\r.ZSS.Ne"
+  "w.Pose\022\037\n\007start_v\030\002 \001(\0132\016.ZSS.New.Twist\022"
+  "\035\n\006target\030\003 \001(\0132\r.ZSS.New.Pose\022 \n\010target"
+  "_v\030\004 \001(\0132\016.ZSS.New.Twist\022\026\n\016rotation_sen"
+  "se\030\005 \001(\005\022\022\n\nuse_config\030\006 \001(\010\022&\n\006config\030\007"
+  " \001(\0132\026.ZSS.New.CmdPoseConfig\"\206\001\n\010CmdChas"
+  "e\022\034\n\005start\030\001 \001(\0132\r.ZSS.New.Pose\022\037\n\007start"
+  "_v\030\002 \001(\0132\016.ZSS.New.Twist\022\033\n\004ball\030\003 \001(\0132\r"
+  ".ZSS.New.Pose\022\036\n\006ball_v\030\004 \001(\0132\016.ZSS.New."
+  "Twistb\006proto3"
   ;
 static ::_pbi::once_flag descriptor_table_zss_5fcmd_5ftype_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_zss_5fcmd_5ftype_2eproto = {
-    false, false, 814, descriptor_table_protodef_zss_5fcmd_5ftype_2eproto,
+    false, false, 973, descriptor_table_protodef_zss_5fcmd_5ftype_2eproto,
     "zss_cmd_type.proto",
-    &descriptor_table_zss_5fcmd_5ftype_2eproto_once, nullptr, 0, 8,
+    &descriptor_table_zss_5fcmd_5ftype_2eproto_once, nullptr, 0, 9,
     schemas, file_default_instances, TableStruct_zss_5fcmd_5ftype_2eproto::offsets,
     file_level_metadata_zss_5fcmd_5ftype_2eproto, file_level_enum_descriptors_zss_5fcmd_5ftype_2eproto,
     file_level_service_descriptors_zss_5fcmd_5ftype_2eproto,
@@ -1358,12 +1396,14 @@ CmdVel::CmdVel(const CmdVel& from)
     , decltype(_impl_.use_imu_){}
     , decltype(_impl_.velocity_r_){}
     , decltype(_impl_.imu_theta_){}
+    , decltype(_impl_.acceleration_x_){}
+    , decltype(_impl_.acceleration_y_){}
     , /*decltype(_impl_._cached_size_)*/{}};
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&_impl_.velocity_x_, &from._impl_.velocity_x_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.imu_theta_) -
-    reinterpret_cast<char*>(&_impl_.velocity_x_)) + sizeof(_impl_.imu_theta_));
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.acceleration_y_) -
+    reinterpret_cast<char*>(&_impl_.velocity_x_)) + sizeof(_impl_.acceleration_y_));
   // @@protoc_insertion_point(copy_constructor:ZSS.New.CmdVel)
 }
 
@@ -1377,6 +1417,8 @@ inline void CmdVel::SharedCtor(
     , decltype(_impl_.use_imu_){false}
     , decltype(_impl_.velocity_r_){0}
     , decltype(_impl_.imu_theta_){0}
+    , decltype(_impl_.acceleration_x_){0}
+    , decltype(_impl_.acceleration_y_){0}
     , /*decltype(_impl_._cached_size_)*/{}
   };
 }
@@ -1405,8 +1447,8 @@ void CmdVel::Clear() {
   (void) cached_has_bits;
 
   ::memset(&_impl_.velocity_x_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.imu_theta_) -
-      reinterpret_cast<char*>(&_impl_.velocity_x_)) + sizeof(_impl_.imu_theta_));
+      reinterpret_cast<char*>(&_impl_.acceleration_y_) -
+      reinterpret_cast<char*>(&_impl_.velocity_x_)) + sizeof(_impl_.acceleration_y_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1452,6 +1494,22 @@ const char* CmdVel::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
           _impl_.imu_theta_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // sint32 acceleration_x = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
+          _impl_.acceleration_x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // sint32 acceleration_y = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
+          _impl_.acceleration_y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1515,6 +1573,18 @@ uint8_t* CmdVel::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteSInt32ToArray(5, this->_internal_imu_theta(), target);
   }
 
+  // sint32 acceleration_x = 6;
+  if (this->_internal_acceleration_x() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteSInt32ToArray(6, this->_internal_acceleration_x(), target);
+  }
+
+  // sint32 acceleration_y = 7;
+  if (this->_internal_acceleration_y() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteSInt32ToArray(7, this->_internal_acceleration_y(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1556,6 +1626,16 @@ size_t CmdVel::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::SInt32SizePlusOne(this->_internal_imu_theta());
   }
 
+  // sint32 acceleration_x = 6;
+  if (this->_internal_acceleration_x() != 0) {
+    total_size += ::_pbi::WireFormatLite::SInt32SizePlusOne(this->_internal_acceleration_x());
+  }
+
+  // sint32 acceleration_y = 7;
+  if (this->_internal_acceleration_y() != 0) {
+    total_size += ::_pbi::WireFormatLite::SInt32SizePlusOne(this->_internal_acceleration_y());
+  }
+
   return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
 }
 
@@ -1589,6 +1669,12 @@ void CmdVel::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBU
   if (from._internal_imu_theta() != 0) {
     _this->_internal_set_imu_theta(from._internal_imu_theta());
   }
+  if (from._internal_acceleration_x() != 0) {
+    _this->_internal_set_acceleration_x(from._internal_acceleration_x());
+  }
+  if (from._internal_acceleration_y() != 0) {
+    _this->_internal_set_acceleration_y(from._internal_acceleration_y());
+  }
   _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -1607,8 +1693,8 @@ void CmdVel::InternalSwap(CmdVel* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(CmdVel, _impl_.imu_theta_)
-      + sizeof(CmdVel::_impl_.imu_theta_)
+      PROTOBUF_FIELD_OFFSET(CmdVel, _impl_.acceleration_y_)
+      + sizeof(CmdVel::_impl_.acceleration_y_)
       - PROTOBUF_FIELD_OFFSET(CmdVel, _impl_.velocity_x_)>(
           reinterpret_cast<char*>(&_impl_.velocity_x_),
           reinterpret_cast<char*>(&other->_impl_.velocity_x_));
@@ -1618,6 +1704,337 @@ void CmdVel::InternalSwap(CmdVel* other) {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_zss_5fcmd_5ftype_2eproto_getter, &descriptor_table_zss_5fcmd_5ftype_2eproto_once,
       file_level_metadata_zss_5fcmd_5ftype_2eproto[4]);
+}
+
+// ===================================================================
+
+class CmdVel_Sim::_Internal {
+ public:
+};
+
+CmdVel_Sim::CmdVel_Sim(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:ZSS.New.CmdVel_Sim)
+}
+CmdVel_Sim::CmdVel_Sim(const CmdVel_Sim& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  CmdVel_Sim* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.velocity_x_){}
+    , decltype(_impl_.velocity_y_){}
+    , decltype(_impl_.use_imu_){}
+    , decltype(_impl_.velocity_r_){}
+    , decltype(_impl_.imu_theta_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::memcpy(&_impl_.velocity_x_, &from._impl_.velocity_x_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.imu_theta_) -
+    reinterpret_cast<char*>(&_impl_.velocity_x_)) + sizeof(_impl_.imu_theta_));
+  // @@protoc_insertion_point(copy_constructor:ZSS.New.CmdVel_Sim)
+}
+
+inline void CmdVel_Sim::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.velocity_x_){0}
+    , decltype(_impl_.velocity_y_){0}
+    , decltype(_impl_.use_imu_){false}
+    , decltype(_impl_.velocity_r_){0}
+    , decltype(_impl_.imu_theta_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+CmdVel_Sim::~CmdVel_Sim() {
+  // @@protoc_insertion_point(destructor:ZSS.New.CmdVel_Sim)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void CmdVel_Sim::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void CmdVel_Sim::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void CmdVel_Sim::Clear() {
+// @@protoc_insertion_point(message_clear_start:ZSS.New.CmdVel_Sim)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&_impl_.velocity_x_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.imu_theta_) -
+      reinterpret_cast<char*>(&_impl_.velocity_x_)) + sizeof(_impl_.imu_theta_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* CmdVel_Sim::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // float velocity_x = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 13)) {
+          _impl_.velocity_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float velocity_y = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 21)) {
+          _impl_.velocity_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool use_imu = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          _impl_.use_imu_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // float velocity_r = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 37)) {
+          _impl_.velocity_r_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float imu_theta = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 45)) {
+          _impl_.imu_theta_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* CmdVel_Sim::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:ZSS.New.CmdVel_Sim)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // float velocity_x = 1;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_velocity_x = this->_internal_velocity_x();
+  uint32_t raw_velocity_x;
+  memcpy(&raw_velocity_x, &tmp_velocity_x, sizeof(tmp_velocity_x));
+  if (raw_velocity_x != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(1, this->_internal_velocity_x(), target);
+  }
+
+  // float velocity_y = 2;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_velocity_y = this->_internal_velocity_y();
+  uint32_t raw_velocity_y;
+  memcpy(&raw_velocity_y, &tmp_velocity_y, sizeof(tmp_velocity_y));
+  if (raw_velocity_y != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(2, this->_internal_velocity_y(), target);
+  }
+
+  // bool use_imu = 3;
+  if (this->_internal_use_imu() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(3, this->_internal_use_imu(), target);
+  }
+
+  // float velocity_r = 4;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_velocity_r = this->_internal_velocity_r();
+  uint32_t raw_velocity_r;
+  memcpy(&raw_velocity_r, &tmp_velocity_r, sizeof(tmp_velocity_r));
+  if (raw_velocity_r != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(4, this->_internal_velocity_r(), target);
+  }
+
+  // float imu_theta = 5;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_imu_theta = this->_internal_imu_theta();
+  uint32_t raw_imu_theta;
+  memcpy(&raw_imu_theta, &tmp_imu_theta, sizeof(tmp_imu_theta));
+  if (raw_imu_theta != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(5, this->_internal_imu_theta(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:ZSS.New.CmdVel_Sim)
+  return target;
+}
+
+size_t CmdVel_Sim::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:ZSS.New.CmdVel_Sim)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // float velocity_x = 1;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_velocity_x = this->_internal_velocity_x();
+  uint32_t raw_velocity_x;
+  memcpy(&raw_velocity_x, &tmp_velocity_x, sizeof(tmp_velocity_x));
+  if (raw_velocity_x != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float velocity_y = 2;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_velocity_y = this->_internal_velocity_y();
+  uint32_t raw_velocity_y;
+  memcpy(&raw_velocity_y, &tmp_velocity_y, sizeof(tmp_velocity_y));
+  if (raw_velocity_y != 0) {
+    total_size += 1 + 4;
+  }
+
+  // bool use_imu = 3;
+  if (this->_internal_use_imu() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // float velocity_r = 4;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_velocity_r = this->_internal_velocity_r();
+  uint32_t raw_velocity_r;
+  memcpy(&raw_velocity_r, &tmp_velocity_r, sizeof(tmp_velocity_r));
+  if (raw_velocity_r != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float imu_theta = 5;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_imu_theta = this->_internal_imu_theta();
+  uint32_t raw_imu_theta;
+  memcpy(&raw_imu_theta, &tmp_imu_theta, sizeof(tmp_imu_theta));
+  if (raw_imu_theta != 0) {
+    total_size += 1 + 4;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData CmdVel_Sim::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    CmdVel_Sim::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CmdVel_Sim::GetClassData() const { return &_class_data_; }
+
+
+void CmdVel_Sim::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<CmdVel_Sim*>(&to_msg);
+  auto& from = static_cast<const CmdVel_Sim&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.CmdVel_Sim)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_velocity_x = from._internal_velocity_x();
+  uint32_t raw_velocity_x;
+  memcpy(&raw_velocity_x, &tmp_velocity_x, sizeof(tmp_velocity_x));
+  if (raw_velocity_x != 0) {
+    _this->_internal_set_velocity_x(from._internal_velocity_x());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_velocity_y = from._internal_velocity_y();
+  uint32_t raw_velocity_y;
+  memcpy(&raw_velocity_y, &tmp_velocity_y, sizeof(tmp_velocity_y));
+  if (raw_velocity_y != 0) {
+    _this->_internal_set_velocity_y(from._internal_velocity_y());
+  }
+  if (from._internal_use_imu() != 0) {
+    _this->_internal_set_use_imu(from._internal_use_imu());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_velocity_r = from._internal_velocity_r();
+  uint32_t raw_velocity_r;
+  memcpy(&raw_velocity_r, &tmp_velocity_r, sizeof(tmp_velocity_r));
+  if (raw_velocity_r != 0) {
+    _this->_internal_set_velocity_r(from._internal_velocity_r());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_imu_theta = from._internal_imu_theta();
+  uint32_t raw_imu_theta;
+  memcpy(&raw_imu_theta, &tmp_imu_theta, sizeof(tmp_imu_theta));
+  if (raw_imu_theta != 0) {
+    _this->_internal_set_imu_theta(from._internal_imu_theta());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void CmdVel_Sim::CopyFrom(const CmdVel_Sim& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:ZSS.New.CmdVel_Sim)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool CmdVel_Sim::IsInitialized() const {
+  return true;
+}
+
+void CmdVel_Sim::InternalSwap(CmdVel_Sim* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(CmdVel_Sim, _impl_.imu_theta_)
+      + sizeof(CmdVel_Sim::_impl_.imu_theta_)
+      - PROTOBUF_FIELD_OFFSET(CmdVel_Sim, _impl_.velocity_x_)>(
+          reinterpret_cast<char*>(&_impl_.velocity_x_),
+          reinterpret_cast<char*>(&other->_impl_.velocity_x_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata CmdVel_Sim::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_zss_5fcmd_5ftype_2eproto_getter, &descriptor_table_zss_5fcmd_5ftype_2eproto_once,
+      file_level_metadata_zss_5fcmd_5ftype_2eproto[5]);
 }
 
 // ===================================================================
@@ -1996,7 +2413,7 @@ void CmdPoseConfig::InternalSwap(CmdPoseConfig* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata CmdPoseConfig::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_zss_5fcmd_5ftype_2eproto_getter, &descriptor_table_zss_5fcmd_5ftype_2eproto_once,
-      file_level_metadata_zss_5fcmd_5ftype_2eproto[5]);
+      file_level_metadata_zss_5fcmd_5ftype_2eproto[6]);
 }
 
 // ===================================================================
@@ -2412,7 +2829,7 @@ void CmdPose::InternalSwap(CmdPose* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata CmdPose::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_zss_5fcmd_5ftype_2eproto_getter, &descriptor_table_zss_5fcmd_5ftype_2eproto_once,
-      file_level_metadata_zss_5fcmd_5ftype_2eproto[6]);
+      file_level_metadata_zss_5fcmd_5ftype_2eproto[7]);
 }
 
 // ===================================================================
@@ -2733,7 +3150,7 @@ void CmdChase::InternalSwap(CmdChase* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata CmdChase::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_zss_5fcmd_5ftype_2eproto_getter, &descriptor_table_zss_5fcmd_5ftype_2eproto_once,
-      file_level_metadata_zss_5fcmd_5ftype_2eproto[7]);
+      file_level_metadata_zss_5fcmd_5ftype_2eproto[8]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -2759,6 +3176,10 @@ Arena::CreateMaybeMessage< ::ZSS::New::CmdWheel >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::ZSS::New::CmdVel*
 Arena::CreateMaybeMessage< ::ZSS::New::CmdVel >(Arena* arena) {
   return Arena::CreateMessageInternal< ::ZSS::New::CmdVel >(arena);
+}
+template<> PROTOBUF_NOINLINE ::ZSS::New::CmdVel_Sim*
+Arena::CreateMaybeMessage< ::ZSS::New::CmdVel_Sim >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::ZSS::New::CmdVel_Sim >(arena);
 }
 template<> PROTOBUF_NOINLINE ::ZSS::New::CmdPoseConfig*
 Arena::CreateMaybeMessage< ::ZSS::New::CmdPoseConfig >(Arena* arena) {

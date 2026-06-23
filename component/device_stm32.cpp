@@ -85,6 +85,8 @@ void DeviceStm32::read_write_stm32()
             tx.chassis_vel_pid[axis][gain] = static_cast<int16_t>(
                 std::clamp(chassis_vel_pid_cmd[axis][gain].load() * 100.0f, 0.0f, 32767.0f));
         }
+        tx.acceleration_ff[axis] = static_cast<int16_t>(
+            std::clamp(acceleration_ff[axis].load() * 1000.0f, -32768.0f, 32767.0f));
     }
     // zos::log("kick_mode: {}, kick_discharge_time: {}\n", kick_mode.load(), kick_discharge_time.load());
 

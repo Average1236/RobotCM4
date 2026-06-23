@@ -58,6 +58,9 @@ extern CmdPoseConfigDefaultTypeInternal _CmdPoseConfig_default_instance_;
 class CmdVel;
 struct CmdVelDefaultTypeInternal;
 extern CmdVelDefaultTypeInternal _CmdVel_default_instance_;
+class CmdVel_Sim;
+struct CmdVel_SimDefaultTypeInternal;
+extern CmdVel_SimDefaultTypeInternal _CmdVel_Sim_default_instance_;
 class CmdWheel;
 struct CmdWheelDefaultTypeInternal;
 extern CmdWheelDefaultTypeInternal _CmdWheel_default_instance_;
@@ -77,6 +80,7 @@ template<> ::ZSS::New::CmdChase* Arena::CreateMaybeMessage<::ZSS::New::CmdChase>
 template<> ::ZSS::New::CmdPose* Arena::CreateMaybeMessage<::ZSS::New::CmdPose>(Arena*);
 template<> ::ZSS::New::CmdPoseConfig* Arena::CreateMaybeMessage<::ZSS::New::CmdPoseConfig>(Arena*);
 template<> ::ZSS::New::CmdVel* Arena::CreateMaybeMessage<::ZSS::New::CmdVel>(Arena*);
+template<> ::ZSS::New::CmdVel_Sim* Arena::CreateMaybeMessage<::ZSS::New::CmdVel_Sim>(Arena*);
 template<> ::ZSS::New::CmdWheel* Arena::CreateMaybeMessage<::ZSS::New::CmdWheel>(Arena*);
 template<> ::ZSS::New::Odom* Arena::CreateMaybeMessage<::ZSS::New::Odom>(Arena*);
 template<> ::ZSS::New::Pose* Arena::CreateMaybeMessage<::ZSS::New::Pose>(Arena*);
@@ -891,6 +895,8 @@ class CmdVel final :
     kUseImuFieldNumber = 3,
     kVelocityRFieldNumber = 4,
     kImuThetaFieldNumber = 5,
+    kAccelerationXFieldNumber = 6,
+    kAccelerationYFieldNumber = 7,
   };
   // sint32 velocity_x = 1;
   void clear_velocity_x();
@@ -937,6 +943,24 @@ class CmdVel final :
   void _internal_set_imu_theta(int32_t value);
   public:
 
+  // sint32 acceleration_x = 6;
+  void clear_acceleration_x();
+  int32_t acceleration_x() const;
+  void set_acceleration_x(int32_t value);
+  private:
+  int32_t _internal_acceleration_x() const;
+  void _internal_set_acceleration_x(int32_t value);
+  public:
+
+  // sint32 acceleration_y = 7;
+  void clear_acceleration_y();
+  int32_t acceleration_y() const;
+  void set_acceleration_y(int32_t value);
+  private:
+  int32_t _internal_acceleration_y() const;
+  void _internal_set_acceleration_y(int32_t value);
+  public:
+
   // @@protoc_insertion_point(class_scope:ZSS.New.CmdVel)
  private:
   class _Internal;
@@ -950,6 +974,200 @@ class CmdVel final :
     bool use_imu_;
     int32_t velocity_r_;
     int32_t imu_theta_;
+    int32_t acceleration_x_;
+    int32_t acceleration_y_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_zss_5fcmd_5ftype_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CmdVel_Sim final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:ZSS.New.CmdVel_Sim) */ {
+ public:
+  inline CmdVel_Sim() : CmdVel_Sim(nullptr) {}
+  ~CmdVel_Sim() override;
+  explicit PROTOBUF_CONSTEXPR CmdVel_Sim(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CmdVel_Sim(const CmdVel_Sim& from);
+  CmdVel_Sim(CmdVel_Sim&& from) noexcept
+    : CmdVel_Sim() {
+    *this = ::std::move(from);
+  }
+
+  inline CmdVel_Sim& operator=(const CmdVel_Sim& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CmdVel_Sim& operator=(CmdVel_Sim&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CmdVel_Sim& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CmdVel_Sim* internal_default_instance() {
+    return reinterpret_cast<const CmdVel_Sim*>(
+               &_CmdVel_Sim_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(CmdVel_Sim& a, CmdVel_Sim& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CmdVel_Sim* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CmdVel_Sim* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CmdVel_Sim* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CmdVel_Sim>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CmdVel_Sim& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const CmdVel_Sim& from) {
+    CmdVel_Sim::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CmdVel_Sim* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "ZSS.New.CmdVel_Sim";
+  }
+  protected:
+  explicit CmdVel_Sim(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kVelocityXFieldNumber = 1,
+    kVelocityYFieldNumber = 2,
+    kUseImuFieldNumber = 3,
+    kVelocityRFieldNumber = 4,
+    kImuThetaFieldNumber = 5,
+  };
+  // float velocity_x = 1;
+  void clear_velocity_x();
+  float velocity_x() const;
+  void set_velocity_x(float value);
+  private:
+  float _internal_velocity_x() const;
+  void _internal_set_velocity_x(float value);
+  public:
+
+  // float velocity_y = 2;
+  void clear_velocity_y();
+  float velocity_y() const;
+  void set_velocity_y(float value);
+  private:
+  float _internal_velocity_y() const;
+  void _internal_set_velocity_y(float value);
+  public:
+
+  // bool use_imu = 3;
+  void clear_use_imu();
+  bool use_imu() const;
+  void set_use_imu(bool value);
+  private:
+  bool _internal_use_imu() const;
+  void _internal_set_use_imu(bool value);
+  public:
+
+  // float velocity_r = 4;
+  void clear_velocity_r();
+  float velocity_r() const;
+  void set_velocity_r(float value);
+  private:
+  float _internal_velocity_r() const;
+  void _internal_set_velocity_r(float value);
+  public:
+
+  // float imu_theta = 5;
+  void clear_imu_theta();
+  float imu_theta() const;
+  void set_imu_theta(float value);
+  private:
+  float _internal_imu_theta() const;
+  void _internal_set_imu_theta(float value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:ZSS.New.CmdVel_Sim)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    float velocity_x_;
+    float velocity_y_;
+    bool use_imu_;
+    float velocity_r_;
+    float imu_theta_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -1005,7 +1223,7 @@ class CmdPoseConfig final :
                &_CmdPoseConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    6;
 
   friend void swap(CmdPoseConfig& a, CmdPoseConfig& b) {
     a.Swap(&b);
@@ -1208,7 +1426,7 @@ class CmdPose final :
                &_CmdPose_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    7;
 
   friend void swap(CmdPose& a, CmdPose& b) {
     a.Swap(&b);
@@ -1467,7 +1685,7 @@ class CmdChase final :
                &_CmdChase_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    8;
 
   friend void swap(CmdChase& a, CmdChase& b) {
     a.Swap(&b);
@@ -1999,6 +2217,150 @@ inline void CmdVel::_internal_set_imu_theta(int32_t value) {
 inline void CmdVel::set_imu_theta(int32_t value) {
   _internal_set_imu_theta(value);
   // @@protoc_insertion_point(field_set:ZSS.New.CmdVel.imu_theta)
+}
+
+// sint32 acceleration_x = 6;
+inline void CmdVel::clear_acceleration_x() {
+  _impl_.acceleration_x_ = 0;
+}
+inline int32_t CmdVel::_internal_acceleration_x() const {
+  return _impl_.acceleration_x_;
+}
+inline int32_t CmdVel::acceleration_x() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.CmdVel.acceleration_x)
+  return _internal_acceleration_x();
+}
+inline void CmdVel::_internal_set_acceleration_x(int32_t value) {
+  
+  _impl_.acceleration_x_ = value;
+}
+inline void CmdVel::set_acceleration_x(int32_t value) {
+  _internal_set_acceleration_x(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.CmdVel.acceleration_x)
+}
+
+// sint32 acceleration_y = 7;
+inline void CmdVel::clear_acceleration_y() {
+  _impl_.acceleration_y_ = 0;
+}
+inline int32_t CmdVel::_internal_acceleration_y() const {
+  return _impl_.acceleration_y_;
+}
+inline int32_t CmdVel::acceleration_y() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.CmdVel.acceleration_y)
+  return _internal_acceleration_y();
+}
+inline void CmdVel::_internal_set_acceleration_y(int32_t value) {
+  
+  _impl_.acceleration_y_ = value;
+}
+inline void CmdVel::set_acceleration_y(int32_t value) {
+  _internal_set_acceleration_y(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.CmdVel.acceleration_y)
+}
+
+// -------------------------------------------------------------------
+
+// CmdVel_Sim
+
+// float velocity_x = 1;
+inline void CmdVel_Sim::clear_velocity_x() {
+  _impl_.velocity_x_ = 0;
+}
+inline float CmdVel_Sim::_internal_velocity_x() const {
+  return _impl_.velocity_x_;
+}
+inline float CmdVel_Sim::velocity_x() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.CmdVel_Sim.velocity_x)
+  return _internal_velocity_x();
+}
+inline void CmdVel_Sim::_internal_set_velocity_x(float value) {
+  
+  _impl_.velocity_x_ = value;
+}
+inline void CmdVel_Sim::set_velocity_x(float value) {
+  _internal_set_velocity_x(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.CmdVel_Sim.velocity_x)
+}
+
+// float velocity_y = 2;
+inline void CmdVel_Sim::clear_velocity_y() {
+  _impl_.velocity_y_ = 0;
+}
+inline float CmdVel_Sim::_internal_velocity_y() const {
+  return _impl_.velocity_y_;
+}
+inline float CmdVel_Sim::velocity_y() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.CmdVel_Sim.velocity_y)
+  return _internal_velocity_y();
+}
+inline void CmdVel_Sim::_internal_set_velocity_y(float value) {
+  
+  _impl_.velocity_y_ = value;
+}
+inline void CmdVel_Sim::set_velocity_y(float value) {
+  _internal_set_velocity_y(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.CmdVel_Sim.velocity_y)
+}
+
+// bool use_imu = 3;
+inline void CmdVel_Sim::clear_use_imu() {
+  _impl_.use_imu_ = false;
+}
+inline bool CmdVel_Sim::_internal_use_imu() const {
+  return _impl_.use_imu_;
+}
+inline bool CmdVel_Sim::use_imu() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.CmdVel_Sim.use_imu)
+  return _internal_use_imu();
+}
+inline void CmdVel_Sim::_internal_set_use_imu(bool value) {
+  
+  _impl_.use_imu_ = value;
+}
+inline void CmdVel_Sim::set_use_imu(bool value) {
+  _internal_set_use_imu(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.CmdVel_Sim.use_imu)
+}
+
+// float velocity_r = 4;
+inline void CmdVel_Sim::clear_velocity_r() {
+  _impl_.velocity_r_ = 0;
+}
+inline float CmdVel_Sim::_internal_velocity_r() const {
+  return _impl_.velocity_r_;
+}
+inline float CmdVel_Sim::velocity_r() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.CmdVel_Sim.velocity_r)
+  return _internal_velocity_r();
+}
+inline void CmdVel_Sim::_internal_set_velocity_r(float value) {
+  
+  _impl_.velocity_r_ = value;
+}
+inline void CmdVel_Sim::set_velocity_r(float value) {
+  _internal_set_velocity_r(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.CmdVel_Sim.velocity_r)
+}
+
+// float imu_theta = 5;
+inline void CmdVel_Sim::clear_imu_theta() {
+  _impl_.imu_theta_ = 0;
+}
+inline float CmdVel_Sim::_internal_imu_theta() const {
+  return _impl_.imu_theta_;
+}
+inline float CmdVel_Sim::imu_theta() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.CmdVel_Sim.imu_theta)
+  return _internal_imu_theta();
+}
+inline void CmdVel_Sim::_internal_set_imu_theta(float value) {
+  
+  _impl_.imu_theta_ = value;
+}
+inline void CmdVel_Sim::set_imu_theta(float value) {
+  _internal_set_imu_theta(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.CmdVel_Sim.imu_theta)
 }
 
 // -------------------------------------------------------------------
@@ -2986,6 +3348,8 @@ inline void CmdChase::set_allocated_ball_v(::ZSS::New::Twist* ball_v) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

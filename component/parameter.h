@@ -45,6 +45,7 @@ struct Robot_CMD
     std::array<float, 4> motor_vel_target; // rad/s
     // cmd_vel
     float vx_target, vy_target, vr_target; // robot velocity: cm/s
+    std::array<float, 2> acceleration_ff;   // robot-local vx/vy feedforward, m/s^2
     bool use_dir;
     //// use to store
     float vx_target_last, vy_target_last, vr_target_last;

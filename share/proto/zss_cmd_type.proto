@@ -34,6 +34,22 @@ message CmdVel {
     sint32 velocity_r = 4;
     // use_imu == true
     sint32 imu_theta = 5;
+    // planned acceleration in robot-local frame, mm/s^2
+    sint32 acceleration_x = 6;
+    sint32 acceleration_y = 7;
+}
+
+message CmdVel_Sim {
+    // velocity in m/s
+    float velocity_x = 1;
+    float velocity_y = 2;
+    // if use_imu is false, than use velocity_r
+    // if use_imu is true, than use imu_theta (need calibrate)
+    bool use_imu = 3;
+    // use_imu == false
+    float velocity_r = 4;
+    // use_imu == true
+    float imu_theta = 5;
 }
 
 message CmdPoseConfig{

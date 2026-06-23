@@ -101,6 +101,7 @@ private:
         int16_t raw_vision_vel[2]; // vx, vy in mm/s
         uint8_t vision_source;     // 3: optflow + vision, 4: wheel + vision
         int16_t chassis_vel_pid[2][3]; // x/y Kp, Ki, Kd * 100
+        int16_t acceleration_ff[2]; // robot-local vx/vy feedforward in mm/s^2
     };
 
     static_assert(sizeof(CM4_to_stm32_spi) <= spi_length, "CM4_to_stm32_spi exceeds spi_length");
@@ -194,6 +195,11 @@ private:
     // vel
 public:
     void set_vel(float vel_x,float vel_y,float vel_w){vel_all[0]=vel_x;vel_all[1]=vel_y;vel_all[2]=vel_w;};
+    void set_acceleration_feedforward(float acceleration_x, float acceleration_y)
+    {
+        acceleration_ff[0] = acceleration_x;
+        acceleration_ff[1] = acceleration_y;
+    };
     void set_vision_velocity(float vel_x_mm_s, float vel_y_mm_s, int source)
     {
         raw_vision_vel[0] = vel_x_mm_s;
@@ -227,6 +233,7 @@ public:
     std::atomic<float> wheel3_target = 0.0f;
 private:
     std::array<std::atomic<float>,3> vel_all = {0};
+    std::array<std::atomic<float>,2> acceleration_ff = {0.0f, 0.0f};
     std::array<std::atomic<float>,2> raw_vision_vel = {0.0f, 0.0f};
     std::atomic<int> vision_source = 0;
 

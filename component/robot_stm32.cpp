@@ -69,6 +69,7 @@ RobotStm32::RobotStm32() : device_{},
         robot_cmd.yaw_max_jerk = 200.0f;
         robot_cmd.chassis_vel_pid_x = {30.0f, 300.0f, 0.0f};
         robot_cmd.chassis_vel_pid_y = {30.0f, 300.0f, 0.0f};
+        robot_cmd.acceleration_ff = {0.0f, 0.0f};
         robot_cmd.raw_vision_vel = {0.0f, 0.0f};
         robot_cmd.vision_source = 0;
         robot_cmd.drib_mode = 3;
@@ -168,6 +169,7 @@ RobotStm32::RobotStm32() : device_{},
     velocityCsv << "time_ms,target_vx,target_vy,target_vr,"
                 << "xy_max_acc_x,xy_max_acc_y,"
                 << "xy_max_dec_x,xy_max_dec_y,"
+                << "acc_ff_x,acc_ff_y,"
                 << "planned_vx,planned_vy,"
                 << "optflow_body_vx,optflow_body_vy,"
                 << "optflow_kf_vx,optflow_kf_vy,"
@@ -296,6 +298,8 @@ void RobotStm32::cmd_callback(const zos::Data &data)
             // }
             _c.vx_target = ((float)(int32_t)_p.cmd_vel().velocity_x())/1000.0;
             _c.vy_target = ((float)(int32_t)_p.cmd_vel().velocity_y())/1000.0;
+            _c.acceleration_ff[0] = static_cast<float>(_p.cmd_vel().acceleration_x()) / 1000.0f;
+            _c.acceleration_ff[1] = static_cast<float>(_p.cmd_vel().acceleration_y()) / 1000.0f;
             _c.use_dir = _p.cmd_vel().use_imu();
             _c.vr_target = _c.use_dir ? ((float)(int32_t)_p.cmd_vel().imu_theta())/1000.0 : ((float)(int32_t)_p.cmd_vel().velocity_r())/1000.0;
             // _c.vr_target = _p.cmd_vel().velocity_r();
@@ -379,7 +383,7 @@ std::array<float, 2> RobotStm32::filter_raw_vision_velocity(const std::array<flo
 {
     constexpr float kMaxVisionVelocityMmS = 6000.0f;
     constexpr float kMaxVisionAccelMmS2 = 10000.0f;
-    const float dt_s = 1.0f / static_cast<float>(config::robot_freq);
+    const float dt_s = 1.0f / static_cast<float>(config::vision_freq);
     const float max_delta_mm_s = kMaxVisionAccelMmS2 * dt_s;
 
     if (vision_source != 3 && vision_source != 4)
@@ -577,6 +581,7 @@ void RobotStm32::update_expansion_board(const double dt)
         device_.set_vision_velocity(filtered_raw_vision_vel[0], filtered_raw_vision_vel[1], _c.vision_source);
         device_.use_imu = _c.use_dir;
         device_.set_vel(_c.vx_target,_c.vy_target,_c.vr_target);
+        device_.set_acceleration_feedforward(_c.acceleration_ff[0], _c.acceleration_ff[1]);
 
 #ifdef need_store_data
         if (initFinish)
@@ -595,6 +600,7 @@ void RobotStm32::update_expansion_board(const double dt)
                      << _c.vx_target << "," << _c.vy_target << "," << _c.vr_target << ","
                      << _c.xy_max_acc[0] << "," << _c.xy_max_acc[1] << ","
                      << _c.xy_max_dec[0] << "," << _c.xy_max_dec[1] << ","
+                     << _c.acceleration_ff[0] << "," << _c.acceleration_ff[1] << ","
                      << device_.planned_vel[0].load() << "," << device_.planned_vel[1].load() << ","
                      << device_.optflow_body_vel[0].load() << "," << device_.optflow_body_vel[1].load() << ","
                      << device_.optflow_kf_vel[0].load() << "," << device_.optflow_kf_vel[1].load() << ","
@@ -921,6 +927,7 @@ void RobotStm32::stand()
 
     robot_cmd.vy_target = 0;
     robot_cmd.vx_target = 0;
+    robot_cmd.acceleration_ff = {0.0f, 0.0f};
     // robot_cmd.vr_target = 0;
     // robot_cmd.use_dir = 0;
     if (!robot_cmd.use_dir) {
