@@ -67,8 +67,8 @@ RobotStm32::RobotStm32() : device_{},
         robot_cmd.yaw_max_vel = 25.0f;
         robot_cmd.yaw_max_acc = 40.0f;
         robot_cmd.yaw_max_jerk = 200.0f;
-        robot_cmd.chassis_vel_pid_x = {30.0f, 300.0f, 0.0f};
-        robot_cmd.chassis_vel_pid_y = {30.0f, 300.0f, 0.0f};
+        robot_cmd.chassis_vel_pid_x = {6.0f, 0.0f, 0.15f};
+        robot_cmd.chassis_vel_pid_y = {4.0f, 0.0f, 0.15f};
         robot_cmd.acceleration_ff = {0.0f, 0.0f};
         robot_cmd.raw_vision_vel = {0.0f, 0.0f};
         robot_cmd.vision_source = 0;

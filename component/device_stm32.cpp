@@ -204,10 +204,10 @@ void DeviceStm32::buzzer_start()
 
 void DeviceStm32::buzzer_once(int freq)
 {
-    // gpioSetPWMfrequency(GPIO_BUZZER, freq);
-    // gpioPWM(GPIO_BUZZER, 20);
-    // std::this_thread::sleep_for(std::chrono::milliseconds(300));
-    // gpioPWM(GPIO_BUZZER, 0);
+    gpioSetPWMfrequency(GPIO_BUZZER, freq);
+    gpioPWM(GPIO_BUZZER, 20);
+    std::this_thread::sleep_for(std::chrono::milliseconds(300));
+    gpioPWM(GPIO_BUZZER, 0);
 }
 
 void DeviceStm32::buzzer_thread()
