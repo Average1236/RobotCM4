@@ -32,6 +32,7 @@
 #define GPIO_SHOOT 23
 #define GPIO_CHIP 24
 #define GPIO_BUZZER 12
+#define GPIO_STM32_NRST 13
 
 #define GPIO_LED0 19
 #define GPIO_LED1 20
@@ -57,11 +58,16 @@ private:
 public:
 
     void read_write_stm32();
+    void reset_stm32();
     mraa::Uart *stm32_uart;
     mraa::Spi *stm32_spi;
     mraa::Gpio* cs;
 
 private:
+
+    static constexpr auto kStm32NoResponseResetDelay = std::chrono::milliseconds(500);
+    static constexpr auto kStm32ResetPulseWidth = std::chrono::milliseconds(50);
+    std::chrono::steady_clock::time_point last_stm32_ok_time_;
 
     uint8_t tx_data_spi[spi_length] = {0};
     uint8_t rx_data_spi[spi_length] = {0};
@@ -72,12 +78,12 @@ private:
 
     struct __attribute__((packed)) CM4_to_stm32_uart
     {
-        
+
     };
 
     struct __attribute__((packed)) stm32_to_CM4_uart
     {
-        
+
     };
 
     struct __attribute__((packed)) CM4_to_stm32_spi

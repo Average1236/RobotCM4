@@ -24,6 +24,8 @@ DeviceStm32::DeviceStm32()
     gpioWrite(GPIO_SHOOT, PI_LOW);
     gpioWrite(GPIO_CHIP, PI_LOW);
     gpioSetMode(GPIO_BUZZER, PI_OUTPUT);
+    gpioSetMode(GPIO_STM32_NRST, PI_OUTPUT);
+    gpioWrite(GPIO_STM32_NRST, PI_HIGH);
 
     try
     {
@@ -52,6 +54,7 @@ DeviceStm32::DeviceStm32()
     buzzer_start();
 
     have_imu = true;
+    last_stm32_ok_time_ = std::chrono::steady_clock::now();
 }
 
 void DeviceStm32::read_write_stm32()
@@ -100,7 +103,7 @@ void DeviceStm32::read_write_stm32()
         {
             tx.vel[i] = (int16_t)(vel_all[i]*1000);
         }
-        
+
 
         tx.angle_pid[i] = (int16_t)(angle_pid[i]*1000);
         // zos::log("{},{}\n",vel_all[i],angle_pid[i]);
@@ -113,14 +116,30 @@ void DeviceStm32::read_write_stm32()
     // zos::log("tx_data_spi: {},{}, {}\n",tx_data_spi[0],tx_data_spi[1],tx_data_spi[2]);
 
     int result = stm32_spi->transfer(tx_data_spi,rx_data_spi,spi_length);
-    // zos::log("tmp :{},rx:{},{},{},{},{}\n",tmp,rx_data_spi[0],rx_data_spi[1],rx_data_spi[2],rx_data_spi[3],rx_data_spi[4]);
-    // zos::log("stm32 spi transfer result: {}\n", result);
+    const bool spi_ok = (result == mraa::SUCCESS);
+    if (!spi_ok)
+    {
+        have_imu = false;
+        if (std::chrono::steady_clock::now() - last_stm32_ok_time_ >= kStm32NoResponseResetDelay)
+        {
+            reset_stm32();
+        }
+        return;
+    }
 
     memcpy(&rx,rx_data_spi,sizeof(rx));
 
     // zos::log("size = {},{}\n",sizeof(tx),sizeof(rx));
 
     have_imu = rx.imu_online;
+    if (rx.imu_online)
+    {
+        last_stm32_ok_time_ = std::chrono::steady_clock::now();
+    }
+    else if (std::chrono::steady_clock::now() - last_stm32_ok_time_ >= kStm32NoResponseResetDelay)
+    {
+        reset_stm32();
+    }
     {
         std::scoped_lock lock{imu_mutex};
         imu_status.acc_x = rx.imu_data[0]/100.0;
@@ -190,7 +209,16 @@ void DeviceStm32::read_write_stm32()
     // {
     //     zos::log("dt = {}\n", dt);
     // }
-    
+
+}
+
+void DeviceStm32::reset_stm32()
+{
+    zos::error("stm32 no response or imu offline, reset by GPIO13\n");
+    gpioWrite(GPIO_STM32_NRST, PI_LOW);
+    std::this_thread::sleep_for(kStm32ResetPulseWidth);
+    gpioWrite(GPIO_STM32_NRST, PI_HIGH);
+    last_stm32_ok_time_ = std::chrono::steady_clock::now();
 }
 
 void DeviceStm32::buzzer_start()
