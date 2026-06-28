@@ -65,7 +65,7 @@ public:
 
 private:
 
-    static constexpr auto kStm32NoResponseResetDelay = std::chrono::milliseconds(500);
+    static constexpr auto kStm32NoResponseResetDelay = std::chrono::milliseconds(2000);
     static constexpr auto kStm32ResetPulseWidth = std::chrono::milliseconds(50);
     std::chrono::steady_clock::time_point last_stm32_ok_time_;
 

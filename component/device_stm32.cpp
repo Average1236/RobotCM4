@@ -49,7 +49,7 @@ DeviceStm32::DeviceStm32()
     }
 
     stm32_spi->mode(mraa::SPI_MODE0);
-    stm32_spi->frequency(4000000);
+    stm32_spi->frequency(1000000);
 
     buzzer_start();
 
