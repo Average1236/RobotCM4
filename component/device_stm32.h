@@ -67,7 +67,11 @@ private:
 
     static constexpr auto kStm32NoResponseResetDelay = std::chrono::milliseconds(2000);
     static constexpr auto kStm32ResetPulseWidth = std::chrono::milliseconds(50);
+    static constexpr float kSpiErrorRateResetThreshold = 0.1f;
     std::chrono::steady_clock::time_point last_stm32_ok_time_;
+    std::chrono::steady_clock::time_point stm32_reset_grace_until_;
+    std::chrono::steady_clock::time_point last_spi_error_rate_update_time_;
+    float spi_error_rate_ = 0.0f;
 
     uint8_t tx_data_spi[spi_length] = {0};
     uint8_t rx_data_spi[spi_length] = {0};
@@ -110,7 +114,7 @@ private:
         int16_t acceleration_ff[2]; // robot-local vx/vy feedforward in mm/s^2
     };
 
-    static_assert(sizeof(CM4_to_stm32_spi) <= spi_length, "CM4_to_stm32_spi exceeds spi_length");
+    static_assert(sizeof(CM4_to_stm32_spi) <= spi_length - 2, "CM4_to_stm32_spi exceeds SPI payload length");
 
     struct __attribute__((packed)) stm32_to_CM4_spi
     {
@@ -144,7 +148,7 @@ private:
 
     };
 
-    static_assert(sizeof(stm32_to_CM4_spi) <= spi_length, "stm32_to_CM4_spi exceeds spi_length");
+    static_assert(sizeof(stm32_to_CM4_spi) <= spi_length - 2, "stm32_to_CM4_spi exceeds SPI payload length");
 
     // dribbler
 public:
@@ -277,6 +281,7 @@ public:
     void buzzer_start();
 
 private:
+    bool record_spi_api_status(bool api_error, std::chrono::steady_clock::time_point now);
     void buzzer_once(int freq);
 
     // shoot

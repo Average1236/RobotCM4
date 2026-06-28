@@ -1,9 +1,55 @@
 #include "device_stm32.h"
 
 #include <algorithm>
+#include <cstddef>
 
 static auto now_time = std::chrono::steady_clock::now();
 static auto last_time = now_time - std::chrono::microseconds(1000000) / config::robot_freq;
+
+namespace
+{
+constexpr std::size_t kSpiCrcLength = 2;
+constexpr std::size_t kSpiCrcPayloadLength = spi_length - kSpiCrcLength;
+
+uint16_t spi_crc16_ccitt(const uint8_t* data, std::size_t length)
+{
+    uint16_t crc = 0xffffu;
+    for (std::size_t i = 0; i < length; ++i)
+    {
+        crc ^= static_cast<uint16_t>(data[i]) << 8;
+        for (uint8_t bit = 0; bit < 8; ++bit)
+        {
+            if ((crc & 0x8000u) != 0u)
+            {
+                crc = static_cast<uint16_t>((crc << 1) ^ 0x1021u);
+            }
+            else
+            {
+                crc = static_cast<uint16_t>(crc << 1);
+            }
+        }
+    }
+    return crc;
+}
+
+uint16_t read_spi_frame_crc(const uint8_t* frame)
+{
+    return static_cast<uint16_t>(frame[kSpiCrcPayloadLength]) |
+           (static_cast<uint16_t>(frame[kSpiCrcPayloadLength + 1]) << 8);
+}
+
+void write_spi_frame_crc(uint8_t* frame)
+{
+    const uint16_t crc = spi_crc16_ccitt(frame, kSpiCrcPayloadLength);
+    frame[kSpiCrcPayloadLength] = static_cast<uint8_t>(crc & 0xffu);
+    frame[kSpiCrcPayloadLength + 1] = static_cast<uint8_t>(crc >> 8);
+}
+
+bool spi_frame_crc_valid(const uint8_t* frame)
+{
+    return read_spi_frame_crc(frame) == spi_crc16_ccitt(frame, kSpiCrcPayloadLength);
+}
+}
 
 DeviceStm32::DeviceStm32()
 {
@@ -54,7 +100,35 @@ DeviceStm32::DeviceStm32()
     buzzer_start();
 
     have_imu = true;
-    last_stm32_ok_time_ = std::chrono::steady_clock::now();
+    const auto now = std::chrono::steady_clock::now();
+    last_stm32_ok_time_ = now;
+    last_spi_error_rate_update_time_ = now;
+    stm32_reset_grace_until_ = now + kStm32NoResponseResetDelay;
+    spi_error_rate_ = 0.0f;
+}
+
+bool DeviceStm32::record_spi_api_status(bool api_error, std::chrono::steady_clock::time_point now)
+{
+    if (now < stm32_reset_grace_until_)
+    {
+        spi_error_rate_ = 0.0f;
+        last_spi_error_rate_update_time_ = now;
+        return false;
+    }
+
+    const float dt_s = std::chrono::duration<float>(now - last_spi_error_rate_update_time_).count();
+    last_spi_error_rate_update_time_ = now;
+    const float filter_step = std::clamp(dt_s, 0.0f, 1.0f);
+    const float target = api_error ? 1.0f : 0.0f;
+    spi_error_rate_ += filter_step * (target - spi_error_rate_);
+
+    if (spi_error_rate_ > kSpiErrorRateResetThreshold)
+    {
+        reset_stm32();
+        return true;
+    }
+
+    return false;
 }
 
 void DeviceStm32::read_write_stm32()
@@ -113,17 +187,23 @@ void DeviceStm32::read_write_stm32()
     // zos::log("{},{},{}\n",tx.vel[0],tx.vel[1],tx.vel[2]);
     memset(tx_data_spi, 0, sizeof(tx_data_spi));
     memcpy(tx_data_spi,&tx,sizeof(tx));
+    write_spi_frame_crc(tx_data_spi);
     // zos::log("tx_data_spi: {},{}, {}\n",tx_data_spi[0],tx_data_spi[1],tx_data_spi[2]);
 
     int result = stm32_spi->transfer(tx_data_spi,rx_data_spi,spi_length);
     const bool spi_ok = (result == mraa::SUCCESS);
+    const auto spi_now = std::chrono::steady_clock::now();
     if (!spi_ok)
     {
         have_imu = false;
-        if (std::chrono::steady_clock::now() - last_stm32_ok_time_ >= kStm32NoResponseResetDelay)
-        {
-            reset_stm32();
-        }
+        record_spi_api_status(true, spi_now);
+        return;
+    }
+
+    if (!spi_frame_crc_valid(rx_data_spi))
+    {
+        have_imu = false;
+        record_spi_api_status(true, spi_now);
         return;
     }
 
@@ -132,14 +212,14 @@ void DeviceStm32::read_write_stm32()
     // zos::log("size = {},{}\n",sizeof(tx),sizeof(rx));
 
     have_imu = rx.imu_online;
-    if (rx.imu_online)
+    if (!rx.imu_online)
     {
-        last_stm32_ok_time_ = std::chrono::steady_clock::now();
+        record_spi_api_status(true, spi_now);
+        return;
     }
-    else if (std::chrono::steady_clock::now() - last_stm32_ok_time_ >= kStm32NoResponseResetDelay)
-    {
-        reset_stm32();
-    }
+
+    last_stm32_ok_time_ = spi_now;
+    record_spi_api_status(false, spi_now);
     {
         std::scoped_lock lock{imu_mutex};
         imu_status.acc_x = rx.imu_data[0]/100.0;
@@ -214,11 +294,15 @@ void DeviceStm32::read_write_stm32()
 
 void DeviceStm32::reset_stm32()
 {
-    zos::error("stm32 no response or imu offline, reset by GPIO13\n");
+    zos::error("stm32 SPI error rate {:.3f}, reset by GPIO13\n", spi_error_rate_);
     gpioWrite(GPIO_STM32_NRST, PI_LOW);
     std::this_thread::sleep_for(kStm32ResetPulseWidth);
     gpioWrite(GPIO_STM32_NRST, PI_HIGH);
-    last_stm32_ok_time_ = std::chrono::steady_clock::now();
+    const auto now = std::chrono::steady_clock::now();
+    last_stm32_ok_time_ = now;
+    last_spi_error_rate_update_time_ = now;
+    stm32_reset_grace_until_ = now + kStm32NoResponseResetDelay;
+    spi_error_rate_ = 0.0f;
 }
 
 void DeviceStm32::buzzer_start()
