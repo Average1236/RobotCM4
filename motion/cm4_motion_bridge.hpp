@@ -54,6 +54,8 @@ public:
     std::uint32_t spiTimeouts() const;
     std::uint32_t visionAttached() const;
     std::uint32_t feedbackFrames() const;
+    std::uint32_t configFramesSent() const { return config_frames_sent_; }
+    std::uint32_t sessionId() const { return session_id_; }
     bool spiTimedOut() const { return spi_timed_out_; }
 
 private:
