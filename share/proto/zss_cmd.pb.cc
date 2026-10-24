@@ -23,9 +23,8 @@ namespace _pbi = _pb::internal;
 namespace ZSS {
 namespace New {
 PROTOBUF_CONSTEXPR Robots_Status::Robots_Status(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.robots_status_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : robots_status_(){}
 struct Robots_StatusDefaultTypeInternal {
   PROTOBUF_CONSTEXPR Robots_StatusDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -36,17 +35,17 @@ struct Robots_StatusDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Robots_StatusDefaultTypeInternal _Robots_Status_default_instance_;
 PROTOBUF_CONSTEXPR Multicast_Status::Multicast_Status(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.uuid_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
-  , /*decltype(_impl_.ip_)*/0
-  , /*decltype(_impl_.team_)*/0
-  , /*decltype(_impl_.robot_id_)*/0
-  , /*decltype(_impl_.battery_)*/0
-  , /*decltype(_impl_.capacitance_)*/0
-  , /*decltype(_impl_.infrared_)*/0
-  , /*decltype(_impl_.vision_valid_)*/false
-  , /*decltype(_impl_.have_imu_)*/false
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : uuid_(&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{})
+  , ip_(0)
+  , team_(0)
+
+  , robot_id_(0)
+  , battery_(0)
+  , capacitance_(0)
+  , infrared_(0)
+  , vision_valid_(false)
+  , have_imu_(false){}
 struct Multicast_StatusDefaultTypeInternal {
   PROTOBUF_CONSTEXPR Multicast_StatusDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -57,25 +56,26 @@ struct Multicast_StatusDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Multicast_StatusDefaultTypeInternal _Multicast_Status_default_instance_;
 PROTOBUF_CONSTEXPR Robot_Status::Robot_Status(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.wheel_encoder_)*/{}
-  , /*decltype(_impl_._wheel_encoder_cached_byte_size_)*/{0}
-  , /*decltype(_impl_.imu_data_)*/{}
-  , /*decltype(_impl_.real_pose_)*/{}
-  , /*decltype(_impl_.wheel_ref_)*/{}
-  , /*decltype(_impl_._wheel_ref_cached_byte_size_)*/{0}
-  , /*decltype(_impl_.odom_)*/nullptr
-  , /*decltype(_impl_.robot_id_)*/0
-  , /*decltype(_impl_.infrared_)*/0
-  , /*decltype(_impl_.flat_kick_)*/0
-  , /*decltype(_impl_.chip_kick_)*/0
-  , /*decltype(_impl_.imu_theta_z_)*/0
-  , /*decltype(_impl_.battery_)*/0
-  , /*decltype(_impl_.capacitance_)*/0
-  , /*decltype(_impl_.team_)*/0
-  , /*decltype(_impl_.have_imu_)*/false
-  , /*decltype(_impl_.imu_omega_z_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : wheel_encoder_()
+  , _wheel_encoder_cached_byte_size_(0)
+  , imu_data_()
+  , real_pose_()
+  , wheel_ref_()
+  , _wheel_ref_cached_byte_size_(0)
+  , odom_(nullptr)
+  , motion_feedback_(nullptr)
+  , robot_id_(0)
+  , infrared_(0)
+  , flat_kick_(0)
+  , chip_kick_(0)
+  , imu_theta_z_(0)
+  , battery_(0)
+  , capacitance_(0)
+  , team_(0)
+
+  , have_imu_(false)
+  , imu_omega_z_(0){}
 struct Robot_StatusDefaultTypeInternal {
   PROTOBUF_CONSTEXPR Robot_StatusDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -85,12 +85,32 @@ struct Robot_StatusDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Robot_StatusDefaultTypeInternal _Robot_Status_default_instance_;
+PROTOBUF_CONSTEXPR Robot_Status_Sim::Robot_Status_Sim(
+    ::_pbi::ConstantInitialized)
+  : wheel_encoder_()
+  , odom_(nullptr)
+  , robot_id_(0)
+  , infrared_(0)
+  , flat_kick_(0)
+  , chip_kick_(0)
+  , imu_theta_(0)
+  , battery_(0)
+  , capacitance_(0)
+  , team_(0)
+{}
+struct Robot_Status_SimDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Robot_Status_SimDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Robot_Status_SimDefaultTypeInternal() {}
+  union {
+    Robot_Status_Sim _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Robot_Status_SimDefaultTypeInternal _Robot_Status_Sim_default_instance_;
 PROTOBUF_CONSTEXPR Robots_Command::Robots_Command(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_._has_bits_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_.command_)*/{}
-  , /*decltype(_impl_.delay_)*/0} {}
+    ::_pbi::ConstantInitialized)
+  : command_()
+  , delay_(0){}
 struct Robots_CommandDefaultTypeInternal {
   PROTOBUF_CONSTEXPR Robots_CommandDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -101,51 +121,56 @@ struct Robots_CommandDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Robots_CommandDefaultTypeInternal _Robots_Command_default_instance_;
 PROTOBUF_CONSTEXPR Robot_Command::Robot_Command(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_._has_bits_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_.angle_pid_)*/{}
-  , /*decltype(_impl_._angle_pid_cached_byte_size_)*/{0}
-  , /*decltype(_impl_.wheel_pid_)*/{}
-  , /*decltype(_impl_._wheel_pid_cached_byte_size_)*/{0}
-  , /*decltype(_impl_.cmd_vel_)*/nullptr
-  , /*decltype(_impl_.cmd_pose_)*/nullptr
-  , /*decltype(_impl_.cmd_chase_)*/nullptr
-  , /*decltype(_impl_.cmd_wheel_)*/nullptr
-  , /*decltype(_impl_.robot_id_)*/0
-  , /*decltype(_impl_.kick_mode_)*/0
-  , /*decltype(_impl_.desire_power_)*/0
-  , /*decltype(_impl_.kick_discharge_time_)*/0
-  , /*decltype(_impl_.dribble_spin_)*/0
-  , /*decltype(_impl_.cmd_type_)*/0
-  , /*decltype(_impl_.comm_type_)*/0
-  , /*decltype(_impl_.need_report_)*/false
-  , /*decltype(_impl_.need_change_team_)*/false
-  , /*decltype(_impl_.need_change_id_)*/false
-  , /*decltype(_impl_.isdebug_)*/false
-  , /*decltype(_impl_.team_new_)*/0
-  , /*decltype(_impl_.id_new_)*/0
-  , /*decltype(_impl_.dribble_velocity_)*/0
-  , /*decltype(_impl_.dribble_torque_ff_)*/0
-  , /*decltype(_impl_.xy_max_acc_x_)*/0
-  , /*decltype(_impl_.xy_max_acc_y_)*/0
-  , /*decltype(_impl_.xy_max_jerk_x_)*/0
-  , /*decltype(_impl_.xy_max_jerk_y_)*/0
-  , /*decltype(_impl_.xy_max_dec_x_)*/0
-  , /*decltype(_impl_.xy_max_dec_y_)*/0
-  , /*decltype(_impl_.yaw_max_vel_)*/0
-  , /*decltype(_impl_.yaw_max_acc_)*/0
-  , /*decltype(_impl_.yaw_max_jerk_)*/0
-  , /*decltype(_impl_.raw_vision_vel_x_)*/0
-  , /*decltype(_impl_.raw_vision_vel_y_)*/0
-  , /*decltype(_impl_.vision_source_)*/0
-  , /*decltype(_impl_.dribble_mode_)*/0
-  , /*decltype(_impl_.chassis_vel_pid_kp_x_)*/0
-  , /*decltype(_impl_.chassis_vel_pid_ki_x_)*/0
-  , /*decltype(_impl_.chassis_vel_pid_kd_x_)*/0
-  , /*decltype(_impl_.chassis_vel_pid_kp_y_)*/0
-  , /*decltype(_impl_.chassis_vel_pid_ki_y_)*/0
-  , /*decltype(_impl_.chassis_vel_pid_kd_y_)*/0} {}
+    ::_pbi::ConstantInitialized)
+  : angle_pid_()
+  , _angle_pid_cached_byte_size_(0)
+  , wheel_pid_()
+  , _wheel_pid_cached_byte_size_(0)
+  , cmd_vel_(nullptr)
+  , cmd_pose_(nullptr)
+  , cmd_chase_(nullptr)
+  , cmd_wheel_(nullptr)
+  , motion_command_(nullptr)
+  , vision_observation_(nullptr)
+  , motion_config_(nullptr)
+  , robot_id_(0)
+  , kick_mode_(0)
+
+  , desire_power_(0)
+  , kick_discharge_time_(0)
+  , dribble_spin_(0)
+  , cmd_type_(0)
+
+  , comm_type_(0)
+
+  , need_report_(false)
+  , need_change_team_(false)
+  , need_change_id_(false)
+  , isdebug_(false)
+  , team_new_(0)
+
+  , id_new_(0)
+  , dribble_velocity_(0)
+  , dribble_torque_ff_(0)
+  , xy_max_acc_x_(0)
+  , xy_max_acc_y_(0)
+  , xy_max_jerk_x_(0)
+  , xy_max_jerk_y_(0)
+  , xy_max_dec_x_(0)
+  , xy_max_dec_y_(0)
+  , yaw_max_vel_(0)
+  , yaw_max_acc_(0)
+  , yaw_max_jerk_(0)
+  , raw_vision_vel_x_(0)
+  , raw_vision_vel_y_(0)
+  , vision_source_(0)
+  , dribble_mode_(0)
+  , chassis_vel_pid_kp_x_(0)
+  , chassis_vel_pid_ki_x_(0)
+  , chassis_vel_pid_kd_x_(0)
+  , chassis_vel_pid_kp_y_(0)
+  , chassis_vel_pid_ki_y_(0)
+  , chassis_vel_pid_kd_y_(0){}
 struct Robot_CommandDefaultTypeInternal {
   PROTOBUF_CONSTEXPR Robot_CommandDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -155,12 +180,24 @@ struct Robot_CommandDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Robot_CommandDefaultTypeInternal _Robot_Command_default_instance_;
+PROTOBUF_CONSTEXPR Robot_Command_Mini::Robot_Command_Mini(
+    ::_pbi::ConstantInitialized)
+  : kick_mode_(0)
+
+  , kick_discharge_time_(0){}
+struct Robot_Command_MiniDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Robot_Command_MiniDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Robot_Command_MiniDefaultTypeInternal() {}
+  union {
+    Robot_Command_Mini _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Robot_Command_MiniDefaultTypeInternal _Robot_Command_Mini_default_instance_;
 PROTOBUF_CONSTEXPR Robots_Command_Sim::Robots_Command_Sim(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_._has_bits_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_.command_)*/{}
-  , /*decltype(_impl_.delay_)*/0} {}
+    ::_pbi::ConstantInitialized)
+  : command_()
+  , delay_(0){}
 struct Robots_Command_SimDefaultTypeInternal {
   PROTOBUF_CONSTEXPR Robots_Command_SimDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -171,14 +208,22 @@ struct Robots_Command_SimDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Robots_Command_SimDefaultTypeInternal _Robots_Command_Sim_default_instance_;
 PROTOBUF_CONSTEXPR Robot_Command_Sim::Robot_Command_Sim(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.cmd_vel_)*/nullptr
-  , /*decltype(_impl_.robot_id_)*/0
-  , /*decltype(_impl_.kick_mode_)*/0
-  , /*decltype(_impl_.desire_power_)*/0
-  , /*decltype(_impl_.dribble_spin_)*/0
-  , /*decltype(_impl_.cmd_type_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : cmd_vel_(nullptr)
+  , cmd_pose_(nullptr)
+  , cmd_chase_(nullptr)
+  , cmd_wheel_(nullptr)
+  , robot_id_(0)
+  , kick_mode_(0)
+
+  , desire_power_(0)
+  , kick_discharge_time_(0)
+  , dribble_spin_(0)
+  , need_report_(false)
+  , cmd_type_(0)
+
+  , comm_type_(0)
+{}
 struct Robot_Command_SimDefaultTypeInternal {
   PROTOBUF_CONSTEXPR Robot_Command_SimDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -188,24 +233,220 @@ struct Robot_Command_SimDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Robot_Command_SimDefaultTypeInternal _Robot_Command_Sim_default_instance_;
-PROTOBUF_CONSTEXPR Robot_Command_Mini::Robot_Command_Mini(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.kick_mode_)*/0
-  , /*decltype(_impl_.kick_discharge_time_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
-struct Robot_Command_MiniDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR Robot_Command_MiniDefaultTypeInternal()
+PROTOBUF_CONSTEXPR MotionPose2::MotionPose2(
+    ::_pbi::ConstantInitialized)
+  : x_(0)
+  , y_(0)
+  , yaw_(0){}
+struct MotionPose2DefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MotionPose2DefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
-  ~Robot_Command_MiniDefaultTypeInternal() {}
+  ~MotionPose2DefaultTypeInternal() {}
   union {
-    Robot_Command_Mini _instance;
+    MotionPose2 _instance;
   };
 };
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Robot_Command_MiniDefaultTypeInternal _Robot_Command_Mini_default_instance_;
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MotionPose2DefaultTypeInternal _MotionPose2_default_instance_;
+PROTOBUF_CONSTEXPR MotionTwist2::MotionTwist2(
+    ::_pbi::ConstantInitialized)
+  : vx_(0)
+  , vy_(0)
+  , wz_(0){}
+struct MotionTwist2DefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MotionTwist2DefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MotionTwist2DefaultTypeInternal() {}
+  union {
+    MotionTwist2 _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MotionTwist2DefaultTypeInternal _MotionTwist2_default_instance_;
+PROTOBUF_CONSTEXPR MotionAccel2::MotionAccel2(
+    ::_pbi::ConstantInitialized)
+  : ax_(0)
+  , ay_(0)
+  , alpha_(0){}
+struct MotionAccel2DefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MotionAccel2DefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MotionAccel2DefaultTypeInternal() {}
+  union {
+    MotionAccel2 _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MotionAccel2DefaultTypeInternal _MotionAccel2_default_instance_;
+PROTOBUF_CONSTEXPR MotionLimitsV2::MotionLimitsV2(
+    ::_pbi::ConstantInitialized)
+  : max_linear_speed_m_s_(0)
+  , max_linear_accel_m_s2_(0)
+  , max_linear_decel_m_s2_(0)
+  , max_yaw_speed_rad_s_(0)
+  , max_yaw_accel_rad_s2_(0)
+  , max_centripetal_accel_m_s2_(0)
+  , max_wheel_torque_nm_(0)
+  , max_torque_rate_nm_per_s_(0)
+  , position_correction_gain_(0)
+  , position_correction_limit_m_s_(0)
+  , yaw_correction_gain_(0)
+  , yaw_rate_gain_(0)
+  , wheel_speed_kp_(0)
+  , wheel_speed_ki_(0)
+  , wheel_speed_backcalc_(0){}
+struct MotionLimitsV2DefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MotionLimitsV2DefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MotionLimitsV2DefaultTypeInternal() {}
+  union {
+    MotionLimitsV2 _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MotionLimitsV2DefaultTypeInternal _MotionLimitsV2_default_instance_;
+PROTOBUF_CONSTEXPR MotionCommandV2::MotionCommandV2(
+    ::_pbi::ConstantInitialized)
+  : target_pose_(nullptr)
+  , target_velocity_(nullptr)
+  , limits_(nullptr)
+  , backend_(0)
+
+  , translation_mode_(0)
+
+  , yaw_mode_(0)
+
+  , session_id_(0u)
+  , sequence_(0u)
+  , trajectory_epoch_(0u)
+  , generated_time_us_(uint64_t{0u})
+  , valid_for_us_(0u)
+  , enable_(false)
+  , kick_requested_(false)
+  , chip_mode_(false)
+  , kick_discharge_time_us_(0u)
+  , kick_sequence_(0u)
+  , kick_valid_for_us_(0u)
+  , dribble_mode_(0u)
+  , dribble_power_(0)
+  , dribble_velocity_rps_(0)
+  , dribble_torque_ff_nm_(0){}
+struct MotionCommandV2DefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MotionCommandV2DefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MotionCommandV2DefaultTypeInternal() {}
+  union {
+    MotionCommandV2 _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MotionCommandV2DefaultTypeInternal _MotionCommandV2_default_instance_;
+PROTOBUF_CONSTEXPR VisionObservationV2::VisionObservationV2(
+    ::_pbi::ConstantInitialized)
+  : pose_(nullptr)
+  , capture_time_us_(uint64_t{0u})
+  , sequence_(0u)
+  , position_std_m_(0)
+  , yaw_std_rad_(0)
+  , quality_(0)
+
+  , valid_(false){}
+struct VisionObservationV2DefaultTypeInternal {
+  PROTOBUF_CONSTEXPR VisionObservationV2DefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~VisionObservationV2DefaultTypeInternal() {}
+  union {
+    VisionObservationV2 _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 VisionObservationV2DefaultTypeInternal _VisionObservationV2_default_instance_;
+PROTOBUF_CONSTEXPR MotionFeedbackV2::MotionFeedbackV2(
+    ::_pbi::ConstantInitialized)
+  : wheel_speed_target_()
+  , wheel_speed_measured_()
+  , feedforward_torque_()
+  , feedback_torque_()
+  , integral_torque_()
+  , applied_torque_()
+  , estimated_pose_(nullptr)
+  , estimated_velocity_(nullptr)
+  , reference_pose_(nullptr)
+  , reference_velocity_(nullptr)
+  , reference_accel_(nullptr)
+  , backend_(0)
+
+  , safety_(0)
+
+  , localization_(0)
+
+  , session_id_(0u)
+  , executed_sequence_(0u)
+  , trajectory_epoch_(0u)
+  , fusion_time_us_(uint64_t{0u})
+  , prediction_time_us_(uint64_t{0u})
+  , active_command_age_us_(0u)
+  , vision_age_us_(0u)
+  , feedback_time_us_(uint64_t{0u})
+  , vision_capture_time_us_(uint64_t{0u})
+  , position_sigma_m_(0)
+  , yaw_sigma_rad_(0)
+  , gyro_bias_z_rad_s_(0)
+  , accel_bias_x_m_s2_(0)
+  , accel_bias_y_m_s2_(0)
+  , trajectory_active_(false)
+  , wheel_speed_enabled_(false)
+  , vision_fused_(false)
+  , accelerometer_degraded_(false)
+  , saturation_(0u)
+  , wheel_slip_suspected_(false)
+  , late_observations_(0u)
+  , rejected_observations_(0u)
+  , vision_updates_(0u)
+  , estimator_version_(0u)
+  , controller_version_(0u)
+  , model_version_(0u)
+  , protocol_version_(0u){}
+struct MotionFeedbackV2DefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MotionFeedbackV2DefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MotionFeedbackV2DefaultTypeInternal() {}
+  union {
+    MotionFeedbackV2 _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MotionFeedbackV2DefaultTypeInternal _MotionFeedbackV2_default_instance_;
+PROTOBUF_CONSTEXPR MotionConfigV2::MotionConfigV2(
+    ::_pbi::ConstantInitialized)
+  : wheel_axis_angle_rad_()
+  , wheel_yaw_sign_()
+  , limits_(nullptr)
+  , mass_kg_(0)
+  , inertia_kg_m2_(0)
+  , wheel_radius_m_(0)
+  , wheel_center_distance_m_(0)
+  , wheel_inertia_kg_m2_(0)
+  , wheel_friction_torque_nm_(0)
+  , wheel_viscous_nm_per_rad_s_(0)
+  , efficiency_(0)
+  , max_wheel_torque_nm_(0)
+  , max_wheel_speed_rad_s_(0)
+  , max_wheel_accel_rad_s2_(0)
+  , torque_rate_nm_per_s_(0)
+  , fusion_delay_s_(0)
+  , history_span_s_(0)
+  , command_timeout_s_(0)
+  , spi_timeout_s_(0)
+  , vision_degrade_s_(0)
+  , vision_invalid_s_(0)
+  , config_version_(0u){}
+struct MotionConfigV2DefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MotionConfigV2DefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MotionConfigV2DefaultTypeInternal() {}
+  union {
+    MotionConfigV2 _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MotionConfigV2DefaultTypeInternal _MotionConfigV2_default_instance_;
 }  // namespace New
 }  // namespace ZSS
-static ::_pb::Metadata file_level_metadata_zss_5fcmd_2eproto[8];
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_zss_5fcmd_2eproto[5];
+static ::_pb::Metadata file_level_metadata_zss_5fcmd_2eproto[17];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_zss_5fcmd_2eproto[11];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_zss_5fcmd_2eproto = nullptr;
 
 const uint32_t TableStruct_zss_5fcmd_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -215,99 +456,119 @@ const uint32_t TableStruct_zss_5fcmd_2eproto::offsets[] PROTOBUF_SECTION_VARIABL
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robots_Status, _impl_.robots_status_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robots_Status, robots_status_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Multicast_Status, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Multicast_Status, _impl_.ip_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Multicast_Status, _impl_.uuid_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Multicast_Status, _impl_.team_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Multicast_Status, _impl_.robot_id_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Multicast_Status, _impl_.battery_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Multicast_Status, _impl_.capacitance_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Multicast_Status, _impl_.vision_valid_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Multicast_Status, _impl_.infrared_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Multicast_Status, _impl_.have_imu_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Multicast_Status, ip_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Multicast_Status, uuid_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Multicast_Status, team_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Multicast_Status, robot_id_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Multicast_Status, battery_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Multicast_Status, capacitance_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Multicast_Status, vision_valid_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Multicast_Status, infrared_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Multicast_Status, have_imu_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, _impl_.robot_id_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, _impl_.infrared_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, _impl_.flat_kick_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, _impl_.chip_kick_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, _impl_.imu_theta_z_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, _impl_.battery_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, _impl_.capacitance_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, _impl_.odom_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, _impl_.wheel_encoder_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, _impl_.team_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, _impl_.imu_data_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, _impl_.real_pose_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, _impl_.have_imu_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, _impl_.imu_omega_z_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, _impl_.wheel_ref_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robots_Command, _impl_._has_bits_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, robot_id_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, infrared_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, flat_kick_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, chip_kick_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, imu_theta_z_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, battery_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, capacitance_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, odom_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, wheel_encoder_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, team_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, imu_data_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, real_pose_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, have_imu_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, imu_omega_z_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, wheel_ref_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status, motion_feedback_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status_Sim, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status_Sim, robot_id_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status_Sim, infrared_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status_Sim, flat_kick_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status_Sim, chip_kick_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status_Sim, imu_theta_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status_Sim, battery_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status_Sim, capacitance_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status_Sim, odom_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status_Sim, wheel_encoder_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Status_Sim, team_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robots_Command, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Robots_Command, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robots_Command, _impl_.command_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robots_Command, _impl_.delay_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robots_Command, command_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robots_Command, delay_),
   ~0u,
   0,
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_._has_bits_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.robot_id_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.kick_mode_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.desire_power_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.kick_discharge_time_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.dribble_spin_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.need_report_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.cmd_type_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.cmd_vel_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.cmd_pose_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.cmd_chase_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.cmd_wheel_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.comm_type_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.angle_pid_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.need_change_team_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.need_change_id_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.team_new_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.id_new_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.isdebug_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.wheel_pid_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.dribble_velocity_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.dribble_torque_ff_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.xy_max_acc_x_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.xy_max_acc_y_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.xy_max_jerk_x_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.xy_max_jerk_y_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.xy_max_dec_x_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.xy_max_dec_y_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.yaw_max_vel_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.yaw_max_acc_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.yaw_max_jerk_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.raw_vision_vel_x_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.raw_vision_vel_y_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.vision_source_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.dribble_mode_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.chassis_vel_pid_kp_x_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.chassis_vel_pid_ki_x_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.chassis_vel_pid_kd_x_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.chassis_vel_pid_kp_y_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.chassis_vel_pid_ki_y_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, _impl_.chassis_vel_pid_kd_y_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, robot_id_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, kick_mode_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, desire_power_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, kick_discharge_time_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, dribble_spin_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, need_report_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, cmd_type_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, cmd_vel_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, cmd_pose_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, cmd_chase_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, cmd_wheel_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, comm_type_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, angle_pid_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, need_change_team_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, need_change_id_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, team_new_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, id_new_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, isdebug_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, wheel_pid_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, dribble_velocity_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, dribble_torque_ff_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, xy_max_acc_x_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, xy_max_acc_y_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, xy_max_jerk_x_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, xy_max_jerk_y_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, xy_max_dec_x_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, xy_max_dec_y_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, yaw_max_vel_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, yaw_max_acc_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, yaw_max_jerk_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, raw_vision_vel_x_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, raw_vision_vel_y_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, vision_source_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, dribble_mode_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, chassis_vel_pid_kp_x_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, chassis_vel_pid_ki_x_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, chassis_vel_pid_kd_x_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, chassis_vel_pid_kp_y_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, chassis_vel_pid_ki_y_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, chassis_vel_pid_kd_y_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, motion_command_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, vision_observation_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command, motion_config_),
   ~0u,
   ~0u,
   ~0u,
@@ -348,14 +609,25 @@ const uint32_t TableStruct_zss_5fcmd_2eproto::offsets[] PROTOBUF_SECTION_VARIABL
   3,
   4,
   5,
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robots_Command_Sim, _impl_._has_bits_),
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command_Mini, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command_Mini, kick_mode_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command_Mini, kick_discharge_time_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robots_Command_Sim, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Robots_Command_Sim, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robots_Command_Sim, _impl_.command_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robots_Command_Sim, _impl_.delay_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robots_Command_Sim, command_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robots_Command_Sim, delay_),
   ~0u,
   0,
   ~0u,  // no _has_bits_
@@ -364,121 +636,421 @@ const uint32_t TableStruct_zss_5fcmd_2eproto::offsets[] PROTOBUF_SECTION_VARIABL
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command_Sim, _impl_.robot_id_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command_Sim, _impl_.kick_mode_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command_Sim, _impl_.desire_power_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command_Sim, _impl_.dribble_spin_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command_Sim, _impl_.cmd_type_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command_Sim, _impl_.cmd_vel_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command_Sim, robot_id_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command_Sim, kick_mode_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command_Sim, desire_power_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command_Sim, kick_discharge_time_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command_Sim, dribble_spin_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command_Sim, need_report_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command_Sim, cmd_type_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command_Sim, cmd_vel_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command_Sim, cmd_pose_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command_Sim, cmd_chase_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command_Sim, cmd_wheel_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command_Sim, comm_type_),
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command_Mini, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionPose2, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command_Mini, _impl_.kick_mode_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Robot_Command_Mini, _impl_.kick_discharge_time_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionPose2, x_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionPose2, y_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionPose2, yaw_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionTwist2, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionTwist2, vx_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionTwist2, vy_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionTwist2, wz_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionAccel2, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionAccel2, ax_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionAccel2, ay_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionAccel2, alpha_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionLimitsV2, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionLimitsV2, max_linear_speed_m_s_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionLimitsV2, max_linear_accel_m_s2_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionLimitsV2, max_linear_decel_m_s2_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionLimitsV2, max_yaw_speed_rad_s_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionLimitsV2, max_yaw_accel_rad_s2_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionLimitsV2, max_centripetal_accel_m_s2_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionLimitsV2, max_wheel_torque_nm_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionLimitsV2, max_torque_rate_nm_per_s_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionLimitsV2, position_correction_gain_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionLimitsV2, position_correction_limit_m_s_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionLimitsV2, yaw_correction_gain_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionLimitsV2, yaw_rate_gain_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionLimitsV2, wheel_speed_kp_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionLimitsV2, wheel_speed_ki_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionLimitsV2, wheel_speed_backcalc_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionCommandV2, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionCommandV2, backend_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionCommandV2, translation_mode_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionCommandV2, yaw_mode_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionCommandV2, session_id_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionCommandV2, sequence_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionCommandV2, trajectory_epoch_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionCommandV2, generated_time_us_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionCommandV2, valid_for_us_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionCommandV2, target_pose_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionCommandV2, target_velocity_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionCommandV2, limits_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionCommandV2, enable_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionCommandV2, kick_requested_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionCommandV2, chip_mode_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionCommandV2, kick_discharge_time_us_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionCommandV2, kick_sequence_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionCommandV2, kick_valid_for_us_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionCommandV2, dribble_mode_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionCommandV2, dribble_power_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionCommandV2, dribble_velocity_rps_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionCommandV2, dribble_torque_ff_nm_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::VisionObservationV2, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::VisionObservationV2, capture_time_us_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::VisionObservationV2, sequence_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::VisionObservationV2, pose_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::VisionObservationV2, position_std_m_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::VisionObservationV2, yaw_std_rad_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::VisionObservationV2, quality_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::VisionObservationV2, valid_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, backend_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, safety_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, localization_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, session_id_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, executed_sequence_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, trajectory_epoch_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, active_command_age_us_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, fusion_time_us_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, prediction_time_us_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, feedback_time_us_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, vision_capture_time_us_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, vision_age_us_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, estimated_pose_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, estimated_velocity_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, position_sigma_m_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, yaw_sigma_rad_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, reference_pose_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, reference_velocity_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, reference_accel_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, trajectory_active_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, gyro_bias_z_rad_s_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, accel_bias_x_m_s2_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, accel_bias_y_m_s2_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, wheel_speed_target_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, wheel_speed_measured_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, feedforward_torque_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, feedback_torque_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, integral_torque_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, applied_torque_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, saturation_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, wheel_speed_enabled_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, vision_fused_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, accelerometer_degraded_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, wheel_slip_suspected_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, late_observations_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, rejected_observations_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, vision_updates_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, estimator_version_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, controller_version_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, model_version_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, protocol_version_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionConfigV2, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionConfigV2, mass_kg_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionConfigV2, inertia_kg_m2_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionConfigV2, wheel_radius_m_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionConfigV2, wheel_center_distance_m_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionConfigV2, wheel_inertia_kg_m2_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionConfigV2, wheel_friction_torque_nm_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionConfigV2, wheel_viscous_nm_per_rad_s_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionConfigV2, efficiency_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionConfigV2, max_wheel_torque_nm_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionConfigV2, max_wheel_speed_rad_s_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionConfigV2, max_wheel_accel_rad_s2_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionConfigV2, torque_rate_nm_per_s_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionConfigV2, wheel_axis_angle_rad_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionConfigV2, wheel_yaw_sign_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionConfigV2, limits_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionConfigV2, fusion_delay_s_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionConfigV2, history_span_s_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionConfigV2, command_timeout_s_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionConfigV2, spi_timeout_s_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionConfigV2, vision_degrade_s_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionConfigV2, vision_invalid_s_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionConfigV2, config_version_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::ZSS::New::Robots_Status)},
   { 7, -1, -1, sizeof(::ZSS::New::Multicast_Status)},
   { 22, -1, -1, sizeof(::ZSS::New::Robot_Status)},
-  { 43, 51, -1, sizeof(::ZSS::New::Robots_Command)},
-  { 53, 99, -1, sizeof(::ZSS::New::Robot_Command)},
-  { 139, 147, -1, sizeof(::ZSS::New::Robots_Command_Sim)},
-  { 149, -1, -1, sizeof(::ZSS::New::Robot_Command_Sim)},
-  { 161, -1, -1, sizeof(::ZSS::New::Robot_Command_Mini)},
+  { 44, -1, -1, sizeof(::ZSS::New::Robot_Status_Sim)},
+  { 60, 68, -1, sizeof(::ZSS::New::Robots_Command)},
+  { 70, 119, -1, sizeof(::ZSS::New::Robot_Command)},
+  { 162, -1, -1, sizeof(::ZSS::New::Robot_Command_Mini)},
+  { 170, 178, -1, sizeof(::ZSS::New::Robots_Command_Sim)},
+  { 180, -1, -1, sizeof(::ZSS::New::Robot_Command_Sim)},
+  { 198, -1, -1, sizeof(::ZSS::New::MotionPose2)},
+  { 207, -1, -1, sizeof(::ZSS::New::MotionTwist2)},
+  { 216, -1, -1, sizeof(::ZSS::New::MotionAccel2)},
+  { 225, -1, -1, sizeof(::ZSS::New::MotionLimitsV2)},
+  { 246, -1, -1, sizeof(::ZSS::New::MotionCommandV2)},
+  { 273, -1, -1, sizeof(::ZSS::New::VisionObservationV2)},
+  { 286, -1, -1, sizeof(::ZSS::New::MotionFeedbackV2)},
+  { 333, -1, -1, sizeof(::ZSS::New::MotionConfigV2)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
   &::ZSS::New::_Robots_Status_default_instance_._instance,
   &::ZSS::New::_Multicast_Status_default_instance_._instance,
   &::ZSS::New::_Robot_Status_default_instance_._instance,
+  &::ZSS::New::_Robot_Status_Sim_default_instance_._instance,
   &::ZSS::New::_Robots_Command_default_instance_._instance,
   &::ZSS::New::_Robot_Command_default_instance_._instance,
+  &::ZSS::New::_Robot_Command_Mini_default_instance_._instance,
   &::ZSS::New::_Robots_Command_Sim_default_instance_._instance,
   &::ZSS::New::_Robot_Command_Sim_default_instance_._instance,
-  &::ZSS::New::_Robot_Command_Mini_default_instance_._instance,
+  &::ZSS::New::_MotionPose2_default_instance_._instance,
+  &::ZSS::New::_MotionTwist2_default_instance_._instance,
+  &::ZSS::New::_MotionAccel2_default_instance_._instance,
+  &::ZSS::New::_MotionLimitsV2_default_instance_._instance,
+  &::ZSS::New::_MotionCommandV2_default_instance_._instance,
+  &::ZSS::New::_VisionObservationV2_default_instance_._instance,
+  &::ZSS::New::_MotionFeedbackV2_default_instance_._instance,
+  &::ZSS::New::_MotionConfigV2_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_zss_5fcmd_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\rzss_cmd.proto\022\007ZSS.New\032\022zss_cmd_type.p"
-  "roto\"=\n\rRobots_Status\022,\n\rrobots_status\030\001"
-  " \003(\0132\025.ZSS.New.Robot_Status\"\273\001\n\020Multicas"
-  "t_Status\022\n\n\002ip\030\001 \001(\021\022\014\n\004uuid\030\002 \001(\t\022\033\n\004te"
-  "am\030\003 \001(\0162\r.ZSS.New.Team\022\020\n\010robot_id\030\004 \001("
-  "\005\022\017\n\007battery\030\005 \001(\021\022\023\n\013capacitance\030\006 \001(\021\022"
-  "\024\n\014vision_valid\030\007 \001(\010\022\020\n\010infrared\030\010 \001(\021\022"
-  "\020\n\010have_imu\030\t \001(\010\"\303\002\n\014Robot_Status\022\020\n\010ro"
-  "bot_id\030\001 \001(\005\022\020\n\010infrared\030\002 \001(\021\022\021\n\tflat_k"
-  "ick\030\003 \001(\021\022\021\n\tchip_kick\030\004 \001(\021\022\023\n\013imu_thet"
-  "a_z\030\005 \001(\021\022\017\n\007battery\030\006 \001(\021\022\023\n\013capacitanc"
-  "e\030\007 \001(\021\022\033\n\004odom\030\010 \001(\0132\r.ZSS.New.Odom\022\025\n\r"
-  "wheel_encoder\030\t \003(\021\022\033\n\004team\030\n \001(\0162\r.ZSS."
-  "New.Team\022\020\n\010imu_data\030\013 \003(\002\022\021\n\treal_pose\030"
-  "\014 \003(\002\022\020\n\010have_imu\030\r \001(\010\022\023\n\013imu_omega_z\030\016"
-  " \001(\021\022\021\n\twheel_ref\030\017 \003(\021\"W\n\016Robots_Comman"
-  "d\022\'\n\007command\030\001 \003(\0132\026.ZSS.New.Robot_Comma"
-  "nd\022\022\n\005delay\030\002 \001(\005H\000\210\001\001B\010\n\006_delay\"\303\013\n\rRob"
-  "ot_Command\022\020\n\010robot_id\030\001 \001(\005\0222\n\tkick_mod"
-  "e\030\002 \001(\0162\037.ZSS.New.Robot_Command.KickMode"
-  "\022\024\n\014desire_power\030\003 \001(\002\022\033\n\023kick_discharge"
-  "_time\030\004 \001(\021\022\024\n\014dribble_spin\030\005 \001(\021\022\023\n\013nee"
-  "d_report\030\006 \001(\010\0220\n\010cmd_type\030\007 \001(\0162\036.ZSS.N"
-  "ew.Robot_Command.CmdType\022 \n\007cmd_vel\030\010 \001("
-  "\0132\017.ZSS.New.CmdVel\022\"\n\010cmd_pose\030\t \001(\0132\020.Z"
-  "SS.New.CmdPose\022$\n\tcmd_chase\030\n \001(\0132\021.ZSS."
-  "New.CmdChase\022$\n\tcmd_wheel\030\013 \001(\0132\021.ZSS.Ne"
-  "w.CmdWheel\0222\n\tcomm_type\030\014 \001(\0162\037.ZSS.New."
-  "Robot_Command.CommType\022\021\n\tangle_pid\030\r \003("
-  "\021\022\030\n\020need_change_team\030\016 \001(\010\022\026\n\016need_chan"
-  "ge_id\030\017 \001(\010\022\037\n\010team_new\030\020 \001(\0162\r.ZSS.New."
-  "Team\022\016\n\006id_new\030\021 \001(\005\022\017\n\007isdebug\030\022 \001(\010\022\021\n"
-  "\twheel_pid\030\023 \003(\021\022\030\n\020dribble_velocity\030\024 \001"
-  "(\021\022\031\n\021dribble_torque_ff\030\025 \001(\021\022\024\n\014xy_max_"
-  "acc_x\030\026 \001(\021\022\024\n\014xy_max_acc_y\030\027 \001(\021\022\025\n\rxy_"
-  "max_jerk_x\030\030 \001(\021\022\025\n\rxy_max_jerk_y\030\031 \001(\021\022"
-  "\024\n\014xy_max_dec_x\030\032 \001(\021\022\024\n\014xy_max_dec_y\030\033 "
-  "\001(\021\022\023\n\013yaw_max_vel\030\034 \001(\021\022\023\n\013yaw_max_acc\030"
-  "\035 \001(\021\022\024\n\014yaw_max_jerk\030\036 \001(\021\022\030\n\020raw_visio"
-  "n_vel_x\030\037 \001(\021\022\030\n\020raw_vision_vel_y\030  \001(\021\022"
-  "\025\n\rvision_source\030! \001(\021\022\024\n\014dribble_mode\030\""
-  " \001(\021\022!\n\024chassis_vel_pid_kp_x\030# \001(\021H\000\210\001\001\022"
-  "!\n\024chassis_vel_pid_ki_x\030$ \001(\021H\001\210\001\001\022!\n\024ch"
-  "assis_vel_pid_kd_x\030% \001(\021H\002\210\001\001\022!\n\024chassis"
-  "_vel_pid_kp_y\030& \001(\021H\003\210\001\001\022!\n\024chassis_vel_"
-  "pid_ki_y\030\' \001(\021H\004\210\001\001\022!\n\024chassis_vel_pid_k"
-  "d_y\030( \001(\021H\005\210\001\001\"(\n\010KickMode\022\010\n\004NONE\020\000\022\010\n\004"
-  "KICK\020\001\022\010\n\004CHIP\020\002\"L\n\007CmdType\022\010\n\004STOP\020\000\022\r\n"
-  "\tCMD_WHEEL\020\001\022\013\n\007CMD_VEL\020\002\022\014\n\010CMD_POSE\020\003\022"
-  "\r\n\tCMD_CHASE\020\004\"@\n\010CommType\022\013\n\007DEFAULT\020\000\022"
-  "\n\n\006SERIAL\020\001\022\r\n\tUDP_24L01\020\002\022\014\n\010UDP_WIFI\020\003"
-  "B\027\n\025_chassis_vel_pid_kp_xB\027\n\025_chassis_ve"
-  "l_pid_ki_xB\027\n\025_chassis_vel_pid_kd_xB\027\n\025_"
-  "chassis_vel_pid_kp_yB\027\n\025_chassis_vel_pid"
-  "_ki_yB\027\n\025_chassis_vel_pid_kd_y\"_\n\022Robots"
-  "_Command_Sim\022+\n\007command\030\001 \003(\0132\032.ZSS.New."
-  "Robot_Command_Sim\022\022\n\005delay\030\002 \001(\005H\000\210\001\001B\010\n"
-  "\006_delay\"\331\001\n\021Robot_Command_Sim\022\020\n\010robot_i"
-  "d\030\001 \001(\005\0222\n\tkick_mode\030\002 \001(\0162\037.ZSS.New.Rob"
-  "ot_Command.KickMode\022\024\n\014desire_power\030\003 \001("
-  "\002\022\024\n\014dribble_spin\030\004 \001(\021\0220\n\010cmd_type\030\005 \001("
+  "roto\"A\n\rRobots_Status\0220\n\rrobots_status\030\001"
+  " \003(\0132\031.ZSS.New.Robot_Status_Sim\"\273\001\n\020Mult"
+  "icast_Status\022\n\n\002ip\030\001 \001(\021\022\014\n\004uuid\030\002 \001(\t\022\033"
+  "\n\004team\030\003 \001(\0162\r.ZSS.New.Team\022\020\n\010robot_id\030"
+  "\004 \001(\005\022\017\n\007battery\030\005 \001(\021\022\023\n\013capacitance\030\006 "
+  "\001(\021\022\024\n\014vision_valid\030\007 \001(\010\022\020\n\010infrared\030\010 "
+  "\001(\021\022\020\n\010have_imu\030\t \001(\010\"\367\002\n\014Robot_Status\022\020"
+  "\n\010robot_id\030\001 \001(\005\022\020\n\010infrared\030\002 \001(\021\022\021\n\tfl"
+  "at_kick\030\003 \001(\021\022\021\n\tchip_kick\030\004 \001(\021\022\023\n\013imu_"
+  "theta_z\030\005 \001(\021\022\017\n\007battery\030\006 \001(\021\022\023\n\013capaci"
+  "tance\030\007 \001(\021\022\033\n\004odom\030\010 \001(\0132\r.ZSS.New.Odom"
+  "\022\025\n\rwheel_encoder\030\t \003(\021\022\033\n\004team\030\n \001(\0162\r."
+  "ZSS.New.Team\022\020\n\010imu_data\030\013 \003(\002\022\021\n\treal_p"
+  "ose\030\014 \003(\002\022\020\n\010have_imu\030\r \001(\010\022\023\n\013imu_omega"
+  "_z\030\016 \001(\021\022\021\n\twheel_ref\030\017 \003(\021\0222\n\017motion_fe"
+  "edback\0302 \001(\0132\031.ZSS.New.MotionFeedbackV2\""
+  "\346\001\n\020Robot_Status_Sim\022\020\n\010robot_id\030\001 \001(\005\022\020"
+  "\n\010infrared\030\002 \001(\002\022\021\n\tflat_kick\030\003 \001(\002\022\021\n\tc"
+  "hip_kick\030\004 \001(\002\022\021\n\timu_theta\030\005 \001(\002\022\017\n\007bat"
+  "tery\030\006 \001(\002\022\023\n\013capacitance\030\007 \001(\002\022\033\n\004odom\030"
+  "\010 \001(\0132\r.ZSS.New.Odom\022\025\n\rwheel_encoder\030\t "
+  "\003(\002\022\033\n\004team\030\n \001(\0162\r.ZSS.New.Team\"W\n\016Robo"
+  "ts_Command\022\'\n\007command\030\001 \003(\0132\026.ZSS.New.Ro"
+  "bot_Command\022\022\n\005delay\030\002 \001(\005H\000\210\001\001B\010\n\006_dela"
+  "y\"\337\014\n\rRobot_Command\022\020\n\010robot_id\030\001 \001(\005\0222\n"
+  "\tkick_mode\030\002 \001(\0162\037.ZSS.New.Robot_Command"
+  ".KickMode\022\024\n\014desire_power\030\003 \001(\002\022\033\n\023kick_"
+  "discharge_time\030\004 \001(\021\022\024\n\014dribble_spin\030\005 \001"
+  "(\021\022\023\n\013need_report\030\006 \001(\010\0220\n\010cmd_type\030\007 \001("
   "\0162\036.ZSS.New.Robot_Command.CmdType\022 \n\007cmd"
-  "_vel\030\006 \001(\0132\017.ZSS.New.CmdVel\"\224\001\n\022Robot_Co"
-  "mmand_Mini\0227\n\tkick_mode\030\001 \001(\0162$.ZSS.New."
-  "Robot_Command_Mini.KickMode\022\033\n\023kick_disc"
-  "harge_time\030\002 \001(\021\"(\n\010KickMode\022\010\n\004NONE\020\000\022\010"
-  "\n\004KICK\020\001\022\010\n\004CHIP\020\002*)\n\004Team\022\013\n\007UNKNOWN\020\000\022"
-  "\010\n\004BLUE\020\001\022\n\n\006YELLOW\020\002b\006proto3"
+  "_vel\030\010 \001(\0132\017.ZSS.New.CmdVel\022\"\n\010cmd_pose\030"
+  "\t \001(\0132\020.ZSS.New.CmdPose\022$\n\tcmd_chase\030\n \001"
+  "(\0132\021.ZSS.New.CmdChase\022$\n\tcmd_wheel\030\013 \001(\013"
+  "2\021.ZSS.New.CmdWheel\0222\n\tcomm_type\030\014 \001(\0162\037"
+  ".ZSS.New.Robot_Command.CommType\022\021\n\tangle"
+  "_pid\030\r \003(\021\022\030\n\020need_change_team\030\016 \001(\010\022\026\n\016"
+  "need_change_id\030\017 \001(\010\022\037\n\010team_new\030\020 \001(\0162\r"
+  ".ZSS.New.Team\022\016\n\006id_new\030\021 \001(\005\022\017\n\007isdebug"
+  "\030\022 \001(\010\022\021\n\twheel_pid\030\023 \003(\021\022\030\n\020dribble_vel"
+  "ocity\030\024 \001(\021\022\031\n\021dribble_torque_ff\030\025 \001(\021\022\024"
+  "\n\014xy_max_acc_x\030\026 \001(\021\022\024\n\014xy_max_acc_y\030\027 \001"
+  "(\021\022\025\n\rxy_max_jerk_x\030\030 \001(\021\022\025\n\rxy_max_jerk"
+  "_y\030\031 \001(\021\022\024\n\014xy_max_dec_x\030\032 \001(\021\022\024\n\014xy_max"
+  "_dec_y\030\033 \001(\021\022\023\n\013yaw_max_vel\030\034 \001(\021\022\023\n\013yaw"
+  "_max_acc\030\035 \001(\021\022\024\n\014yaw_max_jerk\030\036 \001(\021\022\030\n\020"
+  "raw_vision_vel_x\030\037 \001(\021\022\030\n\020raw_vision_vel"
+  "_y\030  \001(\021\022\025\n\rvision_source\030! \001(\021\022\024\n\014dribb"
+  "le_mode\030\" \001(\021\022!\n\024chassis_vel_pid_kp_x\030# "
+  "\001(\021H\000\210\001\001\022!\n\024chassis_vel_pid_ki_x\030$ \001(\021H\001"
+  "\210\001\001\022!\n\024chassis_vel_pid_kd_x\030% \001(\021H\002\210\001\001\022!"
+  "\n\024chassis_vel_pid_kp_y\030& \001(\021H\003\210\001\001\022!\n\024cha"
+  "ssis_vel_pid_ki_y\030\' \001(\021H\004\210\001\001\022!\n\024chassis_"
+  "vel_pid_kd_y\030( \001(\021H\005\210\001\001\0220\n\016motion_comman"
+  "d\0302 \001(\0132\030.ZSS.New.MotionCommandV2\0228\n\022vis"
+  "ion_observation\0303 \001(\0132\034.ZSS.New.VisionOb"
+  "servationV2\022.\n\rmotion_config\0304 \001(\0132\027.ZSS"
+  ".New.MotionConfigV2\"(\n\010KickMode\022\010\n\004NONE\020"
+  "\000\022\010\n\004KICK\020\001\022\010\n\004CHIP\020\002\"L\n\007CmdType\022\010\n\004STOP"
+  "\020\000\022\r\n\tCMD_WHEEL\020\001\022\013\n\007CMD_VEL\020\002\022\014\n\010CMD_PO"
+  "SE\020\003\022\r\n\tCMD_CHASE\020\004\"@\n\010CommType\022\013\n\007DEFAU"
+  "LT\020\000\022\n\n\006SERIAL\020\001\022\r\n\tUDP_24L01\020\002\022\014\n\010UDP_W"
+  "IFI\020\003B\027\n\025_chassis_vel_pid_kp_xB\027\n\025_chass"
+  "is_vel_pid_ki_xB\027\n\025_chassis_vel_pid_kd_x"
+  "B\027\n\025_chassis_vel_pid_kp_yB\027\n\025_chassis_ve"
+  "l_pid_ki_yB\027\n\025_chassis_vel_pid_kd_y\"\224\001\n\022"
+  "Robot_Command_Mini\0227\n\tkick_mode\030\001 \001(\0162$."
+  "ZSS.New.Robot_Command_Mini.KickMode\022\033\n\023k"
+  "ick_discharge_time\030\002 \001(\021\"(\n\010KickMode\022\010\n\004"
+  "NONE\020\000\022\010\n\004KICK\020\001\022\010\n\004CHIP\020\002\"_\n\022Robots_Com"
+  "mand_Sim\022+\n\007command\030\001 \003(\0132\032.ZSS.New.Robo"
+  "t_Command_Sim\022\022\n\005delay\030\002 \001(\005H\000\210\001\001B\010\n\006_de"
+  "lay\"\371\003\n\021Robot_Command_Sim\022\020\n\010robot_id\030\001 "
+  "\001(\005\0222\n\tkick_mode\030\002 \001(\0162\037.ZSS.New.Robot_C"
+  "ommand.KickMode\022\024\n\014desire_power\030\003 \001(\002\022\033\n"
+  "\023kick_discharge_time\030\004 \001(\002\022\024\n\014dribble_sp"
+  "in\030\005 \001(\002\022\023\n\013need_report\030\006 \001(\010\0220\n\010cmd_typ"
+  "e\030\007 \001(\0162\036.ZSS.New.Robot_Command.CmdType\022"
+  "$\n\007cmd_vel\030\010 \001(\0132\023.ZSS.New.CmdVel_Sim\022\"\n"
+  "\010cmd_pose\030\t \001(\0132\020.ZSS.New.CmdPose\022$\n\tcmd"
+  "_chase\030\n \001(\0132\021.ZSS.New.CmdChase\022$\n\tcmd_w"
+  "heel\030\013 \001(\0132\021.ZSS.New.CmdWheel\0226\n\tcomm_ty"
+  "pe\030\014 \001(\0162#.ZSS.New.Robot_Command_Sim.Com"
+  "mType\"@\n\010CommType\022\013\n\007DEFAULT\020\000\022\n\n\006SERIAL"
+  "\020\001\022\r\n\tUDP_24L01\020\002\022\014\n\010UDP_WIFI\020\003\"0\n\013Motio"
+  "nPose2\022\t\n\001x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\022\013\n\003yaw\030\003 \001("
+  "\002\"2\n\014MotionTwist2\022\n\n\002vx\030\001 \001(\002\022\n\n\002vy\030\002 \001("
+  "\002\022\n\n\002wz\030\003 \001(\002\"5\n\014MotionAccel2\022\n\n\002ax\030\001 \001("
+  "\002\022\n\n\002ay\030\002 \001(\002\022\r\n\005alpha\030\003 \001(\002\"\325\003\n\016MotionL"
+  "imitsV2\022\034\n\024max_linear_speed_m_s\030\001 \001(\002\022\035\n"
+  "\025max_linear_accel_m_s2\030\002 \001(\002\022\035\n\025max_line"
+  "ar_decel_m_s2\030\003 \001(\002\022\033\n\023max_yaw_speed_rad"
+  "_s\030\004 \001(\002\022\034\n\024max_yaw_accel_rad_s2\030\005 \001(\002\022\""
+  "\n\032max_centripetal_accel_m_s2\030\006 \001(\002\022\033\n\023ma"
+  "x_wheel_torque_nm\030\007 \001(\002\022 \n\030max_torque_ra"
+  "te_nm_per_s\030\010 \001(\002\022 \n\030position_correction"
+  "_gain\030\t \001(\002\022%\n\035position_correction_limit"
+  "_m_s\030\n \001(\002\022\033\n\023yaw_correction_gain\030\013 \001(\002\022"
+  "\025\n\ryaw_rate_gain\030\014 \001(\002\022\026\n\016wheel_speed_kp"
+  "\030\r \001(\002\022\026\n\016wheel_speed_ki\030\016 \001(\002\022\034\n\024wheel_"
+  "speed_backcalc\030\017 \001(\002\"\211\005\n\017MotionCommandV2"
+  "\022\'\n\007backend\030\001 \001(\0162\026.ZSS.New.MotionBacken"
+  "d\0228\n\020translation_mode\030\002 \001(\0162\036.ZSS.New.Mo"
+  "tionTranslationMode\022(\n\010yaw_mode\030\003 \001(\0162\026."
+  "ZSS.New.MotionYawMode\022\022\n\nsession_id\030\004 \001("
+  "\r\022\020\n\010sequence\030\005 \001(\r\022\030\n\020trajectory_epoch\030"
+  "\006 \001(\r\022\031\n\021generated_time_us\030\007 \001(\004\022\024\n\014vali"
+  "d_for_us\030\010 \001(\r\022)\n\013target_pose\030\t \001(\0132\024.ZS"
+  "S.New.MotionPose2\022.\n\017target_velocity\030\n \001"
+  "(\0132\025.ZSS.New.MotionTwist2\022\'\n\006limits\030\013 \001("
+  "\0132\027.ZSS.New.MotionLimitsV2\022\016\n\006enable\030\014 \001"
+  "(\010\022\026\n\016kick_requested\030\r \001(\010\022\021\n\tchip_mode\030"
+  "\016 \001(\010\022\036\n\026kick_discharge_time_us\030\017 \001(\r\022\025\n"
+  "\rkick_sequence\030\020 \001(\r\022\031\n\021kick_valid_for_u"
+  "s\030\021 \001(\r\022\024\n\014dribble_mode\030\022 \001(\r\022\025\n\rdribble"
+  "_power\030\023 \001(\002\022\034\n\024dribble_velocity_rps\030\024 \001"
+  "(\002\022\034\n\024dribble_torque_ff_nm\030\025 \001(\002\"\325\001\n\023Vis"
+  "ionObservationV2\022\027\n\017capture_time_us\030\001 \001("
+  "\004\022\020\n\010sequence\030\002 \001(\r\022\"\n\004pose\030\003 \001(\0132\024.ZSS."
+  "New.MotionPose2\022\026\n\016position_std_m\030\004 \001(\002\022"
+  "\023\n\013yaw_std_rad\030\005 \001(\002\0223\n\007quality\030\006 \001(\0162\"."
+  "ZSS.New.MotionLocalizationQuality\022\r\n\005val"
+  "id\030\007 \001(\010\"\374\t\n\020MotionFeedbackV2\022\'\n\007backend"
+  "\030\001 \001(\0162\026.ZSS.New.MotionBackend\022*\n\006safety"
+  "\030\002 \001(\0162\032.ZSS.New.MotionSafetyState\0228\n\014lo"
+  "calization\030\003 \001(\0162\".ZSS.New.MotionLocaliz"
+  "ationQuality\022\022\n\nsession_id\030\004 \001(\r\022\031\n\021exec"
+  "uted_sequence\030\005 \001(\r\022\030\n\020trajectory_epoch\030"
+  "\006 \001(\r\022\035\n\025active_command_age_us\030\007 \001(\r\022\026\n\016"
+  "fusion_time_us\030\010 \001(\004\022\032\n\022prediction_time_"
+  "us\030\t \001(\004\022\030\n\020feedback_time_us\030\n \001(\004\022\036\n\026vi"
+  "sion_capture_time_us\030\013 \001(\004\022\025\n\rvision_age"
+  "_us\030\014 \001(\r\022,\n\016estimated_pose\030\r \001(\0132\024.ZSS."
+  "New.MotionPose2\0221\n\022estimated_velocity\030\016 "
+  "\001(\0132\025.ZSS.New.MotionTwist2\022\030\n\020position_s"
+  "igma_m\030\017 \001(\002\022\025\n\ryaw_sigma_rad\030\020 \001(\002\022,\n\016r"
+  "eference_pose\030\021 \001(\0132\024.ZSS.New.MotionPose"
+  "2\0221\n\022reference_velocity\030\022 \001(\0132\025.ZSS.New."
+  "MotionTwist2\022.\n\017reference_accel\030\023 \001(\0132\025."
+  "ZSS.New.MotionAccel2\022\031\n\021trajectory_activ"
+  "e\030\024 \001(\010\022\031\n\021gyro_bias_z_rad_s\030\025 \001(\002\022\031\n\021ac"
+  "cel_bias_x_m_s2\030\026 \001(\002\022\031\n\021accel_bias_y_m_"
+  "s2\030\027 \001(\002\022\032\n\022wheel_speed_target\030\030 \003(\002\022\034\n\024"
+  "wheel_speed_measured\030\031 \003(\002\022\032\n\022feedforwar"
+  "d_torque\030\032 \003(\002\022\027\n\017feedback_torque\030\033 \003(\002\022"
+  "\027\n\017integral_torque\030\034 \003(\002\022\026\n\016applied_torq"
+  "ue\030\035 \003(\002\022\022\n\nsaturation\030\036 \001(\r\022\033\n\023wheel_sp"
+  "eed_enabled\030\037 \001(\010\022\024\n\014vision_fused\030  \001(\010\022"
+  "\036\n\026accelerometer_degraded\030! \001(\010\022\034\n\024wheel"
+  "_slip_suspected\030\" \001(\010\022\031\n\021late_observatio"
+  "ns\030# \001(\r\022\035\n\025rejected_observations\030$ \001(\r\022"
+  "\026\n\016vision_updates\030% \001(\r\022\031\n\021estimator_ver"
+  "sion\030& \001(\r\022\032\n\022controller_version\030\' \001(\r\022\025"
+  "\n\rmodel_version\030( \001(\r\022\030\n\020protocol_versio"
+  "n\030) \001(\r\"\357\004\n\016MotionConfigV2\022\017\n\007mass_kg\030\001 "
+  "\001(\002\022\025\n\rinertia_kg_m2\030\002 \001(\002\022\026\n\016wheel_radi"
+  "us_m\030\003 \001(\002\022\037\n\027wheel_center_distance_m\030\004 "
+  "\001(\002\022\033\n\023wheel_inertia_kg_m2\030\005 \001(\002\022 \n\030whee"
+  "l_friction_torque_nm\030\006 \001(\002\022\"\n\032wheel_visc"
+  "ous_nm_per_rad_s\030\007 \001(\002\022\022\n\nefficiency\030\010 \001"
+  "(\002\022\033\n\023max_wheel_torque_nm\030\t \001(\002\022\035\n\025max_w"
+  "heel_speed_rad_s\030\n \001(\002\022\036\n\026max_wheel_acce"
+  "l_rad_s2\030\013 \001(\002\022\034\n\024torque_rate_nm_per_s\030\014"
+  " \001(\002\022\034\n\024wheel_axis_angle_rad\030\r \003(\002\022\026\n\016wh"
+  "eel_yaw_sign\030\016 \003(\002\022\'\n\006limits\030\017 \001(\0132\027.ZSS"
+  ".New.MotionLimitsV2\022\026\n\016fusion_delay_s\030\020 "
+  "\001(\002\022\026\n\016history_span_s\030\021 \001(\002\022\031\n\021command_t"
+  "imeout_s\030\022 \001(\002\022\025\n\rspi_timeout_s\030\023 \001(\002\022\030\n"
+  "\020vision_degrade_s\030\024 \001(\002\022\030\n\020vision_invali"
+  "d_s\030\025 \001(\002\022\026\n\016config_version\030\026 \001(\r*)\n\004Tea"
+  "m\022\013\n\007UNKNOWN\020\000\022\010\n\004BLUE\020\001\022\n\n\006YELLOW\020\002*B\n\r"
+  "MotionBackend\022\026\n\022MOTION_BACKEND_NEW\020\000\022\031\n"
+  "\025MOTION_BACKEND_LEGACY\020\001*\311\001\n\025MotionTrans"
+  "lationMode\022\033\n\027MOTION_TRANSLATION_STOP\020\000\022"
+  "\033\n\027MOTION_TRANSLATION_POSE\020\001\022&\n\"MOTION_T"
+  "RANSLATION_GLOBAL_VELOCITY\020\002\022$\n MOTION_T"
+  "RANSLATION_BODY_VELOCITY\020\003\022(\n$MOTION_TRA"
+  "NSLATION_VELOCITY_AND_POSE\020\004*Z\n\rMotionYa"
+  "wMode\022\023\n\017MOTION_YAW_HOLD\020\000\022\023\n\017MOTION_YAW"
+  "_POSE\020\001\022\037\n\033MOTION_YAW_ANGULAR_VELOCITY\020\002"
+  "*|\n\031MotionLocalizationQuality\022\037\n\033MOTION_"
+  "LOCALIZATION_INVALID\020\000\022 \n\034MOTION_LOCALIZ"
+  "ATION_DEGRADED\020\001\022\034\n\030MOTION_LOCALIZATION_"
+  "GOOD\020\002*\326\001\n\021MotionSafetyState\022\036\n\032MOTION_S"
+  "AFETY_INITIALIZING\020\000\022\027\n\023MOTION_SAFETY_RE"
+  "ADY\020\001\022!\n\035MOTION_SAFETY_COMMAND_TIMEOUT\020\002"
+  "\022$\n MOTION_SAFETY_LOCALIZATION_BRAKE\020\003\022&"
+  "\n\"MOTION_SAFETY_LOCALIZATION_INVALID\020\004\022\027"
+  "\n\023MOTION_SAFETY_FAULT\020\005b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_zss_5fcmd_2eproto_deps[1] = {
   &::descriptor_table_zss_5fcmd_5ftype_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_zss_5fcmd_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_zss_5fcmd_2eproto = {
-    false, false, 2709, descriptor_table_protodef_zss_5fcmd_2eproto,
+    false, false, 7551, descriptor_table_protodef_zss_5fcmd_2eproto,
     "zss_cmd.proto",
-    &descriptor_table_zss_5fcmd_2eproto_once, descriptor_table_zss_5fcmd_2eproto_deps, 1, 8,
+    &descriptor_table_zss_5fcmd_2eproto_once, descriptor_table_zss_5fcmd_2eproto_deps, 1, 17,
     schemas, file_default_instances, TableStruct_zss_5fcmd_2eproto::offsets,
     file_level_metadata_zss_5fcmd_2eproto, file_level_enum_descriptors_zss_5fcmd_2eproto,
     file_level_service_descriptors_zss_5fcmd_2eproto,
@@ -589,15 +1161,119 @@ constexpr Robot_Command_Mini_KickMode Robot_Command_Mini::KickMode_MIN;
 constexpr Robot_Command_Mini_KickMode Robot_Command_Mini::KickMode_MAX;
 constexpr int Robot_Command_Mini::KickMode_ARRAYSIZE;
 #endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
-const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Team_descriptor() {
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Robot_Command_Sim_CommType_descriptor() {
   ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_zss_5fcmd_2eproto);
   return file_level_enum_descriptors_zss_5fcmd_2eproto[4];
+}
+bool Robot_Command_Sim_CommType_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+      return true;
+    default:
+      return false;
+  }
+}
+
+#if (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+constexpr Robot_Command_Sim_CommType Robot_Command_Sim::DEFAULT;
+constexpr Robot_Command_Sim_CommType Robot_Command_Sim::SERIAL;
+constexpr Robot_Command_Sim_CommType Robot_Command_Sim::UDP_24L01;
+constexpr Robot_Command_Sim_CommType Robot_Command_Sim::UDP_WIFI;
+constexpr Robot_Command_Sim_CommType Robot_Command_Sim::CommType_MIN;
+constexpr Robot_Command_Sim_CommType Robot_Command_Sim::CommType_MAX;
+constexpr int Robot_Command_Sim::CommType_ARRAYSIZE;
+#endif  // (__cplusplus < 201703) && (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Team_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_zss_5fcmd_2eproto);
+  return file_level_enum_descriptors_zss_5fcmd_2eproto[5];
 }
 bool Team_IsValid(int value) {
   switch (value) {
     case 0:
     case 1:
     case 2:
+      return true;
+    default:
+      return false;
+  }
+}
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MotionBackend_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_zss_5fcmd_2eproto);
+  return file_level_enum_descriptors_zss_5fcmd_2eproto[6];
+}
+bool MotionBackend_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+      return true;
+    default:
+      return false;
+  }
+}
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MotionTranslationMode_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_zss_5fcmd_2eproto);
+  return file_level_enum_descriptors_zss_5fcmd_2eproto[7];
+}
+bool MotionTranslationMode_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+      return true;
+    default:
+      return false;
+  }
+}
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MotionYawMode_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_zss_5fcmd_2eproto);
+  return file_level_enum_descriptors_zss_5fcmd_2eproto[8];
+}
+bool MotionYawMode_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+      return true;
+    default:
+      return false;
+  }
+}
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MotionLocalizationQuality_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_zss_5fcmd_2eproto);
+  return file_level_enum_descriptors_zss_5fcmd_2eproto[9];
+}
+bool MotionLocalizationQuality_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+      return true;
+    default:
+      return false;
+  }
+}
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MotionSafetyState_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_zss_5fcmd_2eproto);
+  return file_level_enum_descriptors_zss_5fcmd_2eproto[10];
+}
+bool MotionSafetyState_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+    case 5:
       return true;
     default:
       return false;
@@ -613,29 +1289,19 @@ class Robots_Status::_Internal {
 
 Robots_Status::Robots_Status(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  robots_status_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:ZSS.New.Robots_Status)
 }
 Robots_Status::Robots_Status(const Robots_Status& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  Robots_Status* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.robots_status_){from._impl_.robots_status_}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      robots_status_(from.robots_status_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:ZSS.New.Robots_Status)
 }
 
-inline void Robots_Status::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.robots_status_){arena}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void Robots_Status::SharedCtor() {
 }
 
 Robots_Status::~Robots_Status() {
@@ -649,11 +1315,10 @@ Robots_Status::~Robots_Status() {
 
 inline void Robots_Status::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.robots_status_.~RepeatedPtrField();
 }
 
 void Robots_Status::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void Robots_Status::Clear() {
@@ -662,7 +1327,7 @@ void Robots_Status::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.robots_status_.Clear();
+  robots_status_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -672,7 +1337,7 @@ const char* Robots_Status::_InternalParse(const char* ptr, ::_pbi::ParseContext*
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
     switch (tag >> 3) {
-      // repeated .ZSS.New.Robot_Status robots_status = 1;
+      // repeated .ZSS.New.Robot_Status_Sim robots_status = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
           ptr -= 1;
@@ -714,7 +1379,7 @@ uint8_t* Robots_Status::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // repeated .ZSS.New.Robot_Status robots_status = 1;
+  // repeated .ZSS.New.Robot_Status_Sim robots_status = 1;
   for (unsigned i = 0,
       n = static_cast<unsigned>(this->_internal_robots_status_size()); i < n; i++) {
     const auto& repfield = this->_internal_robots_status(i);
@@ -738,33 +1403,37 @@ size_t Robots_Status::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // repeated .ZSS.New.Robot_Status robots_status = 1;
+  // repeated .ZSS.New.Robot_Status_Sim robots_status = 1;
   total_size += 1UL * this->_internal_robots_status_size();
-  for (const auto& msg : this->_impl_.robots_status_) {
+  for (const auto& msg : this->robots_status_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Robots_Status::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     Robots_Status::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Robots_Status::GetClassData() const { return &_class_data_; }
 
+void Robots_Status::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Robots_Status *>(to)->MergeFrom(
+      static_cast<const Robots_Status &>(from));
+}
 
-void Robots_Status::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<Robots_Status*>(&to_msg);
-  auto& from = static_cast<const Robots_Status&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.Robots_Status)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void Robots_Status::MergeFrom(const Robots_Status& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.Robots_Status)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.robots_status_.MergeFrom(from._impl_.robots_status_);
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  robots_status_.MergeFrom(from.robots_status_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Robots_Status::CopyFrom(const Robots_Status& from) {
@@ -781,7 +1450,7 @@ bool Robots_Status::IsInitialized() const {
 void Robots_Status::InternalSwap(Robots_Status* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.robots_status_.InternalSwap(&other->_impl_.robots_status_);
+  robots_status_.InternalSwap(&other->robots_status_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Robots_Status::GetMetadata() const {
@@ -799,59 +1468,35 @@ class Multicast_Status::_Internal {
 Multicast_Status::Multicast_Status(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:ZSS.New.Multicast_Status)
 }
 Multicast_Status::Multicast_Status(const Multicast_Status& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  Multicast_Status* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.uuid_){}
-    , decltype(_impl_.ip_){}
-    , decltype(_impl_.team_){}
-    , decltype(_impl_.robot_id_){}
-    , decltype(_impl_.battery_){}
-    , decltype(_impl_.capacitance_){}
-    , decltype(_impl_.infrared_){}
-    , decltype(_impl_.vision_valid_){}
-    , decltype(_impl_.have_imu_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _impl_.uuid_.InitDefault();
+  uuid_.InitDefault();
   #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.uuid_.Set("", GetArenaForAllocation());
+    uuid_.Set("", GetArenaForAllocation());
   #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
   if (!from._internal_uuid().empty()) {
-    _this->_impl_.uuid_.Set(from._internal_uuid(), 
-      _this->GetArenaForAllocation());
+    uuid_.Set(from._internal_uuid(), 
+      GetArenaForAllocation());
   }
-  ::memcpy(&_impl_.ip_, &from._impl_.ip_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.have_imu_) -
-    reinterpret_cast<char*>(&_impl_.ip_)) + sizeof(_impl_.have_imu_));
+  ::memcpy(&ip_, &from.ip_,
+    static_cast<size_t>(reinterpret_cast<char*>(&have_imu_) -
+    reinterpret_cast<char*>(&ip_)) + sizeof(have_imu_));
   // @@protoc_insertion_point(copy_constructor:ZSS.New.Multicast_Status)
 }
 
-inline void Multicast_Status::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.uuid_){}
-    , decltype(_impl_.ip_){0}
-    , decltype(_impl_.team_){0}
-    , decltype(_impl_.robot_id_){0}
-    , decltype(_impl_.battery_){0}
-    , decltype(_impl_.capacitance_){0}
-    , decltype(_impl_.infrared_){0}
-    , decltype(_impl_.vision_valid_){false}
-    , decltype(_impl_.have_imu_){false}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-  _impl_.uuid_.InitDefault();
-  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-    _impl_.uuid_.Set("", GetArenaForAllocation());
-  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+inline void Multicast_Status::SharedCtor() {
+uuid_.InitDefault();
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  uuid_.Set("", GetArenaForAllocation());
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&ip_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&have_imu_) -
+    reinterpret_cast<char*>(&ip_)) + sizeof(have_imu_));
 }
 
 Multicast_Status::~Multicast_Status() {
@@ -865,11 +1510,11 @@ Multicast_Status::~Multicast_Status() {
 
 inline void Multicast_Status::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.uuid_.Destroy();
+  uuid_.Destroy();
 }
 
 void Multicast_Status::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void Multicast_Status::Clear() {
@@ -878,10 +1523,10 @@ void Multicast_Status::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.uuid_.ClearToEmpty();
-  ::memset(&_impl_.ip_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.have_imu_) -
-      reinterpret_cast<char*>(&_impl_.ip_)) + sizeof(_impl_.have_imu_));
+  uuid_.ClearToEmpty();
+  ::memset(&ip_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&have_imu_) -
+      reinterpret_cast<char*>(&ip_)) + sizeof(have_imu_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -894,7 +1539,7 @@ const char* Multicast_Status::_InternalParse(const char* ptr, ::_pbi::ParseConte
       // sint32 ip = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.ip_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          ip_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -921,7 +1566,7 @@ const char* Multicast_Status::_InternalParse(const char* ptr, ::_pbi::ParseConte
       // int32 robot_id = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          _impl_.robot_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          robot_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -929,7 +1574,7 @@ const char* Multicast_Status::_InternalParse(const char* ptr, ::_pbi::ParseConte
       // sint32 battery = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
-          _impl_.battery_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          battery_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -937,7 +1582,7 @@ const char* Multicast_Status::_InternalParse(const char* ptr, ::_pbi::ParseConte
       // sint32 capacitance = 6;
       case 6:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
-          _impl_.capacitance_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          capacitance_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -945,7 +1590,7 @@ const char* Multicast_Status::_InternalParse(const char* ptr, ::_pbi::ParseConte
       // bool vision_valid = 7;
       case 7:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
-          _impl_.vision_valid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          vision_valid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -953,7 +1598,7 @@ const char* Multicast_Status::_InternalParse(const char* ptr, ::_pbi::ParseConte
       // sint32 infrared = 8;
       case 8:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 64)) {
-          _impl_.infrared_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          infrared_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -961,7 +1606,7 @@ const char* Multicast_Status::_InternalParse(const char* ptr, ::_pbi::ParseConte
       // bool have_imu = 9;
       case 9:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 72)) {
-          _impl_.have_imu_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          have_imu_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1118,52 +1763,56 @@ size_t Multicast_Status::ByteSizeLong() const {
     total_size += 1 + 1;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Multicast_Status::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     Multicast_Status::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Multicast_Status::GetClassData() const { return &_class_data_; }
 
+void Multicast_Status::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Multicast_Status *>(to)->MergeFrom(
+      static_cast<const Multicast_Status &>(from));
+}
 
-void Multicast_Status::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<Multicast_Status*>(&to_msg);
-  auto& from = static_cast<const Multicast_Status&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.Multicast_Status)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void Multicast_Status::MergeFrom(const Multicast_Status& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.Multicast_Status)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (!from._internal_uuid().empty()) {
-    _this->_internal_set_uuid(from._internal_uuid());
+    _internal_set_uuid(from._internal_uuid());
   }
   if (from._internal_ip() != 0) {
-    _this->_internal_set_ip(from._internal_ip());
+    _internal_set_ip(from._internal_ip());
   }
   if (from._internal_team() != 0) {
-    _this->_internal_set_team(from._internal_team());
+    _internal_set_team(from._internal_team());
   }
   if (from._internal_robot_id() != 0) {
-    _this->_internal_set_robot_id(from._internal_robot_id());
+    _internal_set_robot_id(from._internal_robot_id());
   }
   if (from._internal_battery() != 0) {
-    _this->_internal_set_battery(from._internal_battery());
+    _internal_set_battery(from._internal_battery());
   }
   if (from._internal_capacitance() != 0) {
-    _this->_internal_set_capacitance(from._internal_capacitance());
+    _internal_set_capacitance(from._internal_capacitance());
   }
   if (from._internal_infrared() != 0) {
-    _this->_internal_set_infrared(from._internal_infrared());
+    _internal_set_infrared(from._internal_infrared());
   }
   if (from._internal_vision_valid() != 0) {
-    _this->_internal_set_vision_valid(from._internal_vision_valid());
+    _internal_set_vision_valid(from._internal_vision_valid());
   }
   if (from._internal_have_imu() != 0) {
-    _this->_internal_set_have_imu(from._internal_have_imu());
+    _internal_set_have_imu(from._internal_have_imu());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Multicast_Status::CopyFrom(const Multicast_Status& from) {
@@ -1183,15 +1832,15 @@ void Multicast_Status::InternalSwap(Multicast_Status* other) {
   auto* rhs_arena = other->GetArenaForAllocation();
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &_impl_.uuid_, lhs_arena,
-      &other->_impl_.uuid_, rhs_arena
+      &uuid_, lhs_arena,
+      &other->uuid_, rhs_arena
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Multicast_Status, _impl_.have_imu_)
-      + sizeof(Multicast_Status::_impl_.have_imu_)
-      - PROTOBUF_FIELD_OFFSET(Multicast_Status, _impl_.ip_)>(
-          reinterpret_cast<char*>(&_impl_.ip_),
-          reinterpret_cast<char*>(&other->_impl_.ip_));
+      PROTOBUF_FIELD_OFFSET(Multicast_Status, have_imu_)
+      + sizeof(Multicast_Status::have_imu_)
+      - PROTOBUF_FIELD_OFFSET(Multicast_Status, ip_)>(
+          reinterpret_cast<char*>(&ip_),
+          reinterpret_cast<char*>(&other->ip_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Multicast_Status::GetMetadata() const {
@@ -1205,81 +1854,61 @@ void Multicast_Status::InternalSwap(Multicast_Status* other) {
 class Robot_Status::_Internal {
  public:
   static const ::ZSS::New::Odom& odom(const Robot_Status* msg);
+  static const ::ZSS::New::MotionFeedbackV2& motion_feedback(const Robot_Status* msg);
 };
 
 const ::ZSS::New::Odom&
 Robot_Status::_Internal::odom(const Robot_Status* msg) {
-  return *msg->_impl_.odom_;
+  return *msg->odom_;
+}
+const ::ZSS::New::MotionFeedbackV2&
+Robot_Status::_Internal::motion_feedback(const Robot_Status* msg) {
+  return *msg->motion_feedback_;
 }
 void Robot_Status::clear_odom() {
-  if (GetArenaForAllocation() == nullptr && _impl_.odom_ != nullptr) {
-    delete _impl_.odom_;
+  if (GetArenaForAllocation() == nullptr && odom_ != nullptr) {
+    delete odom_;
   }
-  _impl_.odom_ = nullptr;
+  odom_ = nullptr;
 }
 Robot_Status::Robot_Status(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  wheel_encoder_(arena),
+  imu_data_(arena),
+  real_pose_(arena),
+  wheel_ref_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:ZSS.New.Robot_Status)
 }
 Robot_Status::Robot_Status(const Robot_Status& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  Robot_Status* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.wheel_encoder_){from._impl_.wheel_encoder_}
-    , /*decltype(_impl_._wheel_encoder_cached_byte_size_)*/{0}
-    , decltype(_impl_.imu_data_){from._impl_.imu_data_}
-    , decltype(_impl_.real_pose_){from._impl_.real_pose_}
-    , decltype(_impl_.wheel_ref_){from._impl_.wheel_ref_}
-    , /*decltype(_impl_._wheel_ref_cached_byte_size_)*/{0}
-    , decltype(_impl_.odom_){nullptr}
-    , decltype(_impl_.robot_id_){}
-    , decltype(_impl_.infrared_){}
-    , decltype(_impl_.flat_kick_){}
-    , decltype(_impl_.chip_kick_){}
-    , decltype(_impl_.imu_theta_z_){}
-    , decltype(_impl_.battery_){}
-    , decltype(_impl_.capacitance_){}
-    , decltype(_impl_.team_){}
-    , decltype(_impl_.have_imu_){}
-    , decltype(_impl_.imu_omega_z_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      wheel_encoder_(from.wheel_encoder_),
+      imu_data_(from.imu_data_),
+      real_pose_(from.real_pose_),
+      wheel_ref_(from.wheel_ref_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_odom()) {
-    _this->_impl_.odom_ = new ::ZSS::New::Odom(*from._impl_.odom_);
+    odom_ = new ::ZSS::New::Odom(*from.odom_);
+  } else {
+    odom_ = nullptr;
   }
-  ::memcpy(&_impl_.robot_id_, &from._impl_.robot_id_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.imu_omega_z_) -
-    reinterpret_cast<char*>(&_impl_.robot_id_)) + sizeof(_impl_.imu_omega_z_));
+  if (from._internal_has_motion_feedback()) {
+    motion_feedback_ = new ::ZSS::New::MotionFeedbackV2(*from.motion_feedback_);
+  } else {
+    motion_feedback_ = nullptr;
+  }
+  ::memcpy(&robot_id_, &from.robot_id_,
+    static_cast<size_t>(reinterpret_cast<char*>(&imu_omega_z_) -
+    reinterpret_cast<char*>(&robot_id_)) + sizeof(imu_omega_z_));
   // @@protoc_insertion_point(copy_constructor:ZSS.New.Robot_Status)
 }
 
-inline void Robot_Status::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.wheel_encoder_){arena}
-    , /*decltype(_impl_._wheel_encoder_cached_byte_size_)*/{0}
-    , decltype(_impl_.imu_data_){arena}
-    , decltype(_impl_.real_pose_){arena}
-    , decltype(_impl_.wheel_ref_){arena}
-    , /*decltype(_impl_._wheel_ref_cached_byte_size_)*/{0}
-    , decltype(_impl_.odom_){nullptr}
-    , decltype(_impl_.robot_id_){0}
-    , decltype(_impl_.infrared_){0}
-    , decltype(_impl_.flat_kick_){0}
-    , decltype(_impl_.chip_kick_){0}
-    , decltype(_impl_.imu_theta_z_){0}
-    , decltype(_impl_.battery_){0}
-    , decltype(_impl_.capacitance_){0}
-    , decltype(_impl_.team_){0}
-    , decltype(_impl_.have_imu_){false}
-    , decltype(_impl_.imu_omega_z_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void Robot_Status::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&odom_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&imu_omega_z_) -
+    reinterpret_cast<char*>(&odom_)) + sizeof(imu_omega_z_));
 }
 
 Robot_Status::~Robot_Status() {
@@ -1293,15 +1922,12 @@ Robot_Status::~Robot_Status() {
 
 inline void Robot_Status::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.wheel_encoder_.~RepeatedField();
-  _impl_.imu_data_.~RepeatedField();
-  _impl_.real_pose_.~RepeatedField();
-  _impl_.wheel_ref_.~RepeatedField();
-  if (this != internal_default_instance()) delete _impl_.odom_;
+  if (this != internal_default_instance()) delete odom_;
+  if (this != internal_default_instance()) delete motion_feedback_;
 }
 
 void Robot_Status::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void Robot_Status::Clear() {
@@ -1310,17 +1936,21 @@ void Robot_Status::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.wheel_encoder_.Clear();
-  _impl_.imu_data_.Clear();
-  _impl_.real_pose_.Clear();
-  _impl_.wheel_ref_.Clear();
-  if (GetArenaForAllocation() == nullptr && _impl_.odom_ != nullptr) {
-    delete _impl_.odom_;
+  wheel_encoder_.Clear();
+  imu_data_.Clear();
+  real_pose_.Clear();
+  wheel_ref_.Clear();
+  if (GetArenaForAllocation() == nullptr && odom_ != nullptr) {
+    delete odom_;
   }
-  _impl_.odom_ = nullptr;
-  ::memset(&_impl_.robot_id_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.imu_omega_z_) -
-      reinterpret_cast<char*>(&_impl_.robot_id_)) + sizeof(_impl_.imu_omega_z_));
+  odom_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && motion_feedback_ != nullptr) {
+    delete motion_feedback_;
+  }
+  motion_feedback_ = nullptr;
+  ::memset(&robot_id_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&imu_omega_z_) -
+      reinterpret_cast<char*>(&robot_id_)) + sizeof(imu_omega_z_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1333,7 +1963,7 @@ const char* Robot_Status::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
       // int32 robot_id = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.robot_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          robot_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1341,7 +1971,7 @@ const char* Robot_Status::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
       // sint32 infrared = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.infrared_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          infrared_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1349,7 +1979,7 @@ const char* Robot_Status::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
       // sint32 flat_kick = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          _impl_.flat_kick_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          flat_kick_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1357,7 +1987,7 @@ const char* Robot_Status::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
       // sint32 chip_kick = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          _impl_.chip_kick_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          chip_kick_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1365,7 +1995,7 @@ const char* Robot_Status::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
       // sint32 imu_theta_z = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
-          _impl_.imu_theta_z_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          imu_theta_z_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1373,7 +2003,7 @@ const char* Robot_Status::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
       // sint32 battery = 6;
       case 6:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
-          _impl_.battery_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          battery_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1381,7 +2011,7 @@ const char* Robot_Status::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
       // sint32 capacitance = 7;
       case 7:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
-          _impl_.capacitance_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          capacitance_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1439,7 +2069,7 @@ const char* Robot_Status::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
       // bool have_imu = 13;
       case 13:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 104)) {
-          _impl_.have_imu_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          have_imu_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1447,7 +2077,7 @@ const char* Robot_Status::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
       // sint32 imu_omega_z = 14;
       case 14:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 112)) {
-          _impl_.imu_omega_z_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          imu_omega_z_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1459,6 +2089,14 @@ const char* Robot_Status::_InternalParse(const char* ptr, ::_pbi::ParseContext* 
           CHK_(ptr);
         } else if (static_cast<uint8_t>(tag) == 120) {
           _internal_add_wheel_ref(::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr));
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .ZSS.New.MotionFeedbackV2 motion_feedback = 50;
+      case 50:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 146)) {
+          ptr = ctx->ParseMessage(_internal_mutable_motion_feedback(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1543,7 +2181,7 @@ uint8_t* Robot_Status::_InternalSerialize(
 
   // repeated sint32 wheel_encoder = 9;
   {
-    int byte_size = _impl_._wheel_encoder_cached_byte_size_.load(std::memory_order_relaxed);
+    int byte_size = _wheel_encoder_cached_byte_size_.load(std::memory_order_relaxed);
     if (byte_size > 0) {
       target = stream->WriteSInt32Packed(
           9, _internal_wheel_encoder(), byte_size, target);
@@ -1581,11 +2219,18 @@ uint8_t* Robot_Status::_InternalSerialize(
 
   // repeated sint32 wheel_ref = 15;
   {
-    int byte_size = _impl_._wheel_ref_cached_byte_size_.load(std::memory_order_relaxed);
+    int byte_size = _wheel_ref_cached_byte_size_.load(std::memory_order_relaxed);
     if (byte_size > 0) {
       target = stream->WriteSInt32Packed(
           15, _internal_wheel_ref(), byte_size, target);
     }
+  }
+
+  // .ZSS.New.MotionFeedbackV2 motion_feedback = 50;
+  if (this->_internal_has_motion_feedback()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(50, _Internal::motion_feedback(this),
+        _Internal::motion_feedback(this).GetCachedSize(), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1607,13 +2252,13 @@ size_t Robot_Status::ByteSizeLong() const {
   // repeated sint32 wheel_encoder = 9;
   {
     size_t data_size = ::_pbi::WireFormatLite::
-      SInt32Size(this->_impl_.wheel_encoder_);
+      SInt32Size(this->wheel_encoder_);
     if (data_size > 0) {
       total_size += 1 +
         ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
     }
     int cached_size = ::_pbi::ToCachedSize(data_size);
-    _impl_._wheel_encoder_cached_byte_size_.store(cached_size,
+    _wheel_encoder_cached_byte_size_.store(cached_size,
                                     std::memory_order_relaxed);
     total_size += data_size;
   }
@@ -1643,13 +2288,13 @@ size_t Robot_Status::ByteSizeLong() const {
   // repeated sint32 wheel_ref = 15;
   {
     size_t data_size = ::_pbi::WireFormatLite::
-      SInt32Size(this->_impl_.wheel_ref_);
+      SInt32Size(this->wheel_ref_);
     if (data_size > 0) {
       total_size += 1 +
         ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
     }
     int cached_size = ::_pbi::ToCachedSize(data_size);
-    _impl_._wheel_ref_cached_byte_size_.store(cached_size,
+    _wheel_ref_cached_byte_size_.store(cached_size,
                                     std::memory_order_relaxed);
     total_size += data_size;
   }
@@ -1658,7 +2303,14 @@ size_t Robot_Status::ByteSizeLong() const {
   if (this->_internal_has_odom()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.odom_);
+        *odom_);
+  }
+
+  // .ZSS.New.MotionFeedbackV2 motion_feedback = 50;
+  if (this->_internal_has_motion_feedback()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *motion_feedback_);
   }
 
   // int32 robot_id = 1;
@@ -1712,63 +2364,69 @@ size_t Robot_Status::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::SInt32SizePlusOne(this->_internal_imu_omega_z());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Robot_Status::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     Robot_Status::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Robot_Status::GetClassData() const { return &_class_data_; }
 
+void Robot_Status::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Robot_Status *>(to)->MergeFrom(
+      static_cast<const Robot_Status &>(from));
+}
 
-void Robot_Status::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<Robot_Status*>(&to_msg);
-  auto& from = static_cast<const Robot_Status&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.Robot_Status)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void Robot_Status::MergeFrom(const Robot_Status& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.Robot_Status)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.wheel_encoder_.MergeFrom(from._impl_.wheel_encoder_);
-  _this->_impl_.imu_data_.MergeFrom(from._impl_.imu_data_);
-  _this->_impl_.real_pose_.MergeFrom(from._impl_.real_pose_);
-  _this->_impl_.wheel_ref_.MergeFrom(from._impl_.wheel_ref_);
+  wheel_encoder_.MergeFrom(from.wheel_encoder_);
+  imu_data_.MergeFrom(from.imu_data_);
+  real_pose_.MergeFrom(from.real_pose_);
+  wheel_ref_.MergeFrom(from.wheel_ref_);
   if (from._internal_has_odom()) {
-    _this->_internal_mutable_odom()->::ZSS::New::Odom::MergeFrom(
-        from._internal_odom());
+    _internal_mutable_odom()->::ZSS::New::Odom::MergeFrom(from._internal_odom());
+  }
+  if (from._internal_has_motion_feedback()) {
+    _internal_mutable_motion_feedback()->::ZSS::New::MotionFeedbackV2::MergeFrom(from._internal_motion_feedback());
   }
   if (from._internal_robot_id() != 0) {
-    _this->_internal_set_robot_id(from._internal_robot_id());
+    _internal_set_robot_id(from._internal_robot_id());
   }
   if (from._internal_infrared() != 0) {
-    _this->_internal_set_infrared(from._internal_infrared());
+    _internal_set_infrared(from._internal_infrared());
   }
   if (from._internal_flat_kick() != 0) {
-    _this->_internal_set_flat_kick(from._internal_flat_kick());
+    _internal_set_flat_kick(from._internal_flat_kick());
   }
   if (from._internal_chip_kick() != 0) {
-    _this->_internal_set_chip_kick(from._internal_chip_kick());
+    _internal_set_chip_kick(from._internal_chip_kick());
   }
   if (from._internal_imu_theta_z() != 0) {
-    _this->_internal_set_imu_theta_z(from._internal_imu_theta_z());
+    _internal_set_imu_theta_z(from._internal_imu_theta_z());
   }
   if (from._internal_battery() != 0) {
-    _this->_internal_set_battery(from._internal_battery());
+    _internal_set_battery(from._internal_battery());
   }
   if (from._internal_capacitance() != 0) {
-    _this->_internal_set_capacitance(from._internal_capacitance());
+    _internal_set_capacitance(from._internal_capacitance());
   }
   if (from._internal_team() != 0) {
-    _this->_internal_set_team(from._internal_team());
+    _internal_set_team(from._internal_team());
   }
   if (from._internal_have_imu() != 0) {
-    _this->_internal_set_have_imu(from._internal_have_imu());
+    _internal_set_have_imu(from._internal_have_imu());
   }
   if (from._internal_imu_omega_z() != 0) {
-    _this->_internal_set_imu_omega_z(from._internal_imu_omega_z());
+    _internal_set_imu_omega_z(from._internal_imu_omega_z());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Robot_Status::CopyFrom(const Robot_Status& from) {
@@ -1785,16 +2443,16 @@ bool Robot_Status::IsInitialized() const {
 void Robot_Status::InternalSwap(Robot_Status* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.wheel_encoder_.InternalSwap(&other->_impl_.wheel_encoder_);
-  _impl_.imu_data_.InternalSwap(&other->_impl_.imu_data_);
-  _impl_.real_pose_.InternalSwap(&other->_impl_.real_pose_);
-  _impl_.wheel_ref_.InternalSwap(&other->_impl_.wheel_ref_);
+  wheel_encoder_.InternalSwap(&other->wheel_encoder_);
+  imu_data_.InternalSwap(&other->imu_data_);
+  real_pose_.InternalSwap(&other->real_pose_);
+  wheel_ref_.InternalSwap(&other->wheel_ref_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Robot_Status, _impl_.imu_omega_z_)
-      + sizeof(Robot_Status::_impl_.imu_omega_z_)
-      - PROTOBUF_FIELD_OFFSET(Robot_Status, _impl_.odom_)>(
-          reinterpret_cast<char*>(&_impl_.odom_),
-          reinterpret_cast<char*>(&other->_impl_.odom_));
+      PROTOBUF_FIELD_OFFSET(Robot_Status, imu_omega_z_)
+      + sizeof(Robot_Status::imu_omega_z_)
+      - PROTOBUF_FIELD_OFFSET(Robot_Status, odom_)>(
+          reinterpret_cast<char*>(&odom_),
+          reinterpret_cast<char*>(&other->odom_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Robot_Status::GetMetadata() const {
@@ -1805,9 +2463,499 @@ void Robot_Status::InternalSwap(Robot_Status* other) {
 
 // ===================================================================
 
+class Robot_Status_Sim::_Internal {
+ public:
+  static const ::ZSS::New::Odom& odom(const Robot_Status_Sim* msg);
+};
+
+const ::ZSS::New::Odom&
+Robot_Status_Sim::_Internal::odom(const Robot_Status_Sim* msg) {
+  return *msg->odom_;
+}
+void Robot_Status_Sim::clear_odom() {
+  if (GetArenaForAllocation() == nullptr && odom_ != nullptr) {
+    delete odom_;
+  }
+  odom_ = nullptr;
+}
+Robot_Status_Sim::Robot_Status_Sim(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  wheel_encoder_(arena) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:ZSS.New.Robot_Status_Sim)
+}
+Robot_Status_Sim::Robot_Status_Sim(const Robot_Status_Sim& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      wheel_encoder_(from.wheel_encoder_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_odom()) {
+    odom_ = new ::ZSS::New::Odom(*from.odom_);
+  } else {
+    odom_ = nullptr;
+  }
+  ::memcpy(&robot_id_, &from.robot_id_,
+    static_cast<size_t>(reinterpret_cast<char*>(&team_) -
+    reinterpret_cast<char*>(&robot_id_)) + sizeof(team_));
+  // @@protoc_insertion_point(copy_constructor:ZSS.New.Robot_Status_Sim)
+}
+
+inline void Robot_Status_Sim::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&odom_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&team_) -
+    reinterpret_cast<char*>(&odom_)) + sizeof(team_));
+}
+
+Robot_Status_Sim::~Robot_Status_Sim() {
+  // @@protoc_insertion_point(destructor:ZSS.New.Robot_Status_Sim)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void Robot_Status_Sim::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete odom_;
+}
+
+void Robot_Status_Sim::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void Robot_Status_Sim::Clear() {
+// @@protoc_insertion_point(message_clear_start:ZSS.New.Robot_Status_Sim)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  wheel_encoder_.Clear();
+  if (GetArenaForAllocation() == nullptr && odom_ != nullptr) {
+    delete odom_;
+  }
+  odom_ = nullptr;
+  ::memset(&robot_id_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&team_) -
+      reinterpret_cast<char*>(&robot_id_)) + sizeof(team_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* Robot_Status_Sim::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // int32 robot_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          robot_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // float infrared = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 21)) {
+          infrared_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float flat_kick = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 29)) {
+          flat_kick_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float chip_kick = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 37)) {
+          chip_kick_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float imu_theta = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 45)) {
+          imu_theta_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float battery = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 53)) {
+          battery_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float capacitance = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 61)) {
+          capacitance_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // .ZSS.New.Odom odom = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 66)) {
+          ptr = ctx->ParseMessage(_internal_mutable_odom(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated float wheel_encoder = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedFloatParser(_internal_mutable_wheel_encoder(), ptr, ctx);
+          CHK_(ptr);
+        } else if (static_cast<uint8_t>(tag) == 77) {
+          _internal_add_wheel_encoder(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr));
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // .ZSS.New.Team team = 10;
+      case 10:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 80)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_team(static_cast<::ZSS::New::Team>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* Robot_Status_Sim::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:ZSS.New.Robot_Status_Sim)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 robot_id = 1;
+  if (this->_internal_robot_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_robot_id(), target);
+  }
+
+  // float infrared = 2;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_infrared = this->_internal_infrared();
+  uint32_t raw_infrared;
+  memcpy(&raw_infrared, &tmp_infrared, sizeof(tmp_infrared));
+  if (raw_infrared != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(2, this->_internal_infrared(), target);
+  }
+
+  // float flat_kick = 3;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_flat_kick = this->_internal_flat_kick();
+  uint32_t raw_flat_kick;
+  memcpy(&raw_flat_kick, &tmp_flat_kick, sizeof(tmp_flat_kick));
+  if (raw_flat_kick != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(3, this->_internal_flat_kick(), target);
+  }
+
+  // float chip_kick = 4;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_chip_kick = this->_internal_chip_kick();
+  uint32_t raw_chip_kick;
+  memcpy(&raw_chip_kick, &tmp_chip_kick, sizeof(tmp_chip_kick));
+  if (raw_chip_kick != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(4, this->_internal_chip_kick(), target);
+  }
+
+  // float imu_theta = 5;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_imu_theta = this->_internal_imu_theta();
+  uint32_t raw_imu_theta;
+  memcpy(&raw_imu_theta, &tmp_imu_theta, sizeof(tmp_imu_theta));
+  if (raw_imu_theta != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(5, this->_internal_imu_theta(), target);
+  }
+
+  // float battery = 6;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_battery = this->_internal_battery();
+  uint32_t raw_battery;
+  memcpy(&raw_battery, &tmp_battery, sizeof(tmp_battery));
+  if (raw_battery != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(6, this->_internal_battery(), target);
+  }
+
+  // float capacitance = 7;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_capacitance = this->_internal_capacitance();
+  uint32_t raw_capacitance;
+  memcpy(&raw_capacitance, &tmp_capacitance, sizeof(tmp_capacitance));
+  if (raw_capacitance != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(7, this->_internal_capacitance(), target);
+  }
+
+  // .ZSS.New.Odom odom = 8;
+  if (this->_internal_has_odom()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(8, _Internal::odom(this),
+        _Internal::odom(this).GetCachedSize(), target, stream);
+  }
+
+  // repeated float wheel_encoder = 9;
+  if (this->_internal_wheel_encoder_size() > 0) {
+    target = stream->WriteFixedPacked(9, _internal_wheel_encoder(), target);
+  }
+
+  // .ZSS.New.Team team = 10;
+  if (this->_internal_team() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      10, this->_internal_team(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:ZSS.New.Robot_Status_Sim)
+  return target;
+}
+
+size_t Robot_Status_Sim::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:ZSS.New.Robot_Status_Sim)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated float wheel_encoder = 9;
+  {
+    unsigned int count = static_cast<unsigned int>(this->_internal_wheel_encoder_size());
+    size_t data_size = 4UL * count;
+    if (data_size > 0) {
+      total_size += 1 +
+        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
+    }
+    total_size += data_size;
+  }
+
+  // .ZSS.New.Odom odom = 8;
+  if (this->_internal_has_odom()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *odom_);
+  }
+
+  // int32 robot_id = 1;
+  if (this->_internal_robot_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_robot_id());
+  }
+
+  // float infrared = 2;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_infrared = this->_internal_infrared();
+  uint32_t raw_infrared;
+  memcpy(&raw_infrared, &tmp_infrared, sizeof(tmp_infrared));
+  if (raw_infrared != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float flat_kick = 3;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_flat_kick = this->_internal_flat_kick();
+  uint32_t raw_flat_kick;
+  memcpy(&raw_flat_kick, &tmp_flat_kick, sizeof(tmp_flat_kick));
+  if (raw_flat_kick != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float chip_kick = 4;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_chip_kick = this->_internal_chip_kick();
+  uint32_t raw_chip_kick;
+  memcpy(&raw_chip_kick, &tmp_chip_kick, sizeof(tmp_chip_kick));
+  if (raw_chip_kick != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float imu_theta = 5;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_imu_theta = this->_internal_imu_theta();
+  uint32_t raw_imu_theta;
+  memcpy(&raw_imu_theta, &tmp_imu_theta, sizeof(tmp_imu_theta));
+  if (raw_imu_theta != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float battery = 6;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_battery = this->_internal_battery();
+  uint32_t raw_battery;
+  memcpy(&raw_battery, &tmp_battery, sizeof(tmp_battery));
+  if (raw_battery != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float capacitance = 7;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_capacitance = this->_internal_capacitance();
+  uint32_t raw_capacitance;
+  memcpy(&raw_capacitance, &tmp_capacitance, sizeof(tmp_capacitance));
+  if (raw_capacitance != 0) {
+    total_size += 1 + 4;
+  }
+
+  // .ZSS.New.Team team = 10;
+  if (this->_internal_team() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_team());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Robot_Status_Sim::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    Robot_Status_Sim::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Robot_Status_Sim::GetClassData() const { return &_class_data_; }
+
+void Robot_Status_Sim::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Robot_Status_Sim *>(to)->MergeFrom(
+      static_cast<const Robot_Status_Sim &>(from));
+}
+
+
+void Robot_Status_Sim::MergeFrom(const Robot_Status_Sim& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.Robot_Status_Sim)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  wheel_encoder_.MergeFrom(from.wheel_encoder_);
+  if (from._internal_has_odom()) {
+    _internal_mutable_odom()->::ZSS::New::Odom::MergeFrom(from._internal_odom());
+  }
+  if (from._internal_robot_id() != 0) {
+    _internal_set_robot_id(from._internal_robot_id());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_infrared = from._internal_infrared();
+  uint32_t raw_infrared;
+  memcpy(&raw_infrared, &tmp_infrared, sizeof(tmp_infrared));
+  if (raw_infrared != 0) {
+    _internal_set_infrared(from._internal_infrared());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_flat_kick = from._internal_flat_kick();
+  uint32_t raw_flat_kick;
+  memcpy(&raw_flat_kick, &tmp_flat_kick, sizeof(tmp_flat_kick));
+  if (raw_flat_kick != 0) {
+    _internal_set_flat_kick(from._internal_flat_kick());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_chip_kick = from._internal_chip_kick();
+  uint32_t raw_chip_kick;
+  memcpy(&raw_chip_kick, &tmp_chip_kick, sizeof(tmp_chip_kick));
+  if (raw_chip_kick != 0) {
+    _internal_set_chip_kick(from._internal_chip_kick());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_imu_theta = from._internal_imu_theta();
+  uint32_t raw_imu_theta;
+  memcpy(&raw_imu_theta, &tmp_imu_theta, sizeof(tmp_imu_theta));
+  if (raw_imu_theta != 0) {
+    _internal_set_imu_theta(from._internal_imu_theta());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_battery = from._internal_battery();
+  uint32_t raw_battery;
+  memcpy(&raw_battery, &tmp_battery, sizeof(tmp_battery));
+  if (raw_battery != 0) {
+    _internal_set_battery(from._internal_battery());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_capacitance = from._internal_capacitance();
+  uint32_t raw_capacitance;
+  memcpy(&raw_capacitance, &tmp_capacitance, sizeof(tmp_capacitance));
+  if (raw_capacitance != 0) {
+    _internal_set_capacitance(from._internal_capacitance());
+  }
+  if (from._internal_team() != 0) {
+    _internal_set_team(from._internal_team());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Robot_Status_Sim::CopyFrom(const Robot_Status_Sim& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:ZSS.New.Robot_Status_Sim)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Robot_Status_Sim::IsInitialized() const {
+  return true;
+}
+
+void Robot_Status_Sim::InternalSwap(Robot_Status_Sim* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  wheel_encoder_.InternalSwap(&other->wheel_encoder_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Robot_Status_Sim, team_)
+      + sizeof(Robot_Status_Sim::team_)
+      - PROTOBUF_FIELD_OFFSET(Robot_Status_Sim, odom_)>(
+          reinterpret_cast<char*>(&odom_),
+          reinterpret_cast<char*>(&other->odom_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata Robot_Status_Sim::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_zss_5fcmd_2eproto_getter, &descriptor_table_zss_5fcmd_2eproto_once,
+      file_level_metadata_zss_5fcmd_2eproto[3]);
+}
+
+// ===================================================================
+
 class Robots_Command::_Internal {
  public:
-  using HasBits = decltype(std::declval<Robots_Command>()._impl_._has_bits_);
+  using HasBits = decltype(std::declval<Robots_Command>()._has_bits_);
   static void set_has_delay(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
   }
@@ -1815,34 +2963,22 @@ class Robots_Command::_Internal {
 
 Robots_Command::Robots_Command(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  command_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:ZSS.New.Robots_Command)
 }
 Robots_Command::Robots_Command(const Robots_Command& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  Robots_Command* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){from._impl_._has_bits_}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.command_){from._impl_.command_}
-    , decltype(_impl_.delay_){}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_),
+      command_(from.command_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _this->_impl_.delay_ = from._impl_.delay_;
+  delay_ = from.delay_;
   // @@protoc_insertion_point(copy_constructor:ZSS.New.Robots_Command)
 }
 
-inline void Robots_Command::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.command_){arena}
-    , decltype(_impl_.delay_){0}
-  };
+inline void Robots_Command::SharedCtor() {
+delay_ = 0;
 }
 
 Robots_Command::~Robots_Command() {
@@ -1856,11 +2992,10 @@ Robots_Command::~Robots_Command() {
 
 inline void Robots_Command::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.command_.~RepeatedPtrField();
 }
 
 void Robots_Command::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void Robots_Command::Clear() {
@@ -1869,9 +3004,9 @@ void Robots_Command::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.command_.Clear();
-  _impl_.delay_ = 0;
-  _impl_._has_bits_.Clear();
+  command_.Clear();
+  delay_ = 0;
+  _has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1899,7 +3034,7 @@ const char* Robots_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
           _Internal::set_has_delay(&has_bits);
-          _impl_.delay_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          delay_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1920,7 +3055,7 @@ const char* Robots_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext
     CHK_(ptr != nullptr);
   }  // while
 message_done:
-  _impl_._has_bits_.Or(has_bits);
+  _has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -1966,40 +3101,44 @@ size_t Robots_Command::ByteSizeLong() const {
 
   // repeated .ZSS.New.Robot_Command command = 1;
   total_size += 1UL * this->_internal_command_size();
-  for (const auto& msg : this->_impl_.command_) {
+  for (const auto& msg : this->command_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   // optional int32 delay = 2;
-  cached_has_bits = _impl_._has_bits_[0];
+  cached_has_bits = _has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
     total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_delay());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Robots_Command::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     Robots_Command::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Robots_Command::GetClassData() const { return &_class_data_; }
 
+void Robots_Command::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Robots_Command *>(to)->MergeFrom(
+      static_cast<const Robots_Command &>(from));
+}
 
-void Robots_Command::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<Robots_Command*>(&to_msg);
-  auto& from = static_cast<const Robots_Command&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.Robots_Command)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void Robots_Command::MergeFrom(const Robots_Command& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.Robots_Command)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.command_.MergeFrom(from._impl_.command_);
+  command_.MergeFrom(from.command_);
   if (from._internal_has_delay()) {
-    _this->_internal_set_delay(from._internal_delay());
+    _internal_set_delay(from._internal_delay());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Robots_Command::CopyFrom(const Robots_Command& from) {
@@ -2016,22 +3155,22 @@ bool Robots_Command::IsInitialized() const {
 void Robots_Command::InternalSwap(Robots_Command* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  _impl_.command_.InternalSwap(&other->_impl_.command_);
-  swap(_impl_.delay_, other->_impl_.delay_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
+  command_.InternalSwap(&other->command_);
+  swap(delay_, other->delay_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Robots_Command::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_zss_5fcmd_2eproto_getter, &descriptor_table_zss_5fcmd_2eproto_once,
-      file_level_metadata_zss_5fcmd_2eproto[3]);
+      file_level_metadata_zss_5fcmd_2eproto[4]);
 }
 
 // ===================================================================
 
 class Robot_Command::_Internal {
  public:
-  using HasBits = decltype(std::declval<Robot_Command>()._impl_._has_bits_);
+  using HasBits = decltype(std::declval<Robot_Command>()._has_bits_);
   static const ::ZSS::New::CmdVel& cmd_vel(const Robot_Command* msg);
   static const ::ZSS::New::CmdPose& cmd_pose(const Robot_Command* msg);
   static const ::ZSS::New::CmdChase& cmd_chase(const Robot_Command* msg);
@@ -2054,172 +3193,123 @@ class Robot_Command::_Internal {
   static void set_has_chassis_vel_pid_kd_y(HasBits* has_bits) {
     (*has_bits)[0] |= 32u;
   }
+  static const ::ZSS::New::MotionCommandV2& motion_command(const Robot_Command* msg);
+  static const ::ZSS::New::VisionObservationV2& vision_observation(const Robot_Command* msg);
+  static const ::ZSS::New::MotionConfigV2& motion_config(const Robot_Command* msg);
 };
 
 const ::ZSS::New::CmdVel&
 Robot_Command::_Internal::cmd_vel(const Robot_Command* msg) {
-  return *msg->_impl_.cmd_vel_;
+  return *msg->cmd_vel_;
 }
 const ::ZSS::New::CmdPose&
 Robot_Command::_Internal::cmd_pose(const Robot_Command* msg) {
-  return *msg->_impl_.cmd_pose_;
+  return *msg->cmd_pose_;
 }
 const ::ZSS::New::CmdChase&
 Robot_Command::_Internal::cmd_chase(const Robot_Command* msg) {
-  return *msg->_impl_.cmd_chase_;
+  return *msg->cmd_chase_;
 }
 const ::ZSS::New::CmdWheel&
 Robot_Command::_Internal::cmd_wheel(const Robot_Command* msg) {
-  return *msg->_impl_.cmd_wheel_;
+  return *msg->cmd_wheel_;
+}
+const ::ZSS::New::MotionCommandV2&
+Robot_Command::_Internal::motion_command(const Robot_Command* msg) {
+  return *msg->motion_command_;
+}
+const ::ZSS::New::VisionObservationV2&
+Robot_Command::_Internal::vision_observation(const Robot_Command* msg) {
+  return *msg->vision_observation_;
+}
+const ::ZSS::New::MotionConfigV2&
+Robot_Command::_Internal::motion_config(const Robot_Command* msg) {
+  return *msg->motion_config_;
 }
 void Robot_Command::clear_cmd_vel() {
-  if (GetArenaForAllocation() == nullptr && _impl_.cmd_vel_ != nullptr) {
-    delete _impl_.cmd_vel_;
+  if (GetArenaForAllocation() == nullptr && cmd_vel_ != nullptr) {
+    delete cmd_vel_;
   }
-  _impl_.cmd_vel_ = nullptr;
+  cmd_vel_ = nullptr;
 }
 void Robot_Command::clear_cmd_pose() {
-  if (GetArenaForAllocation() == nullptr && _impl_.cmd_pose_ != nullptr) {
-    delete _impl_.cmd_pose_;
+  if (GetArenaForAllocation() == nullptr && cmd_pose_ != nullptr) {
+    delete cmd_pose_;
   }
-  _impl_.cmd_pose_ = nullptr;
+  cmd_pose_ = nullptr;
 }
 void Robot_Command::clear_cmd_chase() {
-  if (GetArenaForAllocation() == nullptr && _impl_.cmd_chase_ != nullptr) {
-    delete _impl_.cmd_chase_;
+  if (GetArenaForAllocation() == nullptr && cmd_chase_ != nullptr) {
+    delete cmd_chase_;
   }
-  _impl_.cmd_chase_ = nullptr;
+  cmd_chase_ = nullptr;
 }
 void Robot_Command::clear_cmd_wheel() {
-  if (GetArenaForAllocation() == nullptr && _impl_.cmd_wheel_ != nullptr) {
-    delete _impl_.cmd_wheel_;
+  if (GetArenaForAllocation() == nullptr && cmd_wheel_ != nullptr) {
+    delete cmd_wheel_;
   }
-  _impl_.cmd_wheel_ = nullptr;
+  cmd_wheel_ = nullptr;
 }
 Robot_Command::Robot_Command(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  angle_pid_(arena),
+  wheel_pid_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:ZSS.New.Robot_Command)
 }
 Robot_Command::Robot_Command(const Robot_Command& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  Robot_Command* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){from._impl_._has_bits_}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.angle_pid_){from._impl_.angle_pid_}
-    , /*decltype(_impl_._angle_pid_cached_byte_size_)*/{0}
-    , decltype(_impl_.wheel_pid_){from._impl_.wheel_pid_}
-    , /*decltype(_impl_._wheel_pid_cached_byte_size_)*/{0}
-    , decltype(_impl_.cmd_vel_){nullptr}
-    , decltype(_impl_.cmd_pose_){nullptr}
-    , decltype(_impl_.cmd_chase_){nullptr}
-    , decltype(_impl_.cmd_wheel_){nullptr}
-    , decltype(_impl_.robot_id_){}
-    , decltype(_impl_.kick_mode_){}
-    , decltype(_impl_.desire_power_){}
-    , decltype(_impl_.kick_discharge_time_){}
-    , decltype(_impl_.dribble_spin_){}
-    , decltype(_impl_.cmd_type_){}
-    , decltype(_impl_.comm_type_){}
-    , decltype(_impl_.need_report_){}
-    , decltype(_impl_.need_change_team_){}
-    , decltype(_impl_.need_change_id_){}
-    , decltype(_impl_.isdebug_){}
-    , decltype(_impl_.team_new_){}
-    , decltype(_impl_.id_new_){}
-    , decltype(_impl_.dribble_velocity_){}
-    , decltype(_impl_.dribble_torque_ff_){}
-    , decltype(_impl_.xy_max_acc_x_){}
-    , decltype(_impl_.xy_max_acc_y_){}
-    , decltype(_impl_.xy_max_jerk_x_){}
-    , decltype(_impl_.xy_max_jerk_y_){}
-    , decltype(_impl_.xy_max_dec_x_){}
-    , decltype(_impl_.xy_max_dec_y_){}
-    , decltype(_impl_.yaw_max_vel_){}
-    , decltype(_impl_.yaw_max_acc_){}
-    , decltype(_impl_.yaw_max_jerk_){}
-    , decltype(_impl_.raw_vision_vel_x_){}
-    , decltype(_impl_.raw_vision_vel_y_){}
-    , decltype(_impl_.vision_source_){}
-    , decltype(_impl_.dribble_mode_){}
-    , decltype(_impl_.chassis_vel_pid_kp_x_){}
-    , decltype(_impl_.chassis_vel_pid_ki_x_){}
-    , decltype(_impl_.chassis_vel_pid_kd_x_){}
-    , decltype(_impl_.chassis_vel_pid_kp_y_){}
-    , decltype(_impl_.chassis_vel_pid_ki_y_){}
-    , decltype(_impl_.chassis_vel_pid_kd_y_){}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_),
+      angle_pid_(from.angle_pid_),
+      wheel_pid_(from.wheel_pid_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_cmd_vel()) {
-    _this->_impl_.cmd_vel_ = new ::ZSS::New::CmdVel(*from._impl_.cmd_vel_);
+    cmd_vel_ = new ::ZSS::New::CmdVel(*from.cmd_vel_);
+  } else {
+    cmd_vel_ = nullptr;
   }
   if (from._internal_has_cmd_pose()) {
-    _this->_impl_.cmd_pose_ = new ::ZSS::New::CmdPose(*from._impl_.cmd_pose_);
+    cmd_pose_ = new ::ZSS::New::CmdPose(*from.cmd_pose_);
+  } else {
+    cmd_pose_ = nullptr;
   }
   if (from._internal_has_cmd_chase()) {
-    _this->_impl_.cmd_chase_ = new ::ZSS::New::CmdChase(*from._impl_.cmd_chase_);
+    cmd_chase_ = new ::ZSS::New::CmdChase(*from.cmd_chase_);
+  } else {
+    cmd_chase_ = nullptr;
   }
   if (from._internal_has_cmd_wheel()) {
-    _this->_impl_.cmd_wheel_ = new ::ZSS::New::CmdWheel(*from._impl_.cmd_wheel_);
+    cmd_wheel_ = new ::ZSS::New::CmdWheel(*from.cmd_wheel_);
+  } else {
+    cmd_wheel_ = nullptr;
   }
-  ::memcpy(&_impl_.robot_id_, &from._impl_.robot_id_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.chassis_vel_pid_kd_y_) -
-    reinterpret_cast<char*>(&_impl_.robot_id_)) + sizeof(_impl_.chassis_vel_pid_kd_y_));
+  if (from._internal_has_motion_command()) {
+    motion_command_ = new ::ZSS::New::MotionCommandV2(*from.motion_command_);
+  } else {
+    motion_command_ = nullptr;
+  }
+  if (from._internal_has_vision_observation()) {
+    vision_observation_ = new ::ZSS::New::VisionObservationV2(*from.vision_observation_);
+  } else {
+    vision_observation_ = nullptr;
+  }
+  if (from._internal_has_motion_config()) {
+    motion_config_ = new ::ZSS::New::MotionConfigV2(*from.motion_config_);
+  } else {
+    motion_config_ = nullptr;
+  }
+  ::memcpy(&robot_id_, &from.robot_id_,
+    static_cast<size_t>(reinterpret_cast<char*>(&chassis_vel_pid_kd_y_) -
+    reinterpret_cast<char*>(&robot_id_)) + sizeof(chassis_vel_pid_kd_y_));
   // @@protoc_insertion_point(copy_constructor:ZSS.New.Robot_Command)
 }
 
-inline void Robot_Command::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.angle_pid_){arena}
-    , /*decltype(_impl_._angle_pid_cached_byte_size_)*/{0}
-    , decltype(_impl_.wheel_pid_){arena}
-    , /*decltype(_impl_._wheel_pid_cached_byte_size_)*/{0}
-    , decltype(_impl_.cmd_vel_){nullptr}
-    , decltype(_impl_.cmd_pose_){nullptr}
-    , decltype(_impl_.cmd_chase_){nullptr}
-    , decltype(_impl_.cmd_wheel_){nullptr}
-    , decltype(_impl_.robot_id_){0}
-    , decltype(_impl_.kick_mode_){0}
-    , decltype(_impl_.desire_power_){0}
-    , decltype(_impl_.kick_discharge_time_){0}
-    , decltype(_impl_.dribble_spin_){0}
-    , decltype(_impl_.cmd_type_){0}
-    , decltype(_impl_.comm_type_){0}
-    , decltype(_impl_.need_report_){false}
-    , decltype(_impl_.need_change_team_){false}
-    , decltype(_impl_.need_change_id_){false}
-    , decltype(_impl_.isdebug_){false}
-    , decltype(_impl_.team_new_){0}
-    , decltype(_impl_.id_new_){0}
-    , decltype(_impl_.dribble_velocity_){0}
-    , decltype(_impl_.dribble_torque_ff_){0}
-    , decltype(_impl_.xy_max_acc_x_){0}
-    , decltype(_impl_.xy_max_acc_y_){0}
-    , decltype(_impl_.xy_max_jerk_x_){0}
-    , decltype(_impl_.xy_max_jerk_y_){0}
-    , decltype(_impl_.xy_max_dec_x_){0}
-    , decltype(_impl_.xy_max_dec_y_){0}
-    , decltype(_impl_.yaw_max_vel_){0}
-    , decltype(_impl_.yaw_max_acc_){0}
-    , decltype(_impl_.yaw_max_jerk_){0}
-    , decltype(_impl_.raw_vision_vel_x_){0}
-    , decltype(_impl_.raw_vision_vel_y_){0}
-    , decltype(_impl_.vision_source_){0}
-    , decltype(_impl_.dribble_mode_){0}
-    , decltype(_impl_.chassis_vel_pid_kp_x_){0}
-    , decltype(_impl_.chassis_vel_pid_ki_x_){0}
-    , decltype(_impl_.chassis_vel_pid_kd_x_){0}
-    , decltype(_impl_.chassis_vel_pid_kp_y_){0}
-    , decltype(_impl_.chassis_vel_pid_ki_y_){0}
-    , decltype(_impl_.chassis_vel_pid_kd_y_){0}
-  };
+inline void Robot_Command::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&cmd_vel_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&chassis_vel_pid_kd_y_) -
+    reinterpret_cast<char*>(&cmd_vel_)) + sizeof(chassis_vel_pid_kd_y_));
 }
 
 Robot_Command::~Robot_Command() {
@@ -2233,16 +3323,17 @@ Robot_Command::~Robot_Command() {
 
 inline void Robot_Command::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.angle_pid_.~RepeatedField();
-  _impl_.wheel_pid_.~RepeatedField();
-  if (this != internal_default_instance()) delete _impl_.cmd_vel_;
-  if (this != internal_default_instance()) delete _impl_.cmd_pose_;
-  if (this != internal_default_instance()) delete _impl_.cmd_chase_;
-  if (this != internal_default_instance()) delete _impl_.cmd_wheel_;
+  if (this != internal_default_instance()) delete cmd_vel_;
+  if (this != internal_default_instance()) delete cmd_pose_;
+  if (this != internal_default_instance()) delete cmd_chase_;
+  if (this != internal_default_instance()) delete cmd_wheel_;
+  if (this != internal_default_instance()) delete motion_command_;
+  if (this != internal_default_instance()) delete vision_observation_;
+  if (this != internal_default_instance()) delete motion_config_;
 }
 
 void Robot_Command::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void Robot_Command::Clear() {
@@ -2251,34 +3342,46 @@ void Robot_Command::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.angle_pid_.Clear();
-  _impl_.wheel_pid_.Clear();
-  if (GetArenaForAllocation() == nullptr && _impl_.cmd_vel_ != nullptr) {
-    delete _impl_.cmd_vel_;
+  angle_pid_.Clear();
+  wheel_pid_.Clear();
+  if (GetArenaForAllocation() == nullptr && cmd_vel_ != nullptr) {
+    delete cmd_vel_;
   }
-  _impl_.cmd_vel_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.cmd_pose_ != nullptr) {
-    delete _impl_.cmd_pose_;
+  cmd_vel_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && cmd_pose_ != nullptr) {
+    delete cmd_pose_;
   }
-  _impl_.cmd_pose_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.cmd_chase_ != nullptr) {
-    delete _impl_.cmd_chase_;
+  cmd_pose_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && cmd_chase_ != nullptr) {
+    delete cmd_chase_;
   }
-  _impl_.cmd_chase_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.cmd_wheel_ != nullptr) {
-    delete _impl_.cmd_wheel_;
+  cmd_chase_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && cmd_wheel_ != nullptr) {
+    delete cmd_wheel_;
   }
-  _impl_.cmd_wheel_ = nullptr;
-  ::memset(&_impl_.robot_id_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.dribble_mode_) -
-      reinterpret_cast<char*>(&_impl_.robot_id_)) + sizeof(_impl_.dribble_mode_));
-  cached_has_bits = _impl_._has_bits_[0];
+  cmd_wheel_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && motion_command_ != nullptr) {
+    delete motion_command_;
+  }
+  motion_command_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && vision_observation_ != nullptr) {
+    delete vision_observation_;
+  }
+  vision_observation_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && motion_config_ != nullptr) {
+    delete motion_config_;
+  }
+  motion_config_ = nullptr;
+  ::memset(&robot_id_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&dribble_mode_) -
+      reinterpret_cast<char*>(&robot_id_)) + sizeof(dribble_mode_));
+  cached_has_bits = _has_bits_[0];
   if (cached_has_bits & 0x0000003fu) {
-    ::memset(&_impl_.chassis_vel_pid_kp_x_, 0, static_cast<size_t>(
-        reinterpret_cast<char*>(&_impl_.chassis_vel_pid_kd_y_) -
-        reinterpret_cast<char*>(&_impl_.chassis_vel_pid_kp_x_)) + sizeof(_impl_.chassis_vel_pid_kd_y_));
+    ::memset(&chassis_vel_pid_kp_x_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&chassis_vel_pid_kd_y_) -
+        reinterpret_cast<char*>(&chassis_vel_pid_kp_x_)) + sizeof(chassis_vel_pid_kd_y_));
   }
-  _impl_._has_bits_.Clear();
+  _has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2292,7 +3395,7 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // int32 robot_id = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.robot_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          robot_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2309,7 +3412,7 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // float desire_power = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 29)) {
-          _impl_.desire_power_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          desire_power_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -2317,7 +3420,7 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // sint32 kick_discharge_time = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          _impl_.kick_discharge_time_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          kick_discharge_time_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2325,7 +3428,7 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // sint32 dribble_spin = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
-          _impl_.dribble_spin_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          dribble_spin_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2333,7 +3436,7 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // bool need_report = 6;
       case 6:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
-          _impl_.need_report_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          need_report_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2402,7 +3505,7 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // bool need_change_team = 14;
       case 14:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 112)) {
-          _impl_.need_change_team_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          need_change_team_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2410,7 +3513,7 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // bool need_change_id = 15;
       case 15:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 120)) {
-          _impl_.need_change_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          need_change_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2427,7 +3530,7 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // int32 id_new = 17;
       case 17:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 136)) {
-          _impl_.id_new_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          id_new_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2435,7 +3538,7 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // bool isdebug = 18;
       case 18:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 144)) {
-          _impl_.isdebug_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          isdebug_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2454,7 +3557,7 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // sint32 dribble_velocity = 20;
       case 20:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 160)) {
-          _impl_.dribble_velocity_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          dribble_velocity_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2462,7 +3565,7 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // sint32 dribble_torque_ff = 21;
       case 21:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 168)) {
-          _impl_.dribble_torque_ff_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          dribble_torque_ff_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2470,7 +3573,7 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // sint32 xy_max_acc_x = 22;
       case 22:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 176)) {
-          _impl_.xy_max_acc_x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          xy_max_acc_x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2478,7 +3581,7 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // sint32 xy_max_acc_y = 23;
       case 23:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 184)) {
-          _impl_.xy_max_acc_y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          xy_max_acc_y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2486,7 +3589,7 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // sint32 xy_max_jerk_x = 24;
       case 24:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 192)) {
-          _impl_.xy_max_jerk_x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          xy_max_jerk_x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2494,7 +3597,7 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // sint32 xy_max_jerk_y = 25;
       case 25:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 200)) {
-          _impl_.xy_max_jerk_y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          xy_max_jerk_y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2502,7 +3605,7 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // sint32 xy_max_dec_x = 26;
       case 26:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 208)) {
-          _impl_.xy_max_dec_x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          xy_max_dec_x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2510,7 +3613,7 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // sint32 xy_max_dec_y = 27;
       case 27:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 216)) {
-          _impl_.xy_max_dec_y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          xy_max_dec_y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2518,7 +3621,7 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // sint32 yaw_max_vel = 28;
       case 28:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 224)) {
-          _impl_.yaw_max_vel_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          yaw_max_vel_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2526,7 +3629,7 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // sint32 yaw_max_acc = 29;
       case 29:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 232)) {
-          _impl_.yaw_max_acc_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          yaw_max_acc_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2534,7 +3637,7 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // sint32 yaw_max_jerk = 30;
       case 30:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 240)) {
-          _impl_.yaw_max_jerk_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          yaw_max_jerk_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2542,7 +3645,7 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // sint32 raw_vision_vel_x = 31;
       case 31:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 248)) {
-          _impl_.raw_vision_vel_x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          raw_vision_vel_x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2550,7 +3653,7 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // sint32 raw_vision_vel_y = 32;
       case 32:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 0)) {
-          _impl_.raw_vision_vel_y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          raw_vision_vel_y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2558,7 +3661,7 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // sint32 vision_source = 33;
       case 33:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.vision_source_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          vision_source_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2566,7 +3669,7 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // sint32 dribble_mode = 34;
       case 34:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.dribble_mode_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          dribble_mode_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2575,7 +3678,7 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       case 35:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
           _Internal::set_has_chassis_vel_pid_kp_x(&has_bits);
-          _impl_.chassis_vel_pid_kp_x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          chassis_vel_pid_kp_x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2584,7 +3687,7 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       case 36:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
           _Internal::set_has_chassis_vel_pid_ki_x(&has_bits);
-          _impl_.chassis_vel_pid_ki_x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          chassis_vel_pid_ki_x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2593,7 +3696,7 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       case 37:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
           _Internal::set_has_chassis_vel_pid_kd_x(&has_bits);
-          _impl_.chassis_vel_pid_kd_x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          chassis_vel_pid_kd_x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2602,7 +3705,7 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       case 38:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
           _Internal::set_has_chassis_vel_pid_kp_y(&has_bits);
-          _impl_.chassis_vel_pid_kp_y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          chassis_vel_pid_kp_y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2611,7 +3714,7 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       case 39:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
           _Internal::set_has_chassis_vel_pid_ki_y(&has_bits);
-          _impl_.chassis_vel_pid_ki_y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          chassis_vel_pid_ki_y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2620,7 +3723,31 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       case 40:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 64)) {
           _Internal::set_has_chassis_vel_pid_kd_y(&has_bits);
-          _impl_.chassis_vel_pid_kd_y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          chassis_vel_pid_kd_y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .ZSS.New.MotionCommandV2 motion_command = 50;
+      case 50:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 146)) {
+          ptr = ctx->ParseMessage(_internal_mutable_motion_command(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .ZSS.New.VisionObservationV2 vision_observation = 51;
+      case 51:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 154)) {
+          ptr = ctx->ParseMessage(_internal_mutable_vision_observation(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .ZSS.New.MotionConfigV2 motion_config = 52;
+      case 52:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 162)) {
+          ptr = ctx->ParseMessage(_internal_mutable_motion_config(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2641,7 +3768,7 @@ const char* Robot_Command::_InternalParse(const char* ptr, ::_pbi::ParseContext*
     CHK_(ptr != nullptr);
   }  // while
 message_done:
-  _impl_._has_bits_.Or(has_bits);
+  _has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -2740,7 +3867,7 @@ uint8_t* Robot_Command::_InternalSerialize(
 
   // repeated sint32 angle_pid = 13;
   {
-    int byte_size = _impl_._angle_pid_cached_byte_size_.load(std::memory_order_relaxed);
+    int byte_size = _angle_pid_cached_byte_size_.load(std::memory_order_relaxed);
     if (byte_size > 0) {
       target = stream->WriteSInt32Packed(
           13, _internal_angle_pid(), byte_size, target);
@@ -2780,7 +3907,7 @@ uint8_t* Robot_Command::_InternalSerialize(
 
   // repeated sint32 wheel_pid = 19;
   {
-    int byte_size = _impl_._wheel_pid_cached_byte_size_.load(std::memory_order_relaxed);
+    int byte_size = _wheel_pid_cached_byte_size_.load(std::memory_order_relaxed);
     if (byte_size > 0) {
       target = stream->WriteSInt32Packed(
           19, _internal_wheel_pid(), byte_size, target);
@@ -2913,6 +4040,27 @@ uint8_t* Robot_Command::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteSInt32ToArray(40, this->_internal_chassis_vel_pid_kd_y(), target);
   }
 
+  // .ZSS.New.MotionCommandV2 motion_command = 50;
+  if (this->_internal_has_motion_command()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(50, _Internal::motion_command(this),
+        _Internal::motion_command(this).GetCachedSize(), target, stream);
+  }
+
+  // .ZSS.New.VisionObservationV2 vision_observation = 51;
+  if (this->_internal_has_vision_observation()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(51, _Internal::vision_observation(this),
+        _Internal::vision_observation(this).GetCachedSize(), target, stream);
+  }
+
+  // .ZSS.New.MotionConfigV2 motion_config = 52;
+  if (this->_internal_has_motion_config()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(52, _Internal::motion_config(this),
+        _Internal::motion_config(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -2932,13 +4080,13 @@ size_t Robot_Command::ByteSizeLong() const {
   // repeated sint32 angle_pid = 13;
   {
     size_t data_size = ::_pbi::WireFormatLite::
-      SInt32Size(this->_impl_.angle_pid_);
+      SInt32Size(this->angle_pid_);
     if (data_size > 0) {
       total_size += 1 +
         ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
     }
     int cached_size = ::_pbi::ToCachedSize(data_size);
-    _impl_._angle_pid_cached_byte_size_.store(cached_size,
+    _angle_pid_cached_byte_size_.store(cached_size,
                                     std::memory_order_relaxed);
     total_size += data_size;
   }
@@ -2946,13 +4094,13 @@ size_t Robot_Command::ByteSizeLong() const {
   // repeated sint32 wheel_pid = 19;
   {
     size_t data_size = ::_pbi::WireFormatLite::
-      SInt32Size(this->_impl_.wheel_pid_);
+      SInt32Size(this->wheel_pid_);
     if (data_size > 0) {
       total_size += 2 +
         ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
     }
     int cached_size = ::_pbi::ToCachedSize(data_size);
-    _impl_._wheel_pid_cached_byte_size_.store(cached_size,
+    _wheel_pid_cached_byte_size_.store(cached_size,
                                     std::memory_order_relaxed);
     total_size += data_size;
   }
@@ -2961,28 +4109,49 @@ size_t Robot_Command::ByteSizeLong() const {
   if (this->_internal_has_cmd_vel()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.cmd_vel_);
+        *cmd_vel_);
   }
 
   // .ZSS.New.CmdPose cmd_pose = 9;
   if (this->_internal_has_cmd_pose()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.cmd_pose_);
+        *cmd_pose_);
   }
 
   // .ZSS.New.CmdChase cmd_chase = 10;
   if (this->_internal_has_cmd_chase()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.cmd_chase_);
+        *cmd_chase_);
   }
 
   // .ZSS.New.CmdWheel cmd_wheel = 11;
   if (this->_internal_has_cmd_wheel()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.cmd_wheel_);
+        *cmd_wheel_);
+  }
+
+  // .ZSS.New.MotionCommandV2 motion_command = 50;
+  if (this->_internal_has_motion_command()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *motion_command_);
+  }
+
+  // .ZSS.New.VisionObservationV2 vision_observation = 51;
+  if (this->_internal_has_vision_observation()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *vision_observation_);
+  }
+
+  // .ZSS.New.MotionConfigV2 motion_config = 52;
+  if (this->_internal_has_motion_config()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *motion_config_);
   }
 
   // int32 robot_id = 1;
@@ -3165,7 +4334,7 @@ size_t Robot_Command::ByteSizeLong() const {
         this->_internal_dribble_mode());
   }
 
-  cached_has_bits = _impl_._has_bits_[0];
+  cached_has_bits = _has_bits_[0];
   if (cached_has_bits & 0x0000003fu) {
     // optional sint32 chassis_vel_pid_kp_x = 35;
     if (cached_has_bits & 0x00000001u) {
@@ -3210,153 +4379,162 @@ size_t Robot_Command::ByteSizeLong() const {
     }
 
   }
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Robot_Command::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     Robot_Command::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Robot_Command::GetClassData() const { return &_class_data_; }
 
+void Robot_Command::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Robot_Command *>(to)->MergeFrom(
+      static_cast<const Robot_Command &>(from));
+}
 
-void Robot_Command::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<Robot_Command*>(&to_msg);
-  auto& from = static_cast<const Robot_Command&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.Robot_Command)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void Robot_Command::MergeFrom(const Robot_Command& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.Robot_Command)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.angle_pid_.MergeFrom(from._impl_.angle_pid_);
-  _this->_impl_.wheel_pid_.MergeFrom(from._impl_.wheel_pid_);
+  angle_pid_.MergeFrom(from.angle_pid_);
+  wheel_pid_.MergeFrom(from.wheel_pid_);
   if (from._internal_has_cmd_vel()) {
-    _this->_internal_mutable_cmd_vel()->::ZSS::New::CmdVel::MergeFrom(
-        from._internal_cmd_vel());
+    _internal_mutable_cmd_vel()->::ZSS::New::CmdVel::MergeFrom(from._internal_cmd_vel());
   }
   if (from._internal_has_cmd_pose()) {
-    _this->_internal_mutable_cmd_pose()->::ZSS::New::CmdPose::MergeFrom(
-        from._internal_cmd_pose());
+    _internal_mutable_cmd_pose()->::ZSS::New::CmdPose::MergeFrom(from._internal_cmd_pose());
   }
   if (from._internal_has_cmd_chase()) {
-    _this->_internal_mutable_cmd_chase()->::ZSS::New::CmdChase::MergeFrom(
-        from._internal_cmd_chase());
+    _internal_mutable_cmd_chase()->::ZSS::New::CmdChase::MergeFrom(from._internal_cmd_chase());
   }
   if (from._internal_has_cmd_wheel()) {
-    _this->_internal_mutable_cmd_wheel()->::ZSS::New::CmdWheel::MergeFrom(
-        from._internal_cmd_wheel());
+    _internal_mutable_cmd_wheel()->::ZSS::New::CmdWheel::MergeFrom(from._internal_cmd_wheel());
+  }
+  if (from._internal_has_motion_command()) {
+    _internal_mutable_motion_command()->::ZSS::New::MotionCommandV2::MergeFrom(from._internal_motion_command());
+  }
+  if (from._internal_has_vision_observation()) {
+    _internal_mutable_vision_observation()->::ZSS::New::VisionObservationV2::MergeFrom(from._internal_vision_observation());
+  }
+  if (from._internal_has_motion_config()) {
+    _internal_mutable_motion_config()->::ZSS::New::MotionConfigV2::MergeFrom(from._internal_motion_config());
   }
   if (from._internal_robot_id() != 0) {
-    _this->_internal_set_robot_id(from._internal_robot_id());
+    _internal_set_robot_id(from._internal_robot_id());
   }
   if (from._internal_kick_mode() != 0) {
-    _this->_internal_set_kick_mode(from._internal_kick_mode());
+    _internal_set_kick_mode(from._internal_kick_mode());
   }
   static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
   float tmp_desire_power = from._internal_desire_power();
   uint32_t raw_desire_power;
   memcpy(&raw_desire_power, &tmp_desire_power, sizeof(tmp_desire_power));
   if (raw_desire_power != 0) {
-    _this->_internal_set_desire_power(from._internal_desire_power());
+    _internal_set_desire_power(from._internal_desire_power());
   }
   if (from._internal_kick_discharge_time() != 0) {
-    _this->_internal_set_kick_discharge_time(from._internal_kick_discharge_time());
+    _internal_set_kick_discharge_time(from._internal_kick_discharge_time());
   }
   if (from._internal_dribble_spin() != 0) {
-    _this->_internal_set_dribble_spin(from._internal_dribble_spin());
+    _internal_set_dribble_spin(from._internal_dribble_spin());
   }
   if (from._internal_cmd_type() != 0) {
-    _this->_internal_set_cmd_type(from._internal_cmd_type());
+    _internal_set_cmd_type(from._internal_cmd_type());
   }
   if (from._internal_comm_type() != 0) {
-    _this->_internal_set_comm_type(from._internal_comm_type());
+    _internal_set_comm_type(from._internal_comm_type());
   }
   if (from._internal_need_report() != 0) {
-    _this->_internal_set_need_report(from._internal_need_report());
+    _internal_set_need_report(from._internal_need_report());
   }
   if (from._internal_need_change_team() != 0) {
-    _this->_internal_set_need_change_team(from._internal_need_change_team());
+    _internal_set_need_change_team(from._internal_need_change_team());
   }
   if (from._internal_need_change_id() != 0) {
-    _this->_internal_set_need_change_id(from._internal_need_change_id());
+    _internal_set_need_change_id(from._internal_need_change_id());
   }
   if (from._internal_isdebug() != 0) {
-    _this->_internal_set_isdebug(from._internal_isdebug());
+    _internal_set_isdebug(from._internal_isdebug());
   }
   if (from._internal_team_new() != 0) {
-    _this->_internal_set_team_new(from._internal_team_new());
+    _internal_set_team_new(from._internal_team_new());
   }
   if (from._internal_id_new() != 0) {
-    _this->_internal_set_id_new(from._internal_id_new());
+    _internal_set_id_new(from._internal_id_new());
   }
   if (from._internal_dribble_velocity() != 0) {
-    _this->_internal_set_dribble_velocity(from._internal_dribble_velocity());
+    _internal_set_dribble_velocity(from._internal_dribble_velocity());
   }
   if (from._internal_dribble_torque_ff() != 0) {
-    _this->_internal_set_dribble_torque_ff(from._internal_dribble_torque_ff());
+    _internal_set_dribble_torque_ff(from._internal_dribble_torque_ff());
   }
   if (from._internal_xy_max_acc_x() != 0) {
-    _this->_internal_set_xy_max_acc_x(from._internal_xy_max_acc_x());
+    _internal_set_xy_max_acc_x(from._internal_xy_max_acc_x());
   }
   if (from._internal_xy_max_acc_y() != 0) {
-    _this->_internal_set_xy_max_acc_y(from._internal_xy_max_acc_y());
+    _internal_set_xy_max_acc_y(from._internal_xy_max_acc_y());
   }
   if (from._internal_xy_max_jerk_x() != 0) {
-    _this->_internal_set_xy_max_jerk_x(from._internal_xy_max_jerk_x());
+    _internal_set_xy_max_jerk_x(from._internal_xy_max_jerk_x());
   }
   if (from._internal_xy_max_jerk_y() != 0) {
-    _this->_internal_set_xy_max_jerk_y(from._internal_xy_max_jerk_y());
+    _internal_set_xy_max_jerk_y(from._internal_xy_max_jerk_y());
   }
   if (from._internal_xy_max_dec_x() != 0) {
-    _this->_internal_set_xy_max_dec_x(from._internal_xy_max_dec_x());
+    _internal_set_xy_max_dec_x(from._internal_xy_max_dec_x());
   }
   if (from._internal_xy_max_dec_y() != 0) {
-    _this->_internal_set_xy_max_dec_y(from._internal_xy_max_dec_y());
+    _internal_set_xy_max_dec_y(from._internal_xy_max_dec_y());
   }
   if (from._internal_yaw_max_vel() != 0) {
-    _this->_internal_set_yaw_max_vel(from._internal_yaw_max_vel());
+    _internal_set_yaw_max_vel(from._internal_yaw_max_vel());
   }
   if (from._internal_yaw_max_acc() != 0) {
-    _this->_internal_set_yaw_max_acc(from._internal_yaw_max_acc());
+    _internal_set_yaw_max_acc(from._internal_yaw_max_acc());
   }
   if (from._internal_yaw_max_jerk() != 0) {
-    _this->_internal_set_yaw_max_jerk(from._internal_yaw_max_jerk());
+    _internal_set_yaw_max_jerk(from._internal_yaw_max_jerk());
   }
   if (from._internal_raw_vision_vel_x() != 0) {
-    _this->_internal_set_raw_vision_vel_x(from._internal_raw_vision_vel_x());
+    _internal_set_raw_vision_vel_x(from._internal_raw_vision_vel_x());
   }
   if (from._internal_raw_vision_vel_y() != 0) {
-    _this->_internal_set_raw_vision_vel_y(from._internal_raw_vision_vel_y());
+    _internal_set_raw_vision_vel_y(from._internal_raw_vision_vel_y());
   }
   if (from._internal_vision_source() != 0) {
-    _this->_internal_set_vision_source(from._internal_vision_source());
+    _internal_set_vision_source(from._internal_vision_source());
   }
   if (from._internal_dribble_mode() != 0) {
-    _this->_internal_set_dribble_mode(from._internal_dribble_mode());
+    _internal_set_dribble_mode(from._internal_dribble_mode());
   }
-  cached_has_bits = from._impl_._has_bits_[0];
+  cached_has_bits = from._has_bits_[0];
   if (cached_has_bits & 0x0000003fu) {
     if (cached_has_bits & 0x00000001u) {
-      _this->_impl_.chassis_vel_pid_kp_x_ = from._impl_.chassis_vel_pid_kp_x_;
+      chassis_vel_pid_kp_x_ = from.chassis_vel_pid_kp_x_;
     }
     if (cached_has_bits & 0x00000002u) {
-      _this->_impl_.chassis_vel_pid_ki_x_ = from._impl_.chassis_vel_pid_ki_x_;
+      chassis_vel_pid_ki_x_ = from.chassis_vel_pid_ki_x_;
     }
     if (cached_has_bits & 0x00000004u) {
-      _this->_impl_.chassis_vel_pid_kd_x_ = from._impl_.chassis_vel_pid_kd_x_;
+      chassis_vel_pid_kd_x_ = from.chassis_vel_pid_kd_x_;
     }
     if (cached_has_bits & 0x00000008u) {
-      _this->_impl_.chassis_vel_pid_kp_y_ = from._impl_.chassis_vel_pid_kp_y_;
+      chassis_vel_pid_kp_y_ = from.chassis_vel_pid_kp_y_;
     }
     if (cached_has_bits & 0x00000010u) {
-      _this->_impl_.chassis_vel_pid_ki_y_ = from._impl_.chassis_vel_pid_ki_y_;
+      chassis_vel_pid_ki_y_ = from.chassis_vel_pid_ki_y_;
     }
     if (cached_has_bits & 0x00000020u) {
-      _this->_impl_.chassis_vel_pid_kd_y_ = from._impl_.chassis_vel_pid_kd_y_;
+      chassis_vel_pid_kd_y_ = from.chassis_vel_pid_kd_y_;
     }
-    _this->_impl_._has_bits_[0] |= cached_has_bits;
+    _has_bits_[0] |= cached_has_bits;
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Robot_Command::CopyFrom(const Robot_Command& from) {
@@ -3373,593 +4551,21 @@ bool Robot_Command::IsInitialized() const {
 void Robot_Command::InternalSwap(Robot_Command* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  _impl_.angle_pid_.InternalSwap(&other->_impl_.angle_pid_);
-  _impl_.wheel_pid_.InternalSwap(&other->_impl_.wheel_pid_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
+  angle_pid_.InternalSwap(&other->angle_pid_);
+  wheel_pid_.InternalSwap(&other->wheel_pid_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Robot_Command, _impl_.chassis_vel_pid_kd_y_)
-      + sizeof(Robot_Command::_impl_.chassis_vel_pid_kd_y_)
-      - PROTOBUF_FIELD_OFFSET(Robot_Command, _impl_.cmd_vel_)>(
-          reinterpret_cast<char*>(&_impl_.cmd_vel_),
-          reinterpret_cast<char*>(&other->_impl_.cmd_vel_));
+      PROTOBUF_FIELD_OFFSET(Robot_Command, chassis_vel_pid_kd_y_)
+      + sizeof(Robot_Command::chassis_vel_pid_kd_y_)
+      - PROTOBUF_FIELD_OFFSET(Robot_Command, cmd_vel_)>(
+          reinterpret_cast<char*>(&cmd_vel_),
+          reinterpret_cast<char*>(&other->cmd_vel_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Robot_Command::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_zss_5fcmd_2eproto_getter, &descriptor_table_zss_5fcmd_2eproto_once,
-      file_level_metadata_zss_5fcmd_2eproto[4]);
-}
-
-// ===================================================================
-
-class Robots_Command_Sim::_Internal {
- public:
-  using HasBits = decltype(std::declval<Robots_Command_Sim>()._impl_._has_bits_);
-  static void set_has_delay(HasBits* has_bits) {
-    (*has_bits)[0] |= 1u;
-  }
-};
-
-Robots_Command_Sim::Robots_Command_Sim(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:ZSS.New.Robots_Command_Sim)
-}
-Robots_Command_Sim::Robots_Command_Sim(const Robots_Command_Sim& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  Robots_Command_Sim* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){from._impl_._has_bits_}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.command_){from._impl_.command_}
-    , decltype(_impl_.delay_){}};
-
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  _this->_impl_.delay_ = from._impl_.delay_;
-  // @@protoc_insertion_point(copy_constructor:ZSS.New.Robots_Command_Sim)
-}
-
-inline void Robots_Command_Sim::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.command_){arena}
-    , decltype(_impl_.delay_){0}
-  };
-}
-
-Robots_Command_Sim::~Robots_Command_Sim() {
-  // @@protoc_insertion_point(destructor:ZSS.New.Robots_Command_Sim)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
-  SharedDtor();
-}
-
-inline void Robots_Command_Sim::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.command_.~RepeatedPtrField();
-}
-
-void Robots_Command_Sim::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void Robots_Command_Sim::Clear() {
-// @@protoc_insertion_point(message_clear_start:ZSS.New.Robots_Command_Sim)
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  _impl_.command_.Clear();
-  _impl_.delay_ = 0;
-  _impl_._has_bits_.Clear();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* Robots_Command_Sim::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  _Internal::HasBits has_bits{};
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // repeated .ZSS.New.Robot_Command_Sim command = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
-          ptr -= 1;
-          do {
-            ptr += 1;
-            ptr = ctx->ParseMessage(_internal_add_command(), ptr);
-            CHK_(ptr);
-            if (!ctx->DataAvailable(ptr)) break;
-          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
-        } else
-          goto handle_unusual;
-        continue;
-      // optional int32 delay = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _Internal::set_has_delay(&has_bits);
-          _impl_.delay_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  _impl_._has_bits_.Or(has_bits);
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
-}
-
-uint8_t* Robots_Command_Sim::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:ZSS.New.Robots_Command_Sim)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // repeated .ZSS.New.Robot_Command_Sim command = 1;
-  for (unsigned i = 0,
-      n = static_cast<unsigned>(this->_internal_command_size()); i < n; i++) {
-    const auto& repfield = this->_internal_command(i);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
-  }
-
-  // optional int32 delay = 2;
-  if (_internal_has_delay()) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(2, this->_internal_delay(), target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:ZSS.New.Robots_Command_Sim)
-  return target;
-}
-
-size_t Robots_Command_Sim::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:ZSS.New.Robots_Command_Sim)
-  size_t total_size = 0;
-
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // repeated .ZSS.New.Robot_Command_Sim command = 1;
-  total_size += 1UL * this->_internal_command_size();
-  for (const auto& msg : this->_impl_.command_) {
-    total_size +=
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
-  }
-
-  // optional int32 delay = 2;
-  cached_has_bits = _impl_._has_bits_[0];
-  if (cached_has_bits & 0x00000001u) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_delay());
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Robots_Command_Sim::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    Robots_Command_Sim::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Robots_Command_Sim::GetClassData() const { return &_class_data_; }
-
-
-void Robots_Command_Sim::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<Robots_Command_Sim*>(&to_msg);
-  auto& from = static_cast<const Robots_Command_Sim&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.Robots_Command_Sim)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  _this->_impl_.command_.MergeFrom(from._impl_.command_);
-  if (from._internal_has_delay()) {
-    _this->_internal_set_delay(from._internal_delay());
-  }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void Robots_Command_Sim::CopyFrom(const Robots_Command_Sim& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:ZSS.New.Robots_Command_Sim)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool Robots_Command_Sim::IsInitialized() const {
-  return true;
-}
-
-void Robots_Command_Sim::InternalSwap(Robots_Command_Sim* other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  _impl_.command_.InternalSwap(&other->_impl_.command_);
-  swap(_impl_.delay_, other->_impl_.delay_);
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata Robots_Command_Sim::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_zss_5fcmd_2eproto_getter, &descriptor_table_zss_5fcmd_2eproto_once,
       file_level_metadata_zss_5fcmd_2eproto[5]);
-}
-
-// ===================================================================
-
-class Robot_Command_Sim::_Internal {
- public:
-  static const ::ZSS::New::CmdVel& cmd_vel(const Robot_Command_Sim* msg);
-};
-
-const ::ZSS::New::CmdVel&
-Robot_Command_Sim::_Internal::cmd_vel(const Robot_Command_Sim* msg) {
-  return *msg->_impl_.cmd_vel_;
-}
-void Robot_Command_Sim::clear_cmd_vel() {
-  if (GetArenaForAllocation() == nullptr && _impl_.cmd_vel_ != nullptr) {
-    delete _impl_.cmd_vel_;
-  }
-  _impl_.cmd_vel_ = nullptr;
-}
-Robot_Command_Sim::Robot_Command_Sim(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:ZSS.New.Robot_Command_Sim)
-}
-Robot_Command_Sim::Robot_Command_Sim(const Robot_Command_Sim& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  Robot_Command_Sim* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.cmd_vel_){nullptr}
-    , decltype(_impl_.robot_id_){}
-    , decltype(_impl_.kick_mode_){}
-    , decltype(_impl_.desire_power_){}
-    , decltype(_impl_.dribble_spin_){}
-    , decltype(_impl_.cmd_type_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  if (from._internal_has_cmd_vel()) {
-    _this->_impl_.cmd_vel_ = new ::ZSS::New::CmdVel(*from._impl_.cmd_vel_);
-  }
-  ::memcpy(&_impl_.robot_id_, &from._impl_.robot_id_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.cmd_type_) -
-    reinterpret_cast<char*>(&_impl_.robot_id_)) + sizeof(_impl_.cmd_type_));
-  // @@protoc_insertion_point(copy_constructor:ZSS.New.Robot_Command_Sim)
-}
-
-inline void Robot_Command_Sim::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.cmd_vel_){nullptr}
-    , decltype(_impl_.robot_id_){0}
-    , decltype(_impl_.kick_mode_){0}
-    , decltype(_impl_.desire_power_){0}
-    , decltype(_impl_.dribble_spin_){0}
-    , decltype(_impl_.cmd_type_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
-}
-
-Robot_Command_Sim::~Robot_Command_Sim() {
-  // @@protoc_insertion_point(destructor:ZSS.New.Robot_Command_Sim)
-  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
-  (void)arena;
-    return;
-  }
-  SharedDtor();
-}
-
-inline void Robot_Command_Sim::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete _impl_.cmd_vel_;
-}
-
-void Robot_Command_Sim::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
-}
-
-void Robot_Command_Sim::Clear() {
-// @@protoc_insertion_point(message_clear_start:ZSS.New.Robot_Command_Sim)
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  if (GetArenaForAllocation() == nullptr && _impl_.cmd_vel_ != nullptr) {
-    delete _impl_.cmd_vel_;
-  }
-  _impl_.cmd_vel_ = nullptr;
-  ::memset(&_impl_.robot_id_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.cmd_type_) -
-      reinterpret_cast<char*>(&_impl_.robot_id_)) + sizeof(_impl_.cmd_type_));
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* Robot_Command_Sim::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    uint32_t tag;
-    ptr = ::_pbi::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // int32 robot_id = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.robot_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .ZSS.New.Robot_Command.KickMode kick_mode = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-          _internal_set_kick_mode(static_cast<::ZSS::New::Robot_Command_KickMode>(val));
-        } else
-          goto handle_unusual;
-        continue;
-      // float desire_power = 3;
-      case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 29)) {
-          _impl_.desire_power_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
-          ptr += sizeof(float);
-        } else
-          goto handle_unusual;
-        continue;
-      // sint32 dribble_spin = 4;
-      case 4:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          _impl_.dribble_spin_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      // .ZSS.New.Robot_Command.CmdType cmd_type = 5;
-      case 5:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
-          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-          _internal_set_cmd_type(static_cast<::ZSS::New::Robot_Command_CmdType>(val));
-        } else
-          goto handle_unusual;
-        continue;
-      // .ZSS.New.CmdVel cmd_vel = 6;
-      case 6:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 50)) {
-          ptr = ctx->ParseMessage(_internal_mutable_cmd_vel(), ptr);
-          CHK_(ptr);
-        } else
-          goto handle_unusual;
-        continue;
-      default:
-        goto handle_unusual;
-    }  // switch
-  handle_unusual:
-    if ((tag == 0) || ((tag & 7) == 4)) {
-      CHK_(ptr);
-      ctx->SetLastTag(tag);
-      goto message_done;
-    }
-    ptr = UnknownFieldParse(
-        tag,
-        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-        ptr, ctx);
-    CHK_(ptr != nullptr);
-  }  // while
-message_done:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto message_done;
-#undef CHK_
-}
-
-uint8_t* Robot_Command_Sim::_InternalSerialize(
-    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:ZSS.New.Robot_Command_Sim)
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // int32 robot_id = 1;
-  if (this->_internal_robot_id() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_robot_id(), target);
-  }
-
-  // .ZSS.New.Robot_Command.KickMode kick_mode = 2;
-  if (this->_internal_kick_mode() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteEnumToArray(
-      2, this->_internal_kick_mode(), target);
-  }
-
-  // float desire_power = 3;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_desire_power = this->_internal_desire_power();
-  uint32_t raw_desire_power;
-  memcpy(&raw_desire_power, &tmp_desire_power, sizeof(tmp_desire_power));
-  if (raw_desire_power != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteFloatToArray(3, this->_internal_desire_power(), target);
-  }
-
-  // sint32 dribble_spin = 4;
-  if (this->_internal_dribble_spin() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteSInt32ToArray(4, this->_internal_dribble_spin(), target);
-  }
-
-  // .ZSS.New.Robot_Command.CmdType cmd_type = 5;
-  if (this->_internal_cmd_type() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::_pbi::WireFormatLite::WriteEnumToArray(
-      5, this->_internal_cmd_type(), target);
-  }
-
-  // .ZSS.New.CmdVel cmd_vel = 6;
-  if (this->_internal_has_cmd_vel()) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
-      InternalWriteMessage(6, _Internal::cmd_vel(this),
-        _Internal::cmd_vel(this).GetCachedSize(), target, stream);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:ZSS.New.Robot_Command_Sim)
-  return target;
-}
-
-size_t Robot_Command_Sim::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:ZSS.New.Robot_Command_Sim)
-  size_t total_size = 0;
-
-  uint32_t cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // .ZSS.New.CmdVel cmd_vel = 6;
-  if (this->_internal_has_cmd_vel()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.cmd_vel_);
-  }
-
-  // int32 robot_id = 1;
-  if (this->_internal_robot_id() != 0) {
-    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_robot_id());
-  }
-
-  // .ZSS.New.Robot_Command.KickMode kick_mode = 2;
-  if (this->_internal_kick_mode() != 0) {
-    total_size += 1 +
-      ::_pbi::WireFormatLite::EnumSize(this->_internal_kick_mode());
-  }
-
-  // float desire_power = 3;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_desire_power = this->_internal_desire_power();
-  uint32_t raw_desire_power;
-  memcpy(&raw_desire_power, &tmp_desire_power, sizeof(tmp_desire_power));
-  if (raw_desire_power != 0) {
-    total_size += 1 + 4;
-  }
-
-  // sint32 dribble_spin = 4;
-  if (this->_internal_dribble_spin() != 0) {
-    total_size += ::_pbi::WireFormatLite::SInt32SizePlusOne(this->_internal_dribble_spin());
-  }
-
-  // .ZSS.New.Robot_Command.CmdType cmd_type = 5;
-  if (this->_internal_cmd_type() != 0) {
-    total_size += 1 +
-      ::_pbi::WireFormatLite::EnumSize(this->_internal_cmd_type());
-  }
-
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
-}
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Robot_Command_Sim::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
-    Robot_Command_Sim::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Robot_Command_Sim::GetClassData() const { return &_class_data_; }
-
-
-void Robot_Command_Sim::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<Robot_Command_Sim*>(&to_msg);
-  auto& from = static_cast<const Robot_Command_Sim&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.Robot_Command_Sim)
-  GOOGLE_DCHECK_NE(&from, _this);
-  uint32_t cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (from._internal_has_cmd_vel()) {
-    _this->_internal_mutable_cmd_vel()->::ZSS::New::CmdVel::MergeFrom(
-        from._internal_cmd_vel());
-  }
-  if (from._internal_robot_id() != 0) {
-    _this->_internal_set_robot_id(from._internal_robot_id());
-  }
-  if (from._internal_kick_mode() != 0) {
-    _this->_internal_set_kick_mode(from._internal_kick_mode());
-  }
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_desire_power = from._internal_desire_power();
-  uint32_t raw_desire_power;
-  memcpy(&raw_desire_power, &tmp_desire_power, sizeof(tmp_desire_power));
-  if (raw_desire_power != 0) {
-    _this->_internal_set_desire_power(from._internal_desire_power());
-  }
-  if (from._internal_dribble_spin() != 0) {
-    _this->_internal_set_dribble_spin(from._internal_dribble_spin());
-  }
-  if (from._internal_cmd_type() != 0) {
-    _this->_internal_set_cmd_type(from._internal_cmd_type());
-  }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void Robot_Command_Sim::CopyFrom(const Robot_Command_Sim& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:ZSS.New.Robot_Command_Sim)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool Robot_Command_Sim::IsInitialized() const {
-  return true;
-}
-
-void Robot_Command_Sim::InternalSwap(Robot_Command_Sim* other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Robot_Command_Sim, _impl_.cmd_type_)
-      + sizeof(Robot_Command_Sim::_impl_.cmd_type_)
-      - PROTOBUF_FIELD_OFFSET(Robot_Command_Sim, _impl_.cmd_vel_)>(
-          reinterpret_cast<char*>(&_impl_.cmd_vel_),
-          reinterpret_cast<char*>(&other->_impl_.cmd_vel_));
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata Robot_Command_Sim::GetMetadata() const {
-  return ::_pbi::AssignDescriptors(
-      &descriptor_table_zss_5fcmd_2eproto_getter, &descriptor_table_zss_5fcmd_2eproto_once,
-      file_level_metadata_zss_5fcmd_2eproto[6]);
 }
 
 // ===================================================================
@@ -3971,33 +4577,23 @@ class Robot_Command_Mini::_Internal {
 Robot_Command_Mini::Robot_Command_Mini(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:ZSS.New.Robot_Command_Mini)
 }
 Robot_Command_Mini::Robot_Command_Mini(const Robot_Command_Mini& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  Robot_Command_Mini* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.kick_mode_){}
-    , decltype(_impl_.kick_discharge_time_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.kick_mode_, &from._impl_.kick_mode_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.kick_discharge_time_) -
-    reinterpret_cast<char*>(&_impl_.kick_mode_)) + sizeof(_impl_.kick_discharge_time_));
+  ::memcpy(&kick_mode_, &from.kick_mode_,
+    static_cast<size_t>(reinterpret_cast<char*>(&kick_discharge_time_) -
+    reinterpret_cast<char*>(&kick_mode_)) + sizeof(kick_discharge_time_));
   // @@protoc_insertion_point(copy_constructor:ZSS.New.Robot_Command_Mini)
 }
 
-inline void Robot_Command_Mini::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.kick_mode_){0}
-    , decltype(_impl_.kick_discharge_time_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void Robot_Command_Mini::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&kick_mode_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&kick_discharge_time_) -
+    reinterpret_cast<char*>(&kick_mode_)) + sizeof(kick_discharge_time_));
 }
 
 Robot_Command_Mini::~Robot_Command_Mini() {
@@ -4014,7 +4610,7 @@ inline void Robot_Command_Mini::SharedDtor() {
 }
 
 void Robot_Command_Mini::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void Robot_Command_Mini::Clear() {
@@ -4023,9 +4619,9 @@ void Robot_Command_Mini::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&_impl_.kick_mode_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.kick_discharge_time_) -
-      reinterpret_cast<char*>(&_impl_.kick_mode_)) + sizeof(_impl_.kick_discharge_time_));
+  ::memset(&kick_mode_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&kick_discharge_time_) -
+      reinterpret_cast<char*>(&kick_mode_)) + sizeof(kick_discharge_time_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -4047,7 +4643,7 @@ const char* Robot_Command_Mini::_InternalParse(const char* ptr, ::_pbi::ParseCon
       // sint32 kick_discharge_time = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.kick_discharge_time_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          kick_discharge_time_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -4121,31 +4717,35 @@ size_t Robot_Command_Mini::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::SInt32SizePlusOne(this->_internal_kick_discharge_time());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Robot_Command_Mini::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     Robot_Command_Mini::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Robot_Command_Mini::GetClassData() const { return &_class_data_; }
 
+void Robot_Command_Mini::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Robot_Command_Mini *>(to)->MergeFrom(
+      static_cast<const Robot_Command_Mini &>(from));
+}
 
-void Robot_Command_Mini::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<Robot_Command_Mini*>(&to_msg);
-  auto& from = static_cast<const Robot_Command_Mini&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.Robot_Command_Mini)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void Robot_Command_Mini::MergeFrom(const Robot_Command_Mini& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.Robot_Command_Mini)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_kick_mode() != 0) {
-    _this->_internal_set_kick_mode(from._internal_kick_mode());
+    _internal_set_kick_mode(from._internal_kick_mode());
   }
   if (from._internal_kick_discharge_time() != 0) {
-    _this->_internal_set_kick_discharge_time(from._internal_kick_discharge_time());
+    _internal_set_kick_discharge_time(from._internal_kick_discharge_time());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Robot_Command_Mini::CopyFrom(const Robot_Command_Mini& from) {
@@ -4163,17 +4763,5545 @@ void Robot_Command_Mini::InternalSwap(Robot_Command_Mini* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Robot_Command_Mini, _impl_.kick_discharge_time_)
-      + sizeof(Robot_Command_Mini::_impl_.kick_discharge_time_)
-      - PROTOBUF_FIELD_OFFSET(Robot_Command_Mini, _impl_.kick_mode_)>(
-          reinterpret_cast<char*>(&_impl_.kick_mode_),
-          reinterpret_cast<char*>(&other->_impl_.kick_mode_));
+      PROTOBUF_FIELD_OFFSET(Robot_Command_Mini, kick_discharge_time_)
+      + sizeof(Robot_Command_Mini::kick_discharge_time_)
+      - PROTOBUF_FIELD_OFFSET(Robot_Command_Mini, kick_mode_)>(
+          reinterpret_cast<char*>(&kick_mode_),
+          reinterpret_cast<char*>(&other->kick_mode_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Robot_Command_Mini::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_zss_5fcmd_2eproto_getter, &descriptor_table_zss_5fcmd_2eproto_once,
+      file_level_metadata_zss_5fcmd_2eproto[6]);
+}
+
+// ===================================================================
+
+class Robots_Command_Sim::_Internal {
+ public:
+  using HasBits = decltype(std::declval<Robots_Command_Sim>()._has_bits_);
+  static void set_has_delay(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+};
+
+Robots_Command_Sim::Robots_Command_Sim(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  command_(arena) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:ZSS.New.Robots_Command_Sim)
+}
+Robots_Command_Sim::Robots_Command_Sim(const Robots_Command_Sim& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_),
+      command_(from.command_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  delay_ = from.delay_;
+  // @@protoc_insertion_point(copy_constructor:ZSS.New.Robots_Command_Sim)
+}
+
+inline void Robots_Command_Sim::SharedCtor() {
+delay_ = 0;
+}
+
+Robots_Command_Sim::~Robots_Command_Sim() {
+  // @@protoc_insertion_point(destructor:ZSS.New.Robots_Command_Sim)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void Robots_Command_Sim::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void Robots_Command_Sim::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void Robots_Command_Sim::Clear() {
+// @@protoc_insertion_point(message_clear_start:ZSS.New.Robots_Command_Sim)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  command_.Clear();
+  delay_ = 0;
+  _has_bits_.Clear();
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* Robots_Command_Sim::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // repeated .ZSS.New.Robot_Command_Sim command = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_command(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else
+          goto handle_unusual;
+        continue;
+      // optional int32 delay = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _Internal::set_has_delay(&has_bits);
+          delay_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  _has_bits_.Or(has_bits);
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* Robots_Command_Sim::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:ZSS.New.Robots_Command_Sim)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .ZSS.New.Robot_Command_Sim command = 1;
+  for (unsigned i = 0,
+      n = static_cast<unsigned>(this->_internal_command_size()); i < n; i++) {
+    const auto& repfield = this->_internal_command(i);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+        InternalWriteMessage(1, repfield, repfield.GetCachedSize(), target, stream);
+  }
+
+  // optional int32 delay = 2;
+  if (_internal_has_delay()) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(2, this->_internal_delay(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:ZSS.New.Robots_Command_Sim)
+  return target;
+}
+
+size_t Robots_Command_Sim::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:ZSS.New.Robots_Command_Sim)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .ZSS.New.Robot_Command_Sim command = 1;
+  total_size += 1UL * this->_internal_command_size();
+  for (const auto& msg : this->command_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // optional int32 delay = 2;
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x00000001u) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_delay());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Robots_Command_Sim::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    Robots_Command_Sim::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Robots_Command_Sim::GetClassData() const { return &_class_data_; }
+
+void Robots_Command_Sim::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Robots_Command_Sim *>(to)->MergeFrom(
+      static_cast<const Robots_Command_Sim &>(from));
+}
+
+
+void Robots_Command_Sim::MergeFrom(const Robots_Command_Sim& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.Robots_Command_Sim)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  command_.MergeFrom(from.command_);
+  if (from._internal_has_delay()) {
+    _internal_set_delay(from._internal_delay());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Robots_Command_Sim::CopyFrom(const Robots_Command_Sim& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:ZSS.New.Robots_Command_Sim)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Robots_Command_Sim::IsInitialized() const {
+  return true;
+}
+
+void Robots_Command_Sim::InternalSwap(Robots_Command_Sim* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
+  command_.InternalSwap(&other->command_);
+  swap(delay_, other->delay_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata Robots_Command_Sim::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_zss_5fcmd_2eproto_getter, &descriptor_table_zss_5fcmd_2eproto_once,
       file_level_metadata_zss_5fcmd_2eproto[7]);
+}
+
+// ===================================================================
+
+class Robot_Command_Sim::_Internal {
+ public:
+  static const ::ZSS::New::CmdVel_Sim& cmd_vel(const Robot_Command_Sim* msg);
+  static const ::ZSS::New::CmdPose& cmd_pose(const Robot_Command_Sim* msg);
+  static const ::ZSS::New::CmdChase& cmd_chase(const Robot_Command_Sim* msg);
+  static const ::ZSS::New::CmdWheel& cmd_wheel(const Robot_Command_Sim* msg);
+};
+
+const ::ZSS::New::CmdVel_Sim&
+Robot_Command_Sim::_Internal::cmd_vel(const Robot_Command_Sim* msg) {
+  return *msg->cmd_vel_;
+}
+const ::ZSS::New::CmdPose&
+Robot_Command_Sim::_Internal::cmd_pose(const Robot_Command_Sim* msg) {
+  return *msg->cmd_pose_;
+}
+const ::ZSS::New::CmdChase&
+Robot_Command_Sim::_Internal::cmd_chase(const Robot_Command_Sim* msg) {
+  return *msg->cmd_chase_;
+}
+const ::ZSS::New::CmdWheel&
+Robot_Command_Sim::_Internal::cmd_wheel(const Robot_Command_Sim* msg) {
+  return *msg->cmd_wheel_;
+}
+void Robot_Command_Sim::clear_cmd_vel() {
+  if (GetArenaForAllocation() == nullptr && cmd_vel_ != nullptr) {
+    delete cmd_vel_;
+  }
+  cmd_vel_ = nullptr;
+}
+void Robot_Command_Sim::clear_cmd_pose() {
+  if (GetArenaForAllocation() == nullptr && cmd_pose_ != nullptr) {
+    delete cmd_pose_;
+  }
+  cmd_pose_ = nullptr;
+}
+void Robot_Command_Sim::clear_cmd_chase() {
+  if (GetArenaForAllocation() == nullptr && cmd_chase_ != nullptr) {
+    delete cmd_chase_;
+  }
+  cmd_chase_ = nullptr;
+}
+void Robot_Command_Sim::clear_cmd_wheel() {
+  if (GetArenaForAllocation() == nullptr && cmd_wheel_ != nullptr) {
+    delete cmd_wheel_;
+  }
+  cmd_wheel_ = nullptr;
+}
+Robot_Command_Sim::Robot_Command_Sim(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:ZSS.New.Robot_Command_Sim)
+}
+Robot_Command_Sim::Robot_Command_Sim(const Robot_Command_Sim& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_cmd_vel()) {
+    cmd_vel_ = new ::ZSS::New::CmdVel_Sim(*from.cmd_vel_);
+  } else {
+    cmd_vel_ = nullptr;
+  }
+  if (from._internal_has_cmd_pose()) {
+    cmd_pose_ = new ::ZSS::New::CmdPose(*from.cmd_pose_);
+  } else {
+    cmd_pose_ = nullptr;
+  }
+  if (from._internal_has_cmd_chase()) {
+    cmd_chase_ = new ::ZSS::New::CmdChase(*from.cmd_chase_);
+  } else {
+    cmd_chase_ = nullptr;
+  }
+  if (from._internal_has_cmd_wheel()) {
+    cmd_wheel_ = new ::ZSS::New::CmdWheel(*from.cmd_wheel_);
+  } else {
+    cmd_wheel_ = nullptr;
+  }
+  ::memcpy(&robot_id_, &from.robot_id_,
+    static_cast<size_t>(reinterpret_cast<char*>(&comm_type_) -
+    reinterpret_cast<char*>(&robot_id_)) + sizeof(comm_type_));
+  // @@protoc_insertion_point(copy_constructor:ZSS.New.Robot_Command_Sim)
+}
+
+inline void Robot_Command_Sim::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&cmd_vel_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&comm_type_) -
+    reinterpret_cast<char*>(&cmd_vel_)) + sizeof(comm_type_));
+}
+
+Robot_Command_Sim::~Robot_Command_Sim() {
+  // @@protoc_insertion_point(destructor:ZSS.New.Robot_Command_Sim)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void Robot_Command_Sim::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete cmd_vel_;
+  if (this != internal_default_instance()) delete cmd_pose_;
+  if (this != internal_default_instance()) delete cmd_chase_;
+  if (this != internal_default_instance()) delete cmd_wheel_;
+}
+
+void Robot_Command_Sim::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void Robot_Command_Sim::Clear() {
+// @@protoc_insertion_point(message_clear_start:ZSS.New.Robot_Command_Sim)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaForAllocation() == nullptr && cmd_vel_ != nullptr) {
+    delete cmd_vel_;
+  }
+  cmd_vel_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && cmd_pose_ != nullptr) {
+    delete cmd_pose_;
+  }
+  cmd_pose_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && cmd_chase_ != nullptr) {
+    delete cmd_chase_;
+  }
+  cmd_chase_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && cmd_wheel_ != nullptr) {
+    delete cmd_wheel_;
+  }
+  cmd_wheel_ = nullptr;
+  ::memset(&robot_id_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&comm_type_) -
+      reinterpret_cast<char*>(&robot_id_)) + sizeof(comm_type_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* Robot_Command_Sim::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // int32 robot_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          robot_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .ZSS.New.Robot_Command.KickMode kick_mode = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_kick_mode(static_cast<::ZSS::New::Robot_Command_KickMode>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // float desire_power = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 29)) {
+          desire_power_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float kick_discharge_time = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 37)) {
+          kick_discharge_time_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float dribble_spin = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 45)) {
+          dribble_spin_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool need_report = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
+          need_report_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .ZSS.New.Robot_Command.CmdType cmd_type = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_cmd_type(static_cast<::ZSS::New::Robot_Command_CmdType>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // .ZSS.New.CmdVel_Sim cmd_vel = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 66)) {
+          ptr = ctx->ParseMessage(_internal_mutable_cmd_vel(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .ZSS.New.CmdPose cmd_pose = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
+          ptr = ctx->ParseMessage(_internal_mutable_cmd_pose(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .ZSS.New.CmdChase cmd_chase = 10;
+      case 10:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 82)) {
+          ptr = ctx->ParseMessage(_internal_mutable_cmd_chase(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .ZSS.New.CmdWheel cmd_wheel = 11;
+      case 11:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 90)) {
+          ptr = ctx->ParseMessage(_internal_mutable_cmd_wheel(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .ZSS.New.Robot_Command_Sim.CommType comm_type = 12;
+      case 12:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 96)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_comm_type(static_cast<::ZSS::New::Robot_Command_Sim_CommType>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* Robot_Command_Sim::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:ZSS.New.Robot_Command_Sim)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int32 robot_id = 1;
+  if (this->_internal_robot_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(1, this->_internal_robot_id(), target);
+  }
+
+  // .ZSS.New.Robot_Command.KickMode kick_mode = 2;
+  if (this->_internal_kick_mode() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      2, this->_internal_kick_mode(), target);
+  }
+
+  // float desire_power = 3;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_desire_power = this->_internal_desire_power();
+  uint32_t raw_desire_power;
+  memcpy(&raw_desire_power, &tmp_desire_power, sizeof(tmp_desire_power));
+  if (raw_desire_power != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(3, this->_internal_desire_power(), target);
+  }
+
+  // float kick_discharge_time = 4;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_kick_discharge_time = this->_internal_kick_discharge_time();
+  uint32_t raw_kick_discharge_time;
+  memcpy(&raw_kick_discharge_time, &tmp_kick_discharge_time, sizeof(tmp_kick_discharge_time));
+  if (raw_kick_discharge_time != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(4, this->_internal_kick_discharge_time(), target);
+  }
+
+  // float dribble_spin = 5;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_dribble_spin = this->_internal_dribble_spin();
+  uint32_t raw_dribble_spin;
+  memcpy(&raw_dribble_spin, &tmp_dribble_spin, sizeof(tmp_dribble_spin));
+  if (raw_dribble_spin != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(5, this->_internal_dribble_spin(), target);
+  }
+
+  // bool need_report = 6;
+  if (this->_internal_need_report() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(6, this->_internal_need_report(), target);
+  }
+
+  // .ZSS.New.Robot_Command.CmdType cmd_type = 7;
+  if (this->_internal_cmd_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      7, this->_internal_cmd_type(), target);
+  }
+
+  // .ZSS.New.CmdVel_Sim cmd_vel = 8;
+  if (this->_internal_has_cmd_vel()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(8, _Internal::cmd_vel(this),
+        _Internal::cmd_vel(this).GetCachedSize(), target, stream);
+  }
+
+  // .ZSS.New.CmdPose cmd_pose = 9;
+  if (this->_internal_has_cmd_pose()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(9, _Internal::cmd_pose(this),
+        _Internal::cmd_pose(this).GetCachedSize(), target, stream);
+  }
+
+  // .ZSS.New.CmdChase cmd_chase = 10;
+  if (this->_internal_has_cmd_chase()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(10, _Internal::cmd_chase(this),
+        _Internal::cmd_chase(this).GetCachedSize(), target, stream);
+  }
+
+  // .ZSS.New.CmdWheel cmd_wheel = 11;
+  if (this->_internal_has_cmd_wheel()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(11, _Internal::cmd_wheel(this),
+        _Internal::cmd_wheel(this).GetCachedSize(), target, stream);
+  }
+
+  // .ZSS.New.Robot_Command_Sim.CommType comm_type = 12;
+  if (this->_internal_comm_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      12, this->_internal_comm_type(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:ZSS.New.Robot_Command_Sim)
+  return target;
+}
+
+size_t Robot_Command_Sim::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:ZSS.New.Robot_Command_Sim)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .ZSS.New.CmdVel_Sim cmd_vel = 8;
+  if (this->_internal_has_cmd_vel()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *cmd_vel_);
+  }
+
+  // .ZSS.New.CmdPose cmd_pose = 9;
+  if (this->_internal_has_cmd_pose()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *cmd_pose_);
+  }
+
+  // .ZSS.New.CmdChase cmd_chase = 10;
+  if (this->_internal_has_cmd_chase()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *cmd_chase_);
+  }
+
+  // .ZSS.New.CmdWheel cmd_wheel = 11;
+  if (this->_internal_has_cmd_wheel()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *cmd_wheel_);
+  }
+
+  // int32 robot_id = 1;
+  if (this->_internal_robot_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_robot_id());
+  }
+
+  // .ZSS.New.Robot_Command.KickMode kick_mode = 2;
+  if (this->_internal_kick_mode() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_kick_mode());
+  }
+
+  // float desire_power = 3;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_desire_power = this->_internal_desire_power();
+  uint32_t raw_desire_power;
+  memcpy(&raw_desire_power, &tmp_desire_power, sizeof(tmp_desire_power));
+  if (raw_desire_power != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float kick_discharge_time = 4;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_kick_discharge_time = this->_internal_kick_discharge_time();
+  uint32_t raw_kick_discharge_time;
+  memcpy(&raw_kick_discharge_time, &tmp_kick_discharge_time, sizeof(tmp_kick_discharge_time));
+  if (raw_kick_discharge_time != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float dribble_spin = 5;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_dribble_spin = this->_internal_dribble_spin();
+  uint32_t raw_dribble_spin;
+  memcpy(&raw_dribble_spin, &tmp_dribble_spin, sizeof(tmp_dribble_spin));
+  if (raw_dribble_spin != 0) {
+    total_size += 1 + 4;
+  }
+
+  // bool need_report = 6;
+  if (this->_internal_need_report() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // .ZSS.New.Robot_Command.CmdType cmd_type = 7;
+  if (this->_internal_cmd_type() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_cmd_type());
+  }
+
+  // .ZSS.New.Robot_Command_Sim.CommType comm_type = 12;
+  if (this->_internal_comm_type() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_comm_type());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Robot_Command_Sim::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    Robot_Command_Sim::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Robot_Command_Sim::GetClassData() const { return &_class_data_; }
+
+void Robot_Command_Sim::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Robot_Command_Sim *>(to)->MergeFrom(
+      static_cast<const Robot_Command_Sim &>(from));
+}
+
+
+void Robot_Command_Sim::MergeFrom(const Robot_Command_Sim& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.Robot_Command_Sim)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_has_cmd_vel()) {
+    _internal_mutable_cmd_vel()->::ZSS::New::CmdVel_Sim::MergeFrom(from._internal_cmd_vel());
+  }
+  if (from._internal_has_cmd_pose()) {
+    _internal_mutable_cmd_pose()->::ZSS::New::CmdPose::MergeFrom(from._internal_cmd_pose());
+  }
+  if (from._internal_has_cmd_chase()) {
+    _internal_mutable_cmd_chase()->::ZSS::New::CmdChase::MergeFrom(from._internal_cmd_chase());
+  }
+  if (from._internal_has_cmd_wheel()) {
+    _internal_mutable_cmd_wheel()->::ZSS::New::CmdWheel::MergeFrom(from._internal_cmd_wheel());
+  }
+  if (from._internal_robot_id() != 0) {
+    _internal_set_robot_id(from._internal_robot_id());
+  }
+  if (from._internal_kick_mode() != 0) {
+    _internal_set_kick_mode(from._internal_kick_mode());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_desire_power = from._internal_desire_power();
+  uint32_t raw_desire_power;
+  memcpy(&raw_desire_power, &tmp_desire_power, sizeof(tmp_desire_power));
+  if (raw_desire_power != 0) {
+    _internal_set_desire_power(from._internal_desire_power());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_kick_discharge_time = from._internal_kick_discharge_time();
+  uint32_t raw_kick_discharge_time;
+  memcpy(&raw_kick_discharge_time, &tmp_kick_discharge_time, sizeof(tmp_kick_discharge_time));
+  if (raw_kick_discharge_time != 0) {
+    _internal_set_kick_discharge_time(from._internal_kick_discharge_time());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_dribble_spin = from._internal_dribble_spin();
+  uint32_t raw_dribble_spin;
+  memcpy(&raw_dribble_spin, &tmp_dribble_spin, sizeof(tmp_dribble_spin));
+  if (raw_dribble_spin != 0) {
+    _internal_set_dribble_spin(from._internal_dribble_spin());
+  }
+  if (from._internal_need_report() != 0) {
+    _internal_set_need_report(from._internal_need_report());
+  }
+  if (from._internal_cmd_type() != 0) {
+    _internal_set_cmd_type(from._internal_cmd_type());
+  }
+  if (from._internal_comm_type() != 0) {
+    _internal_set_comm_type(from._internal_comm_type());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Robot_Command_Sim::CopyFrom(const Robot_Command_Sim& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:ZSS.New.Robot_Command_Sim)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Robot_Command_Sim::IsInitialized() const {
+  return true;
+}
+
+void Robot_Command_Sim::InternalSwap(Robot_Command_Sim* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Robot_Command_Sim, comm_type_)
+      + sizeof(Robot_Command_Sim::comm_type_)
+      - PROTOBUF_FIELD_OFFSET(Robot_Command_Sim, cmd_vel_)>(
+          reinterpret_cast<char*>(&cmd_vel_),
+          reinterpret_cast<char*>(&other->cmd_vel_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata Robot_Command_Sim::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_zss_5fcmd_2eproto_getter, &descriptor_table_zss_5fcmd_2eproto_once,
+      file_level_metadata_zss_5fcmd_2eproto[8]);
+}
+
+// ===================================================================
+
+class MotionPose2::_Internal {
+ public:
+};
+
+MotionPose2::MotionPose2(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:ZSS.New.MotionPose2)
+}
+MotionPose2::MotionPose2(const MotionPose2& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::memcpy(&x_, &from.x_,
+    static_cast<size_t>(reinterpret_cast<char*>(&yaw_) -
+    reinterpret_cast<char*>(&x_)) + sizeof(yaw_));
+  // @@protoc_insertion_point(copy_constructor:ZSS.New.MotionPose2)
+}
+
+inline void MotionPose2::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&x_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&yaw_) -
+    reinterpret_cast<char*>(&x_)) + sizeof(yaw_));
+}
+
+MotionPose2::~MotionPose2() {
+  // @@protoc_insertion_point(destructor:ZSS.New.MotionPose2)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void MotionPose2::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void MotionPose2::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void MotionPose2::Clear() {
+// @@protoc_insertion_point(message_clear_start:ZSS.New.MotionPose2)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&x_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&yaw_) -
+      reinterpret_cast<char*>(&x_)) + sizeof(yaw_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* MotionPose2::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // float x = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 13)) {
+          x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float y = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 21)) {
+          y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float yaw = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 29)) {
+          yaw_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* MotionPose2::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:ZSS.New.MotionPose2)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // float x = 1;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_x = this->_internal_x();
+  uint32_t raw_x;
+  memcpy(&raw_x, &tmp_x, sizeof(tmp_x));
+  if (raw_x != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(1, this->_internal_x(), target);
+  }
+
+  // float y = 2;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_y = this->_internal_y();
+  uint32_t raw_y;
+  memcpy(&raw_y, &tmp_y, sizeof(tmp_y));
+  if (raw_y != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(2, this->_internal_y(), target);
+  }
+
+  // float yaw = 3;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_yaw = this->_internal_yaw();
+  uint32_t raw_yaw;
+  memcpy(&raw_yaw, &tmp_yaw, sizeof(tmp_yaw));
+  if (raw_yaw != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(3, this->_internal_yaw(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:ZSS.New.MotionPose2)
+  return target;
+}
+
+size_t MotionPose2::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:ZSS.New.MotionPose2)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // float x = 1;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_x = this->_internal_x();
+  uint32_t raw_x;
+  memcpy(&raw_x, &tmp_x, sizeof(tmp_x));
+  if (raw_x != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float y = 2;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_y = this->_internal_y();
+  uint32_t raw_y;
+  memcpy(&raw_y, &tmp_y, sizeof(tmp_y));
+  if (raw_y != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float yaw = 3;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_yaw = this->_internal_yaw();
+  uint32_t raw_yaw;
+  memcpy(&raw_yaw, &tmp_yaw, sizeof(tmp_yaw));
+  if (raw_yaw != 0) {
+    total_size += 1 + 4;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData MotionPose2::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    MotionPose2::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*MotionPose2::GetClassData() const { return &_class_data_; }
+
+void MotionPose2::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<MotionPose2 *>(to)->MergeFrom(
+      static_cast<const MotionPose2 &>(from));
+}
+
+
+void MotionPose2::MergeFrom(const MotionPose2& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.MotionPose2)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_x = from._internal_x();
+  uint32_t raw_x;
+  memcpy(&raw_x, &tmp_x, sizeof(tmp_x));
+  if (raw_x != 0) {
+    _internal_set_x(from._internal_x());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_y = from._internal_y();
+  uint32_t raw_y;
+  memcpy(&raw_y, &tmp_y, sizeof(tmp_y));
+  if (raw_y != 0) {
+    _internal_set_y(from._internal_y());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_yaw = from._internal_yaw();
+  uint32_t raw_yaw;
+  memcpy(&raw_yaw, &tmp_yaw, sizeof(tmp_yaw));
+  if (raw_yaw != 0) {
+    _internal_set_yaw(from._internal_yaw());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void MotionPose2::CopyFrom(const MotionPose2& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:ZSS.New.MotionPose2)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool MotionPose2::IsInitialized() const {
+  return true;
+}
+
+void MotionPose2::InternalSwap(MotionPose2* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(MotionPose2, yaw_)
+      + sizeof(MotionPose2::yaw_)
+      - PROTOBUF_FIELD_OFFSET(MotionPose2, x_)>(
+          reinterpret_cast<char*>(&x_),
+          reinterpret_cast<char*>(&other->x_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata MotionPose2::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_zss_5fcmd_2eproto_getter, &descriptor_table_zss_5fcmd_2eproto_once,
+      file_level_metadata_zss_5fcmd_2eproto[9]);
+}
+
+// ===================================================================
+
+class MotionTwist2::_Internal {
+ public:
+};
+
+MotionTwist2::MotionTwist2(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:ZSS.New.MotionTwist2)
+}
+MotionTwist2::MotionTwist2(const MotionTwist2& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::memcpy(&vx_, &from.vx_,
+    static_cast<size_t>(reinterpret_cast<char*>(&wz_) -
+    reinterpret_cast<char*>(&vx_)) + sizeof(wz_));
+  // @@protoc_insertion_point(copy_constructor:ZSS.New.MotionTwist2)
+}
+
+inline void MotionTwist2::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&vx_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&wz_) -
+    reinterpret_cast<char*>(&vx_)) + sizeof(wz_));
+}
+
+MotionTwist2::~MotionTwist2() {
+  // @@protoc_insertion_point(destructor:ZSS.New.MotionTwist2)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void MotionTwist2::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void MotionTwist2::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void MotionTwist2::Clear() {
+// @@protoc_insertion_point(message_clear_start:ZSS.New.MotionTwist2)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&vx_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&wz_) -
+      reinterpret_cast<char*>(&vx_)) + sizeof(wz_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* MotionTwist2::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // float vx = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 13)) {
+          vx_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float vy = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 21)) {
+          vy_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float wz = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 29)) {
+          wz_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* MotionTwist2::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:ZSS.New.MotionTwist2)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // float vx = 1;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_vx = this->_internal_vx();
+  uint32_t raw_vx;
+  memcpy(&raw_vx, &tmp_vx, sizeof(tmp_vx));
+  if (raw_vx != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(1, this->_internal_vx(), target);
+  }
+
+  // float vy = 2;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_vy = this->_internal_vy();
+  uint32_t raw_vy;
+  memcpy(&raw_vy, &tmp_vy, sizeof(tmp_vy));
+  if (raw_vy != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(2, this->_internal_vy(), target);
+  }
+
+  // float wz = 3;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_wz = this->_internal_wz();
+  uint32_t raw_wz;
+  memcpy(&raw_wz, &tmp_wz, sizeof(tmp_wz));
+  if (raw_wz != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(3, this->_internal_wz(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:ZSS.New.MotionTwist2)
+  return target;
+}
+
+size_t MotionTwist2::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:ZSS.New.MotionTwist2)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // float vx = 1;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_vx = this->_internal_vx();
+  uint32_t raw_vx;
+  memcpy(&raw_vx, &tmp_vx, sizeof(tmp_vx));
+  if (raw_vx != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float vy = 2;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_vy = this->_internal_vy();
+  uint32_t raw_vy;
+  memcpy(&raw_vy, &tmp_vy, sizeof(tmp_vy));
+  if (raw_vy != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float wz = 3;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_wz = this->_internal_wz();
+  uint32_t raw_wz;
+  memcpy(&raw_wz, &tmp_wz, sizeof(tmp_wz));
+  if (raw_wz != 0) {
+    total_size += 1 + 4;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData MotionTwist2::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    MotionTwist2::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*MotionTwist2::GetClassData() const { return &_class_data_; }
+
+void MotionTwist2::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<MotionTwist2 *>(to)->MergeFrom(
+      static_cast<const MotionTwist2 &>(from));
+}
+
+
+void MotionTwist2::MergeFrom(const MotionTwist2& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.MotionTwist2)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_vx = from._internal_vx();
+  uint32_t raw_vx;
+  memcpy(&raw_vx, &tmp_vx, sizeof(tmp_vx));
+  if (raw_vx != 0) {
+    _internal_set_vx(from._internal_vx());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_vy = from._internal_vy();
+  uint32_t raw_vy;
+  memcpy(&raw_vy, &tmp_vy, sizeof(tmp_vy));
+  if (raw_vy != 0) {
+    _internal_set_vy(from._internal_vy());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_wz = from._internal_wz();
+  uint32_t raw_wz;
+  memcpy(&raw_wz, &tmp_wz, sizeof(tmp_wz));
+  if (raw_wz != 0) {
+    _internal_set_wz(from._internal_wz());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void MotionTwist2::CopyFrom(const MotionTwist2& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:ZSS.New.MotionTwist2)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool MotionTwist2::IsInitialized() const {
+  return true;
+}
+
+void MotionTwist2::InternalSwap(MotionTwist2* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(MotionTwist2, wz_)
+      + sizeof(MotionTwist2::wz_)
+      - PROTOBUF_FIELD_OFFSET(MotionTwist2, vx_)>(
+          reinterpret_cast<char*>(&vx_),
+          reinterpret_cast<char*>(&other->vx_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata MotionTwist2::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_zss_5fcmd_2eproto_getter, &descriptor_table_zss_5fcmd_2eproto_once,
+      file_level_metadata_zss_5fcmd_2eproto[10]);
+}
+
+// ===================================================================
+
+class MotionAccel2::_Internal {
+ public:
+};
+
+MotionAccel2::MotionAccel2(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:ZSS.New.MotionAccel2)
+}
+MotionAccel2::MotionAccel2(const MotionAccel2& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::memcpy(&ax_, &from.ax_,
+    static_cast<size_t>(reinterpret_cast<char*>(&alpha_) -
+    reinterpret_cast<char*>(&ax_)) + sizeof(alpha_));
+  // @@protoc_insertion_point(copy_constructor:ZSS.New.MotionAccel2)
+}
+
+inline void MotionAccel2::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&ax_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&alpha_) -
+    reinterpret_cast<char*>(&ax_)) + sizeof(alpha_));
+}
+
+MotionAccel2::~MotionAccel2() {
+  // @@protoc_insertion_point(destructor:ZSS.New.MotionAccel2)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void MotionAccel2::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void MotionAccel2::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void MotionAccel2::Clear() {
+// @@protoc_insertion_point(message_clear_start:ZSS.New.MotionAccel2)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&ax_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&alpha_) -
+      reinterpret_cast<char*>(&ax_)) + sizeof(alpha_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* MotionAccel2::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // float ax = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 13)) {
+          ax_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float ay = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 21)) {
+          ay_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float alpha = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 29)) {
+          alpha_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* MotionAccel2::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:ZSS.New.MotionAccel2)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // float ax = 1;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_ax = this->_internal_ax();
+  uint32_t raw_ax;
+  memcpy(&raw_ax, &tmp_ax, sizeof(tmp_ax));
+  if (raw_ax != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(1, this->_internal_ax(), target);
+  }
+
+  // float ay = 2;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_ay = this->_internal_ay();
+  uint32_t raw_ay;
+  memcpy(&raw_ay, &tmp_ay, sizeof(tmp_ay));
+  if (raw_ay != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(2, this->_internal_ay(), target);
+  }
+
+  // float alpha = 3;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_alpha = this->_internal_alpha();
+  uint32_t raw_alpha;
+  memcpy(&raw_alpha, &tmp_alpha, sizeof(tmp_alpha));
+  if (raw_alpha != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(3, this->_internal_alpha(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:ZSS.New.MotionAccel2)
+  return target;
+}
+
+size_t MotionAccel2::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:ZSS.New.MotionAccel2)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // float ax = 1;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_ax = this->_internal_ax();
+  uint32_t raw_ax;
+  memcpy(&raw_ax, &tmp_ax, sizeof(tmp_ax));
+  if (raw_ax != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float ay = 2;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_ay = this->_internal_ay();
+  uint32_t raw_ay;
+  memcpy(&raw_ay, &tmp_ay, sizeof(tmp_ay));
+  if (raw_ay != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float alpha = 3;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_alpha = this->_internal_alpha();
+  uint32_t raw_alpha;
+  memcpy(&raw_alpha, &tmp_alpha, sizeof(tmp_alpha));
+  if (raw_alpha != 0) {
+    total_size += 1 + 4;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData MotionAccel2::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    MotionAccel2::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*MotionAccel2::GetClassData() const { return &_class_data_; }
+
+void MotionAccel2::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<MotionAccel2 *>(to)->MergeFrom(
+      static_cast<const MotionAccel2 &>(from));
+}
+
+
+void MotionAccel2::MergeFrom(const MotionAccel2& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.MotionAccel2)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_ax = from._internal_ax();
+  uint32_t raw_ax;
+  memcpy(&raw_ax, &tmp_ax, sizeof(tmp_ax));
+  if (raw_ax != 0) {
+    _internal_set_ax(from._internal_ax());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_ay = from._internal_ay();
+  uint32_t raw_ay;
+  memcpy(&raw_ay, &tmp_ay, sizeof(tmp_ay));
+  if (raw_ay != 0) {
+    _internal_set_ay(from._internal_ay());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_alpha = from._internal_alpha();
+  uint32_t raw_alpha;
+  memcpy(&raw_alpha, &tmp_alpha, sizeof(tmp_alpha));
+  if (raw_alpha != 0) {
+    _internal_set_alpha(from._internal_alpha());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void MotionAccel2::CopyFrom(const MotionAccel2& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:ZSS.New.MotionAccel2)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool MotionAccel2::IsInitialized() const {
+  return true;
+}
+
+void MotionAccel2::InternalSwap(MotionAccel2* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(MotionAccel2, alpha_)
+      + sizeof(MotionAccel2::alpha_)
+      - PROTOBUF_FIELD_OFFSET(MotionAccel2, ax_)>(
+          reinterpret_cast<char*>(&ax_),
+          reinterpret_cast<char*>(&other->ax_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata MotionAccel2::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_zss_5fcmd_2eproto_getter, &descriptor_table_zss_5fcmd_2eproto_once,
+      file_level_metadata_zss_5fcmd_2eproto[11]);
+}
+
+// ===================================================================
+
+class MotionLimitsV2::_Internal {
+ public:
+};
+
+MotionLimitsV2::MotionLimitsV2(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:ZSS.New.MotionLimitsV2)
+}
+MotionLimitsV2::MotionLimitsV2(const MotionLimitsV2& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::memcpy(&max_linear_speed_m_s_, &from.max_linear_speed_m_s_,
+    static_cast<size_t>(reinterpret_cast<char*>(&wheel_speed_backcalc_) -
+    reinterpret_cast<char*>(&max_linear_speed_m_s_)) + sizeof(wheel_speed_backcalc_));
+  // @@protoc_insertion_point(copy_constructor:ZSS.New.MotionLimitsV2)
+}
+
+inline void MotionLimitsV2::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&max_linear_speed_m_s_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&wheel_speed_backcalc_) -
+    reinterpret_cast<char*>(&max_linear_speed_m_s_)) + sizeof(wheel_speed_backcalc_));
+}
+
+MotionLimitsV2::~MotionLimitsV2() {
+  // @@protoc_insertion_point(destructor:ZSS.New.MotionLimitsV2)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void MotionLimitsV2::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void MotionLimitsV2::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void MotionLimitsV2::Clear() {
+// @@protoc_insertion_point(message_clear_start:ZSS.New.MotionLimitsV2)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&max_linear_speed_m_s_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&wheel_speed_backcalc_) -
+      reinterpret_cast<char*>(&max_linear_speed_m_s_)) + sizeof(wheel_speed_backcalc_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* MotionLimitsV2::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // float max_linear_speed_m_s = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 13)) {
+          max_linear_speed_m_s_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float max_linear_accel_m_s2 = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 21)) {
+          max_linear_accel_m_s2_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float max_linear_decel_m_s2 = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 29)) {
+          max_linear_decel_m_s2_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float max_yaw_speed_rad_s = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 37)) {
+          max_yaw_speed_rad_s_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float max_yaw_accel_rad_s2 = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 45)) {
+          max_yaw_accel_rad_s2_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float max_centripetal_accel_m_s2 = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 53)) {
+          max_centripetal_accel_m_s2_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float max_wheel_torque_nm = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 61)) {
+          max_wheel_torque_nm_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float max_torque_rate_nm_per_s = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 69)) {
+          max_torque_rate_nm_per_s_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float position_correction_gain = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 77)) {
+          position_correction_gain_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float position_correction_limit_m_s = 10;
+      case 10:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 85)) {
+          position_correction_limit_m_s_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float yaw_correction_gain = 11;
+      case 11:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 93)) {
+          yaw_correction_gain_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float yaw_rate_gain = 12;
+      case 12:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 101)) {
+          yaw_rate_gain_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float wheel_speed_kp = 13;
+      case 13:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 109)) {
+          wheel_speed_kp_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float wheel_speed_ki = 14;
+      case 14:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 117)) {
+          wheel_speed_ki_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float wheel_speed_backcalc = 15;
+      case 15:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 125)) {
+          wheel_speed_backcalc_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* MotionLimitsV2::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:ZSS.New.MotionLimitsV2)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // float max_linear_speed_m_s = 1;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_linear_speed_m_s = this->_internal_max_linear_speed_m_s();
+  uint32_t raw_max_linear_speed_m_s;
+  memcpy(&raw_max_linear_speed_m_s, &tmp_max_linear_speed_m_s, sizeof(tmp_max_linear_speed_m_s));
+  if (raw_max_linear_speed_m_s != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(1, this->_internal_max_linear_speed_m_s(), target);
+  }
+
+  // float max_linear_accel_m_s2 = 2;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_linear_accel_m_s2 = this->_internal_max_linear_accel_m_s2();
+  uint32_t raw_max_linear_accel_m_s2;
+  memcpy(&raw_max_linear_accel_m_s2, &tmp_max_linear_accel_m_s2, sizeof(tmp_max_linear_accel_m_s2));
+  if (raw_max_linear_accel_m_s2 != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(2, this->_internal_max_linear_accel_m_s2(), target);
+  }
+
+  // float max_linear_decel_m_s2 = 3;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_linear_decel_m_s2 = this->_internal_max_linear_decel_m_s2();
+  uint32_t raw_max_linear_decel_m_s2;
+  memcpy(&raw_max_linear_decel_m_s2, &tmp_max_linear_decel_m_s2, sizeof(tmp_max_linear_decel_m_s2));
+  if (raw_max_linear_decel_m_s2 != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(3, this->_internal_max_linear_decel_m_s2(), target);
+  }
+
+  // float max_yaw_speed_rad_s = 4;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_yaw_speed_rad_s = this->_internal_max_yaw_speed_rad_s();
+  uint32_t raw_max_yaw_speed_rad_s;
+  memcpy(&raw_max_yaw_speed_rad_s, &tmp_max_yaw_speed_rad_s, sizeof(tmp_max_yaw_speed_rad_s));
+  if (raw_max_yaw_speed_rad_s != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(4, this->_internal_max_yaw_speed_rad_s(), target);
+  }
+
+  // float max_yaw_accel_rad_s2 = 5;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_yaw_accel_rad_s2 = this->_internal_max_yaw_accel_rad_s2();
+  uint32_t raw_max_yaw_accel_rad_s2;
+  memcpy(&raw_max_yaw_accel_rad_s2, &tmp_max_yaw_accel_rad_s2, sizeof(tmp_max_yaw_accel_rad_s2));
+  if (raw_max_yaw_accel_rad_s2 != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(5, this->_internal_max_yaw_accel_rad_s2(), target);
+  }
+
+  // float max_centripetal_accel_m_s2 = 6;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_centripetal_accel_m_s2 = this->_internal_max_centripetal_accel_m_s2();
+  uint32_t raw_max_centripetal_accel_m_s2;
+  memcpy(&raw_max_centripetal_accel_m_s2, &tmp_max_centripetal_accel_m_s2, sizeof(tmp_max_centripetal_accel_m_s2));
+  if (raw_max_centripetal_accel_m_s2 != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(6, this->_internal_max_centripetal_accel_m_s2(), target);
+  }
+
+  // float max_wheel_torque_nm = 7;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_wheel_torque_nm = this->_internal_max_wheel_torque_nm();
+  uint32_t raw_max_wheel_torque_nm;
+  memcpy(&raw_max_wheel_torque_nm, &tmp_max_wheel_torque_nm, sizeof(tmp_max_wheel_torque_nm));
+  if (raw_max_wheel_torque_nm != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(7, this->_internal_max_wheel_torque_nm(), target);
+  }
+
+  // float max_torque_rate_nm_per_s = 8;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_torque_rate_nm_per_s = this->_internal_max_torque_rate_nm_per_s();
+  uint32_t raw_max_torque_rate_nm_per_s;
+  memcpy(&raw_max_torque_rate_nm_per_s, &tmp_max_torque_rate_nm_per_s, sizeof(tmp_max_torque_rate_nm_per_s));
+  if (raw_max_torque_rate_nm_per_s != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(8, this->_internal_max_torque_rate_nm_per_s(), target);
+  }
+
+  // float position_correction_gain = 9;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_position_correction_gain = this->_internal_position_correction_gain();
+  uint32_t raw_position_correction_gain;
+  memcpy(&raw_position_correction_gain, &tmp_position_correction_gain, sizeof(tmp_position_correction_gain));
+  if (raw_position_correction_gain != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(9, this->_internal_position_correction_gain(), target);
+  }
+
+  // float position_correction_limit_m_s = 10;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_position_correction_limit_m_s = this->_internal_position_correction_limit_m_s();
+  uint32_t raw_position_correction_limit_m_s;
+  memcpy(&raw_position_correction_limit_m_s, &tmp_position_correction_limit_m_s, sizeof(tmp_position_correction_limit_m_s));
+  if (raw_position_correction_limit_m_s != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(10, this->_internal_position_correction_limit_m_s(), target);
+  }
+
+  // float yaw_correction_gain = 11;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_yaw_correction_gain = this->_internal_yaw_correction_gain();
+  uint32_t raw_yaw_correction_gain;
+  memcpy(&raw_yaw_correction_gain, &tmp_yaw_correction_gain, sizeof(tmp_yaw_correction_gain));
+  if (raw_yaw_correction_gain != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(11, this->_internal_yaw_correction_gain(), target);
+  }
+
+  // float yaw_rate_gain = 12;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_yaw_rate_gain = this->_internal_yaw_rate_gain();
+  uint32_t raw_yaw_rate_gain;
+  memcpy(&raw_yaw_rate_gain, &tmp_yaw_rate_gain, sizeof(tmp_yaw_rate_gain));
+  if (raw_yaw_rate_gain != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(12, this->_internal_yaw_rate_gain(), target);
+  }
+
+  // float wheel_speed_kp = 13;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_wheel_speed_kp = this->_internal_wheel_speed_kp();
+  uint32_t raw_wheel_speed_kp;
+  memcpy(&raw_wheel_speed_kp, &tmp_wheel_speed_kp, sizeof(tmp_wheel_speed_kp));
+  if (raw_wheel_speed_kp != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(13, this->_internal_wheel_speed_kp(), target);
+  }
+
+  // float wheel_speed_ki = 14;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_wheel_speed_ki = this->_internal_wheel_speed_ki();
+  uint32_t raw_wheel_speed_ki;
+  memcpy(&raw_wheel_speed_ki, &tmp_wheel_speed_ki, sizeof(tmp_wheel_speed_ki));
+  if (raw_wheel_speed_ki != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(14, this->_internal_wheel_speed_ki(), target);
+  }
+
+  // float wheel_speed_backcalc = 15;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_wheel_speed_backcalc = this->_internal_wheel_speed_backcalc();
+  uint32_t raw_wheel_speed_backcalc;
+  memcpy(&raw_wheel_speed_backcalc, &tmp_wheel_speed_backcalc, sizeof(tmp_wheel_speed_backcalc));
+  if (raw_wheel_speed_backcalc != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(15, this->_internal_wheel_speed_backcalc(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:ZSS.New.MotionLimitsV2)
+  return target;
+}
+
+size_t MotionLimitsV2::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:ZSS.New.MotionLimitsV2)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // float max_linear_speed_m_s = 1;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_linear_speed_m_s = this->_internal_max_linear_speed_m_s();
+  uint32_t raw_max_linear_speed_m_s;
+  memcpy(&raw_max_linear_speed_m_s, &tmp_max_linear_speed_m_s, sizeof(tmp_max_linear_speed_m_s));
+  if (raw_max_linear_speed_m_s != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float max_linear_accel_m_s2 = 2;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_linear_accel_m_s2 = this->_internal_max_linear_accel_m_s2();
+  uint32_t raw_max_linear_accel_m_s2;
+  memcpy(&raw_max_linear_accel_m_s2, &tmp_max_linear_accel_m_s2, sizeof(tmp_max_linear_accel_m_s2));
+  if (raw_max_linear_accel_m_s2 != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float max_linear_decel_m_s2 = 3;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_linear_decel_m_s2 = this->_internal_max_linear_decel_m_s2();
+  uint32_t raw_max_linear_decel_m_s2;
+  memcpy(&raw_max_linear_decel_m_s2, &tmp_max_linear_decel_m_s2, sizeof(tmp_max_linear_decel_m_s2));
+  if (raw_max_linear_decel_m_s2 != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float max_yaw_speed_rad_s = 4;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_yaw_speed_rad_s = this->_internal_max_yaw_speed_rad_s();
+  uint32_t raw_max_yaw_speed_rad_s;
+  memcpy(&raw_max_yaw_speed_rad_s, &tmp_max_yaw_speed_rad_s, sizeof(tmp_max_yaw_speed_rad_s));
+  if (raw_max_yaw_speed_rad_s != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float max_yaw_accel_rad_s2 = 5;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_yaw_accel_rad_s2 = this->_internal_max_yaw_accel_rad_s2();
+  uint32_t raw_max_yaw_accel_rad_s2;
+  memcpy(&raw_max_yaw_accel_rad_s2, &tmp_max_yaw_accel_rad_s2, sizeof(tmp_max_yaw_accel_rad_s2));
+  if (raw_max_yaw_accel_rad_s2 != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float max_centripetal_accel_m_s2 = 6;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_centripetal_accel_m_s2 = this->_internal_max_centripetal_accel_m_s2();
+  uint32_t raw_max_centripetal_accel_m_s2;
+  memcpy(&raw_max_centripetal_accel_m_s2, &tmp_max_centripetal_accel_m_s2, sizeof(tmp_max_centripetal_accel_m_s2));
+  if (raw_max_centripetal_accel_m_s2 != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float max_wheel_torque_nm = 7;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_wheel_torque_nm = this->_internal_max_wheel_torque_nm();
+  uint32_t raw_max_wheel_torque_nm;
+  memcpy(&raw_max_wheel_torque_nm, &tmp_max_wheel_torque_nm, sizeof(tmp_max_wheel_torque_nm));
+  if (raw_max_wheel_torque_nm != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float max_torque_rate_nm_per_s = 8;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_torque_rate_nm_per_s = this->_internal_max_torque_rate_nm_per_s();
+  uint32_t raw_max_torque_rate_nm_per_s;
+  memcpy(&raw_max_torque_rate_nm_per_s, &tmp_max_torque_rate_nm_per_s, sizeof(tmp_max_torque_rate_nm_per_s));
+  if (raw_max_torque_rate_nm_per_s != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float position_correction_gain = 9;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_position_correction_gain = this->_internal_position_correction_gain();
+  uint32_t raw_position_correction_gain;
+  memcpy(&raw_position_correction_gain, &tmp_position_correction_gain, sizeof(tmp_position_correction_gain));
+  if (raw_position_correction_gain != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float position_correction_limit_m_s = 10;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_position_correction_limit_m_s = this->_internal_position_correction_limit_m_s();
+  uint32_t raw_position_correction_limit_m_s;
+  memcpy(&raw_position_correction_limit_m_s, &tmp_position_correction_limit_m_s, sizeof(tmp_position_correction_limit_m_s));
+  if (raw_position_correction_limit_m_s != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float yaw_correction_gain = 11;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_yaw_correction_gain = this->_internal_yaw_correction_gain();
+  uint32_t raw_yaw_correction_gain;
+  memcpy(&raw_yaw_correction_gain, &tmp_yaw_correction_gain, sizeof(tmp_yaw_correction_gain));
+  if (raw_yaw_correction_gain != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float yaw_rate_gain = 12;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_yaw_rate_gain = this->_internal_yaw_rate_gain();
+  uint32_t raw_yaw_rate_gain;
+  memcpy(&raw_yaw_rate_gain, &tmp_yaw_rate_gain, sizeof(tmp_yaw_rate_gain));
+  if (raw_yaw_rate_gain != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float wheel_speed_kp = 13;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_wheel_speed_kp = this->_internal_wheel_speed_kp();
+  uint32_t raw_wheel_speed_kp;
+  memcpy(&raw_wheel_speed_kp, &tmp_wheel_speed_kp, sizeof(tmp_wheel_speed_kp));
+  if (raw_wheel_speed_kp != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float wheel_speed_ki = 14;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_wheel_speed_ki = this->_internal_wheel_speed_ki();
+  uint32_t raw_wheel_speed_ki;
+  memcpy(&raw_wheel_speed_ki, &tmp_wheel_speed_ki, sizeof(tmp_wheel_speed_ki));
+  if (raw_wheel_speed_ki != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float wheel_speed_backcalc = 15;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_wheel_speed_backcalc = this->_internal_wheel_speed_backcalc();
+  uint32_t raw_wheel_speed_backcalc;
+  memcpy(&raw_wheel_speed_backcalc, &tmp_wheel_speed_backcalc, sizeof(tmp_wheel_speed_backcalc));
+  if (raw_wheel_speed_backcalc != 0) {
+    total_size += 1 + 4;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData MotionLimitsV2::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    MotionLimitsV2::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*MotionLimitsV2::GetClassData() const { return &_class_data_; }
+
+void MotionLimitsV2::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<MotionLimitsV2 *>(to)->MergeFrom(
+      static_cast<const MotionLimitsV2 &>(from));
+}
+
+
+void MotionLimitsV2::MergeFrom(const MotionLimitsV2& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.MotionLimitsV2)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_linear_speed_m_s = from._internal_max_linear_speed_m_s();
+  uint32_t raw_max_linear_speed_m_s;
+  memcpy(&raw_max_linear_speed_m_s, &tmp_max_linear_speed_m_s, sizeof(tmp_max_linear_speed_m_s));
+  if (raw_max_linear_speed_m_s != 0) {
+    _internal_set_max_linear_speed_m_s(from._internal_max_linear_speed_m_s());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_linear_accel_m_s2 = from._internal_max_linear_accel_m_s2();
+  uint32_t raw_max_linear_accel_m_s2;
+  memcpy(&raw_max_linear_accel_m_s2, &tmp_max_linear_accel_m_s2, sizeof(tmp_max_linear_accel_m_s2));
+  if (raw_max_linear_accel_m_s2 != 0) {
+    _internal_set_max_linear_accel_m_s2(from._internal_max_linear_accel_m_s2());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_linear_decel_m_s2 = from._internal_max_linear_decel_m_s2();
+  uint32_t raw_max_linear_decel_m_s2;
+  memcpy(&raw_max_linear_decel_m_s2, &tmp_max_linear_decel_m_s2, sizeof(tmp_max_linear_decel_m_s2));
+  if (raw_max_linear_decel_m_s2 != 0) {
+    _internal_set_max_linear_decel_m_s2(from._internal_max_linear_decel_m_s2());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_yaw_speed_rad_s = from._internal_max_yaw_speed_rad_s();
+  uint32_t raw_max_yaw_speed_rad_s;
+  memcpy(&raw_max_yaw_speed_rad_s, &tmp_max_yaw_speed_rad_s, sizeof(tmp_max_yaw_speed_rad_s));
+  if (raw_max_yaw_speed_rad_s != 0) {
+    _internal_set_max_yaw_speed_rad_s(from._internal_max_yaw_speed_rad_s());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_yaw_accel_rad_s2 = from._internal_max_yaw_accel_rad_s2();
+  uint32_t raw_max_yaw_accel_rad_s2;
+  memcpy(&raw_max_yaw_accel_rad_s2, &tmp_max_yaw_accel_rad_s2, sizeof(tmp_max_yaw_accel_rad_s2));
+  if (raw_max_yaw_accel_rad_s2 != 0) {
+    _internal_set_max_yaw_accel_rad_s2(from._internal_max_yaw_accel_rad_s2());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_centripetal_accel_m_s2 = from._internal_max_centripetal_accel_m_s2();
+  uint32_t raw_max_centripetal_accel_m_s2;
+  memcpy(&raw_max_centripetal_accel_m_s2, &tmp_max_centripetal_accel_m_s2, sizeof(tmp_max_centripetal_accel_m_s2));
+  if (raw_max_centripetal_accel_m_s2 != 0) {
+    _internal_set_max_centripetal_accel_m_s2(from._internal_max_centripetal_accel_m_s2());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_wheel_torque_nm = from._internal_max_wheel_torque_nm();
+  uint32_t raw_max_wheel_torque_nm;
+  memcpy(&raw_max_wheel_torque_nm, &tmp_max_wheel_torque_nm, sizeof(tmp_max_wheel_torque_nm));
+  if (raw_max_wheel_torque_nm != 0) {
+    _internal_set_max_wheel_torque_nm(from._internal_max_wheel_torque_nm());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_torque_rate_nm_per_s = from._internal_max_torque_rate_nm_per_s();
+  uint32_t raw_max_torque_rate_nm_per_s;
+  memcpy(&raw_max_torque_rate_nm_per_s, &tmp_max_torque_rate_nm_per_s, sizeof(tmp_max_torque_rate_nm_per_s));
+  if (raw_max_torque_rate_nm_per_s != 0) {
+    _internal_set_max_torque_rate_nm_per_s(from._internal_max_torque_rate_nm_per_s());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_position_correction_gain = from._internal_position_correction_gain();
+  uint32_t raw_position_correction_gain;
+  memcpy(&raw_position_correction_gain, &tmp_position_correction_gain, sizeof(tmp_position_correction_gain));
+  if (raw_position_correction_gain != 0) {
+    _internal_set_position_correction_gain(from._internal_position_correction_gain());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_position_correction_limit_m_s = from._internal_position_correction_limit_m_s();
+  uint32_t raw_position_correction_limit_m_s;
+  memcpy(&raw_position_correction_limit_m_s, &tmp_position_correction_limit_m_s, sizeof(tmp_position_correction_limit_m_s));
+  if (raw_position_correction_limit_m_s != 0) {
+    _internal_set_position_correction_limit_m_s(from._internal_position_correction_limit_m_s());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_yaw_correction_gain = from._internal_yaw_correction_gain();
+  uint32_t raw_yaw_correction_gain;
+  memcpy(&raw_yaw_correction_gain, &tmp_yaw_correction_gain, sizeof(tmp_yaw_correction_gain));
+  if (raw_yaw_correction_gain != 0) {
+    _internal_set_yaw_correction_gain(from._internal_yaw_correction_gain());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_yaw_rate_gain = from._internal_yaw_rate_gain();
+  uint32_t raw_yaw_rate_gain;
+  memcpy(&raw_yaw_rate_gain, &tmp_yaw_rate_gain, sizeof(tmp_yaw_rate_gain));
+  if (raw_yaw_rate_gain != 0) {
+    _internal_set_yaw_rate_gain(from._internal_yaw_rate_gain());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_wheel_speed_kp = from._internal_wheel_speed_kp();
+  uint32_t raw_wheel_speed_kp;
+  memcpy(&raw_wheel_speed_kp, &tmp_wheel_speed_kp, sizeof(tmp_wheel_speed_kp));
+  if (raw_wheel_speed_kp != 0) {
+    _internal_set_wheel_speed_kp(from._internal_wheel_speed_kp());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_wheel_speed_ki = from._internal_wheel_speed_ki();
+  uint32_t raw_wheel_speed_ki;
+  memcpy(&raw_wheel_speed_ki, &tmp_wheel_speed_ki, sizeof(tmp_wheel_speed_ki));
+  if (raw_wheel_speed_ki != 0) {
+    _internal_set_wheel_speed_ki(from._internal_wheel_speed_ki());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_wheel_speed_backcalc = from._internal_wheel_speed_backcalc();
+  uint32_t raw_wheel_speed_backcalc;
+  memcpy(&raw_wheel_speed_backcalc, &tmp_wheel_speed_backcalc, sizeof(tmp_wheel_speed_backcalc));
+  if (raw_wheel_speed_backcalc != 0) {
+    _internal_set_wheel_speed_backcalc(from._internal_wheel_speed_backcalc());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void MotionLimitsV2::CopyFrom(const MotionLimitsV2& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:ZSS.New.MotionLimitsV2)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool MotionLimitsV2::IsInitialized() const {
+  return true;
+}
+
+void MotionLimitsV2::InternalSwap(MotionLimitsV2* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(MotionLimitsV2, wheel_speed_backcalc_)
+      + sizeof(MotionLimitsV2::wheel_speed_backcalc_)
+      - PROTOBUF_FIELD_OFFSET(MotionLimitsV2, max_linear_speed_m_s_)>(
+          reinterpret_cast<char*>(&max_linear_speed_m_s_),
+          reinterpret_cast<char*>(&other->max_linear_speed_m_s_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata MotionLimitsV2::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_zss_5fcmd_2eproto_getter, &descriptor_table_zss_5fcmd_2eproto_once,
+      file_level_metadata_zss_5fcmd_2eproto[12]);
+}
+
+// ===================================================================
+
+class MotionCommandV2::_Internal {
+ public:
+  static const ::ZSS::New::MotionPose2& target_pose(const MotionCommandV2* msg);
+  static const ::ZSS::New::MotionTwist2& target_velocity(const MotionCommandV2* msg);
+  static const ::ZSS::New::MotionLimitsV2& limits(const MotionCommandV2* msg);
+};
+
+const ::ZSS::New::MotionPose2&
+MotionCommandV2::_Internal::target_pose(const MotionCommandV2* msg) {
+  return *msg->target_pose_;
+}
+const ::ZSS::New::MotionTwist2&
+MotionCommandV2::_Internal::target_velocity(const MotionCommandV2* msg) {
+  return *msg->target_velocity_;
+}
+const ::ZSS::New::MotionLimitsV2&
+MotionCommandV2::_Internal::limits(const MotionCommandV2* msg) {
+  return *msg->limits_;
+}
+MotionCommandV2::MotionCommandV2(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:ZSS.New.MotionCommandV2)
+}
+MotionCommandV2::MotionCommandV2(const MotionCommandV2& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_target_pose()) {
+    target_pose_ = new ::ZSS::New::MotionPose2(*from.target_pose_);
+  } else {
+    target_pose_ = nullptr;
+  }
+  if (from._internal_has_target_velocity()) {
+    target_velocity_ = new ::ZSS::New::MotionTwist2(*from.target_velocity_);
+  } else {
+    target_velocity_ = nullptr;
+  }
+  if (from._internal_has_limits()) {
+    limits_ = new ::ZSS::New::MotionLimitsV2(*from.limits_);
+  } else {
+    limits_ = nullptr;
+  }
+  ::memcpy(&backend_, &from.backend_,
+    static_cast<size_t>(reinterpret_cast<char*>(&dribble_torque_ff_nm_) -
+    reinterpret_cast<char*>(&backend_)) + sizeof(dribble_torque_ff_nm_));
+  // @@protoc_insertion_point(copy_constructor:ZSS.New.MotionCommandV2)
+}
+
+inline void MotionCommandV2::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&target_pose_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&dribble_torque_ff_nm_) -
+    reinterpret_cast<char*>(&target_pose_)) + sizeof(dribble_torque_ff_nm_));
+}
+
+MotionCommandV2::~MotionCommandV2() {
+  // @@protoc_insertion_point(destructor:ZSS.New.MotionCommandV2)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void MotionCommandV2::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete target_pose_;
+  if (this != internal_default_instance()) delete target_velocity_;
+  if (this != internal_default_instance()) delete limits_;
+}
+
+void MotionCommandV2::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void MotionCommandV2::Clear() {
+// @@protoc_insertion_point(message_clear_start:ZSS.New.MotionCommandV2)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaForAllocation() == nullptr && target_pose_ != nullptr) {
+    delete target_pose_;
+  }
+  target_pose_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && target_velocity_ != nullptr) {
+    delete target_velocity_;
+  }
+  target_velocity_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && limits_ != nullptr) {
+    delete limits_;
+  }
+  limits_ = nullptr;
+  ::memset(&backend_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&dribble_torque_ff_nm_) -
+      reinterpret_cast<char*>(&backend_)) + sizeof(dribble_torque_ff_nm_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* MotionCommandV2::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .ZSS.New.MotionBackend backend = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_backend(static_cast<::ZSS::New::MotionBackend>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // .ZSS.New.MotionTranslationMode translation_mode = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_translation_mode(static_cast<::ZSS::New::MotionTranslationMode>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // .ZSS.New.MotionYawMode yaw_mode = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_yaw_mode(static_cast<::ZSS::New::MotionYawMode>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 session_id = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
+          session_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 sequence = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
+          sequence_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 trajectory_epoch = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
+          trajectory_epoch_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 generated_time_us = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
+          generated_time_us_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 valid_for_us = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 64)) {
+          valid_for_us_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .ZSS.New.MotionPose2 target_pose = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 74)) {
+          ptr = ctx->ParseMessage(_internal_mutable_target_pose(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .ZSS.New.MotionTwist2 target_velocity = 10;
+      case 10:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 82)) {
+          ptr = ctx->ParseMessage(_internal_mutable_target_velocity(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .ZSS.New.MotionLimitsV2 limits = 11;
+      case 11:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 90)) {
+          ptr = ctx->ParseMessage(_internal_mutable_limits(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool enable = 12;
+      case 12:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 96)) {
+          enable_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool kick_requested = 13;
+      case 13:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 104)) {
+          kick_requested_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool chip_mode = 14;
+      case 14:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 112)) {
+          chip_mode_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 kick_discharge_time_us = 15;
+      case 15:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 120)) {
+          kick_discharge_time_us_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 kick_sequence = 16;
+      case 16:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 128)) {
+          kick_sequence_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 kick_valid_for_us = 17;
+      case 17:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 136)) {
+          kick_valid_for_us_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 dribble_mode = 18;
+      case 18:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 144)) {
+          dribble_mode_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // float dribble_power = 19;
+      case 19:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 157)) {
+          dribble_power_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float dribble_velocity_rps = 20;
+      case 20:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 165)) {
+          dribble_velocity_rps_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float dribble_torque_ff_nm = 21;
+      case 21:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 173)) {
+          dribble_torque_ff_nm_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* MotionCommandV2::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:ZSS.New.MotionCommandV2)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .ZSS.New.MotionBackend backend = 1;
+  if (this->_internal_backend() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      1, this->_internal_backend(), target);
+  }
+
+  // .ZSS.New.MotionTranslationMode translation_mode = 2;
+  if (this->_internal_translation_mode() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      2, this->_internal_translation_mode(), target);
+  }
+
+  // .ZSS.New.MotionYawMode yaw_mode = 3;
+  if (this->_internal_yaw_mode() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      3, this->_internal_yaw_mode(), target);
+  }
+
+  // uint32 session_id = 4;
+  if (this->_internal_session_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(4, this->_internal_session_id(), target);
+  }
+
+  // uint32 sequence = 5;
+  if (this->_internal_sequence() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(5, this->_internal_sequence(), target);
+  }
+
+  // uint32 trajectory_epoch = 6;
+  if (this->_internal_trajectory_epoch() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(6, this->_internal_trajectory_epoch(), target);
+  }
+
+  // uint64 generated_time_us = 7;
+  if (this->_internal_generated_time_us() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(7, this->_internal_generated_time_us(), target);
+  }
+
+  // uint32 valid_for_us = 8;
+  if (this->_internal_valid_for_us() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(8, this->_internal_valid_for_us(), target);
+  }
+
+  // .ZSS.New.MotionPose2 target_pose = 9;
+  if (this->_internal_has_target_pose()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(9, _Internal::target_pose(this),
+        _Internal::target_pose(this).GetCachedSize(), target, stream);
+  }
+
+  // .ZSS.New.MotionTwist2 target_velocity = 10;
+  if (this->_internal_has_target_velocity()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(10, _Internal::target_velocity(this),
+        _Internal::target_velocity(this).GetCachedSize(), target, stream);
+  }
+
+  // .ZSS.New.MotionLimitsV2 limits = 11;
+  if (this->_internal_has_limits()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(11, _Internal::limits(this),
+        _Internal::limits(this).GetCachedSize(), target, stream);
+  }
+
+  // bool enable = 12;
+  if (this->_internal_enable() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(12, this->_internal_enable(), target);
+  }
+
+  // bool kick_requested = 13;
+  if (this->_internal_kick_requested() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(13, this->_internal_kick_requested(), target);
+  }
+
+  // bool chip_mode = 14;
+  if (this->_internal_chip_mode() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(14, this->_internal_chip_mode(), target);
+  }
+
+  // uint32 kick_discharge_time_us = 15;
+  if (this->_internal_kick_discharge_time_us() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(15, this->_internal_kick_discharge_time_us(), target);
+  }
+
+  // uint32 kick_sequence = 16;
+  if (this->_internal_kick_sequence() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(16, this->_internal_kick_sequence(), target);
+  }
+
+  // uint32 kick_valid_for_us = 17;
+  if (this->_internal_kick_valid_for_us() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(17, this->_internal_kick_valid_for_us(), target);
+  }
+
+  // uint32 dribble_mode = 18;
+  if (this->_internal_dribble_mode() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(18, this->_internal_dribble_mode(), target);
+  }
+
+  // float dribble_power = 19;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_dribble_power = this->_internal_dribble_power();
+  uint32_t raw_dribble_power;
+  memcpy(&raw_dribble_power, &tmp_dribble_power, sizeof(tmp_dribble_power));
+  if (raw_dribble_power != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(19, this->_internal_dribble_power(), target);
+  }
+
+  // float dribble_velocity_rps = 20;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_dribble_velocity_rps = this->_internal_dribble_velocity_rps();
+  uint32_t raw_dribble_velocity_rps;
+  memcpy(&raw_dribble_velocity_rps, &tmp_dribble_velocity_rps, sizeof(tmp_dribble_velocity_rps));
+  if (raw_dribble_velocity_rps != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(20, this->_internal_dribble_velocity_rps(), target);
+  }
+
+  // float dribble_torque_ff_nm = 21;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_dribble_torque_ff_nm = this->_internal_dribble_torque_ff_nm();
+  uint32_t raw_dribble_torque_ff_nm;
+  memcpy(&raw_dribble_torque_ff_nm, &tmp_dribble_torque_ff_nm, sizeof(tmp_dribble_torque_ff_nm));
+  if (raw_dribble_torque_ff_nm != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(21, this->_internal_dribble_torque_ff_nm(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:ZSS.New.MotionCommandV2)
+  return target;
+}
+
+size_t MotionCommandV2::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:ZSS.New.MotionCommandV2)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .ZSS.New.MotionPose2 target_pose = 9;
+  if (this->_internal_has_target_pose()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *target_pose_);
+  }
+
+  // .ZSS.New.MotionTwist2 target_velocity = 10;
+  if (this->_internal_has_target_velocity()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *target_velocity_);
+  }
+
+  // .ZSS.New.MotionLimitsV2 limits = 11;
+  if (this->_internal_has_limits()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *limits_);
+  }
+
+  // .ZSS.New.MotionBackend backend = 1;
+  if (this->_internal_backend() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_backend());
+  }
+
+  // .ZSS.New.MotionTranslationMode translation_mode = 2;
+  if (this->_internal_translation_mode() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_translation_mode());
+  }
+
+  // .ZSS.New.MotionYawMode yaw_mode = 3;
+  if (this->_internal_yaw_mode() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_yaw_mode());
+  }
+
+  // uint32 session_id = 4;
+  if (this->_internal_session_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_session_id());
+  }
+
+  // uint32 sequence = 5;
+  if (this->_internal_sequence() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_sequence());
+  }
+
+  // uint32 trajectory_epoch = 6;
+  if (this->_internal_trajectory_epoch() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_trajectory_epoch());
+  }
+
+  // uint64 generated_time_us = 7;
+  if (this->_internal_generated_time_us() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_generated_time_us());
+  }
+
+  // uint32 valid_for_us = 8;
+  if (this->_internal_valid_for_us() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_valid_for_us());
+  }
+
+  // bool enable = 12;
+  if (this->_internal_enable() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // bool kick_requested = 13;
+  if (this->_internal_kick_requested() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // bool chip_mode = 14;
+  if (this->_internal_chip_mode() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // uint32 kick_discharge_time_us = 15;
+  if (this->_internal_kick_discharge_time_us() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_kick_discharge_time_us());
+  }
+
+  // uint32 kick_sequence = 16;
+  if (this->_internal_kick_sequence() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::UInt32Size(
+        this->_internal_kick_sequence());
+  }
+
+  // uint32 kick_valid_for_us = 17;
+  if (this->_internal_kick_valid_for_us() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::UInt32Size(
+        this->_internal_kick_valid_for_us());
+  }
+
+  // uint32 dribble_mode = 18;
+  if (this->_internal_dribble_mode() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::UInt32Size(
+        this->_internal_dribble_mode());
+  }
+
+  // float dribble_power = 19;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_dribble_power = this->_internal_dribble_power();
+  uint32_t raw_dribble_power;
+  memcpy(&raw_dribble_power, &tmp_dribble_power, sizeof(tmp_dribble_power));
+  if (raw_dribble_power != 0) {
+    total_size += 2 + 4;
+  }
+
+  // float dribble_velocity_rps = 20;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_dribble_velocity_rps = this->_internal_dribble_velocity_rps();
+  uint32_t raw_dribble_velocity_rps;
+  memcpy(&raw_dribble_velocity_rps, &tmp_dribble_velocity_rps, sizeof(tmp_dribble_velocity_rps));
+  if (raw_dribble_velocity_rps != 0) {
+    total_size += 2 + 4;
+  }
+
+  // float dribble_torque_ff_nm = 21;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_dribble_torque_ff_nm = this->_internal_dribble_torque_ff_nm();
+  uint32_t raw_dribble_torque_ff_nm;
+  memcpy(&raw_dribble_torque_ff_nm, &tmp_dribble_torque_ff_nm, sizeof(tmp_dribble_torque_ff_nm));
+  if (raw_dribble_torque_ff_nm != 0) {
+    total_size += 2 + 4;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData MotionCommandV2::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    MotionCommandV2::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*MotionCommandV2::GetClassData() const { return &_class_data_; }
+
+void MotionCommandV2::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<MotionCommandV2 *>(to)->MergeFrom(
+      static_cast<const MotionCommandV2 &>(from));
+}
+
+
+void MotionCommandV2::MergeFrom(const MotionCommandV2& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.MotionCommandV2)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_has_target_pose()) {
+    _internal_mutable_target_pose()->::ZSS::New::MotionPose2::MergeFrom(from._internal_target_pose());
+  }
+  if (from._internal_has_target_velocity()) {
+    _internal_mutable_target_velocity()->::ZSS::New::MotionTwist2::MergeFrom(from._internal_target_velocity());
+  }
+  if (from._internal_has_limits()) {
+    _internal_mutable_limits()->::ZSS::New::MotionLimitsV2::MergeFrom(from._internal_limits());
+  }
+  if (from._internal_backend() != 0) {
+    _internal_set_backend(from._internal_backend());
+  }
+  if (from._internal_translation_mode() != 0) {
+    _internal_set_translation_mode(from._internal_translation_mode());
+  }
+  if (from._internal_yaw_mode() != 0) {
+    _internal_set_yaw_mode(from._internal_yaw_mode());
+  }
+  if (from._internal_session_id() != 0) {
+    _internal_set_session_id(from._internal_session_id());
+  }
+  if (from._internal_sequence() != 0) {
+    _internal_set_sequence(from._internal_sequence());
+  }
+  if (from._internal_trajectory_epoch() != 0) {
+    _internal_set_trajectory_epoch(from._internal_trajectory_epoch());
+  }
+  if (from._internal_generated_time_us() != 0) {
+    _internal_set_generated_time_us(from._internal_generated_time_us());
+  }
+  if (from._internal_valid_for_us() != 0) {
+    _internal_set_valid_for_us(from._internal_valid_for_us());
+  }
+  if (from._internal_enable() != 0) {
+    _internal_set_enable(from._internal_enable());
+  }
+  if (from._internal_kick_requested() != 0) {
+    _internal_set_kick_requested(from._internal_kick_requested());
+  }
+  if (from._internal_chip_mode() != 0) {
+    _internal_set_chip_mode(from._internal_chip_mode());
+  }
+  if (from._internal_kick_discharge_time_us() != 0) {
+    _internal_set_kick_discharge_time_us(from._internal_kick_discharge_time_us());
+  }
+  if (from._internal_kick_sequence() != 0) {
+    _internal_set_kick_sequence(from._internal_kick_sequence());
+  }
+  if (from._internal_kick_valid_for_us() != 0) {
+    _internal_set_kick_valid_for_us(from._internal_kick_valid_for_us());
+  }
+  if (from._internal_dribble_mode() != 0) {
+    _internal_set_dribble_mode(from._internal_dribble_mode());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_dribble_power = from._internal_dribble_power();
+  uint32_t raw_dribble_power;
+  memcpy(&raw_dribble_power, &tmp_dribble_power, sizeof(tmp_dribble_power));
+  if (raw_dribble_power != 0) {
+    _internal_set_dribble_power(from._internal_dribble_power());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_dribble_velocity_rps = from._internal_dribble_velocity_rps();
+  uint32_t raw_dribble_velocity_rps;
+  memcpy(&raw_dribble_velocity_rps, &tmp_dribble_velocity_rps, sizeof(tmp_dribble_velocity_rps));
+  if (raw_dribble_velocity_rps != 0) {
+    _internal_set_dribble_velocity_rps(from._internal_dribble_velocity_rps());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_dribble_torque_ff_nm = from._internal_dribble_torque_ff_nm();
+  uint32_t raw_dribble_torque_ff_nm;
+  memcpy(&raw_dribble_torque_ff_nm, &tmp_dribble_torque_ff_nm, sizeof(tmp_dribble_torque_ff_nm));
+  if (raw_dribble_torque_ff_nm != 0) {
+    _internal_set_dribble_torque_ff_nm(from._internal_dribble_torque_ff_nm());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void MotionCommandV2::CopyFrom(const MotionCommandV2& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:ZSS.New.MotionCommandV2)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool MotionCommandV2::IsInitialized() const {
+  return true;
+}
+
+void MotionCommandV2::InternalSwap(MotionCommandV2* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(MotionCommandV2, dribble_torque_ff_nm_)
+      + sizeof(MotionCommandV2::dribble_torque_ff_nm_)
+      - PROTOBUF_FIELD_OFFSET(MotionCommandV2, target_pose_)>(
+          reinterpret_cast<char*>(&target_pose_),
+          reinterpret_cast<char*>(&other->target_pose_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata MotionCommandV2::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_zss_5fcmd_2eproto_getter, &descriptor_table_zss_5fcmd_2eproto_once,
+      file_level_metadata_zss_5fcmd_2eproto[13]);
+}
+
+// ===================================================================
+
+class VisionObservationV2::_Internal {
+ public:
+  static const ::ZSS::New::MotionPose2& pose(const VisionObservationV2* msg);
+};
+
+const ::ZSS::New::MotionPose2&
+VisionObservationV2::_Internal::pose(const VisionObservationV2* msg) {
+  return *msg->pose_;
+}
+VisionObservationV2::VisionObservationV2(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:ZSS.New.VisionObservationV2)
+}
+VisionObservationV2::VisionObservationV2(const VisionObservationV2& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_pose()) {
+    pose_ = new ::ZSS::New::MotionPose2(*from.pose_);
+  } else {
+    pose_ = nullptr;
+  }
+  ::memcpy(&capture_time_us_, &from.capture_time_us_,
+    static_cast<size_t>(reinterpret_cast<char*>(&valid_) -
+    reinterpret_cast<char*>(&capture_time_us_)) + sizeof(valid_));
+  // @@protoc_insertion_point(copy_constructor:ZSS.New.VisionObservationV2)
+}
+
+inline void VisionObservationV2::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&pose_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&valid_) -
+    reinterpret_cast<char*>(&pose_)) + sizeof(valid_));
+}
+
+VisionObservationV2::~VisionObservationV2() {
+  // @@protoc_insertion_point(destructor:ZSS.New.VisionObservationV2)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void VisionObservationV2::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete pose_;
+}
+
+void VisionObservationV2::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void VisionObservationV2::Clear() {
+// @@protoc_insertion_point(message_clear_start:ZSS.New.VisionObservationV2)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaForAllocation() == nullptr && pose_ != nullptr) {
+    delete pose_;
+  }
+  pose_ = nullptr;
+  ::memset(&capture_time_us_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&valid_) -
+      reinterpret_cast<char*>(&capture_time_us_)) + sizeof(valid_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* VisionObservationV2::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // uint64 capture_time_us = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          capture_time_us_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 sequence = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          sequence_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .ZSS.New.MotionPose2 pose = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_pose(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // float position_std_m = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 37)) {
+          position_std_m_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float yaw_std_rad = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 45)) {
+          yaw_std_rad_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // .ZSS.New.MotionLocalizationQuality quality = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_quality(static_cast<::ZSS::New::MotionLocalizationQuality>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // bool valid = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
+          valid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* VisionObservationV2::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:ZSS.New.VisionObservationV2)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // uint64 capture_time_us = 1;
+  if (this->_internal_capture_time_us() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(1, this->_internal_capture_time_us(), target);
+  }
+
+  // uint32 sequence = 2;
+  if (this->_internal_sequence() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(2, this->_internal_sequence(), target);
+  }
+
+  // .ZSS.New.MotionPose2 pose = 3;
+  if (this->_internal_has_pose()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(3, _Internal::pose(this),
+        _Internal::pose(this).GetCachedSize(), target, stream);
+  }
+
+  // float position_std_m = 4;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_position_std_m = this->_internal_position_std_m();
+  uint32_t raw_position_std_m;
+  memcpy(&raw_position_std_m, &tmp_position_std_m, sizeof(tmp_position_std_m));
+  if (raw_position_std_m != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(4, this->_internal_position_std_m(), target);
+  }
+
+  // float yaw_std_rad = 5;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_yaw_std_rad = this->_internal_yaw_std_rad();
+  uint32_t raw_yaw_std_rad;
+  memcpy(&raw_yaw_std_rad, &tmp_yaw_std_rad, sizeof(tmp_yaw_std_rad));
+  if (raw_yaw_std_rad != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(5, this->_internal_yaw_std_rad(), target);
+  }
+
+  // .ZSS.New.MotionLocalizationQuality quality = 6;
+  if (this->_internal_quality() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      6, this->_internal_quality(), target);
+  }
+
+  // bool valid = 7;
+  if (this->_internal_valid() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(7, this->_internal_valid(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:ZSS.New.VisionObservationV2)
+  return target;
+}
+
+size_t VisionObservationV2::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:ZSS.New.VisionObservationV2)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .ZSS.New.MotionPose2 pose = 3;
+  if (this->_internal_has_pose()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *pose_);
+  }
+
+  // uint64 capture_time_us = 1;
+  if (this->_internal_capture_time_us() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_capture_time_us());
+  }
+
+  // uint32 sequence = 2;
+  if (this->_internal_sequence() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_sequence());
+  }
+
+  // float position_std_m = 4;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_position_std_m = this->_internal_position_std_m();
+  uint32_t raw_position_std_m;
+  memcpy(&raw_position_std_m, &tmp_position_std_m, sizeof(tmp_position_std_m));
+  if (raw_position_std_m != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float yaw_std_rad = 5;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_yaw_std_rad = this->_internal_yaw_std_rad();
+  uint32_t raw_yaw_std_rad;
+  memcpy(&raw_yaw_std_rad, &tmp_yaw_std_rad, sizeof(tmp_yaw_std_rad));
+  if (raw_yaw_std_rad != 0) {
+    total_size += 1 + 4;
+  }
+
+  // .ZSS.New.MotionLocalizationQuality quality = 6;
+  if (this->_internal_quality() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_quality());
+  }
+
+  // bool valid = 7;
+  if (this->_internal_valid() != 0) {
+    total_size += 1 + 1;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData VisionObservationV2::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    VisionObservationV2::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*VisionObservationV2::GetClassData() const { return &_class_data_; }
+
+void VisionObservationV2::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<VisionObservationV2 *>(to)->MergeFrom(
+      static_cast<const VisionObservationV2 &>(from));
+}
+
+
+void VisionObservationV2::MergeFrom(const VisionObservationV2& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.VisionObservationV2)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_has_pose()) {
+    _internal_mutable_pose()->::ZSS::New::MotionPose2::MergeFrom(from._internal_pose());
+  }
+  if (from._internal_capture_time_us() != 0) {
+    _internal_set_capture_time_us(from._internal_capture_time_us());
+  }
+  if (from._internal_sequence() != 0) {
+    _internal_set_sequence(from._internal_sequence());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_position_std_m = from._internal_position_std_m();
+  uint32_t raw_position_std_m;
+  memcpy(&raw_position_std_m, &tmp_position_std_m, sizeof(tmp_position_std_m));
+  if (raw_position_std_m != 0) {
+    _internal_set_position_std_m(from._internal_position_std_m());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_yaw_std_rad = from._internal_yaw_std_rad();
+  uint32_t raw_yaw_std_rad;
+  memcpy(&raw_yaw_std_rad, &tmp_yaw_std_rad, sizeof(tmp_yaw_std_rad));
+  if (raw_yaw_std_rad != 0) {
+    _internal_set_yaw_std_rad(from._internal_yaw_std_rad());
+  }
+  if (from._internal_quality() != 0) {
+    _internal_set_quality(from._internal_quality());
+  }
+  if (from._internal_valid() != 0) {
+    _internal_set_valid(from._internal_valid());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void VisionObservationV2::CopyFrom(const VisionObservationV2& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:ZSS.New.VisionObservationV2)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool VisionObservationV2::IsInitialized() const {
+  return true;
+}
+
+void VisionObservationV2::InternalSwap(VisionObservationV2* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(VisionObservationV2, valid_)
+      + sizeof(VisionObservationV2::valid_)
+      - PROTOBUF_FIELD_OFFSET(VisionObservationV2, pose_)>(
+          reinterpret_cast<char*>(&pose_),
+          reinterpret_cast<char*>(&other->pose_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata VisionObservationV2::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_zss_5fcmd_2eproto_getter, &descriptor_table_zss_5fcmd_2eproto_once,
+      file_level_metadata_zss_5fcmd_2eproto[14]);
+}
+
+// ===================================================================
+
+class MotionFeedbackV2::_Internal {
+ public:
+  static const ::ZSS::New::MotionPose2& estimated_pose(const MotionFeedbackV2* msg);
+  static const ::ZSS::New::MotionTwist2& estimated_velocity(const MotionFeedbackV2* msg);
+  static const ::ZSS::New::MotionPose2& reference_pose(const MotionFeedbackV2* msg);
+  static const ::ZSS::New::MotionTwist2& reference_velocity(const MotionFeedbackV2* msg);
+  static const ::ZSS::New::MotionAccel2& reference_accel(const MotionFeedbackV2* msg);
+};
+
+const ::ZSS::New::MotionPose2&
+MotionFeedbackV2::_Internal::estimated_pose(const MotionFeedbackV2* msg) {
+  return *msg->estimated_pose_;
+}
+const ::ZSS::New::MotionTwist2&
+MotionFeedbackV2::_Internal::estimated_velocity(const MotionFeedbackV2* msg) {
+  return *msg->estimated_velocity_;
+}
+const ::ZSS::New::MotionPose2&
+MotionFeedbackV2::_Internal::reference_pose(const MotionFeedbackV2* msg) {
+  return *msg->reference_pose_;
+}
+const ::ZSS::New::MotionTwist2&
+MotionFeedbackV2::_Internal::reference_velocity(const MotionFeedbackV2* msg) {
+  return *msg->reference_velocity_;
+}
+const ::ZSS::New::MotionAccel2&
+MotionFeedbackV2::_Internal::reference_accel(const MotionFeedbackV2* msg) {
+  return *msg->reference_accel_;
+}
+MotionFeedbackV2::MotionFeedbackV2(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  wheel_speed_target_(arena),
+  wheel_speed_measured_(arena),
+  feedforward_torque_(arena),
+  feedback_torque_(arena),
+  integral_torque_(arena),
+  applied_torque_(arena) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:ZSS.New.MotionFeedbackV2)
+}
+MotionFeedbackV2::MotionFeedbackV2(const MotionFeedbackV2& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      wheel_speed_target_(from.wheel_speed_target_),
+      wheel_speed_measured_(from.wheel_speed_measured_),
+      feedforward_torque_(from.feedforward_torque_),
+      feedback_torque_(from.feedback_torque_),
+      integral_torque_(from.integral_torque_),
+      applied_torque_(from.applied_torque_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_estimated_pose()) {
+    estimated_pose_ = new ::ZSS::New::MotionPose2(*from.estimated_pose_);
+  } else {
+    estimated_pose_ = nullptr;
+  }
+  if (from._internal_has_estimated_velocity()) {
+    estimated_velocity_ = new ::ZSS::New::MotionTwist2(*from.estimated_velocity_);
+  } else {
+    estimated_velocity_ = nullptr;
+  }
+  if (from._internal_has_reference_pose()) {
+    reference_pose_ = new ::ZSS::New::MotionPose2(*from.reference_pose_);
+  } else {
+    reference_pose_ = nullptr;
+  }
+  if (from._internal_has_reference_velocity()) {
+    reference_velocity_ = new ::ZSS::New::MotionTwist2(*from.reference_velocity_);
+  } else {
+    reference_velocity_ = nullptr;
+  }
+  if (from._internal_has_reference_accel()) {
+    reference_accel_ = new ::ZSS::New::MotionAccel2(*from.reference_accel_);
+  } else {
+    reference_accel_ = nullptr;
+  }
+  ::memcpy(&backend_, &from.backend_,
+    static_cast<size_t>(reinterpret_cast<char*>(&protocol_version_) -
+    reinterpret_cast<char*>(&backend_)) + sizeof(protocol_version_));
+  // @@protoc_insertion_point(copy_constructor:ZSS.New.MotionFeedbackV2)
+}
+
+inline void MotionFeedbackV2::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&estimated_pose_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&protocol_version_) -
+    reinterpret_cast<char*>(&estimated_pose_)) + sizeof(protocol_version_));
+}
+
+MotionFeedbackV2::~MotionFeedbackV2() {
+  // @@protoc_insertion_point(destructor:ZSS.New.MotionFeedbackV2)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void MotionFeedbackV2::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete estimated_pose_;
+  if (this != internal_default_instance()) delete estimated_velocity_;
+  if (this != internal_default_instance()) delete reference_pose_;
+  if (this != internal_default_instance()) delete reference_velocity_;
+  if (this != internal_default_instance()) delete reference_accel_;
+}
+
+void MotionFeedbackV2::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void MotionFeedbackV2::Clear() {
+// @@protoc_insertion_point(message_clear_start:ZSS.New.MotionFeedbackV2)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  wheel_speed_target_.Clear();
+  wheel_speed_measured_.Clear();
+  feedforward_torque_.Clear();
+  feedback_torque_.Clear();
+  integral_torque_.Clear();
+  applied_torque_.Clear();
+  if (GetArenaForAllocation() == nullptr && estimated_pose_ != nullptr) {
+    delete estimated_pose_;
+  }
+  estimated_pose_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && estimated_velocity_ != nullptr) {
+    delete estimated_velocity_;
+  }
+  estimated_velocity_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && reference_pose_ != nullptr) {
+    delete reference_pose_;
+  }
+  reference_pose_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && reference_velocity_ != nullptr) {
+    delete reference_velocity_;
+  }
+  reference_velocity_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && reference_accel_ != nullptr) {
+    delete reference_accel_;
+  }
+  reference_accel_ = nullptr;
+  ::memset(&backend_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&protocol_version_) -
+      reinterpret_cast<char*>(&backend_)) + sizeof(protocol_version_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* MotionFeedbackV2::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .ZSS.New.MotionBackend backend = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_backend(static_cast<::ZSS::New::MotionBackend>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // .ZSS.New.MotionSafetyState safety = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_safety(static_cast<::ZSS::New::MotionSafetyState>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // .ZSS.New.MotionLocalizationQuality localization = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_localization(static_cast<::ZSS::New::MotionLocalizationQuality>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 session_id = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
+          session_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 executed_sequence = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
+          executed_sequence_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 trajectory_epoch = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
+          trajectory_epoch_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 active_command_age_us = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
+          active_command_age_us_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 fusion_time_us = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 64)) {
+          fusion_time_us_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 prediction_time_us = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 72)) {
+          prediction_time_us_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 feedback_time_us = 10;
+      case 10:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 80)) {
+          feedback_time_us_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint64 vision_capture_time_us = 11;
+      case 11:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 88)) {
+          vision_capture_time_us_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 vision_age_us = 12;
+      case 12:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 96)) {
+          vision_age_us_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .ZSS.New.MotionPose2 estimated_pose = 13;
+      case 13:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 106)) {
+          ptr = ctx->ParseMessage(_internal_mutable_estimated_pose(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .ZSS.New.MotionTwist2 estimated_velocity = 14;
+      case 14:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 114)) {
+          ptr = ctx->ParseMessage(_internal_mutable_estimated_velocity(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // float position_sigma_m = 15;
+      case 15:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 125)) {
+          position_sigma_m_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float yaw_sigma_rad = 16;
+      case 16:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 133)) {
+          yaw_sigma_rad_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // .ZSS.New.MotionPose2 reference_pose = 17;
+      case 17:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 138)) {
+          ptr = ctx->ParseMessage(_internal_mutable_reference_pose(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .ZSS.New.MotionTwist2 reference_velocity = 18;
+      case 18:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 146)) {
+          ptr = ctx->ParseMessage(_internal_mutable_reference_velocity(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .ZSS.New.MotionAccel2 reference_accel = 19;
+      case 19:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 154)) {
+          ptr = ctx->ParseMessage(_internal_mutable_reference_accel(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool trajectory_active = 20;
+      case 20:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 160)) {
+          trajectory_active_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // float gyro_bias_z_rad_s = 21;
+      case 21:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 173)) {
+          gyro_bias_z_rad_s_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float accel_bias_x_m_s2 = 22;
+      case 22:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 181)) {
+          accel_bias_x_m_s2_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float accel_bias_y_m_s2 = 23;
+      case 23:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 189)) {
+          accel_bias_y_m_s2_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated float wheel_speed_target = 24;
+      case 24:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 194)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedFloatParser(_internal_mutable_wheel_speed_target(), ptr, ctx);
+          CHK_(ptr);
+        } else if (static_cast<uint8_t>(tag) == 197) {
+          _internal_add_wheel_speed_target(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr));
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated float wheel_speed_measured = 25;
+      case 25:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 202)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedFloatParser(_internal_mutable_wheel_speed_measured(), ptr, ctx);
+          CHK_(ptr);
+        } else if (static_cast<uint8_t>(tag) == 205) {
+          _internal_add_wheel_speed_measured(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr));
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated float feedforward_torque = 26;
+      case 26:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 210)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedFloatParser(_internal_mutable_feedforward_torque(), ptr, ctx);
+          CHK_(ptr);
+        } else if (static_cast<uint8_t>(tag) == 213) {
+          _internal_add_feedforward_torque(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr));
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated float feedback_torque = 27;
+      case 27:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 218)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedFloatParser(_internal_mutable_feedback_torque(), ptr, ctx);
+          CHK_(ptr);
+        } else if (static_cast<uint8_t>(tag) == 221) {
+          _internal_add_feedback_torque(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr));
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated float integral_torque = 28;
+      case 28:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 226)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedFloatParser(_internal_mutable_integral_torque(), ptr, ctx);
+          CHK_(ptr);
+        } else if (static_cast<uint8_t>(tag) == 229) {
+          _internal_add_integral_torque(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr));
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated float applied_torque = 29;
+      case 29:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 234)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedFloatParser(_internal_mutable_applied_torque(), ptr, ctx);
+          CHK_(ptr);
+        } else if (static_cast<uint8_t>(tag) == 237) {
+          _internal_add_applied_torque(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr));
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 saturation = 30;
+      case 30:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 240)) {
+          saturation_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool wheel_speed_enabled = 31;
+      case 31:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 248)) {
+          wheel_speed_enabled_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool vision_fused = 32;
+      case 32:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 0)) {
+          vision_fused_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool accelerometer_degraded = 33;
+      case 33:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          accelerometer_degraded_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // bool wheel_slip_suspected = 34;
+      case 34:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          wheel_slip_suspected_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 late_observations = 35;
+      case 35:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          late_observations_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 rejected_observations = 36;
+      case 36:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
+          rejected_observations_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 vision_updates = 37;
+      case 37:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
+          vision_updates_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 estimator_version = 38;
+      case 38:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
+          estimator_version_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 controller_version = 39;
+      case 39:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
+          controller_version_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 model_version = 40;
+      case 40:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 64)) {
+          model_version_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 protocol_version = 41;
+      case 41:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 72)) {
+          protocol_version_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* MotionFeedbackV2::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:ZSS.New.MotionFeedbackV2)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .ZSS.New.MotionBackend backend = 1;
+  if (this->_internal_backend() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      1, this->_internal_backend(), target);
+  }
+
+  // .ZSS.New.MotionSafetyState safety = 2;
+  if (this->_internal_safety() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      2, this->_internal_safety(), target);
+  }
+
+  // .ZSS.New.MotionLocalizationQuality localization = 3;
+  if (this->_internal_localization() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      3, this->_internal_localization(), target);
+  }
+
+  // uint32 session_id = 4;
+  if (this->_internal_session_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(4, this->_internal_session_id(), target);
+  }
+
+  // uint32 executed_sequence = 5;
+  if (this->_internal_executed_sequence() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(5, this->_internal_executed_sequence(), target);
+  }
+
+  // uint32 trajectory_epoch = 6;
+  if (this->_internal_trajectory_epoch() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(6, this->_internal_trajectory_epoch(), target);
+  }
+
+  // uint32 active_command_age_us = 7;
+  if (this->_internal_active_command_age_us() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(7, this->_internal_active_command_age_us(), target);
+  }
+
+  // uint64 fusion_time_us = 8;
+  if (this->_internal_fusion_time_us() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(8, this->_internal_fusion_time_us(), target);
+  }
+
+  // uint64 prediction_time_us = 9;
+  if (this->_internal_prediction_time_us() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(9, this->_internal_prediction_time_us(), target);
+  }
+
+  // uint64 feedback_time_us = 10;
+  if (this->_internal_feedback_time_us() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(10, this->_internal_feedback_time_us(), target);
+  }
+
+  // uint64 vision_capture_time_us = 11;
+  if (this->_internal_vision_capture_time_us() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(11, this->_internal_vision_capture_time_us(), target);
+  }
+
+  // uint32 vision_age_us = 12;
+  if (this->_internal_vision_age_us() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(12, this->_internal_vision_age_us(), target);
+  }
+
+  // .ZSS.New.MotionPose2 estimated_pose = 13;
+  if (this->_internal_has_estimated_pose()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(13, _Internal::estimated_pose(this),
+        _Internal::estimated_pose(this).GetCachedSize(), target, stream);
+  }
+
+  // .ZSS.New.MotionTwist2 estimated_velocity = 14;
+  if (this->_internal_has_estimated_velocity()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(14, _Internal::estimated_velocity(this),
+        _Internal::estimated_velocity(this).GetCachedSize(), target, stream);
+  }
+
+  // float position_sigma_m = 15;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_position_sigma_m = this->_internal_position_sigma_m();
+  uint32_t raw_position_sigma_m;
+  memcpy(&raw_position_sigma_m, &tmp_position_sigma_m, sizeof(tmp_position_sigma_m));
+  if (raw_position_sigma_m != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(15, this->_internal_position_sigma_m(), target);
+  }
+
+  // float yaw_sigma_rad = 16;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_yaw_sigma_rad = this->_internal_yaw_sigma_rad();
+  uint32_t raw_yaw_sigma_rad;
+  memcpy(&raw_yaw_sigma_rad, &tmp_yaw_sigma_rad, sizeof(tmp_yaw_sigma_rad));
+  if (raw_yaw_sigma_rad != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(16, this->_internal_yaw_sigma_rad(), target);
+  }
+
+  // .ZSS.New.MotionPose2 reference_pose = 17;
+  if (this->_internal_has_reference_pose()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(17, _Internal::reference_pose(this),
+        _Internal::reference_pose(this).GetCachedSize(), target, stream);
+  }
+
+  // .ZSS.New.MotionTwist2 reference_velocity = 18;
+  if (this->_internal_has_reference_velocity()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(18, _Internal::reference_velocity(this),
+        _Internal::reference_velocity(this).GetCachedSize(), target, stream);
+  }
+
+  // .ZSS.New.MotionAccel2 reference_accel = 19;
+  if (this->_internal_has_reference_accel()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(19, _Internal::reference_accel(this),
+        _Internal::reference_accel(this).GetCachedSize(), target, stream);
+  }
+
+  // bool trajectory_active = 20;
+  if (this->_internal_trajectory_active() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(20, this->_internal_trajectory_active(), target);
+  }
+
+  // float gyro_bias_z_rad_s = 21;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_gyro_bias_z_rad_s = this->_internal_gyro_bias_z_rad_s();
+  uint32_t raw_gyro_bias_z_rad_s;
+  memcpy(&raw_gyro_bias_z_rad_s, &tmp_gyro_bias_z_rad_s, sizeof(tmp_gyro_bias_z_rad_s));
+  if (raw_gyro_bias_z_rad_s != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(21, this->_internal_gyro_bias_z_rad_s(), target);
+  }
+
+  // float accel_bias_x_m_s2 = 22;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_accel_bias_x_m_s2 = this->_internal_accel_bias_x_m_s2();
+  uint32_t raw_accel_bias_x_m_s2;
+  memcpy(&raw_accel_bias_x_m_s2, &tmp_accel_bias_x_m_s2, sizeof(tmp_accel_bias_x_m_s2));
+  if (raw_accel_bias_x_m_s2 != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(22, this->_internal_accel_bias_x_m_s2(), target);
+  }
+
+  // float accel_bias_y_m_s2 = 23;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_accel_bias_y_m_s2 = this->_internal_accel_bias_y_m_s2();
+  uint32_t raw_accel_bias_y_m_s2;
+  memcpy(&raw_accel_bias_y_m_s2, &tmp_accel_bias_y_m_s2, sizeof(tmp_accel_bias_y_m_s2));
+  if (raw_accel_bias_y_m_s2 != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(23, this->_internal_accel_bias_y_m_s2(), target);
+  }
+
+  // repeated float wheel_speed_target = 24;
+  if (this->_internal_wheel_speed_target_size() > 0) {
+    target = stream->WriteFixedPacked(24, _internal_wheel_speed_target(), target);
+  }
+
+  // repeated float wheel_speed_measured = 25;
+  if (this->_internal_wheel_speed_measured_size() > 0) {
+    target = stream->WriteFixedPacked(25, _internal_wheel_speed_measured(), target);
+  }
+
+  // repeated float feedforward_torque = 26;
+  if (this->_internal_feedforward_torque_size() > 0) {
+    target = stream->WriteFixedPacked(26, _internal_feedforward_torque(), target);
+  }
+
+  // repeated float feedback_torque = 27;
+  if (this->_internal_feedback_torque_size() > 0) {
+    target = stream->WriteFixedPacked(27, _internal_feedback_torque(), target);
+  }
+
+  // repeated float integral_torque = 28;
+  if (this->_internal_integral_torque_size() > 0) {
+    target = stream->WriteFixedPacked(28, _internal_integral_torque(), target);
+  }
+
+  // repeated float applied_torque = 29;
+  if (this->_internal_applied_torque_size() > 0) {
+    target = stream->WriteFixedPacked(29, _internal_applied_torque(), target);
+  }
+
+  // uint32 saturation = 30;
+  if (this->_internal_saturation() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(30, this->_internal_saturation(), target);
+  }
+
+  // bool wheel_speed_enabled = 31;
+  if (this->_internal_wheel_speed_enabled() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(31, this->_internal_wheel_speed_enabled(), target);
+  }
+
+  // bool vision_fused = 32;
+  if (this->_internal_vision_fused() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(32, this->_internal_vision_fused(), target);
+  }
+
+  // bool accelerometer_degraded = 33;
+  if (this->_internal_accelerometer_degraded() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(33, this->_internal_accelerometer_degraded(), target);
+  }
+
+  // bool wheel_slip_suspected = 34;
+  if (this->_internal_wheel_slip_suspected() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteBoolToArray(34, this->_internal_wheel_slip_suspected(), target);
+  }
+
+  // uint32 late_observations = 35;
+  if (this->_internal_late_observations() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(35, this->_internal_late_observations(), target);
+  }
+
+  // uint32 rejected_observations = 36;
+  if (this->_internal_rejected_observations() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(36, this->_internal_rejected_observations(), target);
+  }
+
+  // uint32 vision_updates = 37;
+  if (this->_internal_vision_updates() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(37, this->_internal_vision_updates(), target);
+  }
+
+  // uint32 estimator_version = 38;
+  if (this->_internal_estimator_version() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(38, this->_internal_estimator_version(), target);
+  }
+
+  // uint32 controller_version = 39;
+  if (this->_internal_controller_version() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(39, this->_internal_controller_version(), target);
+  }
+
+  // uint32 model_version = 40;
+  if (this->_internal_model_version() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(40, this->_internal_model_version(), target);
+  }
+
+  // uint32 protocol_version = 41;
+  if (this->_internal_protocol_version() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(41, this->_internal_protocol_version(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:ZSS.New.MotionFeedbackV2)
+  return target;
+}
+
+size_t MotionFeedbackV2::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:ZSS.New.MotionFeedbackV2)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated float wheel_speed_target = 24;
+  {
+    unsigned int count = static_cast<unsigned int>(this->_internal_wheel_speed_target_size());
+    size_t data_size = 4UL * count;
+    if (data_size > 0) {
+      total_size += 2 +
+        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
+    }
+    total_size += data_size;
+  }
+
+  // repeated float wheel_speed_measured = 25;
+  {
+    unsigned int count = static_cast<unsigned int>(this->_internal_wheel_speed_measured_size());
+    size_t data_size = 4UL * count;
+    if (data_size > 0) {
+      total_size += 2 +
+        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
+    }
+    total_size += data_size;
+  }
+
+  // repeated float feedforward_torque = 26;
+  {
+    unsigned int count = static_cast<unsigned int>(this->_internal_feedforward_torque_size());
+    size_t data_size = 4UL * count;
+    if (data_size > 0) {
+      total_size += 2 +
+        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
+    }
+    total_size += data_size;
+  }
+
+  // repeated float feedback_torque = 27;
+  {
+    unsigned int count = static_cast<unsigned int>(this->_internal_feedback_torque_size());
+    size_t data_size = 4UL * count;
+    if (data_size > 0) {
+      total_size += 2 +
+        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
+    }
+    total_size += data_size;
+  }
+
+  // repeated float integral_torque = 28;
+  {
+    unsigned int count = static_cast<unsigned int>(this->_internal_integral_torque_size());
+    size_t data_size = 4UL * count;
+    if (data_size > 0) {
+      total_size += 2 +
+        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
+    }
+    total_size += data_size;
+  }
+
+  // repeated float applied_torque = 29;
+  {
+    unsigned int count = static_cast<unsigned int>(this->_internal_applied_torque_size());
+    size_t data_size = 4UL * count;
+    if (data_size > 0) {
+      total_size += 2 +
+        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
+    }
+    total_size += data_size;
+  }
+
+  // .ZSS.New.MotionPose2 estimated_pose = 13;
+  if (this->_internal_has_estimated_pose()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *estimated_pose_);
+  }
+
+  // .ZSS.New.MotionTwist2 estimated_velocity = 14;
+  if (this->_internal_has_estimated_velocity()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *estimated_velocity_);
+  }
+
+  // .ZSS.New.MotionPose2 reference_pose = 17;
+  if (this->_internal_has_reference_pose()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *reference_pose_);
+  }
+
+  // .ZSS.New.MotionTwist2 reference_velocity = 18;
+  if (this->_internal_has_reference_velocity()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *reference_velocity_);
+  }
+
+  // .ZSS.New.MotionAccel2 reference_accel = 19;
+  if (this->_internal_has_reference_accel()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *reference_accel_);
+  }
+
+  // .ZSS.New.MotionBackend backend = 1;
+  if (this->_internal_backend() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_backend());
+  }
+
+  // .ZSS.New.MotionSafetyState safety = 2;
+  if (this->_internal_safety() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_safety());
+  }
+
+  // .ZSS.New.MotionLocalizationQuality localization = 3;
+  if (this->_internal_localization() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_localization());
+  }
+
+  // uint32 session_id = 4;
+  if (this->_internal_session_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_session_id());
+  }
+
+  // uint32 executed_sequence = 5;
+  if (this->_internal_executed_sequence() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_executed_sequence());
+  }
+
+  // uint32 trajectory_epoch = 6;
+  if (this->_internal_trajectory_epoch() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_trajectory_epoch());
+  }
+
+  // uint64 fusion_time_us = 8;
+  if (this->_internal_fusion_time_us() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_fusion_time_us());
+  }
+
+  // uint64 prediction_time_us = 9;
+  if (this->_internal_prediction_time_us() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_prediction_time_us());
+  }
+
+  // uint32 active_command_age_us = 7;
+  if (this->_internal_active_command_age_us() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_active_command_age_us());
+  }
+
+  // uint32 vision_age_us = 12;
+  if (this->_internal_vision_age_us() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_vision_age_us());
+  }
+
+  // uint64 feedback_time_us = 10;
+  if (this->_internal_feedback_time_us() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_feedback_time_us());
+  }
+
+  // uint64 vision_capture_time_us = 11;
+  if (this->_internal_vision_capture_time_us() != 0) {
+    total_size += ::_pbi::WireFormatLite::UInt64SizePlusOne(this->_internal_vision_capture_time_us());
+  }
+
+  // float position_sigma_m = 15;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_position_sigma_m = this->_internal_position_sigma_m();
+  uint32_t raw_position_sigma_m;
+  memcpy(&raw_position_sigma_m, &tmp_position_sigma_m, sizeof(tmp_position_sigma_m));
+  if (raw_position_sigma_m != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float yaw_sigma_rad = 16;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_yaw_sigma_rad = this->_internal_yaw_sigma_rad();
+  uint32_t raw_yaw_sigma_rad;
+  memcpy(&raw_yaw_sigma_rad, &tmp_yaw_sigma_rad, sizeof(tmp_yaw_sigma_rad));
+  if (raw_yaw_sigma_rad != 0) {
+    total_size += 2 + 4;
+  }
+
+  // float gyro_bias_z_rad_s = 21;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_gyro_bias_z_rad_s = this->_internal_gyro_bias_z_rad_s();
+  uint32_t raw_gyro_bias_z_rad_s;
+  memcpy(&raw_gyro_bias_z_rad_s, &tmp_gyro_bias_z_rad_s, sizeof(tmp_gyro_bias_z_rad_s));
+  if (raw_gyro_bias_z_rad_s != 0) {
+    total_size += 2 + 4;
+  }
+
+  // float accel_bias_x_m_s2 = 22;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_accel_bias_x_m_s2 = this->_internal_accel_bias_x_m_s2();
+  uint32_t raw_accel_bias_x_m_s2;
+  memcpy(&raw_accel_bias_x_m_s2, &tmp_accel_bias_x_m_s2, sizeof(tmp_accel_bias_x_m_s2));
+  if (raw_accel_bias_x_m_s2 != 0) {
+    total_size += 2 + 4;
+  }
+
+  // float accel_bias_y_m_s2 = 23;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_accel_bias_y_m_s2 = this->_internal_accel_bias_y_m_s2();
+  uint32_t raw_accel_bias_y_m_s2;
+  memcpy(&raw_accel_bias_y_m_s2, &tmp_accel_bias_y_m_s2, sizeof(tmp_accel_bias_y_m_s2));
+  if (raw_accel_bias_y_m_s2 != 0) {
+    total_size += 2 + 4;
+  }
+
+  // bool trajectory_active = 20;
+  if (this->_internal_trajectory_active() != 0) {
+    total_size += 2 + 1;
+  }
+
+  // bool wheel_speed_enabled = 31;
+  if (this->_internal_wheel_speed_enabled() != 0) {
+    total_size += 2 + 1;
+  }
+
+  // bool vision_fused = 32;
+  if (this->_internal_vision_fused() != 0) {
+    total_size += 2 + 1;
+  }
+
+  // bool accelerometer_degraded = 33;
+  if (this->_internal_accelerometer_degraded() != 0) {
+    total_size += 2 + 1;
+  }
+
+  // uint32 saturation = 30;
+  if (this->_internal_saturation() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::UInt32Size(
+        this->_internal_saturation());
+  }
+
+  // bool wheel_slip_suspected = 34;
+  if (this->_internal_wheel_slip_suspected() != 0) {
+    total_size += 2 + 1;
+  }
+
+  // uint32 late_observations = 35;
+  if (this->_internal_late_observations() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::UInt32Size(
+        this->_internal_late_observations());
+  }
+
+  // uint32 rejected_observations = 36;
+  if (this->_internal_rejected_observations() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::UInt32Size(
+        this->_internal_rejected_observations());
+  }
+
+  // uint32 vision_updates = 37;
+  if (this->_internal_vision_updates() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::UInt32Size(
+        this->_internal_vision_updates());
+  }
+
+  // uint32 estimator_version = 38;
+  if (this->_internal_estimator_version() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::UInt32Size(
+        this->_internal_estimator_version());
+  }
+
+  // uint32 controller_version = 39;
+  if (this->_internal_controller_version() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::UInt32Size(
+        this->_internal_controller_version());
+  }
+
+  // uint32 model_version = 40;
+  if (this->_internal_model_version() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::UInt32Size(
+        this->_internal_model_version());
+  }
+
+  // uint32 protocol_version = 41;
+  if (this->_internal_protocol_version() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::UInt32Size(
+        this->_internal_protocol_version());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData MotionFeedbackV2::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    MotionFeedbackV2::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*MotionFeedbackV2::GetClassData() const { return &_class_data_; }
+
+void MotionFeedbackV2::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<MotionFeedbackV2 *>(to)->MergeFrom(
+      static_cast<const MotionFeedbackV2 &>(from));
+}
+
+
+void MotionFeedbackV2::MergeFrom(const MotionFeedbackV2& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.MotionFeedbackV2)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  wheel_speed_target_.MergeFrom(from.wheel_speed_target_);
+  wheel_speed_measured_.MergeFrom(from.wheel_speed_measured_);
+  feedforward_torque_.MergeFrom(from.feedforward_torque_);
+  feedback_torque_.MergeFrom(from.feedback_torque_);
+  integral_torque_.MergeFrom(from.integral_torque_);
+  applied_torque_.MergeFrom(from.applied_torque_);
+  if (from._internal_has_estimated_pose()) {
+    _internal_mutable_estimated_pose()->::ZSS::New::MotionPose2::MergeFrom(from._internal_estimated_pose());
+  }
+  if (from._internal_has_estimated_velocity()) {
+    _internal_mutable_estimated_velocity()->::ZSS::New::MotionTwist2::MergeFrom(from._internal_estimated_velocity());
+  }
+  if (from._internal_has_reference_pose()) {
+    _internal_mutable_reference_pose()->::ZSS::New::MotionPose2::MergeFrom(from._internal_reference_pose());
+  }
+  if (from._internal_has_reference_velocity()) {
+    _internal_mutable_reference_velocity()->::ZSS::New::MotionTwist2::MergeFrom(from._internal_reference_velocity());
+  }
+  if (from._internal_has_reference_accel()) {
+    _internal_mutable_reference_accel()->::ZSS::New::MotionAccel2::MergeFrom(from._internal_reference_accel());
+  }
+  if (from._internal_backend() != 0) {
+    _internal_set_backend(from._internal_backend());
+  }
+  if (from._internal_safety() != 0) {
+    _internal_set_safety(from._internal_safety());
+  }
+  if (from._internal_localization() != 0) {
+    _internal_set_localization(from._internal_localization());
+  }
+  if (from._internal_session_id() != 0) {
+    _internal_set_session_id(from._internal_session_id());
+  }
+  if (from._internal_executed_sequence() != 0) {
+    _internal_set_executed_sequence(from._internal_executed_sequence());
+  }
+  if (from._internal_trajectory_epoch() != 0) {
+    _internal_set_trajectory_epoch(from._internal_trajectory_epoch());
+  }
+  if (from._internal_fusion_time_us() != 0) {
+    _internal_set_fusion_time_us(from._internal_fusion_time_us());
+  }
+  if (from._internal_prediction_time_us() != 0) {
+    _internal_set_prediction_time_us(from._internal_prediction_time_us());
+  }
+  if (from._internal_active_command_age_us() != 0) {
+    _internal_set_active_command_age_us(from._internal_active_command_age_us());
+  }
+  if (from._internal_vision_age_us() != 0) {
+    _internal_set_vision_age_us(from._internal_vision_age_us());
+  }
+  if (from._internal_feedback_time_us() != 0) {
+    _internal_set_feedback_time_us(from._internal_feedback_time_us());
+  }
+  if (from._internal_vision_capture_time_us() != 0) {
+    _internal_set_vision_capture_time_us(from._internal_vision_capture_time_us());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_position_sigma_m = from._internal_position_sigma_m();
+  uint32_t raw_position_sigma_m;
+  memcpy(&raw_position_sigma_m, &tmp_position_sigma_m, sizeof(tmp_position_sigma_m));
+  if (raw_position_sigma_m != 0) {
+    _internal_set_position_sigma_m(from._internal_position_sigma_m());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_yaw_sigma_rad = from._internal_yaw_sigma_rad();
+  uint32_t raw_yaw_sigma_rad;
+  memcpy(&raw_yaw_sigma_rad, &tmp_yaw_sigma_rad, sizeof(tmp_yaw_sigma_rad));
+  if (raw_yaw_sigma_rad != 0) {
+    _internal_set_yaw_sigma_rad(from._internal_yaw_sigma_rad());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_gyro_bias_z_rad_s = from._internal_gyro_bias_z_rad_s();
+  uint32_t raw_gyro_bias_z_rad_s;
+  memcpy(&raw_gyro_bias_z_rad_s, &tmp_gyro_bias_z_rad_s, sizeof(tmp_gyro_bias_z_rad_s));
+  if (raw_gyro_bias_z_rad_s != 0) {
+    _internal_set_gyro_bias_z_rad_s(from._internal_gyro_bias_z_rad_s());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_accel_bias_x_m_s2 = from._internal_accel_bias_x_m_s2();
+  uint32_t raw_accel_bias_x_m_s2;
+  memcpy(&raw_accel_bias_x_m_s2, &tmp_accel_bias_x_m_s2, sizeof(tmp_accel_bias_x_m_s2));
+  if (raw_accel_bias_x_m_s2 != 0) {
+    _internal_set_accel_bias_x_m_s2(from._internal_accel_bias_x_m_s2());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_accel_bias_y_m_s2 = from._internal_accel_bias_y_m_s2();
+  uint32_t raw_accel_bias_y_m_s2;
+  memcpy(&raw_accel_bias_y_m_s2, &tmp_accel_bias_y_m_s2, sizeof(tmp_accel_bias_y_m_s2));
+  if (raw_accel_bias_y_m_s2 != 0) {
+    _internal_set_accel_bias_y_m_s2(from._internal_accel_bias_y_m_s2());
+  }
+  if (from._internal_trajectory_active() != 0) {
+    _internal_set_trajectory_active(from._internal_trajectory_active());
+  }
+  if (from._internal_wheel_speed_enabled() != 0) {
+    _internal_set_wheel_speed_enabled(from._internal_wheel_speed_enabled());
+  }
+  if (from._internal_vision_fused() != 0) {
+    _internal_set_vision_fused(from._internal_vision_fused());
+  }
+  if (from._internal_accelerometer_degraded() != 0) {
+    _internal_set_accelerometer_degraded(from._internal_accelerometer_degraded());
+  }
+  if (from._internal_saturation() != 0) {
+    _internal_set_saturation(from._internal_saturation());
+  }
+  if (from._internal_wheel_slip_suspected() != 0) {
+    _internal_set_wheel_slip_suspected(from._internal_wheel_slip_suspected());
+  }
+  if (from._internal_late_observations() != 0) {
+    _internal_set_late_observations(from._internal_late_observations());
+  }
+  if (from._internal_rejected_observations() != 0) {
+    _internal_set_rejected_observations(from._internal_rejected_observations());
+  }
+  if (from._internal_vision_updates() != 0) {
+    _internal_set_vision_updates(from._internal_vision_updates());
+  }
+  if (from._internal_estimator_version() != 0) {
+    _internal_set_estimator_version(from._internal_estimator_version());
+  }
+  if (from._internal_controller_version() != 0) {
+    _internal_set_controller_version(from._internal_controller_version());
+  }
+  if (from._internal_model_version() != 0) {
+    _internal_set_model_version(from._internal_model_version());
+  }
+  if (from._internal_protocol_version() != 0) {
+    _internal_set_protocol_version(from._internal_protocol_version());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void MotionFeedbackV2::CopyFrom(const MotionFeedbackV2& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:ZSS.New.MotionFeedbackV2)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool MotionFeedbackV2::IsInitialized() const {
+  return true;
+}
+
+void MotionFeedbackV2::InternalSwap(MotionFeedbackV2* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  wheel_speed_target_.InternalSwap(&other->wheel_speed_target_);
+  wheel_speed_measured_.InternalSwap(&other->wheel_speed_measured_);
+  feedforward_torque_.InternalSwap(&other->feedforward_torque_);
+  feedback_torque_.InternalSwap(&other->feedback_torque_);
+  integral_torque_.InternalSwap(&other->integral_torque_);
+  applied_torque_.InternalSwap(&other->applied_torque_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(MotionFeedbackV2, protocol_version_)
+      + sizeof(MotionFeedbackV2::protocol_version_)
+      - PROTOBUF_FIELD_OFFSET(MotionFeedbackV2, estimated_pose_)>(
+          reinterpret_cast<char*>(&estimated_pose_),
+          reinterpret_cast<char*>(&other->estimated_pose_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata MotionFeedbackV2::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_zss_5fcmd_2eproto_getter, &descriptor_table_zss_5fcmd_2eproto_once,
+      file_level_metadata_zss_5fcmd_2eproto[15]);
+}
+
+// ===================================================================
+
+class MotionConfigV2::_Internal {
+ public:
+  static const ::ZSS::New::MotionLimitsV2& limits(const MotionConfigV2* msg);
+};
+
+const ::ZSS::New::MotionLimitsV2&
+MotionConfigV2::_Internal::limits(const MotionConfigV2* msg) {
+  return *msg->limits_;
+}
+MotionConfigV2::MotionConfigV2(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  wheel_axis_angle_rad_(arena),
+  wheel_yaw_sign_(arena) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:ZSS.New.MotionConfigV2)
+}
+MotionConfigV2::MotionConfigV2(const MotionConfigV2& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      wheel_axis_angle_rad_(from.wheel_axis_angle_rad_),
+      wheel_yaw_sign_(from.wheel_yaw_sign_) {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  if (from._internal_has_limits()) {
+    limits_ = new ::ZSS::New::MotionLimitsV2(*from.limits_);
+  } else {
+    limits_ = nullptr;
+  }
+  ::memcpy(&mass_kg_, &from.mass_kg_,
+    static_cast<size_t>(reinterpret_cast<char*>(&config_version_) -
+    reinterpret_cast<char*>(&mass_kg_)) + sizeof(config_version_));
+  // @@protoc_insertion_point(copy_constructor:ZSS.New.MotionConfigV2)
+}
+
+inline void MotionConfigV2::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&limits_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&config_version_) -
+    reinterpret_cast<char*>(&limits_)) + sizeof(config_version_));
+}
+
+MotionConfigV2::~MotionConfigV2() {
+  // @@protoc_insertion_point(destructor:ZSS.New.MotionConfigV2)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void MotionConfigV2::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  if (this != internal_default_instance()) delete limits_;
+}
+
+void MotionConfigV2::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void MotionConfigV2::Clear() {
+// @@protoc_insertion_point(message_clear_start:ZSS.New.MotionConfigV2)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  wheel_axis_angle_rad_.Clear();
+  wheel_yaw_sign_.Clear();
+  if (GetArenaForAllocation() == nullptr && limits_ != nullptr) {
+    delete limits_;
+  }
+  limits_ = nullptr;
+  ::memset(&mass_kg_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&config_version_) -
+      reinterpret_cast<char*>(&mass_kg_)) + sizeof(config_version_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* MotionConfigV2::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // float mass_kg = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 13)) {
+          mass_kg_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float inertia_kg_m2 = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 21)) {
+          inertia_kg_m2_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float wheel_radius_m = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 29)) {
+          wheel_radius_m_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float wheel_center_distance_m = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 37)) {
+          wheel_center_distance_m_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float wheel_inertia_kg_m2 = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 45)) {
+          wheel_inertia_kg_m2_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float wheel_friction_torque_nm = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 53)) {
+          wheel_friction_torque_nm_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float wheel_viscous_nm_per_rad_s = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 61)) {
+          wheel_viscous_nm_per_rad_s_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float efficiency = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 69)) {
+          efficiency_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float max_wheel_torque_nm = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 77)) {
+          max_wheel_torque_nm_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float max_wheel_speed_rad_s = 10;
+      case 10:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 85)) {
+          max_wheel_speed_rad_s_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float max_wheel_accel_rad_s2 = 11;
+      case 11:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 93)) {
+          max_wheel_accel_rad_s2_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float torque_rate_nm_per_s = 12;
+      case 12:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 101)) {
+          torque_rate_nm_per_s_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated float wheel_axis_angle_rad = 13;
+      case 13:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 106)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedFloatParser(_internal_mutable_wheel_axis_angle_rad(), ptr, ctx);
+          CHK_(ptr);
+        } else if (static_cast<uint8_t>(tag) == 109) {
+          _internal_add_wheel_axis_angle_rad(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr));
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // repeated float wheel_yaw_sign = 14;
+      case 14:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 114)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedFloatParser(_internal_mutable_wheel_yaw_sign(), ptr, ctx);
+          CHK_(ptr);
+        } else if (static_cast<uint8_t>(tag) == 117) {
+          _internal_add_wheel_yaw_sign(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr));
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // .ZSS.New.MotionLimitsV2 limits = 15;
+      case 15:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 122)) {
+          ptr = ctx->ParseMessage(_internal_mutable_limits(), ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // float fusion_delay_s = 16;
+      case 16:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 133)) {
+          fusion_delay_s_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float history_span_s = 17;
+      case 17:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 141)) {
+          history_span_s_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float command_timeout_s = 18;
+      case 18:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 149)) {
+          command_timeout_s_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float spi_timeout_s = 19;
+      case 19:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 157)) {
+          spi_timeout_s_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float vision_degrade_s = 20;
+      case 20:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 165)) {
+          vision_degrade_s_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float vision_invalid_s = 21;
+      case 21:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 173)) {
+          vision_invalid_s_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // uint32 config_version = 22;
+      case 22:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 176)) {
+          config_version_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* MotionConfigV2::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:ZSS.New.MotionConfigV2)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // float mass_kg = 1;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_mass_kg = this->_internal_mass_kg();
+  uint32_t raw_mass_kg;
+  memcpy(&raw_mass_kg, &tmp_mass_kg, sizeof(tmp_mass_kg));
+  if (raw_mass_kg != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(1, this->_internal_mass_kg(), target);
+  }
+
+  // float inertia_kg_m2 = 2;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_inertia_kg_m2 = this->_internal_inertia_kg_m2();
+  uint32_t raw_inertia_kg_m2;
+  memcpy(&raw_inertia_kg_m2, &tmp_inertia_kg_m2, sizeof(tmp_inertia_kg_m2));
+  if (raw_inertia_kg_m2 != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(2, this->_internal_inertia_kg_m2(), target);
+  }
+
+  // float wheel_radius_m = 3;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_wheel_radius_m = this->_internal_wheel_radius_m();
+  uint32_t raw_wheel_radius_m;
+  memcpy(&raw_wheel_radius_m, &tmp_wheel_radius_m, sizeof(tmp_wheel_radius_m));
+  if (raw_wheel_radius_m != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(3, this->_internal_wheel_radius_m(), target);
+  }
+
+  // float wheel_center_distance_m = 4;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_wheel_center_distance_m = this->_internal_wheel_center_distance_m();
+  uint32_t raw_wheel_center_distance_m;
+  memcpy(&raw_wheel_center_distance_m, &tmp_wheel_center_distance_m, sizeof(tmp_wheel_center_distance_m));
+  if (raw_wheel_center_distance_m != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(4, this->_internal_wheel_center_distance_m(), target);
+  }
+
+  // float wheel_inertia_kg_m2 = 5;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_wheel_inertia_kg_m2 = this->_internal_wheel_inertia_kg_m2();
+  uint32_t raw_wheel_inertia_kg_m2;
+  memcpy(&raw_wheel_inertia_kg_m2, &tmp_wheel_inertia_kg_m2, sizeof(tmp_wheel_inertia_kg_m2));
+  if (raw_wheel_inertia_kg_m2 != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(5, this->_internal_wheel_inertia_kg_m2(), target);
+  }
+
+  // float wheel_friction_torque_nm = 6;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_wheel_friction_torque_nm = this->_internal_wheel_friction_torque_nm();
+  uint32_t raw_wheel_friction_torque_nm;
+  memcpy(&raw_wheel_friction_torque_nm, &tmp_wheel_friction_torque_nm, sizeof(tmp_wheel_friction_torque_nm));
+  if (raw_wheel_friction_torque_nm != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(6, this->_internal_wheel_friction_torque_nm(), target);
+  }
+
+  // float wheel_viscous_nm_per_rad_s = 7;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_wheel_viscous_nm_per_rad_s = this->_internal_wheel_viscous_nm_per_rad_s();
+  uint32_t raw_wheel_viscous_nm_per_rad_s;
+  memcpy(&raw_wheel_viscous_nm_per_rad_s, &tmp_wheel_viscous_nm_per_rad_s, sizeof(tmp_wheel_viscous_nm_per_rad_s));
+  if (raw_wheel_viscous_nm_per_rad_s != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(7, this->_internal_wheel_viscous_nm_per_rad_s(), target);
+  }
+
+  // float efficiency = 8;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_efficiency = this->_internal_efficiency();
+  uint32_t raw_efficiency;
+  memcpy(&raw_efficiency, &tmp_efficiency, sizeof(tmp_efficiency));
+  if (raw_efficiency != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(8, this->_internal_efficiency(), target);
+  }
+
+  // float max_wheel_torque_nm = 9;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_wheel_torque_nm = this->_internal_max_wheel_torque_nm();
+  uint32_t raw_max_wheel_torque_nm;
+  memcpy(&raw_max_wheel_torque_nm, &tmp_max_wheel_torque_nm, sizeof(tmp_max_wheel_torque_nm));
+  if (raw_max_wheel_torque_nm != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(9, this->_internal_max_wheel_torque_nm(), target);
+  }
+
+  // float max_wheel_speed_rad_s = 10;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_wheel_speed_rad_s = this->_internal_max_wheel_speed_rad_s();
+  uint32_t raw_max_wheel_speed_rad_s;
+  memcpy(&raw_max_wheel_speed_rad_s, &tmp_max_wheel_speed_rad_s, sizeof(tmp_max_wheel_speed_rad_s));
+  if (raw_max_wheel_speed_rad_s != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(10, this->_internal_max_wheel_speed_rad_s(), target);
+  }
+
+  // float max_wheel_accel_rad_s2 = 11;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_wheel_accel_rad_s2 = this->_internal_max_wheel_accel_rad_s2();
+  uint32_t raw_max_wheel_accel_rad_s2;
+  memcpy(&raw_max_wheel_accel_rad_s2, &tmp_max_wheel_accel_rad_s2, sizeof(tmp_max_wheel_accel_rad_s2));
+  if (raw_max_wheel_accel_rad_s2 != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(11, this->_internal_max_wheel_accel_rad_s2(), target);
+  }
+
+  // float torque_rate_nm_per_s = 12;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_torque_rate_nm_per_s = this->_internal_torque_rate_nm_per_s();
+  uint32_t raw_torque_rate_nm_per_s;
+  memcpy(&raw_torque_rate_nm_per_s, &tmp_torque_rate_nm_per_s, sizeof(tmp_torque_rate_nm_per_s));
+  if (raw_torque_rate_nm_per_s != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(12, this->_internal_torque_rate_nm_per_s(), target);
+  }
+
+  // repeated float wheel_axis_angle_rad = 13;
+  if (this->_internal_wheel_axis_angle_rad_size() > 0) {
+    target = stream->WriteFixedPacked(13, _internal_wheel_axis_angle_rad(), target);
+  }
+
+  // repeated float wheel_yaw_sign = 14;
+  if (this->_internal_wheel_yaw_sign_size() > 0) {
+    target = stream->WriteFixedPacked(14, _internal_wheel_yaw_sign(), target);
+  }
+
+  // .ZSS.New.MotionLimitsV2 limits = 15;
+  if (this->_internal_has_limits()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(15, _Internal::limits(this),
+        _Internal::limits(this).GetCachedSize(), target, stream);
+  }
+
+  // float fusion_delay_s = 16;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_fusion_delay_s = this->_internal_fusion_delay_s();
+  uint32_t raw_fusion_delay_s;
+  memcpy(&raw_fusion_delay_s, &tmp_fusion_delay_s, sizeof(tmp_fusion_delay_s));
+  if (raw_fusion_delay_s != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(16, this->_internal_fusion_delay_s(), target);
+  }
+
+  // float history_span_s = 17;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_history_span_s = this->_internal_history_span_s();
+  uint32_t raw_history_span_s;
+  memcpy(&raw_history_span_s, &tmp_history_span_s, sizeof(tmp_history_span_s));
+  if (raw_history_span_s != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(17, this->_internal_history_span_s(), target);
+  }
+
+  // float command_timeout_s = 18;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_command_timeout_s = this->_internal_command_timeout_s();
+  uint32_t raw_command_timeout_s;
+  memcpy(&raw_command_timeout_s, &tmp_command_timeout_s, sizeof(tmp_command_timeout_s));
+  if (raw_command_timeout_s != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(18, this->_internal_command_timeout_s(), target);
+  }
+
+  // float spi_timeout_s = 19;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_spi_timeout_s = this->_internal_spi_timeout_s();
+  uint32_t raw_spi_timeout_s;
+  memcpy(&raw_spi_timeout_s, &tmp_spi_timeout_s, sizeof(tmp_spi_timeout_s));
+  if (raw_spi_timeout_s != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(19, this->_internal_spi_timeout_s(), target);
+  }
+
+  // float vision_degrade_s = 20;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_vision_degrade_s = this->_internal_vision_degrade_s();
+  uint32_t raw_vision_degrade_s;
+  memcpy(&raw_vision_degrade_s, &tmp_vision_degrade_s, sizeof(tmp_vision_degrade_s));
+  if (raw_vision_degrade_s != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(20, this->_internal_vision_degrade_s(), target);
+  }
+
+  // float vision_invalid_s = 21;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_vision_invalid_s = this->_internal_vision_invalid_s();
+  uint32_t raw_vision_invalid_s;
+  memcpy(&raw_vision_invalid_s, &tmp_vision_invalid_s, sizeof(tmp_vision_invalid_s));
+  if (raw_vision_invalid_s != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(21, this->_internal_vision_invalid_s(), target);
+  }
+
+  // uint32 config_version = 22;
+  if (this->_internal_config_version() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(22, this->_internal_config_version(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:ZSS.New.MotionConfigV2)
+  return target;
+}
+
+size_t MotionConfigV2::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:ZSS.New.MotionConfigV2)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated float wheel_axis_angle_rad = 13;
+  {
+    unsigned int count = static_cast<unsigned int>(this->_internal_wheel_axis_angle_rad_size());
+    size_t data_size = 4UL * count;
+    if (data_size > 0) {
+      total_size += 1 +
+        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
+    }
+    total_size += data_size;
+  }
+
+  // repeated float wheel_yaw_sign = 14;
+  {
+    unsigned int count = static_cast<unsigned int>(this->_internal_wheel_yaw_sign_size());
+    size_t data_size = 4UL * count;
+    if (data_size > 0) {
+      total_size += 1 +
+        ::_pbi::WireFormatLite::Int32Size(static_cast<int32_t>(data_size));
+    }
+    total_size += data_size;
+  }
+
+  // .ZSS.New.MotionLimitsV2 limits = 15;
+  if (this->_internal_has_limits()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *limits_);
+  }
+
+  // float mass_kg = 1;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_mass_kg = this->_internal_mass_kg();
+  uint32_t raw_mass_kg;
+  memcpy(&raw_mass_kg, &tmp_mass_kg, sizeof(tmp_mass_kg));
+  if (raw_mass_kg != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float inertia_kg_m2 = 2;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_inertia_kg_m2 = this->_internal_inertia_kg_m2();
+  uint32_t raw_inertia_kg_m2;
+  memcpy(&raw_inertia_kg_m2, &tmp_inertia_kg_m2, sizeof(tmp_inertia_kg_m2));
+  if (raw_inertia_kg_m2 != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float wheel_radius_m = 3;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_wheel_radius_m = this->_internal_wheel_radius_m();
+  uint32_t raw_wheel_radius_m;
+  memcpy(&raw_wheel_radius_m, &tmp_wheel_radius_m, sizeof(tmp_wheel_radius_m));
+  if (raw_wheel_radius_m != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float wheel_center_distance_m = 4;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_wheel_center_distance_m = this->_internal_wheel_center_distance_m();
+  uint32_t raw_wheel_center_distance_m;
+  memcpy(&raw_wheel_center_distance_m, &tmp_wheel_center_distance_m, sizeof(tmp_wheel_center_distance_m));
+  if (raw_wheel_center_distance_m != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float wheel_inertia_kg_m2 = 5;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_wheel_inertia_kg_m2 = this->_internal_wheel_inertia_kg_m2();
+  uint32_t raw_wheel_inertia_kg_m2;
+  memcpy(&raw_wheel_inertia_kg_m2, &tmp_wheel_inertia_kg_m2, sizeof(tmp_wheel_inertia_kg_m2));
+  if (raw_wheel_inertia_kg_m2 != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float wheel_friction_torque_nm = 6;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_wheel_friction_torque_nm = this->_internal_wheel_friction_torque_nm();
+  uint32_t raw_wheel_friction_torque_nm;
+  memcpy(&raw_wheel_friction_torque_nm, &tmp_wheel_friction_torque_nm, sizeof(tmp_wheel_friction_torque_nm));
+  if (raw_wheel_friction_torque_nm != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float wheel_viscous_nm_per_rad_s = 7;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_wheel_viscous_nm_per_rad_s = this->_internal_wheel_viscous_nm_per_rad_s();
+  uint32_t raw_wheel_viscous_nm_per_rad_s;
+  memcpy(&raw_wheel_viscous_nm_per_rad_s, &tmp_wheel_viscous_nm_per_rad_s, sizeof(tmp_wheel_viscous_nm_per_rad_s));
+  if (raw_wheel_viscous_nm_per_rad_s != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float efficiency = 8;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_efficiency = this->_internal_efficiency();
+  uint32_t raw_efficiency;
+  memcpy(&raw_efficiency, &tmp_efficiency, sizeof(tmp_efficiency));
+  if (raw_efficiency != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float max_wheel_torque_nm = 9;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_wheel_torque_nm = this->_internal_max_wheel_torque_nm();
+  uint32_t raw_max_wheel_torque_nm;
+  memcpy(&raw_max_wheel_torque_nm, &tmp_max_wheel_torque_nm, sizeof(tmp_max_wheel_torque_nm));
+  if (raw_max_wheel_torque_nm != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float max_wheel_speed_rad_s = 10;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_wheel_speed_rad_s = this->_internal_max_wheel_speed_rad_s();
+  uint32_t raw_max_wheel_speed_rad_s;
+  memcpy(&raw_max_wheel_speed_rad_s, &tmp_max_wheel_speed_rad_s, sizeof(tmp_max_wheel_speed_rad_s));
+  if (raw_max_wheel_speed_rad_s != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float max_wheel_accel_rad_s2 = 11;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_wheel_accel_rad_s2 = this->_internal_max_wheel_accel_rad_s2();
+  uint32_t raw_max_wheel_accel_rad_s2;
+  memcpy(&raw_max_wheel_accel_rad_s2, &tmp_max_wheel_accel_rad_s2, sizeof(tmp_max_wheel_accel_rad_s2));
+  if (raw_max_wheel_accel_rad_s2 != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float torque_rate_nm_per_s = 12;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_torque_rate_nm_per_s = this->_internal_torque_rate_nm_per_s();
+  uint32_t raw_torque_rate_nm_per_s;
+  memcpy(&raw_torque_rate_nm_per_s, &tmp_torque_rate_nm_per_s, sizeof(tmp_torque_rate_nm_per_s));
+  if (raw_torque_rate_nm_per_s != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float fusion_delay_s = 16;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_fusion_delay_s = this->_internal_fusion_delay_s();
+  uint32_t raw_fusion_delay_s;
+  memcpy(&raw_fusion_delay_s, &tmp_fusion_delay_s, sizeof(tmp_fusion_delay_s));
+  if (raw_fusion_delay_s != 0) {
+    total_size += 2 + 4;
+  }
+
+  // float history_span_s = 17;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_history_span_s = this->_internal_history_span_s();
+  uint32_t raw_history_span_s;
+  memcpy(&raw_history_span_s, &tmp_history_span_s, sizeof(tmp_history_span_s));
+  if (raw_history_span_s != 0) {
+    total_size += 2 + 4;
+  }
+
+  // float command_timeout_s = 18;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_command_timeout_s = this->_internal_command_timeout_s();
+  uint32_t raw_command_timeout_s;
+  memcpy(&raw_command_timeout_s, &tmp_command_timeout_s, sizeof(tmp_command_timeout_s));
+  if (raw_command_timeout_s != 0) {
+    total_size += 2 + 4;
+  }
+
+  // float spi_timeout_s = 19;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_spi_timeout_s = this->_internal_spi_timeout_s();
+  uint32_t raw_spi_timeout_s;
+  memcpy(&raw_spi_timeout_s, &tmp_spi_timeout_s, sizeof(tmp_spi_timeout_s));
+  if (raw_spi_timeout_s != 0) {
+    total_size += 2 + 4;
+  }
+
+  // float vision_degrade_s = 20;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_vision_degrade_s = this->_internal_vision_degrade_s();
+  uint32_t raw_vision_degrade_s;
+  memcpy(&raw_vision_degrade_s, &tmp_vision_degrade_s, sizeof(tmp_vision_degrade_s));
+  if (raw_vision_degrade_s != 0) {
+    total_size += 2 + 4;
+  }
+
+  // float vision_invalid_s = 21;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_vision_invalid_s = this->_internal_vision_invalid_s();
+  uint32_t raw_vision_invalid_s;
+  memcpy(&raw_vision_invalid_s, &tmp_vision_invalid_s, sizeof(tmp_vision_invalid_s));
+  if (raw_vision_invalid_s != 0) {
+    total_size += 2 + 4;
+  }
+
+  // uint32 config_version = 22;
+  if (this->_internal_config_version() != 0) {
+    total_size += 2 +
+      ::_pbi::WireFormatLite::UInt32Size(
+        this->_internal_config_version());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData MotionConfigV2::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    MotionConfigV2::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*MotionConfigV2::GetClassData() const { return &_class_data_; }
+
+void MotionConfigV2::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<MotionConfigV2 *>(to)->MergeFrom(
+      static_cast<const MotionConfigV2 &>(from));
+}
+
+
+void MotionConfigV2::MergeFrom(const MotionConfigV2& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.MotionConfigV2)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  wheel_axis_angle_rad_.MergeFrom(from.wheel_axis_angle_rad_);
+  wheel_yaw_sign_.MergeFrom(from.wheel_yaw_sign_);
+  if (from._internal_has_limits()) {
+    _internal_mutable_limits()->::ZSS::New::MotionLimitsV2::MergeFrom(from._internal_limits());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_mass_kg = from._internal_mass_kg();
+  uint32_t raw_mass_kg;
+  memcpy(&raw_mass_kg, &tmp_mass_kg, sizeof(tmp_mass_kg));
+  if (raw_mass_kg != 0) {
+    _internal_set_mass_kg(from._internal_mass_kg());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_inertia_kg_m2 = from._internal_inertia_kg_m2();
+  uint32_t raw_inertia_kg_m2;
+  memcpy(&raw_inertia_kg_m2, &tmp_inertia_kg_m2, sizeof(tmp_inertia_kg_m2));
+  if (raw_inertia_kg_m2 != 0) {
+    _internal_set_inertia_kg_m2(from._internal_inertia_kg_m2());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_wheel_radius_m = from._internal_wheel_radius_m();
+  uint32_t raw_wheel_radius_m;
+  memcpy(&raw_wheel_radius_m, &tmp_wheel_radius_m, sizeof(tmp_wheel_radius_m));
+  if (raw_wheel_radius_m != 0) {
+    _internal_set_wheel_radius_m(from._internal_wheel_radius_m());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_wheel_center_distance_m = from._internal_wheel_center_distance_m();
+  uint32_t raw_wheel_center_distance_m;
+  memcpy(&raw_wheel_center_distance_m, &tmp_wheel_center_distance_m, sizeof(tmp_wheel_center_distance_m));
+  if (raw_wheel_center_distance_m != 0) {
+    _internal_set_wheel_center_distance_m(from._internal_wheel_center_distance_m());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_wheel_inertia_kg_m2 = from._internal_wheel_inertia_kg_m2();
+  uint32_t raw_wheel_inertia_kg_m2;
+  memcpy(&raw_wheel_inertia_kg_m2, &tmp_wheel_inertia_kg_m2, sizeof(tmp_wheel_inertia_kg_m2));
+  if (raw_wheel_inertia_kg_m2 != 0) {
+    _internal_set_wheel_inertia_kg_m2(from._internal_wheel_inertia_kg_m2());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_wheel_friction_torque_nm = from._internal_wheel_friction_torque_nm();
+  uint32_t raw_wheel_friction_torque_nm;
+  memcpy(&raw_wheel_friction_torque_nm, &tmp_wheel_friction_torque_nm, sizeof(tmp_wheel_friction_torque_nm));
+  if (raw_wheel_friction_torque_nm != 0) {
+    _internal_set_wheel_friction_torque_nm(from._internal_wheel_friction_torque_nm());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_wheel_viscous_nm_per_rad_s = from._internal_wheel_viscous_nm_per_rad_s();
+  uint32_t raw_wheel_viscous_nm_per_rad_s;
+  memcpy(&raw_wheel_viscous_nm_per_rad_s, &tmp_wheel_viscous_nm_per_rad_s, sizeof(tmp_wheel_viscous_nm_per_rad_s));
+  if (raw_wheel_viscous_nm_per_rad_s != 0) {
+    _internal_set_wheel_viscous_nm_per_rad_s(from._internal_wheel_viscous_nm_per_rad_s());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_efficiency = from._internal_efficiency();
+  uint32_t raw_efficiency;
+  memcpy(&raw_efficiency, &tmp_efficiency, sizeof(tmp_efficiency));
+  if (raw_efficiency != 0) {
+    _internal_set_efficiency(from._internal_efficiency());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_wheel_torque_nm = from._internal_max_wheel_torque_nm();
+  uint32_t raw_max_wheel_torque_nm;
+  memcpy(&raw_max_wheel_torque_nm, &tmp_max_wheel_torque_nm, sizeof(tmp_max_wheel_torque_nm));
+  if (raw_max_wheel_torque_nm != 0) {
+    _internal_set_max_wheel_torque_nm(from._internal_max_wheel_torque_nm());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_wheel_speed_rad_s = from._internal_max_wheel_speed_rad_s();
+  uint32_t raw_max_wheel_speed_rad_s;
+  memcpy(&raw_max_wheel_speed_rad_s, &tmp_max_wheel_speed_rad_s, sizeof(tmp_max_wheel_speed_rad_s));
+  if (raw_max_wheel_speed_rad_s != 0) {
+    _internal_set_max_wheel_speed_rad_s(from._internal_max_wheel_speed_rad_s());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_max_wheel_accel_rad_s2 = from._internal_max_wheel_accel_rad_s2();
+  uint32_t raw_max_wheel_accel_rad_s2;
+  memcpy(&raw_max_wheel_accel_rad_s2, &tmp_max_wheel_accel_rad_s2, sizeof(tmp_max_wheel_accel_rad_s2));
+  if (raw_max_wheel_accel_rad_s2 != 0) {
+    _internal_set_max_wheel_accel_rad_s2(from._internal_max_wheel_accel_rad_s2());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_torque_rate_nm_per_s = from._internal_torque_rate_nm_per_s();
+  uint32_t raw_torque_rate_nm_per_s;
+  memcpy(&raw_torque_rate_nm_per_s, &tmp_torque_rate_nm_per_s, sizeof(tmp_torque_rate_nm_per_s));
+  if (raw_torque_rate_nm_per_s != 0) {
+    _internal_set_torque_rate_nm_per_s(from._internal_torque_rate_nm_per_s());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_fusion_delay_s = from._internal_fusion_delay_s();
+  uint32_t raw_fusion_delay_s;
+  memcpy(&raw_fusion_delay_s, &tmp_fusion_delay_s, sizeof(tmp_fusion_delay_s));
+  if (raw_fusion_delay_s != 0) {
+    _internal_set_fusion_delay_s(from._internal_fusion_delay_s());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_history_span_s = from._internal_history_span_s();
+  uint32_t raw_history_span_s;
+  memcpy(&raw_history_span_s, &tmp_history_span_s, sizeof(tmp_history_span_s));
+  if (raw_history_span_s != 0) {
+    _internal_set_history_span_s(from._internal_history_span_s());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_command_timeout_s = from._internal_command_timeout_s();
+  uint32_t raw_command_timeout_s;
+  memcpy(&raw_command_timeout_s, &tmp_command_timeout_s, sizeof(tmp_command_timeout_s));
+  if (raw_command_timeout_s != 0) {
+    _internal_set_command_timeout_s(from._internal_command_timeout_s());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_spi_timeout_s = from._internal_spi_timeout_s();
+  uint32_t raw_spi_timeout_s;
+  memcpy(&raw_spi_timeout_s, &tmp_spi_timeout_s, sizeof(tmp_spi_timeout_s));
+  if (raw_spi_timeout_s != 0) {
+    _internal_set_spi_timeout_s(from._internal_spi_timeout_s());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_vision_degrade_s = from._internal_vision_degrade_s();
+  uint32_t raw_vision_degrade_s;
+  memcpy(&raw_vision_degrade_s, &tmp_vision_degrade_s, sizeof(tmp_vision_degrade_s));
+  if (raw_vision_degrade_s != 0) {
+    _internal_set_vision_degrade_s(from._internal_vision_degrade_s());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_vision_invalid_s = from._internal_vision_invalid_s();
+  uint32_t raw_vision_invalid_s;
+  memcpy(&raw_vision_invalid_s, &tmp_vision_invalid_s, sizeof(tmp_vision_invalid_s));
+  if (raw_vision_invalid_s != 0) {
+    _internal_set_vision_invalid_s(from._internal_vision_invalid_s());
+  }
+  if (from._internal_config_version() != 0) {
+    _internal_set_config_version(from._internal_config_version());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void MotionConfigV2::CopyFrom(const MotionConfigV2& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:ZSS.New.MotionConfigV2)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool MotionConfigV2::IsInitialized() const {
+  return true;
+}
+
+void MotionConfigV2::InternalSwap(MotionConfigV2* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  wheel_axis_angle_rad_.InternalSwap(&other->wheel_axis_angle_rad_);
+  wheel_yaw_sign_.InternalSwap(&other->wheel_yaw_sign_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(MotionConfigV2, config_version_)
+      + sizeof(MotionConfigV2::config_version_)
+      - PROTOBUF_FIELD_OFFSET(MotionConfigV2, limits_)>(
+          reinterpret_cast<char*>(&limits_),
+          reinterpret_cast<char*>(&other->limits_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata MotionConfigV2::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_zss_5fcmd_2eproto_getter, &descriptor_table_zss_5fcmd_2eproto_once,
+      file_level_metadata_zss_5fcmd_2eproto[16]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -4192,6 +10320,10 @@ template<> PROTOBUF_NOINLINE ::ZSS::New::Robot_Status*
 Arena::CreateMaybeMessage< ::ZSS::New::Robot_Status >(Arena* arena) {
   return Arena::CreateMessageInternal< ::ZSS::New::Robot_Status >(arena);
 }
+template<> PROTOBUF_NOINLINE ::ZSS::New::Robot_Status_Sim*
+Arena::CreateMaybeMessage< ::ZSS::New::Robot_Status_Sim >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::ZSS::New::Robot_Status_Sim >(arena);
+}
 template<> PROTOBUF_NOINLINE ::ZSS::New::Robots_Command*
 Arena::CreateMaybeMessage< ::ZSS::New::Robots_Command >(Arena* arena) {
   return Arena::CreateMessageInternal< ::ZSS::New::Robots_Command >(arena);
@@ -4199,6 +10331,10 @@ Arena::CreateMaybeMessage< ::ZSS::New::Robots_Command >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::ZSS::New::Robot_Command*
 Arena::CreateMaybeMessage< ::ZSS::New::Robot_Command >(Arena* arena) {
   return Arena::CreateMessageInternal< ::ZSS::New::Robot_Command >(arena);
+}
+template<> PROTOBUF_NOINLINE ::ZSS::New::Robot_Command_Mini*
+Arena::CreateMaybeMessage< ::ZSS::New::Robot_Command_Mini >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::ZSS::New::Robot_Command_Mini >(arena);
 }
 template<> PROTOBUF_NOINLINE ::ZSS::New::Robots_Command_Sim*
 Arena::CreateMaybeMessage< ::ZSS::New::Robots_Command_Sim >(Arena* arena) {
@@ -4208,9 +10344,37 @@ template<> PROTOBUF_NOINLINE ::ZSS::New::Robot_Command_Sim*
 Arena::CreateMaybeMessage< ::ZSS::New::Robot_Command_Sim >(Arena* arena) {
   return Arena::CreateMessageInternal< ::ZSS::New::Robot_Command_Sim >(arena);
 }
-template<> PROTOBUF_NOINLINE ::ZSS::New::Robot_Command_Mini*
-Arena::CreateMaybeMessage< ::ZSS::New::Robot_Command_Mini >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::ZSS::New::Robot_Command_Mini >(arena);
+template<> PROTOBUF_NOINLINE ::ZSS::New::MotionPose2*
+Arena::CreateMaybeMessage< ::ZSS::New::MotionPose2 >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::ZSS::New::MotionPose2 >(arena);
+}
+template<> PROTOBUF_NOINLINE ::ZSS::New::MotionTwist2*
+Arena::CreateMaybeMessage< ::ZSS::New::MotionTwist2 >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::ZSS::New::MotionTwist2 >(arena);
+}
+template<> PROTOBUF_NOINLINE ::ZSS::New::MotionAccel2*
+Arena::CreateMaybeMessage< ::ZSS::New::MotionAccel2 >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::ZSS::New::MotionAccel2 >(arena);
+}
+template<> PROTOBUF_NOINLINE ::ZSS::New::MotionLimitsV2*
+Arena::CreateMaybeMessage< ::ZSS::New::MotionLimitsV2 >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::ZSS::New::MotionLimitsV2 >(arena);
+}
+template<> PROTOBUF_NOINLINE ::ZSS::New::MotionCommandV2*
+Arena::CreateMaybeMessage< ::ZSS::New::MotionCommandV2 >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::ZSS::New::MotionCommandV2 >(arena);
+}
+template<> PROTOBUF_NOINLINE ::ZSS::New::VisionObservationV2*
+Arena::CreateMaybeMessage< ::ZSS::New::VisionObservationV2 >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::ZSS::New::VisionObservationV2 >(arena);
+}
+template<> PROTOBUF_NOINLINE ::ZSS::New::MotionFeedbackV2*
+Arena::CreateMaybeMessage< ::ZSS::New::MotionFeedbackV2 >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::ZSS::New::MotionFeedbackV2 >(arena);
+}
+template<> PROTOBUF_NOINLINE ::ZSS::New::MotionConfigV2*
+Arena::CreateMaybeMessage< ::ZSS::New::MotionConfigV2 >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::ZSS::New::MotionConfigV2 >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

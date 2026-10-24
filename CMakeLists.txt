@@ -43,7 +43,9 @@ include_directories(
     # ${CMAKE_CURRENT_SOURCE_DIR}/share/zos/project/core/include
     # ${CMAKE_CURRENT_SOURCE_DIR}/share/utils
     ${CMAKE_CURRENT_SOURCE_DIR}/component
+    ${CMAKE_CURRENT_SOURCE_DIR}/motion
     ${CMAKE_CURRENT_SOURCE_DIR}/control
+    ${CMAKE_CURRENT_SOURCE_DIR}/../motion/include
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
@@ -73,6 +75,8 @@ file(GLOB SHARED_SOURCE_FILES
     ${CMAKE_CURRENT_SOURCE_DIR}/component/device.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/component/device_stm32.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/component/parameter.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/motion/cm4_motion_bridge.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/motion/spi_transport.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/control/CMmotion.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/control/controlal.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/control/geometry.cpp
@@ -95,6 +99,7 @@ foreach(test_file ${TEST_FILES})
 
     add_executable (${test_name} ${test_file} ${SHARED_SOURCE_FILES})
     target_link_libraries (${test_name} PRIVATE ${LIBS} zos::zos_core)
+    target_compile_definitions(${test_name} PRIVATE ROBOT_CM4_MOTION_V2=1)
     target_compile_definitions(${test_name} PRIVATE CM4_VERSION)
 
 endforeach()

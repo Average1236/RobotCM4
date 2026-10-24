@@ -4,6 +4,35 @@
 
 using PB = ZSS::New::Robot_Command;
 
+namespace {
+motion::TimeUs steady_now_us() {
+    return static_cast<motion::TimeUs>(
+        std::chrono::duration_cast<std::chrono::microseconds>(
+            std::chrono::steady_clock::now().time_since_epoch())
+            .count());
+}
+
+motion::MotionConfigV2 default_motion_config() {
+    motion::MotionConfigV2 config;
+    config.robot = motion::defaultRobotModel();
+    config.robot.mass_kg = 4.0f;
+    config.robot.inertia_kg_m2 = 8.0e-3f;
+    config.robot.wheel_radius_m = 0.033f;
+    config.robot.wheel_center_distance_m = 0.0785f;
+    config.limits.max_linear_speed_m_s = 3.0f;
+    config.limits.max_linear_accel_m_s2 = 7.0f;
+    config.limits.max_linear_decel_m_s2 = 10.0f;
+    config.limits.max_yaw_speed_rad_s = 25.0f;
+    config.limits.max_yaw_accel_rad_s2 = 40.0f;
+    config.limits.max_wheel_torque_nm = 0.70f;
+    config.command_timeout_s = 0.100f;
+    config.spi_timeout_s = 0.050f;
+    config.vision_degrade_s = 0.100f;
+    config.vision_invalid_s = 0.250f;
+    return config;
+}
+}  // namespace
+
 static auto now_time = std::chrono::steady_clock::now();
 static auto last_time = now_time - std::chrono::microseconds(1000000) / config::robot_freq;
 
@@ -134,6 +163,9 @@ RobotStm32::RobotStm32() : device_{},
     filter_y_.x2k = visionY / 1000;
 
     read_config_yaml();
+
+    motion_bridge_.configure(default_motion_config(), 0x4D4F5432u, steady_now_us());
+    device_.attach_motion_bridge(&motion_bridge_);
     
     {
         std::scoped_lock lock{_robot_status_mutex};
@@ -230,6 +262,9 @@ void RobotStm32::cmd_callback(const zos::Data &data)
         if (res)
         {
             auto &_p = pb_cmd_;
+            // Protocol v2 path: movement/vision observation in the same packet.
+            // Old-only commands go through the explicit legacy adapter.
+            motion_bridge_.submitRobotCommand(_p, steady_now_us());
             std::scoped_lock lock{_robot_cmd_mutex};
             auto &_c = robot_cmd;
             _time_since_last_pack.store(0);
@@ -716,6 +751,7 @@ void RobotStm32::send_status()
 
 
     }
+    motion_bridge_.applyFeedbackToStatus(&pb_status);
     auto size = pb_status.ByteSizeLong();
     data.resize(size);
     pb_status.SerializeToArray(data.ptr(), size);
@@ -994,8 +1030,43 @@ void RobotStm32::vision_callback(const zos::Data &data)
         auto res = pb_detection_frame_.ParseFromArray(vision_data_.data(), vision_data_.size());
         if (res)
         {
-            std::scoped_lock lock{_vision_queue_mutex};
             auto &_p = pb_detection_frame_;
+            // Independent observation into the motion bridge.  The capture
+            // time is derived from the receive time and the fixed pipeline
+            // age; the v2 command field can carry an exact capture time.
+            const auto& robots = (_s.team == 1) ? _p.robots_blue() : _p.robots_yellow();
+            if (_s.id >= 0 && _s.id < robots.size()) {
+                const auto& robot = robots.Get(static_cast<int>(_s.id));
+                if (robot.valid()) {
+                    motion::VisionObservationV2 observation;
+                    const auto now_us = steady_now_us();
+                    const std::uint64_t age_us =
+                        _p.has_acquisition_age_us() && _p.acquisition_age_us() != 0
+                            ? static_cast<std::uint64_t>(_p.acquisition_age_us())
+                            : 20000ULL;
+                    observation.capture_time_us = now_us > age_us ? now_us - age_us : now_us;
+                    observation.receive_time_us = now_us;
+                    observation.sequence = _p.sequence();
+                    // Prefer the un-predicted camera measurement so the
+                    // estimator never closes a loop through Kun2's forward
+                    // prediction.
+                    // SSL frames and Kun2's in-process frames are millimetres;
+                    // VisionObservationV2 is SI.
+                    observation.pose.position.x =
+                        (robot.has_raw_x() ? robot.raw_x() : robot.x()) * 0.001f;
+                    observation.pose.position.y =
+                        (robot.has_raw_y() ? robot.raw_y() : robot.y()) * 0.001f;
+                    observation.pose.yaw =
+                        robot.has_raw_orientation() ? robot.raw_orientation()
+                                                    : robot.orientation();
+                    observation.position_std_m = 0.020f;
+                    observation.yaw_std_rad = 0.020f;
+                    observation.quality = motion::LocalizationQuality::kGood;
+                    observation.valid = true;
+                    motion_bridge_.submitVision(observation, steady_now_us());
+                }
+            }
+            std::scoped_lock lock{_vision_queue_mutex};
             auto &_v = VisionTmp;
 
             // zos::log("{}\n",_p.DebugString());

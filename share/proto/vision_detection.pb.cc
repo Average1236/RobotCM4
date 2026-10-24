@@ -21,36 +21,34 @@ namespace _pb = ::PROTOBUF_NAMESPACE_ID;
 namespace _pbi = _pb::internal;
 
 PROTOBUF_CONSTEXPR Vision_DetectionBall::Vision_DetectionBall(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_._has_bits_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_.vel_x_)*/0
-  , /*decltype(_impl_.vel_y_)*/0
-  , /*decltype(_impl_.area_)*/0u
-  , /*decltype(_impl_.x_)*/0
-  , /*decltype(_impl_.y_)*/0
-  , /*decltype(_impl_.height_)*/0
-  , /*decltype(_impl_.ball_state_)*/0u
-  , /*decltype(_impl_.last_touch_)*/0u
-  , /*decltype(_impl_.valid_)*/false
-  , /*decltype(_impl_.raw_x_)*/0
-  , /*decltype(_impl_.raw_y_)*/0
-  , /*decltype(_impl_.chip_predict_x_)*/0
-  , /*decltype(_impl_.chip_predict_y_)*/0
-  , /*decltype(_impl_.chip_best_predict_x_)*/0
-  , /*decltype(_impl_.chip_best_predict_y_)*/0
-  , /*decltype(_impl_.real_x_)*/0
-  , /*decltype(_impl_.real_y_)*/0
-  , /*decltype(_impl_.real_z_)*/0
-  , /*decltype(_impl_.chip_vel_x_)*/0
-  , /*decltype(_impl_.chip_vel_y_)*/0
-  , /*decltype(_impl_.chip_vel_z_)*/0
-  , /*decltype(_impl_.chip_second_pos_x_)*/0
-  , /*decltype(_impl_.chip_second_pos_y_)*/0
-  , /*decltype(_impl_.chip_fly_time_)*/0
-  , /*decltype(_impl_.chip_rest_fly_time_)*/0
-  , /*decltype(_impl_.raw_vel_x_)*/0
-  , /*decltype(_impl_.raw_vel_y_)*/0} {}
+    ::_pbi::ConstantInitialized)
+  : vel_x_(0)
+  , vel_y_(0)
+  , area_(0u)
+  , x_(0)
+  , y_(0)
+  , height_(0)
+  , ball_state_(0u)
+  , last_touch_(0u)
+  , valid_(false)
+  , raw_x_(0)
+  , raw_y_(0)
+  , chip_predict_x_(0)
+  , chip_predict_y_(0)
+  , chip_best_predict_x_(0)
+  , chip_best_predict_y_(0)
+  , real_x_(0)
+  , real_y_(0)
+  , real_z_(0)
+  , chip_vel_x_(0)
+  , chip_vel_y_(0)
+  , chip_vel_z_(0)
+  , chip_second_pos_x_(0)
+  , chip_second_pos_y_(0)
+  , chip_fly_time_(0)
+  , chip_rest_fly_time_(0)
+  , raw_vel_x_(0)
+  , raw_vel_y_(0){}
 struct Vision_DetectionBallDefaultTypeInternal {
   PROTOBUF_CONSTEXPR Vision_DetectionBallDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -61,28 +59,28 @@ struct Vision_DetectionBallDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Vision_DetectionBallDefaultTypeInternal _Vision_DetectionBall_default_instance_;
 PROTOBUF_CONSTEXPR Vision_DetectionRobot::Vision_DetectionRobot(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_._has_bits_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_.valid_)*/false
-  , /*decltype(_impl_.robot_id_)*/0u
-  , /*decltype(_impl_.x_)*/0
-  , /*decltype(_impl_.y_)*/0
-  , /*decltype(_impl_.orientation_)*/0
-  , /*decltype(_impl_.vel_x_)*/0
-  , /*decltype(_impl_.vel_y_)*/0
-  , /*decltype(_impl_.rotate_vel_)*/0
-  , /*decltype(_impl_.accelerate_x_)*/0
-  , /*decltype(_impl_.accelerate_y_)*/0
-  , /*decltype(_impl_.raw_x_)*/0
-  , /*decltype(_impl_.raw_y_)*/0
-  , /*decltype(_impl_.raw_orientation_)*/0
-  , /*decltype(_impl_.raw_vel_x_)*/0
-  , /*decltype(_impl_.raw_vel_y_)*/0
-  , /*decltype(_impl_.raw_rotate_vel_)*/0
-  , /*decltype(_impl_.imu_dir_)*/0
-  , /*decltype(_impl_.imu_rotate_vel_)*/0
-  , /*decltype(_impl_.imu_bias_)*/0} {}
+    ::_pbi::ConstantInitialized)
+  : valid_(false)
+  , robot_id_(0u)
+  , x_(0)
+  , y_(0)
+  , orientation_(0)
+  , vel_x_(0)
+  , vel_y_(0)
+  , rotate_vel_(0)
+  , accelerate_x_(0)
+  , accelerate_y_(0)
+  , raw_x_(0)
+  , raw_y_(0)
+  , raw_orientation_(0)
+  , raw_vel_x_(0)
+  , raw_vel_y_(0)
+  , raw_rotate_vel_(0)
+  , imu_dir_(0)
+  , imu_rotate_vel_(0)
+  , imu_bias_(0)
+  , raw_vel_unfiltered_x_(0)
+  , raw_vel_unfiltered_y_(0){}
 struct Vision_DetectionRobotDefaultTypeInternal {
   PROTOBUF_CONSTEXPR Vision_DetectionRobotDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -93,12 +91,14 @@ struct Vision_DetectionRobotDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Vision_DetectionRobotDefaultTypeInternal _Vision_DetectionRobot_default_instance_;
 PROTOBUF_CONSTEXPR Vision_DetectionFrame::Vision_DetectionFrame(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_._has_bits_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}
-  , /*decltype(_impl_.robots_yellow_)*/{}
-  , /*decltype(_impl_.robots_blue_)*/{}
-  , /*decltype(_impl_.balls_)*/nullptr} {}
+    ::_pbi::ConstantInitialized)
+  : robots_yellow_()
+  , robots_blue_()
+  , balls_(nullptr)
+  , acquisition_age_us_(uint64_t{0u})
+  , sequence_(0u)
+  , quality_(0u)
+  , t_capture_(0){}
 struct Vision_DetectionFrameDefaultTypeInternal {
   PROTOBUF_CONSTEXPR Vision_DetectionFrameDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -113,39 +113,39 @@ static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_visio
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_vision_5fdetection_2eproto = nullptr;
 
 const uint32_t TableStruct_vision_5fdetection_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, _impl_._has_bits_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, _impl_.vel_x_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, _impl_.vel_y_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, _impl_.area_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, _impl_.x_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, _impl_.y_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, _impl_.height_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, _impl_.ball_state_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, _impl_.last_touch_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, _impl_.valid_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, _impl_.raw_x_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, _impl_.raw_y_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, _impl_.chip_predict_x_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, _impl_.chip_predict_y_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, _impl_.chip_best_predict_x_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, _impl_.chip_best_predict_y_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, _impl_.real_x_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, _impl_.real_y_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, _impl_.real_z_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, _impl_.chip_vel_x_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, _impl_.chip_vel_y_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, _impl_.chip_vel_z_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, _impl_.chip_second_pos_x_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, _impl_.chip_second_pos_y_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, _impl_.chip_fly_time_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, _impl_.chip_rest_fly_time_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, _impl_.raw_vel_x_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, _impl_.raw_vel_y_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, vel_x_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, vel_y_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, area_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, x_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, y_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, height_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, ball_state_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, last_touch_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, valid_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, raw_x_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, raw_y_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, chip_predict_x_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, chip_predict_y_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, chip_best_predict_x_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, chip_best_predict_y_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, real_x_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, real_y_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, real_z_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, chip_vel_x_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, chip_vel_y_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, chip_vel_z_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, chip_second_pos_x_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, chip_second_pos_y_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, chip_fly_time_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, chip_rest_fly_time_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, raw_vel_x_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionBall, raw_vel_y_),
   0,
   1,
   2,
@@ -173,31 +173,33 @@ const uint32_t TableStruct_vision_5fdetection_2eproto::offsets[] PROTOBUF_SECTIO
   24,
   25,
   26,
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, _impl_._has_bits_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, _impl_.valid_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, _impl_.robot_id_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, _impl_.x_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, _impl_.y_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, _impl_.orientation_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, _impl_.vel_x_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, _impl_.vel_y_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, _impl_.rotate_vel_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, _impl_.accelerate_x_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, _impl_.accelerate_y_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, _impl_.raw_x_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, _impl_.raw_y_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, _impl_.raw_orientation_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, _impl_.raw_vel_x_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, _impl_.raw_vel_y_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, _impl_.raw_rotate_vel_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, _impl_.imu_dir_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, _impl_.imu_rotate_vel_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, _impl_.imu_bias_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, valid_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, robot_id_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, x_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, y_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, orientation_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, vel_x_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, vel_y_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, rotate_vel_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, accelerate_x_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, accelerate_y_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, raw_x_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, raw_y_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, raw_orientation_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, raw_vel_x_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, raw_vel_y_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, raw_rotate_vel_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, imu_dir_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, imu_rotate_vel_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, imu_bias_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, raw_vel_unfiltered_x_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionRobot, raw_vel_unfiltered_y_),
   0,
   1,
   2,
@@ -217,23 +219,33 @@ const uint32_t TableStruct_vision_5fdetection_2eproto::offsets[] PROTOBUF_SECTIO
   16,
   17,
   18,
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionFrame, _impl_._has_bits_),
+  19,
+  20,
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionFrame, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::Vision_DetectionFrame, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionFrame, _impl_.balls_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionFrame, _impl_.robots_yellow_),
-  PROTOBUF_FIELD_OFFSET(::Vision_DetectionFrame, _impl_.robots_blue_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionFrame, balls_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionFrame, robots_yellow_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionFrame, robots_blue_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionFrame, sequence_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionFrame, acquisition_age_us_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionFrame, t_capture_),
+  PROTOBUF_FIELD_OFFSET(::Vision_DetectionFrame, quality_),
   0,
   ~0u,
   ~0u,
+  2,
+  1,
+  4,
+  3,
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, 33, -1, sizeof(::Vision_DetectionBall)},
-  { 60, 85, -1, sizeof(::Vision_DetectionRobot)},
-  { 104, 113, -1, sizeof(::Vision_DetectionFrame)},
+  { 60, 87, -1, sizeof(::Vision_DetectionRobot)},
+  { 108, 121, -1, sizeof(::Vision_DetectionFrame)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -257,7 +269,7 @@ const char descriptor_table_protodef_vision_5fdetection_2eproto[] PROTOBUF_SECTI
   "econd_pos_x\030\026 \001(\002\022\031\n\021chip_second_pos_y\030\027"
   " \001(\002\022\025\n\rchip_fly_time\030\030 \001(\002\022\032\n\022chip_rest"
   "_fly_time\030\031 \001(\002\022\021\n\traw_vel_x\030\032 \001(\002\022\021\n\tra"
-  "w_vel_y\030\033 \001(\002\"\361\002\n\025Vision_DetectionRobot\022"
+  "w_vel_y\030\033 \001(\002\"\255\003\n\025Vision_DetectionRobot\022"
   "\r\n\005valid\030\001 \002(\010\022\020\n\010robot_id\030\002 \001(\r\022\t\n\001x\030\003 "
   "\002(\002\022\t\n\001y\030\004 \002(\002\022\023\n\013orientation\030\005 \001(\002\022\r\n\005v"
   "el_x\030\006 \001(\002\022\r\n\005vel_y\030\007 \001(\002\022\022\n\nrotate_vel\030"
@@ -266,15 +278,19 @@ const char descriptor_table_protodef_vision_5fdetection_2eproto[] PROTOBUF_SECTI
   "\027\n\017raw_orientation\030\r \001(\002\022\021\n\traw_vel_x\030\016 "
   "\001(\002\022\021\n\traw_vel_y\030\017 \001(\002\022\026\n\016raw_rotate_vel"
   "\030\020 \001(\002\022\017\n\007imu_dir\030\021 \001(\002\022\026\n\016imu_rotate_ve"
-  "l\030\022 \001(\002\022\020\n\010imu_bias\030\023 \001(\002\"\231\001\n\025Vision_Det"
-  "ectionFrame\022$\n\005balls\030\001 \002(\0132\025.Vision_Dete"
-  "ctionBall\022-\n\rrobots_yellow\030\002 \003(\0132\026.Visio"
-  "n_DetectionRobot\022+\n\013robots_blue\030\003 \003(\0132\026."
-  "Vision_DetectionRobot"
+  "l\030\022 \001(\002\022\020\n\010imu_bias\030\023 \001(\002\022\034\n\024raw_vel_unf"
+  "iltered_x\030\024 \001(\002\022\034\n\024raw_vel_unfiltered_y\030"
+  "\025 \001(\002\"\353\001\n\025Vision_DetectionFrame\022$\n\005balls"
+  "\030\001 \002(\0132\025.Vision_DetectionBall\022-\n\rrobots_"
+  "yellow\030\002 \003(\0132\026.Vision_DetectionRobot\022+\n\013"
+  "robots_blue\030\003 \003(\0132\026.Vision_DetectionRobo"
+  "t\022\020\n\010sequence\030< \001(\r\022\032\n\022acquisition_age_u"
+  "s\030= \001(\004\022\021\n\tt_capture\030> \001(\001\022\017\n\007quality\030\? "
+  "\001(\r"
   ;
 static ::_pbi::once_flag descriptor_table_vision_5fdetection_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_vision_5fdetection_2eproto = {
-    false, false, 1101, descriptor_table_protodef_vision_5fdetection_2eproto,
+    false, false, 1243, descriptor_table_protodef_vision_5fdetection_2eproto,
     "vision_detection.proto",
     &descriptor_table_vision_5fdetection_2eproto_once, nullptr, 0, 3,
     schemas, file_default_instances, TableStruct_vision_5fdetection_2eproto::offsets,
@@ -292,7 +308,7 @@ PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::_pbi::AddDescriptorsRunner dynamic_in
 
 class Vision_DetectionBall::_Internal {
  public:
-  using HasBits = decltype(std::declval<Vision_DetectionBall>()._impl_._has_bits_);
+  using HasBits = decltype(std::declval<Vision_DetectionBall>()._has_bits_);
   static void set_has_vel_x(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
   }
@@ -382,85 +398,24 @@ class Vision_DetectionBall::_Internal {
 Vision_DetectionBall::Vision_DetectionBall(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:Vision_DetectionBall)
 }
 Vision_DetectionBall::Vision_DetectionBall(const Vision_DetectionBall& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  Vision_DetectionBall* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){from._impl_._has_bits_}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.vel_x_){}
-    , decltype(_impl_.vel_y_){}
-    , decltype(_impl_.area_){}
-    , decltype(_impl_.x_){}
-    , decltype(_impl_.y_){}
-    , decltype(_impl_.height_){}
-    , decltype(_impl_.ball_state_){}
-    , decltype(_impl_.last_touch_){}
-    , decltype(_impl_.valid_){}
-    , decltype(_impl_.raw_x_){}
-    , decltype(_impl_.raw_y_){}
-    , decltype(_impl_.chip_predict_x_){}
-    , decltype(_impl_.chip_predict_y_){}
-    , decltype(_impl_.chip_best_predict_x_){}
-    , decltype(_impl_.chip_best_predict_y_){}
-    , decltype(_impl_.real_x_){}
-    , decltype(_impl_.real_y_){}
-    , decltype(_impl_.real_z_){}
-    , decltype(_impl_.chip_vel_x_){}
-    , decltype(_impl_.chip_vel_y_){}
-    , decltype(_impl_.chip_vel_z_){}
-    , decltype(_impl_.chip_second_pos_x_){}
-    , decltype(_impl_.chip_second_pos_y_){}
-    , decltype(_impl_.chip_fly_time_){}
-    , decltype(_impl_.chip_rest_fly_time_){}
-    , decltype(_impl_.raw_vel_x_){}
-    , decltype(_impl_.raw_vel_y_){}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.vel_x_, &from._impl_.vel_x_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.raw_vel_y_) -
-    reinterpret_cast<char*>(&_impl_.vel_x_)) + sizeof(_impl_.raw_vel_y_));
+  ::memcpy(&vel_x_, &from.vel_x_,
+    static_cast<size_t>(reinterpret_cast<char*>(&raw_vel_y_) -
+    reinterpret_cast<char*>(&vel_x_)) + sizeof(raw_vel_y_));
   // @@protoc_insertion_point(copy_constructor:Vision_DetectionBall)
 }
 
-inline void Vision_DetectionBall::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.vel_x_){0}
-    , decltype(_impl_.vel_y_){0}
-    , decltype(_impl_.area_){0u}
-    , decltype(_impl_.x_){0}
-    , decltype(_impl_.y_){0}
-    , decltype(_impl_.height_){0}
-    , decltype(_impl_.ball_state_){0u}
-    , decltype(_impl_.last_touch_){0u}
-    , decltype(_impl_.valid_){false}
-    , decltype(_impl_.raw_x_){0}
-    , decltype(_impl_.raw_y_){0}
-    , decltype(_impl_.chip_predict_x_){0}
-    , decltype(_impl_.chip_predict_y_){0}
-    , decltype(_impl_.chip_best_predict_x_){0}
-    , decltype(_impl_.chip_best_predict_y_){0}
-    , decltype(_impl_.real_x_){0}
-    , decltype(_impl_.real_y_){0}
-    , decltype(_impl_.real_z_){0}
-    , decltype(_impl_.chip_vel_x_){0}
-    , decltype(_impl_.chip_vel_y_){0}
-    , decltype(_impl_.chip_vel_z_){0}
-    , decltype(_impl_.chip_second_pos_x_){0}
-    , decltype(_impl_.chip_second_pos_y_){0}
-    , decltype(_impl_.chip_fly_time_){0}
-    , decltype(_impl_.chip_rest_fly_time_){0}
-    , decltype(_impl_.raw_vel_x_){0}
-    , decltype(_impl_.raw_vel_y_){0}
-  };
+inline void Vision_DetectionBall::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&vel_x_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&raw_vel_y_) -
+    reinterpret_cast<char*>(&vel_x_)) + sizeof(raw_vel_y_));
 }
 
 Vision_DetectionBall::~Vision_DetectionBall() {
@@ -477,7 +432,7 @@ inline void Vision_DetectionBall::SharedDtor() {
 }
 
 void Vision_DetectionBall::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void Vision_DetectionBall::Clear() {
@@ -486,28 +441,28 @@ void Vision_DetectionBall::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  cached_has_bits = _impl_._has_bits_[0];
+  cached_has_bits = _has_bits_[0];
   if (cached_has_bits & 0x000000ffu) {
-    ::memset(&_impl_.vel_x_, 0, static_cast<size_t>(
-        reinterpret_cast<char*>(&_impl_.last_touch_) -
-        reinterpret_cast<char*>(&_impl_.vel_x_)) + sizeof(_impl_.last_touch_));
+    ::memset(&vel_x_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&last_touch_) -
+        reinterpret_cast<char*>(&vel_x_)) + sizeof(last_touch_));
   }
   if (cached_has_bits & 0x0000ff00u) {
-    ::memset(&_impl_.valid_, 0, static_cast<size_t>(
-        reinterpret_cast<char*>(&_impl_.real_x_) -
-        reinterpret_cast<char*>(&_impl_.valid_)) + sizeof(_impl_.real_x_));
+    ::memset(&valid_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&real_x_) -
+        reinterpret_cast<char*>(&valid_)) + sizeof(real_x_));
   }
   if (cached_has_bits & 0x00ff0000u) {
-    ::memset(&_impl_.real_y_, 0, static_cast<size_t>(
-        reinterpret_cast<char*>(&_impl_.chip_fly_time_) -
-        reinterpret_cast<char*>(&_impl_.real_y_)) + sizeof(_impl_.chip_fly_time_));
+    ::memset(&real_y_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&chip_fly_time_) -
+        reinterpret_cast<char*>(&real_y_)) + sizeof(chip_fly_time_));
   }
   if (cached_has_bits & 0x07000000u) {
-    ::memset(&_impl_.chip_rest_fly_time_, 0, static_cast<size_t>(
-        reinterpret_cast<char*>(&_impl_.raw_vel_y_) -
-        reinterpret_cast<char*>(&_impl_.chip_rest_fly_time_)) + sizeof(_impl_.raw_vel_y_));
+    ::memset(&chip_rest_fly_time_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&raw_vel_y_) -
+        reinterpret_cast<char*>(&chip_rest_fly_time_)) + sizeof(raw_vel_y_));
   }
-  _impl_._has_bits_.Clear();
+  _has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -522,7 +477,7 @@ const char* Vision_DetectionBall::_InternalParse(const char* ptr, ::_pbi::ParseC
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 13)) {
           _Internal::set_has_vel_x(&has_bits);
-          _impl_.vel_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          vel_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -531,7 +486,7 @@ const char* Vision_DetectionBall::_InternalParse(const char* ptr, ::_pbi::ParseC
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 21)) {
           _Internal::set_has_vel_y(&has_bits);
-          _impl_.vel_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          vel_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -540,7 +495,7 @@ const char* Vision_DetectionBall::_InternalParse(const char* ptr, ::_pbi::ParseC
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
           _Internal::set_has_area(&has_bits);
-          _impl_.area_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          area_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -549,7 +504,7 @@ const char* Vision_DetectionBall::_InternalParse(const char* ptr, ::_pbi::ParseC
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 37)) {
           _Internal::set_has_x(&has_bits);
-          _impl_.x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -558,7 +513,7 @@ const char* Vision_DetectionBall::_InternalParse(const char* ptr, ::_pbi::ParseC
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 45)) {
           _Internal::set_has_y(&has_bits);
-          _impl_.y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -567,7 +522,7 @@ const char* Vision_DetectionBall::_InternalParse(const char* ptr, ::_pbi::ParseC
       case 6:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 53)) {
           _Internal::set_has_height(&has_bits);
-          _impl_.height_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          height_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -576,7 +531,7 @@ const char* Vision_DetectionBall::_InternalParse(const char* ptr, ::_pbi::ParseC
       case 7:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
           _Internal::set_has_ball_state(&has_bits);
-          _impl_.ball_state_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          ball_state_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -585,7 +540,7 @@ const char* Vision_DetectionBall::_InternalParse(const char* ptr, ::_pbi::ParseC
       case 8:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 64)) {
           _Internal::set_has_last_touch(&has_bits);
-          _impl_.last_touch_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          last_touch_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -594,7 +549,7 @@ const char* Vision_DetectionBall::_InternalParse(const char* ptr, ::_pbi::ParseC
       case 9:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 72)) {
           _Internal::set_has_valid(&has_bits);
-          _impl_.valid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          valid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -603,7 +558,7 @@ const char* Vision_DetectionBall::_InternalParse(const char* ptr, ::_pbi::ParseC
       case 10:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 85)) {
           _Internal::set_has_raw_x(&has_bits);
-          _impl_.raw_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          raw_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -612,7 +567,7 @@ const char* Vision_DetectionBall::_InternalParse(const char* ptr, ::_pbi::ParseC
       case 11:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 93)) {
           _Internal::set_has_raw_y(&has_bits);
-          _impl_.raw_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          raw_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -621,7 +576,7 @@ const char* Vision_DetectionBall::_InternalParse(const char* ptr, ::_pbi::ParseC
       case 12:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 101)) {
           _Internal::set_has_chip_predict_x(&has_bits);
-          _impl_.chip_predict_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          chip_predict_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -630,7 +585,7 @@ const char* Vision_DetectionBall::_InternalParse(const char* ptr, ::_pbi::ParseC
       case 13:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 109)) {
           _Internal::set_has_chip_predict_y(&has_bits);
-          _impl_.chip_predict_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          chip_predict_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -639,7 +594,7 @@ const char* Vision_DetectionBall::_InternalParse(const char* ptr, ::_pbi::ParseC
       case 14:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 117)) {
           _Internal::set_has_chip_best_predict_x(&has_bits);
-          _impl_.chip_best_predict_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          chip_best_predict_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -648,7 +603,7 @@ const char* Vision_DetectionBall::_InternalParse(const char* ptr, ::_pbi::ParseC
       case 15:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 125)) {
           _Internal::set_has_chip_best_predict_y(&has_bits);
-          _impl_.chip_best_predict_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          chip_best_predict_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -657,7 +612,7 @@ const char* Vision_DetectionBall::_InternalParse(const char* ptr, ::_pbi::ParseC
       case 16:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 133)) {
           _Internal::set_has_real_x(&has_bits);
-          _impl_.real_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          real_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -666,7 +621,7 @@ const char* Vision_DetectionBall::_InternalParse(const char* ptr, ::_pbi::ParseC
       case 17:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 141)) {
           _Internal::set_has_real_y(&has_bits);
-          _impl_.real_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          real_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -675,7 +630,7 @@ const char* Vision_DetectionBall::_InternalParse(const char* ptr, ::_pbi::ParseC
       case 18:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 149)) {
           _Internal::set_has_real_z(&has_bits);
-          _impl_.real_z_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          real_z_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -684,7 +639,7 @@ const char* Vision_DetectionBall::_InternalParse(const char* ptr, ::_pbi::ParseC
       case 19:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 157)) {
           _Internal::set_has_chip_vel_x(&has_bits);
-          _impl_.chip_vel_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          chip_vel_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -693,7 +648,7 @@ const char* Vision_DetectionBall::_InternalParse(const char* ptr, ::_pbi::ParseC
       case 20:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 165)) {
           _Internal::set_has_chip_vel_y(&has_bits);
-          _impl_.chip_vel_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          chip_vel_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -702,7 +657,7 @@ const char* Vision_DetectionBall::_InternalParse(const char* ptr, ::_pbi::ParseC
       case 21:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 173)) {
           _Internal::set_has_chip_vel_z(&has_bits);
-          _impl_.chip_vel_z_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          chip_vel_z_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -711,7 +666,7 @@ const char* Vision_DetectionBall::_InternalParse(const char* ptr, ::_pbi::ParseC
       case 22:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 181)) {
           _Internal::set_has_chip_second_pos_x(&has_bits);
-          _impl_.chip_second_pos_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          chip_second_pos_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -720,7 +675,7 @@ const char* Vision_DetectionBall::_InternalParse(const char* ptr, ::_pbi::ParseC
       case 23:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 189)) {
           _Internal::set_has_chip_second_pos_y(&has_bits);
-          _impl_.chip_second_pos_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          chip_second_pos_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -729,7 +684,7 @@ const char* Vision_DetectionBall::_InternalParse(const char* ptr, ::_pbi::ParseC
       case 24:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 197)) {
           _Internal::set_has_chip_fly_time(&has_bits);
-          _impl_.chip_fly_time_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          chip_fly_time_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -738,7 +693,7 @@ const char* Vision_DetectionBall::_InternalParse(const char* ptr, ::_pbi::ParseC
       case 25:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 205)) {
           _Internal::set_has_chip_rest_fly_time(&has_bits);
-          _impl_.chip_rest_fly_time_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          chip_rest_fly_time_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -747,7 +702,7 @@ const char* Vision_DetectionBall::_InternalParse(const char* ptr, ::_pbi::ParseC
       case 26:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 213)) {
           _Internal::set_has_raw_vel_x(&has_bits);
-          _impl_.raw_vel_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          raw_vel_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -756,7 +711,7 @@ const char* Vision_DetectionBall::_InternalParse(const char* ptr, ::_pbi::ParseC
       case 27:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 221)) {
           _Internal::set_has_raw_vel_y(&has_bits);
-          _impl_.raw_vel_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          raw_vel_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -777,7 +732,7 @@ const char* Vision_DetectionBall::_InternalParse(const char* ptr, ::_pbi::ParseC
     CHK_(ptr != nullptr);
   }  // while
 message_done:
-  _impl_._has_bits_.Or(has_bits);
+  _has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -791,7 +746,7 @@ uint8_t* Vision_DetectionBall::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  cached_has_bits = _impl_._has_bits_[0];
+  cached_has_bits = _has_bits_[0];
   // optional float vel_x = 1;
   if (cached_has_bits & 0x00000001u) {
     target = stream->EnsureSpace(target);
@@ -997,7 +952,7 @@ size_t Vision_DetectionBall::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:Vision_DetectionBall)
   size_t total_size = 0;
 
-  if (((_impl_._has_bits_[0] & 0x00000718) ^ 0x00000718) == 0) {  // All required fields are present.
+  if (((_has_bits_[0] & 0x00000718) ^ 0x00000718) == 0) {  // All required fields are present.
     // required float x = 4;
     total_size += 1 + 4;
 
@@ -1020,7 +975,7 @@ size_t Vision_DetectionBall::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  cached_has_bits = _impl_._has_bits_[0];
+  cached_has_bits = _has_bits_[0];
   if (cached_has_bits & 0x00000007u) {
     // optional float vel_x = 1;
     if (cached_has_bits & 0x00000001u) {
@@ -1141,119 +1096,123 @@ size_t Vision_DetectionBall::ByteSizeLong() const {
     }
 
   }
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Vision_DetectionBall::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     Vision_DetectionBall::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Vision_DetectionBall::GetClassData() const { return &_class_data_; }
 
+void Vision_DetectionBall::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Vision_DetectionBall *>(to)->MergeFrom(
+      static_cast<const Vision_DetectionBall &>(from));
+}
 
-void Vision_DetectionBall::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<Vision_DetectionBall*>(&to_msg);
-  auto& from = static_cast<const Vision_DetectionBall&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:Vision_DetectionBall)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void Vision_DetectionBall::MergeFrom(const Vision_DetectionBall& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Vision_DetectionBall)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  cached_has_bits = from._impl_._has_bits_[0];
+  cached_has_bits = from._has_bits_[0];
   if (cached_has_bits & 0x000000ffu) {
     if (cached_has_bits & 0x00000001u) {
-      _this->_impl_.vel_x_ = from._impl_.vel_x_;
+      vel_x_ = from.vel_x_;
     }
     if (cached_has_bits & 0x00000002u) {
-      _this->_impl_.vel_y_ = from._impl_.vel_y_;
+      vel_y_ = from.vel_y_;
     }
     if (cached_has_bits & 0x00000004u) {
-      _this->_impl_.area_ = from._impl_.area_;
+      area_ = from.area_;
     }
     if (cached_has_bits & 0x00000008u) {
-      _this->_impl_.x_ = from._impl_.x_;
+      x_ = from.x_;
     }
     if (cached_has_bits & 0x00000010u) {
-      _this->_impl_.y_ = from._impl_.y_;
+      y_ = from.y_;
     }
     if (cached_has_bits & 0x00000020u) {
-      _this->_impl_.height_ = from._impl_.height_;
+      height_ = from.height_;
     }
     if (cached_has_bits & 0x00000040u) {
-      _this->_impl_.ball_state_ = from._impl_.ball_state_;
+      ball_state_ = from.ball_state_;
     }
     if (cached_has_bits & 0x00000080u) {
-      _this->_impl_.last_touch_ = from._impl_.last_touch_;
+      last_touch_ = from.last_touch_;
     }
-    _this->_impl_._has_bits_[0] |= cached_has_bits;
+    _has_bits_[0] |= cached_has_bits;
   }
   if (cached_has_bits & 0x0000ff00u) {
     if (cached_has_bits & 0x00000100u) {
-      _this->_impl_.valid_ = from._impl_.valid_;
+      valid_ = from.valid_;
     }
     if (cached_has_bits & 0x00000200u) {
-      _this->_impl_.raw_x_ = from._impl_.raw_x_;
+      raw_x_ = from.raw_x_;
     }
     if (cached_has_bits & 0x00000400u) {
-      _this->_impl_.raw_y_ = from._impl_.raw_y_;
+      raw_y_ = from.raw_y_;
     }
     if (cached_has_bits & 0x00000800u) {
-      _this->_impl_.chip_predict_x_ = from._impl_.chip_predict_x_;
+      chip_predict_x_ = from.chip_predict_x_;
     }
     if (cached_has_bits & 0x00001000u) {
-      _this->_impl_.chip_predict_y_ = from._impl_.chip_predict_y_;
+      chip_predict_y_ = from.chip_predict_y_;
     }
     if (cached_has_bits & 0x00002000u) {
-      _this->_impl_.chip_best_predict_x_ = from._impl_.chip_best_predict_x_;
+      chip_best_predict_x_ = from.chip_best_predict_x_;
     }
     if (cached_has_bits & 0x00004000u) {
-      _this->_impl_.chip_best_predict_y_ = from._impl_.chip_best_predict_y_;
+      chip_best_predict_y_ = from.chip_best_predict_y_;
     }
     if (cached_has_bits & 0x00008000u) {
-      _this->_impl_.real_x_ = from._impl_.real_x_;
+      real_x_ = from.real_x_;
     }
-    _this->_impl_._has_bits_[0] |= cached_has_bits;
+    _has_bits_[0] |= cached_has_bits;
   }
   if (cached_has_bits & 0x00ff0000u) {
     if (cached_has_bits & 0x00010000u) {
-      _this->_impl_.real_y_ = from._impl_.real_y_;
+      real_y_ = from.real_y_;
     }
     if (cached_has_bits & 0x00020000u) {
-      _this->_impl_.real_z_ = from._impl_.real_z_;
+      real_z_ = from.real_z_;
     }
     if (cached_has_bits & 0x00040000u) {
-      _this->_impl_.chip_vel_x_ = from._impl_.chip_vel_x_;
+      chip_vel_x_ = from.chip_vel_x_;
     }
     if (cached_has_bits & 0x00080000u) {
-      _this->_impl_.chip_vel_y_ = from._impl_.chip_vel_y_;
+      chip_vel_y_ = from.chip_vel_y_;
     }
     if (cached_has_bits & 0x00100000u) {
-      _this->_impl_.chip_vel_z_ = from._impl_.chip_vel_z_;
+      chip_vel_z_ = from.chip_vel_z_;
     }
     if (cached_has_bits & 0x00200000u) {
-      _this->_impl_.chip_second_pos_x_ = from._impl_.chip_second_pos_x_;
+      chip_second_pos_x_ = from.chip_second_pos_x_;
     }
     if (cached_has_bits & 0x00400000u) {
-      _this->_impl_.chip_second_pos_y_ = from._impl_.chip_second_pos_y_;
+      chip_second_pos_y_ = from.chip_second_pos_y_;
     }
     if (cached_has_bits & 0x00800000u) {
-      _this->_impl_.chip_fly_time_ = from._impl_.chip_fly_time_;
+      chip_fly_time_ = from.chip_fly_time_;
     }
-    _this->_impl_._has_bits_[0] |= cached_has_bits;
+    _has_bits_[0] |= cached_has_bits;
   }
   if (cached_has_bits & 0x07000000u) {
     if (cached_has_bits & 0x01000000u) {
-      _this->_impl_.chip_rest_fly_time_ = from._impl_.chip_rest_fly_time_;
+      chip_rest_fly_time_ = from.chip_rest_fly_time_;
     }
     if (cached_has_bits & 0x02000000u) {
-      _this->_impl_.raw_vel_x_ = from._impl_.raw_vel_x_;
+      raw_vel_x_ = from.raw_vel_x_;
     }
     if (cached_has_bits & 0x04000000u) {
-      _this->_impl_.raw_vel_y_ = from._impl_.raw_vel_y_;
+      raw_vel_y_ = from.raw_vel_y_;
     }
-    _this->_impl_._has_bits_[0] |= cached_has_bits;
+    _has_bits_[0] |= cached_has_bits;
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Vision_DetectionBall::CopyFrom(const Vision_DetectionBall& from) {
@@ -1264,20 +1223,20 @@ void Vision_DetectionBall::CopyFrom(const Vision_DetectionBall& from) {
 }
 
 bool Vision_DetectionBall::IsInitialized() const {
-  if (_Internal::MissingRequiredFields(_impl_._has_bits_)) return false;
+  if (_Internal::MissingRequiredFields(_has_bits_)) return false;
   return true;
 }
 
 void Vision_DetectionBall::InternalSwap(Vision_DetectionBall* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  swap(_has_bits_[0], other->_has_bits_[0]);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Vision_DetectionBall, _impl_.raw_vel_y_)
-      + sizeof(Vision_DetectionBall::_impl_.raw_vel_y_)
-      - PROTOBUF_FIELD_OFFSET(Vision_DetectionBall, _impl_.vel_x_)>(
-          reinterpret_cast<char*>(&_impl_.vel_x_),
-          reinterpret_cast<char*>(&other->_impl_.vel_x_));
+      PROTOBUF_FIELD_OFFSET(Vision_DetectionBall, raw_vel_y_)
+      + sizeof(Vision_DetectionBall::raw_vel_y_)
+      - PROTOBUF_FIELD_OFFSET(Vision_DetectionBall, vel_x_)>(
+          reinterpret_cast<char*>(&vel_x_),
+          reinterpret_cast<char*>(&other->vel_x_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Vision_DetectionBall::GetMetadata() const {
@@ -1290,7 +1249,7 @@ void Vision_DetectionBall::InternalSwap(Vision_DetectionBall* other) {
 
 class Vision_DetectionRobot::_Internal {
  public:
-  using HasBits = decltype(std::declval<Vision_DetectionRobot>()._impl_._has_bits_);
+  using HasBits = decltype(std::declval<Vision_DetectionRobot>()._has_bits_);
   static void set_has_valid(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
   }
@@ -1348,6 +1307,12 @@ class Vision_DetectionRobot::_Internal {
   static void set_has_imu_bias(HasBits* has_bits) {
     (*has_bits)[0] |= 262144u;
   }
+  static void set_has_raw_vel_unfiltered_x(HasBits* has_bits) {
+    (*has_bits)[0] |= 524288u;
+  }
+  static void set_has_raw_vel_unfiltered_y(HasBits* has_bits) {
+    (*has_bits)[0] |= 1048576u;
+  }
   static bool MissingRequiredFields(const HasBits& has_bits) {
     return ((has_bits[0] & 0x00000c0d) ^ 0x00000c0d) != 0;
   }
@@ -1356,69 +1321,24 @@ class Vision_DetectionRobot::_Internal {
 Vision_DetectionRobot::Vision_DetectionRobot(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:Vision_DetectionRobot)
 }
 Vision_DetectionRobot::Vision_DetectionRobot(const Vision_DetectionRobot& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  Vision_DetectionRobot* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){from._impl_._has_bits_}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.valid_){}
-    , decltype(_impl_.robot_id_){}
-    , decltype(_impl_.x_){}
-    , decltype(_impl_.y_){}
-    , decltype(_impl_.orientation_){}
-    , decltype(_impl_.vel_x_){}
-    , decltype(_impl_.vel_y_){}
-    , decltype(_impl_.rotate_vel_){}
-    , decltype(_impl_.accelerate_x_){}
-    , decltype(_impl_.accelerate_y_){}
-    , decltype(_impl_.raw_x_){}
-    , decltype(_impl_.raw_y_){}
-    , decltype(_impl_.raw_orientation_){}
-    , decltype(_impl_.raw_vel_x_){}
-    , decltype(_impl_.raw_vel_y_){}
-    , decltype(_impl_.raw_rotate_vel_){}
-    , decltype(_impl_.imu_dir_){}
-    , decltype(_impl_.imu_rotate_vel_){}
-    , decltype(_impl_.imu_bias_){}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.valid_, &from._impl_.valid_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.imu_bias_) -
-    reinterpret_cast<char*>(&_impl_.valid_)) + sizeof(_impl_.imu_bias_));
+  ::memcpy(&valid_, &from.valid_,
+    static_cast<size_t>(reinterpret_cast<char*>(&raw_vel_unfiltered_y_) -
+    reinterpret_cast<char*>(&valid_)) + sizeof(raw_vel_unfiltered_y_));
   // @@protoc_insertion_point(copy_constructor:Vision_DetectionRobot)
 }
 
-inline void Vision_DetectionRobot::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.valid_){false}
-    , decltype(_impl_.robot_id_){0u}
-    , decltype(_impl_.x_){0}
-    , decltype(_impl_.y_){0}
-    , decltype(_impl_.orientation_){0}
-    , decltype(_impl_.vel_x_){0}
-    , decltype(_impl_.vel_y_){0}
-    , decltype(_impl_.rotate_vel_){0}
-    , decltype(_impl_.accelerate_x_){0}
-    , decltype(_impl_.accelerate_y_){0}
-    , decltype(_impl_.raw_x_){0}
-    , decltype(_impl_.raw_y_){0}
-    , decltype(_impl_.raw_orientation_){0}
-    , decltype(_impl_.raw_vel_x_){0}
-    , decltype(_impl_.raw_vel_y_){0}
-    , decltype(_impl_.raw_rotate_vel_){0}
-    , decltype(_impl_.imu_dir_){0}
-    , decltype(_impl_.imu_rotate_vel_){0}
-    , decltype(_impl_.imu_bias_){0}
-  };
+inline void Vision_DetectionRobot::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&valid_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&raw_vel_unfiltered_y_) -
+    reinterpret_cast<char*>(&valid_)) + sizeof(raw_vel_unfiltered_y_));
 }
 
 Vision_DetectionRobot::~Vision_DetectionRobot() {
@@ -1435,7 +1355,7 @@ inline void Vision_DetectionRobot::SharedDtor() {
 }
 
 void Vision_DetectionRobot::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void Vision_DetectionRobot::Clear() {
@@ -1444,23 +1364,23 @@ void Vision_DetectionRobot::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  cached_has_bits = _impl_._has_bits_[0];
+  cached_has_bits = _has_bits_[0];
   if (cached_has_bits & 0x000000ffu) {
-    ::memset(&_impl_.valid_, 0, static_cast<size_t>(
-        reinterpret_cast<char*>(&_impl_.rotate_vel_) -
-        reinterpret_cast<char*>(&_impl_.valid_)) + sizeof(_impl_.rotate_vel_));
+    ::memset(&valid_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&rotate_vel_) -
+        reinterpret_cast<char*>(&valid_)) + sizeof(rotate_vel_));
   }
   if (cached_has_bits & 0x0000ff00u) {
-    ::memset(&_impl_.accelerate_x_, 0, static_cast<size_t>(
-        reinterpret_cast<char*>(&_impl_.raw_rotate_vel_) -
-        reinterpret_cast<char*>(&_impl_.accelerate_x_)) + sizeof(_impl_.raw_rotate_vel_));
+    ::memset(&accelerate_x_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&raw_rotate_vel_) -
+        reinterpret_cast<char*>(&accelerate_x_)) + sizeof(raw_rotate_vel_));
   }
-  if (cached_has_bits & 0x00070000u) {
-    ::memset(&_impl_.imu_dir_, 0, static_cast<size_t>(
-        reinterpret_cast<char*>(&_impl_.imu_bias_) -
-        reinterpret_cast<char*>(&_impl_.imu_dir_)) + sizeof(_impl_.imu_bias_));
+  if (cached_has_bits & 0x001f0000u) {
+    ::memset(&imu_dir_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&raw_vel_unfiltered_y_) -
+        reinterpret_cast<char*>(&imu_dir_)) + sizeof(raw_vel_unfiltered_y_));
   }
-  _impl_._has_bits_.Clear();
+  _has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1475,7 +1395,7 @@ const char* Vision_DetectionRobot::_InternalParse(const char* ptr, ::_pbi::Parse
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
           _Internal::set_has_valid(&has_bits);
-          _impl_.valid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          valid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1484,7 +1404,7 @@ const char* Vision_DetectionRobot::_InternalParse(const char* ptr, ::_pbi::Parse
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
           _Internal::set_has_robot_id(&has_bits);
-          _impl_.robot_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          robot_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1493,7 +1413,7 @@ const char* Vision_DetectionRobot::_InternalParse(const char* ptr, ::_pbi::Parse
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 29)) {
           _Internal::set_has_x(&has_bits);
-          _impl_.x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -1502,7 +1422,7 @@ const char* Vision_DetectionRobot::_InternalParse(const char* ptr, ::_pbi::Parse
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 37)) {
           _Internal::set_has_y(&has_bits);
-          _impl_.y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -1511,7 +1431,7 @@ const char* Vision_DetectionRobot::_InternalParse(const char* ptr, ::_pbi::Parse
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 45)) {
           _Internal::set_has_orientation(&has_bits);
-          _impl_.orientation_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          orientation_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -1520,7 +1440,7 @@ const char* Vision_DetectionRobot::_InternalParse(const char* ptr, ::_pbi::Parse
       case 6:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 53)) {
           _Internal::set_has_vel_x(&has_bits);
-          _impl_.vel_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          vel_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -1529,7 +1449,7 @@ const char* Vision_DetectionRobot::_InternalParse(const char* ptr, ::_pbi::Parse
       case 7:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 61)) {
           _Internal::set_has_vel_y(&has_bits);
-          _impl_.vel_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          vel_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -1538,7 +1458,7 @@ const char* Vision_DetectionRobot::_InternalParse(const char* ptr, ::_pbi::Parse
       case 8:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 69)) {
           _Internal::set_has_rotate_vel(&has_bits);
-          _impl_.rotate_vel_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          rotate_vel_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -1547,7 +1467,7 @@ const char* Vision_DetectionRobot::_InternalParse(const char* ptr, ::_pbi::Parse
       case 9:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 77)) {
           _Internal::set_has_accelerate_x(&has_bits);
-          _impl_.accelerate_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          accelerate_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -1556,7 +1476,7 @@ const char* Vision_DetectionRobot::_InternalParse(const char* ptr, ::_pbi::Parse
       case 10:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 85)) {
           _Internal::set_has_accelerate_y(&has_bits);
-          _impl_.accelerate_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          accelerate_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -1565,7 +1485,7 @@ const char* Vision_DetectionRobot::_InternalParse(const char* ptr, ::_pbi::Parse
       case 11:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 93)) {
           _Internal::set_has_raw_x(&has_bits);
-          _impl_.raw_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          raw_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -1574,7 +1494,7 @@ const char* Vision_DetectionRobot::_InternalParse(const char* ptr, ::_pbi::Parse
       case 12:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 101)) {
           _Internal::set_has_raw_y(&has_bits);
-          _impl_.raw_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          raw_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -1583,7 +1503,7 @@ const char* Vision_DetectionRobot::_InternalParse(const char* ptr, ::_pbi::Parse
       case 13:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 109)) {
           _Internal::set_has_raw_orientation(&has_bits);
-          _impl_.raw_orientation_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          raw_orientation_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -1592,7 +1512,7 @@ const char* Vision_DetectionRobot::_InternalParse(const char* ptr, ::_pbi::Parse
       case 14:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 117)) {
           _Internal::set_has_raw_vel_x(&has_bits);
-          _impl_.raw_vel_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          raw_vel_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -1601,7 +1521,7 @@ const char* Vision_DetectionRobot::_InternalParse(const char* ptr, ::_pbi::Parse
       case 15:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 125)) {
           _Internal::set_has_raw_vel_y(&has_bits);
-          _impl_.raw_vel_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          raw_vel_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -1610,7 +1530,7 @@ const char* Vision_DetectionRobot::_InternalParse(const char* ptr, ::_pbi::Parse
       case 16:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 133)) {
           _Internal::set_has_raw_rotate_vel(&has_bits);
-          _impl_.raw_rotate_vel_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          raw_rotate_vel_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -1619,7 +1539,7 @@ const char* Vision_DetectionRobot::_InternalParse(const char* ptr, ::_pbi::Parse
       case 17:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 141)) {
           _Internal::set_has_imu_dir(&has_bits);
-          _impl_.imu_dir_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          imu_dir_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -1628,7 +1548,7 @@ const char* Vision_DetectionRobot::_InternalParse(const char* ptr, ::_pbi::Parse
       case 18:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 149)) {
           _Internal::set_has_imu_rotate_vel(&has_bits);
-          _impl_.imu_rotate_vel_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          imu_rotate_vel_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -1637,7 +1557,25 @@ const char* Vision_DetectionRobot::_InternalParse(const char* ptr, ::_pbi::Parse
       case 19:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 157)) {
           _Internal::set_has_imu_bias(&has_bits);
-          _impl_.imu_bias_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          imu_bias_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional float raw_vel_unfiltered_x = 20;
+      case 20:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 165)) {
+          _Internal::set_has_raw_vel_unfiltered_x(&has_bits);
+          raw_vel_unfiltered_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional float raw_vel_unfiltered_y = 21;
+      case 21:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 173)) {
+          _Internal::set_has_raw_vel_unfiltered_y(&has_bits);
+          raw_vel_unfiltered_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -1658,7 +1596,7 @@ const char* Vision_DetectionRobot::_InternalParse(const char* ptr, ::_pbi::Parse
     CHK_(ptr != nullptr);
   }  // while
 message_done:
-  _impl_._has_bits_.Or(has_bits);
+  _has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -1672,7 +1610,7 @@ uint8_t* Vision_DetectionRobot::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  cached_has_bits = _impl_._has_bits_[0];
+  cached_has_bits = _has_bits_[0];
   // required bool valid = 1;
   if (cached_has_bits & 0x00000001u) {
     target = stream->EnsureSpace(target);
@@ -1787,6 +1725,18 @@ uint8_t* Vision_DetectionRobot::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteFloatToArray(19, this->_internal_imu_bias(), target);
   }
 
+  // optional float raw_vel_unfiltered_x = 20;
+  if (cached_has_bits & 0x00080000u) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(20, this->_internal_raw_vel_unfiltered_x(), target);
+  }
+
+  // optional float raw_vel_unfiltered_y = 21;
+  if (cached_has_bits & 0x00100000u) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(21, this->_internal_raw_vel_unfiltered_y(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -1830,7 +1780,7 @@ size_t Vision_DetectionRobot::ByteSizeLong() const {
 // @@protoc_insertion_point(message_byte_size_start:Vision_DetectionRobot)
   size_t total_size = 0;
 
-  if (((_impl_._has_bits_[0] & 0x00000c0d) ^ 0x00000c0d) == 0) {  // All required fields are present.
+  if (((_has_bits_[0] & 0x00000c0d) ^ 0x00000c0d) == 0) {  // All required fields are present.
     // required bool valid = 1;
     total_size += 1 + 1;
 
@@ -1854,7 +1804,7 @@ size_t Vision_DetectionRobot::ByteSizeLong() const {
   (void) cached_has_bits;
 
   // optional uint32 robot_id = 2;
-  cached_has_bits = _impl_._has_bits_[0];
+  cached_has_bits = _has_bits_[0];
   if (cached_has_bits & 0x00000002u) {
     total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(this->_internal_robot_id());
   }
@@ -1915,7 +1865,7 @@ size_t Vision_DetectionRobot::ByteSizeLong() const {
     }
 
   }
-  if (cached_has_bits & 0x00070000u) {
+  if (cached_has_bits & 0x001f0000u) {
     // optional float imu_dir = 17;
     if (cached_has_bits & 0x00010000u) {
       total_size += 2 + 4;
@@ -1931,93 +1881,113 @@ size_t Vision_DetectionRobot::ByteSizeLong() const {
       total_size += 2 + 4;
     }
 
+    // optional float raw_vel_unfiltered_x = 20;
+    if (cached_has_bits & 0x00080000u) {
+      total_size += 2 + 4;
+    }
+
+    // optional float raw_vel_unfiltered_y = 21;
+    if (cached_has_bits & 0x00100000u) {
+      total_size += 2 + 4;
+    }
+
   }
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Vision_DetectionRobot::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     Vision_DetectionRobot::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Vision_DetectionRobot::GetClassData() const { return &_class_data_; }
 
+void Vision_DetectionRobot::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Vision_DetectionRobot *>(to)->MergeFrom(
+      static_cast<const Vision_DetectionRobot &>(from));
+}
 
-void Vision_DetectionRobot::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<Vision_DetectionRobot*>(&to_msg);
-  auto& from = static_cast<const Vision_DetectionRobot&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:Vision_DetectionRobot)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void Vision_DetectionRobot::MergeFrom(const Vision_DetectionRobot& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Vision_DetectionRobot)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  cached_has_bits = from._impl_._has_bits_[0];
+  cached_has_bits = from._has_bits_[0];
   if (cached_has_bits & 0x000000ffu) {
     if (cached_has_bits & 0x00000001u) {
-      _this->_impl_.valid_ = from._impl_.valid_;
+      valid_ = from.valid_;
     }
     if (cached_has_bits & 0x00000002u) {
-      _this->_impl_.robot_id_ = from._impl_.robot_id_;
+      robot_id_ = from.robot_id_;
     }
     if (cached_has_bits & 0x00000004u) {
-      _this->_impl_.x_ = from._impl_.x_;
+      x_ = from.x_;
     }
     if (cached_has_bits & 0x00000008u) {
-      _this->_impl_.y_ = from._impl_.y_;
+      y_ = from.y_;
     }
     if (cached_has_bits & 0x00000010u) {
-      _this->_impl_.orientation_ = from._impl_.orientation_;
+      orientation_ = from.orientation_;
     }
     if (cached_has_bits & 0x00000020u) {
-      _this->_impl_.vel_x_ = from._impl_.vel_x_;
+      vel_x_ = from.vel_x_;
     }
     if (cached_has_bits & 0x00000040u) {
-      _this->_impl_.vel_y_ = from._impl_.vel_y_;
+      vel_y_ = from.vel_y_;
     }
     if (cached_has_bits & 0x00000080u) {
-      _this->_impl_.rotate_vel_ = from._impl_.rotate_vel_;
+      rotate_vel_ = from.rotate_vel_;
     }
-    _this->_impl_._has_bits_[0] |= cached_has_bits;
+    _has_bits_[0] |= cached_has_bits;
   }
   if (cached_has_bits & 0x0000ff00u) {
     if (cached_has_bits & 0x00000100u) {
-      _this->_impl_.accelerate_x_ = from._impl_.accelerate_x_;
+      accelerate_x_ = from.accelerate_x_;
     }
     if (cached_has_bits & 0x00000200u) {
-      _this->_impl_.accelerate_y_ = from._impl_.accelerate_y_;
+      accelerate_y_ = from.accelerate_y_;
     }
     if (cached_has_bits & 0x00000400u) {
-      _this->_impl_.raw_x_ = from._impl_.raw_x_;
+      raw_x_ = from.raw_x_;
     }
     if (cached_has_bits & 0x00000800u) {
-      _this->_impl_.raw_y_ = from._impl_.raw_y_;
+      raw_y_ = from.raw_y_;
     }
     if (cached_has_bits & 0x00001000u) {
-      _this->_impl_.raw_orientation_ = from._impl_.raw_orientation_;
+      raw_orientation_ = from.raw_orientation_;
     }
     if (cached_has_bits & 0x00002000u) {
-      _this->_impl_.raw_vel_x_ = from._impl_.raw_vel_x_;
+      raw_vel_x_ = from.raw_vel_x_;
     }
     if (cached_has_bits & 0x00004000u) {
-      _this->_impl_.raw_vel_y_ = from._impl_.raw_vel_y_;
+      raw_vel_y_ = from.raw_vel_y_;
     }
     if (cached_has_bits & 0x00008000u) {
-      _this->_impl_.raw_rotate_vel_ = from._impl_.raw_rotate_vel_;
+      raw_rotate_vel_ = from.raw_rotate_vel_;
     }
-    _this->_impl_._has_bits_[0] |= cached_has_bits;
+    _has_bits_[0] |= cached_has_bits;
   }
-  if (cached_has_bits & 0x00070000u) {
+  if (cached_has_bits & 0x001f0000u) {
     if (cached_has_bits & 0x00010000u) {
-      _this->_impl_.imu_dir_ = from._impl_.imu_dir_;
+      imu_dir_ = from.imu_dir_;
     }
     if (cached_has_bits & 0x00020000u) {
-      _this->_impl_.imu_rotate_vel_ = from._impl_.imu_rotate_vel_;
+      imu_rotate_vel_ = from.imu_rotate_vel_;
     }
     if (cached_has_bits & 0x00040000u) {
-      _this->_impl_.imu_bias_ = from._impl_.imu_bias_;
+      imu_bias_ = from.imu_bias_;
     }
-    _this->_impl_._has_bits_[0] |= cached_has_bits;
+    if (cached_has_bits & 0x00080000u) {
+      raw_vel_unfiltered_x_ = from.raw_vel_unfiltered_x_;
+    }
+    if (cached_has_bits & 0x00100000u) {
+      raw_vel_unfiltered_y_ = from.raw_vel_unfiltered_y_;
+    }
+    _has_bits_[0] |= cached_has_bits;
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Vision_DetectionRobot::CopyFrom(const Vision_DetectionRobot& from) {
@@ -2028,20 +1998,20 @@ void Vision_DetectionRobot::CopyFrom(const Vision_DetectionRobot& from) {
 }
 
 bool Vision_DetectionRobot::IsInitialized() const {
-  if (_Internal::MissingRequiredFields(_impl_._has_bits_)) return false;
+  if (_Internal::MissingRequiredFields(_has_bits_)) return false;
   return true;
 }
 
 void Vision_DetectionRobot::InternalSwap(Vision_DetectionRobot* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  swap(_has_bits_[0], other->_has_bits_[0]);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Vision_DetectionRobot, _impl_.imu_bias_)
-      + sizeof(Vision_DetectionRobot::_impl_.imu_bias_)
-      - PROTOBUF_FIELD_OFFSET(Vision_DetectionRobot, _impl_.valid_)>(
-          reinterpret_cast<char*>(&_impl_.valid_),
-          reinterpret_cast<char*>(&other->_impl_.valid_));
+      PROTOBUF_FIELD_OFFSET(Vision_DetectionRobot, raw_vel_unfiltered_y_)
+      + sizeof(Vision_DetectionRobot::raw_vel_unfiltered_y_)
+      - PROTOBUF_FIELD_OFFSET(Vision_DetectionRobot, valid_)>(
+          reinterpret_cast<char*>(&valid_),
+          reinterpret_cast<char*>(&other->valid_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Vision_DetectionRobot::GetMetadata() const {
@@ -2054,10 +2024,22 @@ void Vision_DetectionRobot::InternalSwap(Vision_DetectionRobot* other) {
 
 class Vision_DetectionFrame::_Internal {
  public:
-  using HasBits = decltype(std::declval<Vision_DetectionFrame>()._impl_._has_bits_);
+  using HasBits = decltype(std::declval<Vision_DetectionFrame>()._has_bits_);
   static const ::Vision_DetectionBall& balls(const Vision_DetectionFrame* msg);
   static void set_has_balls(HasBits* has_bits) {
     (*has_bits)[0] |= 1u;
+  }
+  static void set_has_sequence(HasBits* has_bits) {
+    (*has_bits)[0] |= 4u;
+  }
+  static void set_has_acquisition_age_us(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
+  static void set_has_t_capture(HasBits* has_bits) {
+    (*has_bits)[0] |= 16u;
+  }
+  static void set_has_quality(HasBits* has_bits) {
+    (*has_bits)[0] |= 8u;
   }
   static bool MissingRequiredFields(const HasBits& has_bits) {
     return ((has_bits[0] & 0x00000001) ^ 0x00000001) != 0;
@@ -2066,42 +2048,38 @@ class Vision_DetectionFrame::_Internal {
 
 const ::Vision_DetectionBall&
 Vision_DetectionFrame::_Internal::balls(const Vision_DetectionFrame* msg) {
-  return *msg->_impl_.balls_;
+  return *msg->balls_;
 }
 Vision_DetectionFrame::Vision_DetectionFrame(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  robots_yellow_(arena),
+  robots_blue_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:Vision_DetectionFrame)
 }
 Vision_DetectionFrame::Vision_DetectionFrame(const Vision_DetectionFrame& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  Vision_DetectionFrame* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){from._impl_._has_bits_}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.robots_yellow_){from._impl_.robots_yellow_}
-    , decltype(_impl_.robots_blue_){from._impl_.robots_blue_}
-    , decltype(_impl_.balls_){nullptr}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_),
+      robots_yellow_(from.robots_yellow_),
+      robots_blue_(from.robots_blue_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_balls()) {
-    _this->_impl_.balls_ = new ::Vision_DetectionBall(*from._impl_.balls_);
+    balls_ = new ::Vision_DetectionBall(*from.balls_);
+  } else {
+    balls_ = nullptr;
   }
+  ::memcpy(&acquisition_age_us_, &from.acquisition_age_us_,
+    static_cast<size_t>(reinterpret_cast<char*>(&t_capture_) -
+    reinterpret_cast<char*>(&acquisition_age_us_)) + sizeof(t_capture_));
   // @@protoc_insertion_point(copy_constructor:Vision_DetectionFrame)
 }
 
-inline void Vision_DetectionFrame::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_._has_bits_){}
-    , /*decltype(_impl_._cached_size_)*/{}
-    , decltype(_impl_.robots_yellow_){arena}
-    , decltype(_impl_.robots_blue_){arena}
-    , decltype(_impl_.balls_){nullptr}
-  };
+inline void Vision_DetectionFrame::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&balls_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&t_capture_) -
+    reinterpret_cast<char*>(&balls_)) + sizeof(t_capture_));
 }
 
 Vision_DetectionFrame::~Vision_DetectionFrame() {
@@ -2115,13 +2093,11 @@ Vision_DetectionFrame::~Vision_DetectionFrame() {
 
 inline void Vision_DetectionFrame::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.robots_yellow_.~RepeatedPtrField();
-  _impl_.robots_blue_.~RepeatedPtrField();
-  if (this != internal_default_instance()) delete _impl_.balls_;
+  if (this != internal_default_instance()) delete balls_;
 }
 
 void Vision_DetectionFrame::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void Vision_DetectionFrame::Clear() {
@@ -2130,14 +2106,19 @@ void Vision_DetectionFrame::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.robots_yellow_.Clear();
-  _impl_.robots_blue_.Clear();
-  cached_has_bits = _impl_._has_bits_[0];
+  robots_yellow_.Clear();
+  robots_blue_.Clear();
+  cached_has_bits = _has_bits_[0];
   if (cached_has_bits & 0x00000001u) {
-    GOOGLE_DCHECK(_impl_.balls_ != nullptr);
-    _impl_.balls_->Clear();
+    GOOGLE_DCHECK(balls_ != nullptr);
+    balls_->Clear();
   }
-  _impl_._has_bits_.Clear();
+  if (cached_has_bits & 0x0000001eu) {
+    ::memset(&acquisition_age_us_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&t_capture_) -
+        reinterpret_cast<char*>(&acquisition_age_us_)) + sizeof(t_capture_));
+  }
+  _has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2182,6 +2163,42 @@ const char* Vision_DetectionFrame::_InternalParse(const char* ptr, ::_pbi::Parse
         } else
           goto handle_unusual;
         continue;
+      // optional uint32 sequence = 60;
+      case 60:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 224)) {
+          _Internal::set_has_sequence(&has_bits);
+          sequence_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional uint64 acquisition_age_us = 61;
+      case 61:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 232)) {
+          _Internal::set_has_acquisition_age_us(&has_bits);
+          acquisition_age_us_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional double t_capture = 62;
+      case 62:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 241)) {
+          _Internal::set_has_t_capture(&has_bits);
+          t_capture_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else
+          goto handle_unusual;
+        continue;
+      // optional uint32 quality = 63;
+      case 63:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 248)) {
+          _Internal::set_has_quality(&has_bits);
+          quality_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
       default:
         goto handle_unusual;
     }  // switch
@@ -2198,7 +2215,7 @@ const char* Vision_DetectionFrame::_InternalParse(const char* ptr, ::_pbi::Parse
     CHK_(ptr != nullptr);
   }  // while
 message_done:
-  _impl_._has_bits_.Or(has_bits);
+  _has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -2212,7 +2229,7 @@ uint8_t* Vision_DetectionFrame::_InternalSerialize(
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  cached_has_bits = _impl_._has_bits_[0];
+  cached_has_bits = _has_bits_[0];
   // required .Vision_DetectionBall balls = 1;
   if (cached_has_bits & 0x00000001u) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
@@ -2236,6 +2253,30 @@ uint8_t* Vision_DetectionFrame::_InternalSerialize(
         InternalWriteMessage(3, repfield, repfield.GetCachedSize(), target, stream);
   }
 
+  // optional uint32 sequence = 60;
+  if (cached_has_bits & 0x00000004u) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(60, this->_internal_sequence(), target);
+  }
+
+  // optional uint64 acquisition_age_us = 61;
+  if (cached_has_bits & 0x00000002u) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt64ToArray(61, this->_internal_acquisition_age_us(), target);
+  }
+
+  // optional double t_capture = 62;
+  if (cached_has_bits & 0x00000010u) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteDoubleToArray(62, this->_internal_t_capture(), target);
+  }
+
+  // optional uint32 quality = 63;
+  if (cached_has_bits & 0x00000008u) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteUInt32ToArray(63, this->_internal_quality(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -2252,7 +2293,7 @@ size_t Vision_DetectionFrame::ByteSizeLong() const {
   if (_internal_has_balls()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.balls_);
+        *balls_);
   }
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -2260,43 +2301,91 @@ size_t Vision_DetectionFrame::ByteSizeLong() const {
 
   // repeated .Vision_DetectionRobot robots_yellow = 2;
   total_size += 1UL * this->_internal_robots_yellow_size();
-  for (const auto& msg : this->_impl_.robots_yellow_) {
+  for (const auto& msg : this->robots_yellow_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
   // repeated .Vision_DetectionRobot robots_blue = 3;
   total_size += 1UL * this->_internal_robots_blue_size();
-  for (const auto& msg : this->_impl_.robots_blue_) {
+  for (const auto& msg : this->robots_blue_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x0000001eu) {
+    // optional uint64 acquisition_age_us = 61;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += 2 +
+        ::_pbi::WireFormatLite::UInt64Size(
+          this->_internal_acquisition_age_us());
+    }
+
+    // optional uint32 sequence = 60;
+    if (cached_has_bits & 0x00000004u) {
+      total_size += 2 +
+        ::_pbi::WireFormatLite::UInt32Size(
+          this->_internal_sequence());
+    }
+
+    // optional uint32 quality = 63;
+    if (cached_has_bits & 0x00000008u) {
+      total_size += 2 +
+        ::_pbi::WireFormatLite::UInt32Size(
+          this->_internal_quality());
+    }
+
+    // optional double t_capture = 62;
+    if (cached_has_bits & 0x00000010u) {
+      total_size += 2 + 8;
+    }
+
+  }
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Vision_DetectionFrame::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     Vision_DetectionFrame::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Vision_DetectionFrame::GetClassData() const { return &_class_data_; }
 
+void Vision_DetectionFrame::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Vision_DetectionFrame *>(to)->MergeFrom(
+      static_cast<const Vision_DetectionFrame &>(from));
+}
 
-void Vision_DetectionFrame::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<Vision_DetectionFrame*>(&to_msg);
-  auto& from = static_cast<const Vision_DetectionFrame&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:Vision_DetectionFrame)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void Vision_DetectionFrame::MergeFrom(const Vision_DetectionFrame& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:Vision_DetectionFrame)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.robots_yellow_.MergeFrom(from._impl_.robots_yellow_);
-  _this->_impl_.robots_blue_.MergeFrom(from._impl_.robots_blue_);
-  if (from._internal_has_balls()) {
-    _this->_internal_mutable_balls()->::Vision_DetectionBall::MergeFrom(
-        from._internal_balls());
+  robots_yellow_.MergeFrom(from.robots_yellow_);
+  robots_blue_.MergeFrom(from.robots_blue_);
+  cached_has_bits = from._has_bits_[0];
+  if (cached_has_bits & 0x0000001fu) {
+    if (cached_has_bits & 0x00000001u) {
+      _internal_mutable_balls()->::Vision_DetectionBall::MergeFrom(from._internal_balls());
+    }
+    if (cached_has_bits & 0x00000002u) {
+      acquisition_age_us_ = from.acquisition_age_us_;
+    }
+    if (cached_has_bits & 0x00000004u) {
+      sequence_ = from.sequence_;
+    }
+    if (cached_has_bits & 0x00000008u) {
+      quality_ = from.quality_;
+    }
+    if (cached_has_bits & 0x00000010u) {
+      t_capture_ = from.t_capture_;
+    }
+    _has_bits_[0] |= cached_has_bits;
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Vision_DetectionFrame::CopyFrom(const Vision_DetectionFrame& from) {
@@ -2307,13 +2396,13 @@ void Vision_DetectionFrame::CopyFrom(const Vision_DetectionFrame& from) {
 }
 
 bool Vision_DetectionFrame::IsInitialized() const {
-  if (_Internal::MissingRequiredFields(_impl_._has_bits_)) return false;
-  if (!::PROTOBUF_NAMESPACE_ID::internal::AllAreInitialized(_impl_.robots_yellow_))
+  if (_Internal::MissingRequiredFields(_has_bits_)) return false;
+  if (!::PROTOBUF_NAMESPACE_ID::internal::AllAreInitialized(robots_yellow_))
     return false;
-  if (!::PROTOBUF_NAMESPACE_ID::internal::AllAreInitialized(_impl_.robots_blue_))
+  if (!::PROTOBUF_NAMESPACE_ID::internal::AllAreInitialized(robots_blue_))
     return false;
   if (_internal_has_balls()) {
-    if (!_impl_.balls_->IsInitialized()) return false;
+    if (!balls_->IsInitialized()) return false;
   }
   return true;
 }
@@ -2321,10 +2410,15 @@ bool Vision_DetectionFrame::IsInitialized() const {
 void Vision_DetectionFrame::InternalSwap(Vision_DetectionFrame* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  _impl_.robots_yellow_.InternalSwap(&other->_impl_.robots_yellow_);
-  _impl_.robots_blue_.InternalSwap(&other->_impl_.robots_blue_);
-  swap(_impl_.balls_, other->_impl_.balls_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
+  robots_yellow_.InternalSwap(&other->robots_yellow_);
+  robots_blue_.InternalSwap(&other->robots_blue_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Vision_DetectionFrame, t_capture_)
+      + sizeof(Vision_DetectionFrame::t_capture_)
+      - PROTOBUF_FIELD_OFFSET(Vision_DetectionFrame, balls_)>(
+          reinterpret_cast<char*>(&balls_),
+          reinterpret_cast<char*>(&other->balls_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Vision_DetectionFrame::GetMetadata() const {

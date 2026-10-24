@@ -23,11 +23,10 @@ namespace _pbi = _pb::internal;
 namespace ZSS {
 namespace New {
 PROTOBUF_CONSTEXPR Pose::Pose(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.x_)*/0
-  , /*decltype(_impl_.y_)*/0
-  , /*decltype(_impl_.w_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : x_(0)
+  , y_(0)
+  , w_(0){}
 struct PoseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR PoseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -38,11 +37,10 @@ struct PoseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PoseDefaultTypeInternal _Pose_default_instance_;
 PROTOBUF_CONSTEXPR Twist::Twist(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.x_)*/0
-  , /*decltype(_impl_.y_)*/0
-  , /*decltype(_impl_.w_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : x_(0)
+  , y_(0)
+  , w_(0){}
 struct TwistDefaultTypeInternal {
   PROTOBUF_CONSTEXPR TwistDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -53,9 +51,8 @@ struct TwistDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 TwistDefaultTypeInternal _Twist_default_instance_;
 PROTOBUF_CONSTEXPR Odom::Odom(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.poses_)*/{}
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : poses_(){}
 struct OdomDefaultTypeInternal {
   PROTOBUF_CONSTEXPR OdomDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -66,12 +63,11 @@ struct OdomDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 OdomDefaultTypeInternal _Odom_default_instance_;
 PROTOBUF_CONSTEXPR CmdWheel::CmdWheel(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.wheel1_)*/0
-  , /*decltype(_impl_.wheel2_)*/0
-  , /*decltype(_impl_.wheel3_)*/0
-  , /*decltype(_impl_.wheel4_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : wheel1_(0)
+  , wheel2_(0)
+  , wheel3_(0)
+  , wheel4_(0){}
 struct CmdWheelDefaultTypeInternal {
   PROTOBUF_CONSTEXPR CmdWheelDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -82,15 +78,14 @@ struct CmdWheelDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CmdWheelDefaultTypeInternal _CmdWheel_default_instance_;
 PROTOBUF_CONSTEXPR CmdVel::CmdVel(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.velocity_x_)*/0
-  , /*decltype(_impl_.velocity_y_)*/0
-  , /*decltype(_impl_.use_imu_)*/false
-  , /*decltype(_impl_.velocity_r_)*/0
-  , /*decltype(_impl_.imu_theta_)*/0
-  , /*decltype(_impl_.acceleration_x_)*/0
-  , /*decltype(_impl_.acceleration_y_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : velocity_x_(0)
+  , velocity_y_(0)
+  , use_imu_(false)
+  , velocity_r_(0)
+  , imu_theta_(0)
+  , acceleration_x_(0)
+  , acceleration_y_(0){}
 struct CmdVelDefaultTypeInternal {
   PROTOBUF_CONSTEXPR CmdVelDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -101,13 +96,12 @@ struct CmdVelDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CmdVelDefaultTypeInternal _CmdVel_default_instance_;
 PROTOBUF_CONSTEXPR CmdVel_Sim::CmdVel_Sim(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.velocity_x_)*/0
-  , /*decltype(_impl_.velocity_y_)*/0
-  , /*decltype(_impl_.use_imu_)*/false
-  , /*decltype(_impl_.velocity_r_)*/0
-  , /*decltype(_impl_.imu_theta_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : velocity_x_(0)
+  , velocity_y_(0)
+  , use_imu_(false)
+  , velocity_r_(0)
+  , imu_theta_(0){}
 struct CmdVel_SimDefaultTypeInternal {
   PROTOBUF_CONSTEXPR CmdVel_SimDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -118,14 +112,13 @@ struct CmdVel_SimDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CmdVel_SimDefaultTypeInternal _CmdVel_Sim_default_instance_;
 PROTOBUF_CONSTEXPR CmdPoseConfig::CmdPoseConfig(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.max_vx_)*/0
-  , /*decltype(_impl_.max_vy_)*/0
-  , /*decltype(_impl_.max_vw_)*/0
-  , /*decltype(_impl_.max_ax_)*/0
-  , /*decltype(_impl_.max_ay_)*/0
-  , /*decltype(_impl_.max_aw_)*/0
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : max_vx_(0)
+  , max_vy_(0)
+  , max_vw_(0)
+  , max_ax_(0)
+  , max_ay_(0)
+  , max_aw_(0){}
 struct CmdPoseConfigDefaultTypeInternal {
   PROTOBUF_CONSTEXPR CmdPoseConfigDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -136,15 +129,14 @@ struct CmdPoseConfigDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CmdPoseConfigDefaultTypeInternal _CmdPoseConfig_default_instance_;
 PROTOBUF_CONSTEXPR CmdPose::CmdPose(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.start_)*/nullptr
-  , /*decltype(_impl_.start_v_)*/nullptr
-  , /*decltype(_impl_.target_)*/nullptr
-  , /*decltype(_impl_.target_v_)*/nullptr
-  , /*decltype(_impl_.config_)*/nullptr
-  , /*decltype(_impl_.rotation_sense_)*/0
-  , /*decltype(_impl_.use_config_)*/false
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : start_(nullptr)
+  , start_v_(nullptr)
+  , target_(nullptr)
+  , target_v_(nullptr)
+  , config_(nullptr)
+  , rotation_sense_(0)
+  , use_config_(false){}
 struct CmdPoseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR CmdPoseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -155,12 +147,11 @@ struct CmdPoseDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CmdPoseDefaultTypeInternal _CmdPose_default_instance_;
 PROTOBUF_CONSTEXPR CmdChase::CmdChase(
-    ::_pbi::ConstantInitialized): _impl_{
-    /*decltype(_impl_.start_)*/nullptr
-  , /*decltype(_impl_.start_v_)*/nullptr
-  , /*decltype(_impl_.ball_)*/nullptr
-  , /*decltype(_impl_.ball_v_)*/nullptr
-  , /*decltype(_impl_._cached_size_)*/{}} {}
+    ::_pbi::ConstantInitialized)
+  : start_(nullptr)
+  , start_v_(nullptr)
+  , ball_(nullptr)
+  , ball_v_(nullptr){}
 struct CmdChaseDefaultTypeInternal {
   PROTOBUF_CONSTEXPR CmdChaseDefaultTypeInternal()
       : _instance(::_pbi::ConstantInitialized{}) {}
@@ -183,94 +174,94 @@ const uint32_t TableStruct_zss_5fcmd_5ftype_2eproto::offsets[] PROTOBUF_SECTION_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Pose, _impl_.x_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Pose, _impl_.y_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Pose, _impl_.w_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Pose, x_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Pose, y_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Pose, w_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Twist, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Twist, _impl_.x_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Twist, _impl_.y_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Twist, _impl_.w_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Twist, x_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Twist, y_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Twist, w_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::ZSS::New::Odom, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::Odom, _impl_.poses_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::Odom, poses_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdWheel, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdWheel, _impl_.wheel1_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdWheel, _impl_.wheel2_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdWheel, _impl_.wheel3_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdWheel, _impl_.wheel4_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdWheel, wheel1_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdWheel, wheel2_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdWheel, wheel3_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdWheel, wheel4_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel, _impl_.velocity_x_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel, _impl_.velocity_y_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel, _impl_.use_imu_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel, _impl_.velocity_r_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel, _impl_.imu_theta_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel, _impl_.acceleration_x_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel, _impl_.acceleration_y_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel, velocity_x_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel, velocity_y_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel, use_imu_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel, velocity_r_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel, imu_theta_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel, acceleration_x_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel, acceleration_y_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel_Sim, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel_Sim, _impl_.velocity_x_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel_Sim, _impl_.velocity_y_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel_Sim, _impl_.use_imu_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel_Sim, _impl_.velocity_r_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel_Sim, _impl_.imu_theta_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel_Sim, velocity_x_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel_Sim, velocity_y_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel_Sim, use_imu_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel_Sim, velocity_r_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdVel_Sim, imu_theta_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdPoseConfig, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdPoseConfig, _impl_.max_vx_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdPoseConfig, _impl_.max_vy_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdPoseConfig, _impl_.max_vw_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdPoseConfig, _impl_.max_ax_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdPoseConfig, _impl_.max_ay_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdPoseConfig, _impl_.max_aw_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdPoseConfig, max_vx_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdPoseConfig, max_vy_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdPoseConfig, max_vw_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdPoseConfig, max_ax_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdPoseConfig, max_ay_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdPoseConfig, max_aw_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdPose, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdPose, _impl_.start_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdPose, _impl_.start_v_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdPose, _impl_.target_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdPose, _impl_.target_v_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdPose, _impl_.rotation_sense_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdPose, _impl_.use_config_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdPose, _impl_.config_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdPose, start_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdPose, start_v_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdPose, target_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdPose, target_v_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdPose, rotation_sense_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdPose, use_config_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdPose, config_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdChase, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdChase, _impl_.start_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdChase, _impl_.start_v_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdChase, _impl_.ball_),
-  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdChase, _impl_.ball_v_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdChase, start_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdChase, start_v_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdChase, ball_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::CmdChase, ball_v_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::ZSS::New::Pose)},
@@ -350,35 +341,23 @@ class Pose::_Internal {
 Pose::Pose(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:ZSS.New.Pose)
 }
 Pose::Pose(const Pose& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  Pose* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.x_){}
-    , decltype(_impl_.y_){}
-    , decltype(_impl_.w_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.x_, &from._impl_.x_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.w_) -
-    reinterpret_cast<char*>(&_impl_.x_)) + sizeof(_impl_.w_));
+  ::memcpy(&x_, &from.x_,
+    static_cast<size_t>(reinterpret_cast<char*>(&w_) -
+    reinterpret_cast<char*>(&x_)) + sizeof(w_));
   // @@protoc_insertion_point(copy_constructor:ZSS.New.Pose)
 }
 
-inline void Pose::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.x_){0}
-    , decltype(_impl_.y_){0}
-    , decltype(_impl_.w_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void Pose::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&x_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&w_) -
+    reinterpret_cast<char*>(&x_)) + sizeof(w_));
 }
 
 Pose::~Pose() {
@@ -395,7 +374,7 @@ inline void Pose::SharedDtor() {
 }
 
 void Pose::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void Pose::Clear() {
@@ -404,9 +383,9 @@ void Pose::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&_impl_.x_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.w_) -
-      reinterpret_cast<char*>(&_impl_.x_)) + sizeof(_impl_.w_));
+  ::memset(&x_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&w_) -
+      reinterpret_cast<char*>(&x_)) + sizeof(w_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -419,7 +398,7 @@ const char* Pose::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
       // float x = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 13)) {
-          _impl_.x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -427,7 +406,7 @@ const char* Pose::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
       // float y = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 21)) {
-          _impl_.y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -435,7 +414,7 @@ const char* Pose::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
       // float w = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 29)) {
-          _impl_.w_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          w_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -542,21 +521,25 @@ size_t Pose::ByteSizeLong() const {
     total_size += 1 + 4;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Pose::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     Pose::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Pose::GetClassData() const { return &_class_data_; }
 
+void Pose::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Pose *>(to)->MergeFrom(
+      static_cast<const Pose &>(from));
+}
 
-void Pose::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<Pose*>(&to_msg);
-  auto& from = static_cast<const Pose&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.Pose)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void Pose::MergeFrom(const Pose& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.Pose)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -565,23 +548,23 @@ void Pose::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_
   uint32_t raw_x;
   memcpy(&raw_x, &tmp_x, sizeof(tmp_x));
   if (raw_x != 0) {
-    _this->_internal_set_x(from._internal_x());
+    _internal_set_x(from._internal_x());
   }
   static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
   float tmp_y = from._internal_y();
   uint32_t raw_y;
   memcpy(&raw_y, &tmp_y, sizeof(tmp_y));
   if (raw_y != 0) {
-    _this->_internal_set_y(from._internal_y());
+    _internal_set_y(from._internal_y());
   }
   static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
   float tmp_w = from._internal_w();
   uint32_t raw_w;
   memcpy(&raw_w, &tmp_w, sizeof(tmp_w));
   if (raw_w != 0) {
-    _this->_internal_set_w(from._internal_w());
+    _internal_set_w(from._internal_w());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Pose::CopyFrom(const Pose& from) {
@@ -599,11 +582,11 @@ void Pose::InternalSwap(Pose* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Pose, _impl_.w_)
-      + sizeof(Pose::_impl_.w_)
-      - PROTOBUF_FIELD_OFFSET(Pose, _impl_.x_)>(
-          reinterpret_cast<char*>(&_impl_.x_),
-          reinterpret_cast<char*>(&other->_impl_.x_));
+      PROTOBUF_FIELD_OFFSET(Pose, w_)
+      + sizeof(Pose::w_)
+      - PROTOBUF_FIELD_OFFSET(Pose, x_)>(
+          reinterpret_cast<char*>(&x_),
+          reinterpret_cast<char*>(&other->x_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Pose::GetMetadata() const {
@@ -621,35 +604,23 @@ class Twist::_Internal {
 Twist::Twist(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:ZSS.New.Twist)
 }
 Twist::Twist(const Twist& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  Twist* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.x_){}
-    , decltype(_impl_.y_){}
-    , decltype(_impl_.w_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.x_, &from._impl_.x_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.w_) -
-    reinterpret_cast<char*>(&_impl_.x_)) + sizeof(_impl_.w_));
+  ::memcpy(&x_, &from.x_,
+    static_cast<size_t>(reinterpret_cast<char*>(&w_) -
+    reinterpret_cast<char*>(&x_)) + sizeof(w_));
   // @@protoc_insertion_point(copy_constructor:ZSS.New.Twist)
 }
 
-inline void Twist::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.x_){0}
-    , decltype(_impl_.y_){0}
-    , decltype(_impl_.w_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void Twist::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&x_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&w_) -
+    reinterpret_cast<char*>(&x_)) + sizeof(w_));
 }
 
 Twist::~Twist() {
@@ -666,7 +637,7 @@ inline void Twist::SharedDtor() {
 }
 
 void Twist::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void Twist::Clear() {
@@ -675,9 +646,9 @@ void Twist::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&_impl_.x_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.w_) -
-      reinterpret_cast<char*>(&_impl_.x_)) + sizeof(_impl_.w_));
+  ::memset(&x_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&w_) -
+      reinterpret_cast<char*>(&x_)) + sizeof(w_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -690,7 +661,7 @@ const char* Twist::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
       // float x = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 13)) {
-          _impl_.x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -698,7 +669,7 @@ const char* Twist::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
       // float y = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 21)) {
-          _impl_.y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -706,7 +677,7 @@ const char* Twist::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
       // float w = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 29)) {
-          _impl_.w_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          w_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -813,21 +784,25 @@ size_t Twist::ByteSizeLong() const {
     total_size += 1 + 4;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Twist::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     Twist::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Twist::GetClassData() const { return &_class_data_; }
 
+void Twist::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Twist *>(to)->MergeFrom(
+      static_cast<const Twist &>(from));
+}
 
-void Twist::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<Twist*>(&to_msg);
-  auto& from = static_cast<const Twist&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.Twist)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void Twist::MergeFrom(const Twist& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.Twist)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -836,23 +811,23 @@ void Twist::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF
   uint32_t raw_x;
   memcpy(&raw_x, &tmp_x, sizeof(tmp_x));
   if (raw_x != 0) {
-    _this->_internal_set_x(from._internal_x());
+    _internal_set_x(from._internal_x());
   }
   static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
   float tmp_y = from._internal_y();
   uint32_t raw_y;
   memcpy(&raw_y, &tmp_y, sizeof(tmp_y));
   if (raw_y != 0) {
-    _this->_internal_set_y(from._internal_y());
+    _internal_set_y(from._internal_y());
   }
   static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
   float tmp_w = from._internal_w();
   uint32_t raw_w;
   memcpy(&raw_w, &tmp_w, sizeof(tmp_w));
   if (raw_w != 0) {
-    _this->_internal_set_w(from._internal_w());
+    _internal_set_w(from._internal_w());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Twist::CopyFrom(const Twist& from) {
@@ -870,11 +845,11 @@ void Twist::InternalSwap(Twist* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Twist, _impl_.w_)
-      + sizeof(Twist::_impl_.w_)
-      - PROTOBUF_FIELD_OFFSET(Twist, _impl_.x_)>(
-          reinterpret_cast<char*>(&_impl_.x_),
-          reinterpret_cast<char*>(&other->_impl_.x_));
+      PROTOBUF_FIELD_OFFSET(Twist, w_)
+      + sizeof(Twist::w_)
+      - PROTOBUF_FIELD_OFFSET(Twist, x_)>(
+          reinterpret_cast<char*>(&x_),
+          reinterpret_cast<char*>(&other->x_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Twist::GetMetadata() const {
@@ -891,29 +866,19 @@ class Odom::_Internal {
 
 Odom::Odom(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned),
+  poses_(arena) {
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:ZSS.New.Odom)
 }
 Odom::Odom(const Odom& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  Odom* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.poses_){from._impl_.poses_}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      poses_(from.poses_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   // @@protoc_insertion_point(copy_constructor:ZSS.New.Odom)
 }
 
-inline void Odom::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.poses_){arena}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void Odom::SharedCtor() {
 }
 
 Odom::~Odom() {
@@ -927,11 +892,10 @@ Odom::~Odom() {
 
 inline void Odom::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  _impl_.poses_.~RepeatedPtrField();
 }
 
 void Odom::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void Odom::Clear() {
@@ -940,7 +904,7 @@ void Odom::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  _impl_.poses_.Clear();
+  poses_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1018,31 +982,35 @@ size_t Odom::ByteSizeLong() const {
 
   // repeated .ZSS.New.Pose poses = 1;
   total_size += 1UL * this->_internal_poses_size();
-  for (const auto& msg : this->_impl_.poses_) {
+  for (const auto& msg : this->poses_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData Odom::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     Odom::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*Odom::GetClassData() const { return &_class_data_; }
 
+void Odom::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<Odom *>(to)->MergeFrom(
+      static_cast<const Odom &>(from));
+}
 
-void Odom::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<Odom*>(&to_msg);
-  auto& from = static_cast<const Odom&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.Odom)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void Odom::MergeFrom(const Odom& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.Odom)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
-  _this->_impl_.poses_.MergeFrom(from._impl_.poses_);
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  poses_.MergeFrom(from.poses_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void Odom::CopyFrom(const Odom& from) {
@@ -1059,7 +1027,7 @@ bool Odom::IsInitialized() const {
 void Odom::InternalSwap(Odom* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  _impl_.poses_.InternalSwap(&other->_impl_.poses_);
+  poses_.InternalSwap(&other->poses_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Odom::GetMetadata() const {
@@ -1077,37 +1045,23 @@ class CmdWheel::_Internal {
 CmdWheel::CmdWheel(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:ZSS.New.CmdWheel)
 }
 CmdWheel::CmdWheel(const CmdWheel& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  CmdWheel* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.wheel1_){}
-    , decltype(_impl_.wheel2_){}
-    , decltype(_impl_.wheel3_){}
-    , decltype(_impl_.wheel4_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.wheel1_, &from._impl_.wheel1_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.wheel4_) -
-    reinterpret_cast<char*>(&_impl_.wheel1_)) + sizeof(_impl_.wheel4_));
+  ::memcpy(&wheel1_, &from.wheel1_,
+    static_cast<size_t>(reinterpret_cast<char*>(&wheel4_) -
+    reinterpret_cast<char*>(&wheel1_)) + sizeof(wheel4_));
   // @@protoc_insertion_point(copy_constructor:ZSS.New.CmdWheel)
 }
 
-inline void CmdWheel::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.wheel1_){0}
-    , decltype(_impl_.wheel2_){0}
-    , decltype(_impl_.wheel3_){0}
-    , decltype(_impl_.wheel4_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void CmdWheel::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&wheel1_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&wheel4_) -
+    reinterpret_cast<char*>(&wheel1_)) + sizeof(wheel4_));
 }
 
 CmdWheel::~CmdWheel() {
@@ -1124,7 +1078,7 @@ inline void CmdWheel::SharedDtor() {
 }
 
 void CmdWheel::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void CmdWheel::Clear() {
@@ -1133,9 +1087,9 @@ void CmdWheel::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&_impl_.wheel1_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.wheel4_) -
-      reinterpret_cast<char*>(&_impl_.wheel1_)) + sizeof(_impl_.wheel4_));
+  ::memset(&wheel1_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&wheel4_) -
+      reinterpret_cast<char*>(&wheel1_)) + sizeof(wheel4_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1148,7 +1102,7 @@ const char* CmdWheel::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx)
       // float wheel1 = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 13)) {
-          _impl_.wheel1_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          wheel1_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -1156,7 +1110,7 @@ const char* CmdWheel::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx)
       // float wheel2 = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 21)) {
-          _impl_.wheel2_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          wheel2_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -1164,7 +1118,7 @@ const char* CmdWheel::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx)
       // float wheel3 = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 29)) {
-          _impl_.wheel3_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          wheel3_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -1172,7 +1126,7 @@ const char* CmdWheel::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx)
       // float wheel4 = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 37)) {
-          _impl_.wheel4_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          wheel4_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -1298,21 +1252,25 @@ size_t CmdWheel::ByteSizeLong() const {
     total_size += 1 + 4;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData CmdWheel::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     CmdWheel::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CmdWheel::GetClassData() const { return &_class_data_; }
 
+void CmdWheel::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<CmdWheel *>(to)->MergeFrom(
+      static_cast<const CmdWheel &>(from));
+}
 
-void CmdWheel::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<CmdWheel*>(&to_msg);
-  auto& from = static_cast<const CmdWheel&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.CmdWheel)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void CmdWheel::MergeFrom(const CmdWheel& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.CmdWheel)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -1321,30 +1279,30 @@ void CmdWheel::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTO
   uint32_t raw_wheel1;
   memcpy(&raw_wheel1, &tmp_wheel1, sizeof(tmp_wheel1));
   if (raw_wheel1 != 0) {
-    _this->_internal_set_wheel1(from._internal_wheel1());
+    _internal_set_wheel1(from._internal_wheel1());
   }
   static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
   float tmp_wheel2 = from._internal_wheel2();
   uint32_t raw_wheel2;
   memcpy(&raw_wheel2, &tmp_wheel2, sizeof(tmp_wheel2));
   if (raw_wheel2 != 0) {
-    _this->_internal_set_wheel2(from._internal_wheel2());
+    _internal_set_wheel2(from._internal_wheel2());
   }
   static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
   float tmp_wheel3 = from._internal_wheel3();
   uint32_t raw_wheel3;
   memcpy(&raw_wheel3, &tmp_wheel3, sizeof(tmp_wheel3));
   if (raw_wheel3 != 0) {
-    _this->_internal_set_wheel3(from._internal_wheel3());
+    _internal_set_wheel3(from._internal_wheel3());
   }
   static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
   float tmp_wheel4 = from._internal_wheel4();
   uint32_t raw_wheel4;
   memcpy(&raw_wheel4, &tmp_wheel4, sizeof(tmp_wheel4));
   if (raw_wheel4 != 0) {
-    _this->_internal_set_wheel4(from._internal_wheel4());
+    _internal_set_wheel4(from._internal_wheel4());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void CmdWheel::CopyFrom(const CmdWheel& from) {
@@ -1362,11 +1320,11 @@ void CmdWheel::InternalSwap(CmdWheel* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(CmdWheel, _impl_.wheel4_)
-      + sizeof(CmdWheel::_impl_.wheel4_)
-      - PROTOBUF_FIELD_OFFSET(CmdWheel, _impl_.wheel1_)>(
-          reinterpret_cast<char*>(&_impl_.wheel1_),
-          reinterpret_cast<char*>(&other->_impl_.wheel1_));
+      PROTOBUF_FIELD_OFFSET(CmdWheel, wheel4_)
+      + sizeof(CmdWheel::wheel4_)
+      - PROTOBUF_FIELD_OFFSET(CmdWheel, wheel1_)>(
+          reinterpret_cast<char*>(&wheel1_),
+          reinterpret_cast<char*>(&other->wheel1_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata CmdWheel::GetMetadata() const {
@@ -1384,43 +1342,23 @@ class CmdVel::_Internal {
 CmdVel::CmdVel(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:ZSS.New.CmdVel)
 }
 CmdVel::CmdVel(const CmdVel& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  CmdVel* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.velocity_x_){}
-    , decltype(_impl_.velocity_y_){}
-    , decltype(_impl_.use_imu_){}
-    , decltype(_impl_.velocity_r_){}
-    , decltype(_impl_.imu_theta_){}
-    , decltype(_impl_.acceleration_x_){}
-    , decltype(_impl_.acceleration_y_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.velocity_x_, &from._impl_.velocity_x_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.acceleration_y_) -
-    reinterpret_cast<char*>(&_impl_.velocity_x_)) + sizeof(_impl_.acceleration_y_));
+  ::memcpy(&velocity_x_, &from.velocity_x_,
+    static_cast<size_t>(reinterpret_cast<char*>(&acceleration_y_) -
+    reinterpret_cast<char*>(&velocity_x_)) + sizeof(acceleration_y_));
   // @@protoc_insertion_point(copy_constructor:ZSS.New.CmdVel)
 }
 
-inline void CmdVel::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.velocity_x_){0}
-    , decltype(_impl_.velocity_y_){0}
-    , decltype(_impl_.use_imu_){false}
-    , decltype(_impl_.velocity_r_){0}
-    , decltype(_impl_.imu_theta_){0}
-    , decltype(_impl_.acceleration_x_){0}
-    , decltype(_impl_.acceleration_y_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void CmdVel::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&velocity_x_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&acceleration_y_) -
+    reinterpret_cast<char*>(&velocity_x_)) + sizeof(acceleration_y_));
 }
 
 CmdVel::~CmdVel() {
@@ -1437,7 +1375,7 @@ inline void CmdVel::SharedDtor() {
 }
 
 void CmdVel::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void CmdVel::Clear() {
@@ -1446,9 +1384,9 @@ void CmdVel::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&_impl_.velocity_x_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.acceleration_y_) -
-      reinterpret_cast<char*>(&_impl_.velocity_x_)) + sizeof(_impl_.acceleration_y_));
+  ::memset(&velocity_x_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&acceleration_y_) -
+      reinterpret_cast<char*>(&velocity_x_)) + sizeof(acceleration_y_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1461,7 +1399,7 @@ const char* CmdVel::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
       // sint32 velocity_x = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
-          _impl_.velocity_x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          velocity_x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1469,7 +1407,7 @@ const char* CmdVel::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
       // sint32 velocity_y = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
-          _impl_.velocity_y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          velocity_y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1477,7 +1415,7 @@ const char* CmdVel::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
       // bool use_imu = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          _impl_.use_imu_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          use_imu_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1485,7 +1423,7 @@ const char* CmdVel::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
       // sint32 velocity_r = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
-          _impl_.velocity_r_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          velocity_r_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1493,7 +1431,7 @@ const char* CmdVel::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
       // sint32 imu_theta = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
-          _impl_.imu_theta_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          imu_theta_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1501,7 +1439,7 @@ const char* CmdVel::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
       // sint32 acceleration_x = 6;
       case 6:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
-          _impl_.acceleration_x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          acceleration_x_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1509,7 +1447,7 @@ const char* CmdVel::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
       // sint32 acceleration_y = 7;
       case 7:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 56)) {
-          _impl_.acceleration_y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
+          acceleration_y_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarintZigZag32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1636,46 +1574,50 @@ size_t CmdVel::ByteSizeLong() const {
     total_size += ::_pbi::WireFormatLite::SInt32SizePlusOne(this->_internal_acceleration_y());
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData CmdVel::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     CmdVel::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CmdVel::GetClassData() const { return &_class_data_; }
 
+void CmdVel::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<CmdVel *>(to)->MergeFrom(
+      static_cast<const CmdVel &>(from));
+}
 
-void CmdVel::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<CmdVel*>(&to_msg);
-  auto& from = static_cast<const CmdVel&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.CmdVel)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void CmdVel::MergeFrom(const CmdVel& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.CmdVel)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_velocity_x() != 0) {
-    _this->_internal_set_velocity_x(from._internal_velocity_x());
+    _internal_set_velocity_x(from._internal_velocity_x());
   }
   if (from._internal_velocity_y() != 0) {
-    _this->_internal_set_velocity_y(from._internal_velocity_y());
+    _internal_set_velocity_y(from._internal_velocity_y());
   }
   if (from._internal_use_imu() != 0) {
-    _this->_internal_set_use_imu(from._internal_use_imu());
+    _internal_set_use_imu(from._internal_use_imu());
   }
   if (from._internal_velocity_r() != 0) {
-    _this->_internal_set_velocity_r(from._internal_velocity_r());
+    _internal_set_velocity_r(from._internal_velocity_r());
   }
   if (from._internal_imu_theta() != 0) {
-    _this->_internal_set_imu_theta(from._internal_imu_theta());
+    _internal_set_imu_theta(from._internal_imu_theta());
   }
   if (from._internal_acceleration_x() != 0) {
-    _this->_internal_set_acceleration_x(from._internal_acceleration_x());
+    _internal_set_acceleration_x(from._internal_acceleration_x());
   }
   if (from._internal_acceleration_y() != 0) {
-    _this->_internal_set_acceleration_y(from._internal_acceleration_y());
+    _internal_set_acceleration_y(from._internal_acceleration_y());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void CmdVel::CopyFrom(const CmdVel& from) {
@@ -1693,11 +1635,11 @@ void CmdVel::InternalSwap(CmdVel* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(CmdVel, _impl_.acceleration_y_)
-      + sizeof(CmdVel::_impl_.acceleration_y_)
-      - PROTOBUF_FIELD_OFFSET(CmdVel, _impl_.velocity_x_)>(
-          reinterpret_cast<char*>(&_impl_.velocity_x_),
-          reinterpret_cast<char*>(&other->_impl_.velocity_x_));
+      PROTOBUF_FIELD_OFFSET(CmdVel, acceleration_y_)
+      + sizeof(CmdVel::acceleration_y_)
+      - PROTOBUF_FIELD_OFFSET(CmdVel, velocity_x_)>(
+          reinterpret_cast<char*>(&velocity_x_),
+          reinterpret_cast<char*>(&other->velocity_x_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata CmdVel::GetMetadata() const {
@@ -1715,39 +1657,23 @@ class CmdVel_Sim::_Internal {
 CmdVel_Sim::CmdVel_Sim(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:ZSS.New.CmdVel_Sim)
 }
 CmdVel_Sim::CmdVel_Sim(const CmdVel_Sim& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  CmdVel_Sim* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.velocity_x_){}
-    , decltype(_impl_.velocity_y_){}
-    , decltype(_impl_.use_imu_){}
-    , decltype(_impl_.velocity_r_){}
-    , decltype(_impl_.imu_theta_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.velocity_x_, &from._impl_.velocity_x_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.imu_theta_) -
-    reinterpret_cast<char*>(&_impl_.velocity_x_)) + sizeof(_impl_.imu_theta_));
+  ::memcpy(&velocity_x_, &from.velocity_x_,
+    static_cast<size_t>(reinterpret_cast<char*>(&imu_theta_) -
+    reinterpret_cast<char*>(&velocity_x_)) + sizeof(imu_theta_));
   // @@protoc_insertion_point(copy_constructor:ZSS.New.CmdVel_Sim)
 }
 
-inline void CmdVel_Sim::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.velocity_x_){0}
-    , decltype(_impl_.velocity_y_){0}
-    , decltype(_impl_.use_imu_){false}
-    , decltype(_impl_.velocity_r_){0}
-    , decltype(_impl_.imu_theta_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void CmdVel_Sim::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&velocity_x_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&imu_theta_) -
+    reinterpret_cast<char*>(&velocity_x_)) + sizeof(imu_theta_));
 }
 
 CmdVel_Sim::~CmdVel_Sim() {
@@ -1764,7 +1690,7 @@ inline void CmdVel_Sim::SharedDtor() {
 }
 
 void CmdVel_Sim::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void CmdVel_Sim::Clear() {
@@ -1773,9 +1699,9 @@ void CmdVel_Sim::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&_impl_.velocity_x_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.imu_theta_) -
-      reinterpret_cast<char*>(&_impl_.velocity_x_)) + sizeof(_impl_.imu_theta_));
+  ::memset(&velocity_x_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&imu_theta_) -
+      reinterpret_cast<char*>(&velocity_x_)) + sizeof(imu_theta_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -1788,7 +1714,7 @@ const char* CmdVel_Sim::_InternalParse(const char* ptr, ::_pbi::ParseContext* ct
       // float velocity_x = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 13)) {
-          _impl_.velocity_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          velocity_x_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -1796,7 +1722,7 @@ const char* CmdVel_Sim::_InternalParse(const char* ptr, ::_pbi::ParseContext* ct
       // float velocity_y = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 21)) {
-          _impl_.velocity_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          velocity_y_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -1804,7 +1730,7 @@ const char* CmdVel_Sim::_InternalParse(const char* ptr, ::_pbi::ParseContext* ct
       // bool use_imu = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
-          _impl_.use_imu_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          use_imu_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -1812,7 +1738,7 @@ const char* CmdVel_Sim::_InternalParse(const char* ptr, ::_pbi::ParseContext* ct
       // float velocity_r = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 37)) {
-          _impl_.velocity_r_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          velocity_r_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -1820,7 +1746,7 @@ const char* CmdVel_Sim::_InternalParse(const char* ptr, ::_pbi::ParseContext* ct
       // float imu_theta = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 45)) {
-          _impl_.imu_theta_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          imu_theta_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -1957,21 +1883,25 @@ size_t CmdVel_Sim::ByteSizeLong() const {
     total_size += 1 + 4;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData CmdVel_Sim::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     CmdVel_Sim::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CmdVel_Sim::GetClassData() const { return &_class_data_; }
 
+void CmdVel_Sim::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<CmdVel_Sim *>(to)->MergeFrom(
+      static_cast<const CmdVel_Sim &>(from));
+}
 
-void CmdVel_Sim::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<CmdVel_Sim*>(&to_msg);
-  auto& from = static_cast<const CmdVel_Sim&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.CmdVel_Sim)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void CmdVel_Sim::MergeFrom(const CmdVel_Sim& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.CmdVel_Sim)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -1980,33 +1910,33 @@ void CmdVel_Sim::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PRO
   uint32_t raw_velocity_x;
   memcpy(&raw_velocity_x, &tmp_velocity_x, sizeof(tmp_velocity_x));
   if (raw_velocity_x != 0) {
-    _this->_internal_set_velocity_x(from._internal_velocity_x());
+    _internal_set_velocity_x(from._internal_velocity_x());
   }
   static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
   float tmp_velocity_y = from._internal_velocity_y();
   uint32_t raw_velocity_y;
   memcpy(&raw_velocity_y, &tmp_velocity_y, sizeof(tmp_velocity_y));
   if (raw_velocity_y != 0) {
-    _this->_internal_set_velocity_y(from._internal_velocity_y());
+    _internal_set_velocity_y(from._internal_velocity_y());
   }
   if (from._internal_use_imu() != 0) {
-    _this->_internal_set_use_imu(from._internal_use_imu());
+    _internal_set_use_imu(from._internal_use_imu());
   }
   static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
   float tmp_velocity_r = from._internal_velocity_r();
   uint32_t raw_velocity_r;
   memcpy(&raw_velocity_r, &tmp_velocity_r, sizeof(tmp_velocity_r));
   if (raw_velocity_r != 0) {
-    _this->_internal_set_velocity_r(from._internal_velocity_r());
+    _internal_set_velocity_r(from._internal_velocity_r());
   }
   static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
   float tmp_imu_theta = from._internal_imu_theta();
   uint32_t raw_imu_theta;
   memcpy(&raw_imu_theta, &tmp_imu_theta, sizeof(tmp_imu_theta));
   if (raw_imu_theta != 0) {
-    _this->_internal_set_imu_theta(from._internal_imu_theta());
+    _internal_set_imu_theta(from._internal_imu_theta());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void CmdVel_Sim::CopyFrom(const CmdVel_Sim& from) {
@@ -2024,11 +1954,11 @@ void CmdVel_Sim::InternalSwap(CmdVel_Sim* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(CmdVel_Sim, _impl_.imu_theta_)
-      + sizeof(CmdVel_Sim::_impl_.imu_theta_)
-      - PROTOBUF_FIELD_OFFSET(CmdVel_Sim, _impl_.velocity_x_)>(
-          reinterpret_cast<char*>(&_impl_.velocity_x_),
-          reinterpret_cast<char*>(&other->_impl_.velocity_x_));
+      PROTOBUF_FIELD_OFFSET(CmdVel_Sim, imu_theta_)
+      + sizeof(CmdVel_Sim::imu_theta_)
+      - PROTOBUF_FIELD_OFFSET(CmdVel_Sim, velocity_x_)>(
+          reinterpret_cast<char*>(&velocity_x_),
+          reinterpret_cast<char*>(&other->velocity_x_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata CmdVel_Sim::GetMetadata() const {
@@ -2046,41 +1976,23 @@ class CmdPoseConfig::_Internal {
 CmdPoseConfig::CmdPoseConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:ZSS.New.CmdPoseConfig)
 }
 CmdPoseConfig::CmdPoseConfig(const CmdPoseConfig& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  CmdPoseConfig* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.max_vx_){}
-    , decltype(_impl_.max_vy_){}
-    , decltype(_impl_.max_vw_){}
-    , decltype(_impl_.max_ax_){}
-    , decltype(_impl_.max_ay_){}
-    , decltype(_impl_.max_aw_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  ::memcpy(&_impl_.max_vx_, &from._impl_.max_vx_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.max_aw_) -
-    reinterpret_cast<char*>(&_impl_.max_vx_)) + sizeof(_impl_.max_aw_));
+  ::memcpy(&max_vx_, &from.max_vx_,
+    static_cast<size_t>(reinterpret_cast<char*>(&max_aw_) -
+    reinterpret_cast<char*>(&max_vx_)) + sizeof(max_aw_));
   // @@protoc_insertion_point(copy_constructor:ZSS.New.CmdPoseConfig)
 }
 
-inline void CmdPoseConfig::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.max_vx_){0}
-    , decltype(_impl_.max_vy_){0}
-    , decltype(_impl_.max_vw_){0}
-    , decltype(_impl_.max_ax_){0}
-    , decltype(_impl_.max_ay_){0}
-    , decltype(_impl_.max_aw_){0}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void CmdPoseConfig::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&max_vx_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&max_aw_) -
+    reinterpret_cast<char*>(&max_vx_)) + sizeof(max_aw_));
 }
 
 CmdPoseConfig::~CmdPoseConfig() {
@@ -2097,7 +2009,7 @@ inline void CmdPoseConfig::SharedDtor() {
 }
 
 void CmdPoseConfig::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void CmdPoseConfig::Clear() {
@@ -2106,9 +2018,9 @@ void CmdPoseConfig::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  ::memset(&_impl_.max_vx_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.max_aw_) -
-      reinterpret_cast<char*>(&_impl_.max_vx_)) + sizeof(_impl_.max_aw_));
+  ::memset(&max_vx_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&max_aw_) -
+      reinterpret_cast<char*>(&max_vx_)) + sizeof(max_aw_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2121,7 +2033,7 @@ const char* CmdPoseConfig::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // float max_vx = 1;
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 13)) {
-          _impl_.max_vx_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          max_vx_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -2129,7 +2041,7 @@ const char* CmdPoseConfig::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // float max_vy = 2;
       case 2:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 21)) {
-          _impl_.max_vy_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          max_vy_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -2137,7 +2049,7 @@ const char* CmdPoseConfig::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // float max_vw = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 29)) {
-          _impl_.max_vw_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          max_vw_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -2145,7 +2057,7 @@ const char* CmdPoseConfig::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // float max_ax = 4;
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 37)) {
-          _impl_.max_ax_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          max_ax_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -2153,7 +2065,7 @@ const char* CmdPoseConfig::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // float max_ay = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 45)) {
-          _impl_.max_ay_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          max_ay_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -2161,7 +2073,7 @@ const char* CmdPoseConfig::_InternalParse(const char* ptr, ::_pbi::ParseContext*
       // float max_aw = 6;
       case 6:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 53)) {
-          _impl_.max_aw_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          max_aw_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
@@ -2325,21 +2237,25 @@ size_t CmdPoseConfig::ByteSizeLong() const {
     total_size += 1 + 4;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData CmdPoseConfig::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     CmdPoseConfig::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CmdPoseConfig::GetClassData() const { return &_class_data_; }
 
+void CmdPoseConfig::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<CmdPoseConfig *>(to)->MergeFrom(
+      static_cast<const CmdPoseConfig &>(from));
+}
 
-void CmdPoseConfig::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<CmdPoseConfig*>(&to_msg);
-  auto& from = static_cast<const CmdPoseConfig&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.CmdPoseConfig)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void CmdPoseConfig::MergeFrom(const CmdPoseConfig& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.CmdPoseConfig)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -2348,44 +2264,44 @@ void CmdPoseConfig::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::
   uint32_t raw_max_vx;
   memcpy(&raw_max_vx, &tmp_max_vx, sizeof(tmp_max_vx));
   if (raw_max_vx != 0) {
-    _this->_internal_set_max_vx(from._internal_max_vx());
+    _internal_set_max_vx(from._internal_max_vx());
   }
   static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
   float tmp_max_vy = from._internal_max_vy();
   uint32_t raw_max_vy;
   memcpy(&raw_max_vy, &tmp_max_vy, sizeof(tmp_max_vy));
   if (raw_max_vy != 0) {
-    _this->_internal_set_max_vy(from._internal_max_vy());
+    _internal_set_max_vy(from._internal_max_vy());
   }
   static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
   float tmp_max_vw = from._internal_max_vw();
   uint32_t raw_max_vw;
   memcpy(&raw_max_vw, &tmp_max_vw, sizeof(tmp_max_vw));
   if (raw_max_vw != 0) {
-    _this->_internal_set_max_vw(from._internal_max_vw());
+    _internal_set_max_vw(from._internal_max_vw());
   }
   static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
   float tmp_max_ax = from._internal_max_ax();
   uint32_t raw_max_ax;
   memcpy(&raw_max_ax, &tmp_max_ax, sizeof(tmp_max_ax));
   if (raw_max_ax != 0) {
-    _this->_internal_set_max_ax(from._internal_max_ax());
+    _internal_set_max_ax(from._internal_max_ax());
   }
   static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
   float tmp_max_ay = from._internal_max_ay();
   uint32_t raw_max_ay;
   memcpy(&raw_max_ay, &tmp_max_ay, sizeof(tmp_max_ay));
   if (raw_max_ay != 0) {
-    _this->_internal_set_max_ay(from._internal_max_ay());
+    _internal_set_max_ay(from._internal_max_ay());
   }
   static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
   float tmp_max_aw = from._internal_max_aw();
   uint32_t raw_max_aw;
   memcpy(&raw_max_aw, &tmp_max_aw, sizeof(tmp_max_aw));
   if (raw_max_aw != 0) {
-    _this->_internal_set_max_aw(from._internal_max_aw());
+    _internal_set_max_aw(from._internal_max_aw());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void CmdPoseConfig::CopyFrom(const CmdPoseConfig& from) {
@@ -2403,11 +2319,11 @@ void CmdPoseConfig::InternalSwap(CmdPoseConfig* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(CmdPoseConfig, _impl_.max_aw_)
-      + sizeof(CmdPoseConfig::_impl_.max_aw_)
-      - PROTOBUF_FIELD_OFFSET(CmdPoseConfig, _impl_.max_vx_)>(
-          reinterpret_cast<char*>(&_impl_.max_vx_),
-          reinterpret_cast<char*>(&other->_impl_.max_vx_));
+      PROTOBUF_FIELD_OFFSET(CmdPoseConfig, max_aw_)
+      + sizeof(CmdPoseConfig::max_aw_)
+      - PROTOBUF_FIELD_OFFSET(CmdPoseConfig, max_vx_)>(
+          reinterpret_cast<char*>(&max_vx_),
+          reinterpret_cast<char*>(&other->max_vx_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata CmdPoseConfig::GetMetadata() const {
@@ -2429,79 +2345,69 @@ class CmdPose::_Internal {
 
 const ::ZSS::New::Pose&
 CmdPose::_Internal::start(const CmdPose* msg) {
-  return *msg->_impl_.start_;
+  return *msg->start_;
 }
 const ::ZSS::New::Twist&
 CmdPose::_Internal::start_v(const CmdPose* msg) {
-  return *msg->_impl_.start_v_;
+  return *msg->start_v_;
 }
 const ::ZSS::New::Pose&
 CmdPose::_Internal::target(const CmdPose* msg) {
-  return *msg->_impl_.target_;
+  return *msg->target_;
 }
 const ::ZSS::New::Twist&
 CmdPose::_Internal::target_v(const CmdPose* msg) {
-  return *msg->_impl_.target_v_;
+  return *msg->target_v_;
 }
 const ::ZSS::New::CmdPoseConfig&
 CmdPose::_Internal::config(const CmdPose* msg) {
-  return *msg->_impl_.config_;
+  return *msg->config_;
 }
 CmdPose::CmdPose(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:ZSS.New.CmdPose)
 }
 CmdPose::CmdPose(const CmdPose& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  CmdPose* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.start_){nullptr}
-    , decltype(_impl_.start_v_){nullptr}
-    , decltype(_impl_.target_){nullptr}
-    , decltype(_impl_.target_v_){nullptr}
-    , decltype(_impl_.config_){nullptr}
-    , decltype(_impl_.rotation_sense_){}
-    , decltype(_impl_.use_config_){}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_start()) {
-    _this->_impl_.start_ = new ::ZSS::New::Pose(*from._impl_.start_);
+    start_ = new ::ZSS::New::Pose(*from.start_);
+  } else {
+    start_ = nullptr;
   }
   if (from._internal_has_start_v()) {
-    _this->_impl_.start_v_ = new ::ZSS::New::Twist(*from._impl_.start_v_);
+    start_v_ = new ::ZSS::New::Twist(*from.start_v_);
+  } else {
+    start_v_ = nullptr;
   }
   if (from._internal_has_target()) {
-    _this->_impl_.target_ = new ::ZSS::New::Pose(*from._impl_.target_);
+    target_ = new ::ZSS::New::Pose(*from.target_);
+  } else {
+    target_ = nullptr;
   }
   if (from._internal_has_target_v()) {
-    _this->_impl_.target_v_ = new ::ZSS::New::Twist(*from._impl_.target_v_);
+    target_v_ = new ::ZSS::New::Twist(*from.target_v_);
+  } else {
+    target_v_ = nullptr;
   }
   if (from._internal_has_config()) {
-    _this->_impl_.config_ = new ::ZSS::New::CmdPoseConfig(*from._impl_.config_);
+    config_ = new ::ZSS::New::CmdPoseConfig(*from.config_);
+  } else {
+    config_ = nullptr;
   }
-  ::memcpy(&_impl_.rotation_sense_, &from._impl_.rotation_sense_,
-    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.use_config_) -
-    reinterpret_cast<char*>(&_impl_.rotation_sense_)) + sizeof(_impl_.use_config_));
+  ::memcpy(&rotation_sense_, &from.rotation_sense_,
+    static_cast<size_t>(reinterpret_cast<char*>(&use_config_) -
+    reinterpret_cast<char*>(&rotation_sense_)) + sizeof(use_config_));
   // @@protoc_insertion_point(copy_constructor:ZSS.New.CmdPose)
 }
 
-inline void CmdPose::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.start_){nullptr}
-    , decltype(_impl_.start_v_){nullptr}
-    , decltype(_impl_.target_){nullptr}
-    , decltype(_impl_.target_v_){nullptr}
-    , decltype(_impl_.config_){nullptr}
-    , decltype(_impl_.rotation_sense_){0}
-    , decltype(_impl_.use_config_){false}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void CmdPose::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&start_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&use_config_) -
+    reinterpret_cast<char*>(&start_)) + sizeof(use_config_));
 }
 
 CmdPose::~CmdPose() {
@@ -2515,15 +2421,15 @@ CmdPose::~CmdPose() {
 
 inline void CmdPose::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete _impl_.start_;
-  if (this != internal_default_instance()) delete _impl_.start_v_;
-  if (this != internal_default_instance()) delete _impl_.target_;
-  if (this != internal_default_instance()) delete _impl_.target_v_;
-  if (this != internal_default_instance()) delete _impl_.config_;
+  if (this != internal_default_instance()) delete start_;
+  if (this != internal_default_instance()) delete start_v_;
+  if (this != internal_default_instance()) delete target_;
+  if (this != internal_default_instance()) delete target_v_;
+  if (this != internal_default_instance()) delete config_;
 }
 
 void CmdPose::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void CmdPose::Clear() {
@@ -2532,29 +2438,29 @@ void CmdPose::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && _impl_.start_ != nullptr) {
-    delete _impl_.start_;
+  if (GetArenaForAllocation() == nullptr && start_ != nullptr) {
+    delete start_;
   }
-  _impl_.start_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.start_v_ != nullptr) {
-    delete _impl_.start_v_;
+  start_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && start_v_ != nullptr) {
+    delete start_v_;
   }
-  _impl_.start_v_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.target_ != nullptr) {
-    delete _impl_.target_;
+  start_v_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && target_ != nullptr) {
+    delete target_;
   }
-  _impl_.target_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.target_v_ != nullptr) {
-    delete _impl_.target_v_;
+  target_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && target_v_ != nullptr) {
+    delete target_v_;
   }
-  _impl_.target_v_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.config_ != nullptr) {
-    delete _impl_.config_;
+  target_v_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && config_ != nullptr) {
+    delete config_;
   }
-  _impl_.config_ = nullptr;
-  ::memset(&_impl_.rotation_sense_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&_impl_.use_config_) -
-      reinterpret_cast<char*>(&_impl_.rotation_sense_)) + sizeof(_impl_.use_config_));
+  config_ = nullptr;
+  ::memset(&rotation_sense_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&use_config_) -
+      reinterpret_cast<char*>(&rotation_sense_)) + sizeof(use_config_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -2599,7 +2505,7 @@ const char* CmdPose::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
       // int32 rotation_sense = 5;
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 40)) {
-          _impl_.rotation_sense_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          rotation_sense_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2607,7 +2513,7 @@ const char* CmdPose::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) 
       // bool use_config = 6;
       case 6:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 48)) {
-          _impl_.use_config_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          use_config_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -2716,35 +2622,35 @@ size_t CmdPose::ByteSizeLong() const {
   if (this->_internal_has_start()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.start_);
+        *start_);
   }
 
   // .ZSS.New.Twist start_v = 2;
   if (this->_internal_has_start_v()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.start_v_);
+        *start_v_);
   }
 
   // .ZSS.New.Pose target = 3;
   if (this->_internal_has_target()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.target_);
+        *target_);
   }
 
   // .ZSS.New.Twist target_v = 4;
   if (this->_internal_has_target_v()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.target_v_);
+        *target_v_);
   }
 
   // .ZSS.New.CmdPoseConfig config = 7;
   if (this->_internal_has_config()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.config_);
+        *config_);
   }
 
   // int32 rotation_sense = 5;
@@ -2757,51 +2663,50 @@ size_t CmdPose::ByteSizeLong() const {
     total_size += 1 + 1;
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData CmdPose::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     CmdPose::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CmdPose::GetClassData() const { return &_class_data_; }
 
+void CmdPose::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<CmdPose *>(to)->MergeFrom(
+      static_cast<const CmdPose &>(from));
+}
 
-void CmdPose::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<CmdPose*>(&to_msg);
-  auto& from = static_cast<const CmdPose&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.CmdPose)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void CmdPose::MergeFrom(const CmdPose& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.CmdPose)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_start()) {
-    _this->_internal_mutable_start()->::ZSS::New::Pose::MergeFrom(
-        from._internal_start());
+    _internal_mutable_start()->::ZSS::New::Pose::MergeFrom(from._internal_start());
   }
   if (from._internal_has_start_v()) {
-    _this->_internal_mutable_start_v()->::ZSS::New::Twist::MergeFrom(
-        from._internal_start_v());
+    _internal_mutable_start_v()->::ZSS::New::Twist::MergeFrom(from._internal_start_v());
   }
   if (from._internal_has_target()) {
-    _this->_internal_mutable_target()->::ZSS::New::Pose::MergeFrom(
-        from._internal_target());
+    _internal_mutable_target()->::ZSS::New::Pose::MergeFrom(from._internal_target());
   }
   if (from._internal_has_target_v()) {
-    _this->_internal_mutable_target_v()->::ZSS::New::Twist::MergeFrom(
-        from._internal_target_v());
+    _internal_mutable_target_v()->::ZSS::New::Twist::MergeFrom(from._internal_target_v());
   }
   if (from._internal_has_config()) {
-    _this->_internal_mutable_config()->::ZSS::New::CmdPoseConfig::MergeFrom(
-        from._internal_config());
+    _internal_mutable_config()->::ZSS::New::CmdPoseConfig::MergeFrom(from._internal_config());
   }
   if (from._internal_rotation_sense() != 0) {
-    _this->_internal_set_rotation_sense(from._internal_rotation_sense());
+    _internal_set_rotation_sense(from._internal_rotation_sense());
   }
   if (from._internal_use_config() != 0) {
-    _this->_internal_set_use_config(from._internal_use_config());
+    _internal_set_use_config(from._internal_use_config());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void CmdPose::CopyFrom(const CmdPose& from) {
@@ -2819,11 +2724,11 @@ void CmdPose::InternalSwap(CmdPose* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(CmdPose, _impl_.use_config_)
-      + sizeof(CmdPose::_impl_.use_config_)
-      - PROTOBUF_FIELD_OFFSET(CmdPose, _impl_.start_)>(
-          reinterpret_cast<char*>(&_impl_.start_),
-          reinterpret_cast<char*>(&other->_impl_.start_));
+      PROTOBUF_FIELD_OFFSET(CmdPose, use_config_)
+      + sizeof(CmdPose::use_config_)
+      - PROTOBUF_FIELD_OFFSET(CmdPose, start_)>(
+          reinterpret_cast<char*>(&start_),
+          reinterpret_cast<char*>(&other->start_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata CmdPose::GetMetadata() const {
@@ -2844,63 +2749,57 @@ class CmdChase::_Internal {
 
 const ::ZSS::New::Pose&
 CmdChase::_Internal::start(const CmdChase* msg) {
-  return *msg->_impl_.start_;
+  return *msg->start_;
 }
 const ::ZSS::New::Twist&
 CmdChase::_Internal::start_v(const CmdChase* msg) {
-  return *msg->_impl_.start_v_;
+  return *msg->start_v_;
 }
 const ::ZSS::New::Pose&
 CmdChase::_Internal::ball(const CmdChase* msg) {
-  return *msg->_impl_.ball_;
+  return *msg->ball_;
 }
 const ::ZSS::New::Twist&
 CmdChase::_Internal::ball_v(const CmdChase* msg) {
-  return *msg->_impl_.ball_v_;
+  return *msg->ball_v_;
 }
 CmdChase::CmdChase(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor(arena, is_message_owned);
+  SharedCtor();
   // @@protoc_insertion_point(arena_constructor:ZSS.New.CmdChase)
 }
 CmdChase::CmdChase(const CmdChase& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
-  CmdChase* const _this = this; (void)_this;
-  new (&_impl_) Impl_{
-      decltype(_impl_.start_){nullptr}
-    , decltype(_impl_.start_v_){nullptr}
-    , decltype(_impl_.ball_){nullptr}
-    , decltype(_impl_.ball_v_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}};
-
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   if (from._internal_has_start()) {
-    _this->_impl_.start_ = new ::ZSS::New::Pose(*from._impl_.start_);
+    start_ = new ::ZSS::New::Pose(*from.start_);
+  } else {
+    start_ = nullptr;
   }
   if (from._internal_has_start_v()) {
-    _this->_impl_.start_v_ = new ::ZSS::New::Twist(*from._impl_.start_v_);
+    start_v_ = new ::ZSS::New::Twist(*from.start_v_);
+  } else {
+    start_v_ = nullptr;
   }
   if (from._internal_has_ball()) {
-    _this->_impl_.ball_ = new ::ZSS::New::Pose(*from._impl_.ball_);
+    ball_ = new ::ZSS::New::Pose(*from.ball_);
+  } else {
+    ball_ = nullptr;
   }
   if (from._internal_has_ball_v()) {
-    _this->_impl_.ball_v_ = new ::ZSS::New::Twist(*from._impl_.ball_v_);
+    ball_v_ = new ::ZSS::New::Twist(*from.ball_v_);
+  } else {
+    ball_v_ = nullptr;
   }
   // @@protoc_insertion_point(copy_constructor:ZSS.New.CmdChase)
 }
 
-inline void CmdChase::SharedCtor(
-    ::_pb::Arena* arena, bool is_message_owned) {
-  (void)arena;
-  (void)is_message_owned;
-  new (&_impl_) Impl_{
-      decltype(_impl_.start_){nullptr}
-    , decltype(_impl_.start_v_){nullptr}
-    , decltype(_impl_.ball_){nullptr}
-    , decltype(_impl_.ball_v_){nullptr}
-    , /*decltype(_impl_._cached_size_)*/{}
-  };
+inline void CmdChase::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&start_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&ball_v_) -
+    reinterpret_cast<char*>(&start_)) + sizeof(ball_v_));
 }
 
 CmdChase::~CmdChase() {
@@ -2914,14 +2813,14 @@ CmdChase::~CmdChase() {
 
 inline void CmdChase::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  if (this != internal_default_instance()) delete _impl_.start_;
-  if (this != internal_default_instance()) delete _impl_.start_v_;
-  if (this != internal_default_instance()) delete _impl_.ball_;
-  if (this != internal_default_instance()) delete _impl_.ball_v_;
+  if (this != internal_default_instance()) delete start_;
+  if (this != internal_default_instance()) delete start_v_;
+  if (this != internal_default_instance()) delete ball_;
+  if (this != internal_default_instance()) delete ball_v_;
 }
 
 void CmdChase::SetCachedSize(int size) const {
-  _impl_._cached_size_.Set(size);
+  _cached_size_.Set(size);
 }
 
 void CmdChase::Clear() {
@@ -2930,22 +2829,22 @@ void CmdChase::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  if (GetArenaForAllocation() == nullptr && _impl_.start_ != nullptr) {
-    delete _impl_.start_;
+  if (GetArenaForAllocation() == nullptr && start_ != nullptr) {
+    delete start_;
   }
-  _impl_.start_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.start_v_ != nullptr) {
-    delete _impl_.start_v_;
+  start_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && start_v_ != nullptr) {
+    delete start_v_;
   }
-  _impl_.start_v_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.ball_ != nullptr) {
-    delete _impl_.ball_;
+  start_v_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && ball_ != nullptr) {
+    delete ball_;
   }
-  _impl_.ball_ = nullptr;
-  if (GetArenaForAllocation() == nullptr && _impl_.ball_v_ != nullptr) {
-    delete _impl_.ball_v_;
+  ball_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && ball_v_ != nullptr) {
+    delete ball_v_;
   }
-  _impl_.ball_v_ = nullptr;
+  ball_v_ = nullptr;
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -3064,65 +2963,65 @@ size_t CmdChase::ByteSizeLong() const {
   if (this->_internal_has_start()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.start_);
+        *start_);
   }
 
   // .ZSS.New.Twist start_v = 2;
   if (this->_internal_has_start_v()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.start_v_);
+        *start_v_);
   }
 
   // .ZSS.New.Pose ball = 3;
   if (this->_internal_has_ball()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.ball_);
+        *ball_);
   }
 
   // .ZSS.New.Twist ball_v = 4;
   if (this->_internal_has_ball_v()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
-        *_impl_.ball_v_);
+        *ball_v_);
   }
 
-  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData CmdChase::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
     CmdChase::MergeImpl
 };
 const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CmdChase::GetClassData() const { return &_class_data_; }
 
+void CmdChase::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<CmdChase *>(to)->MergeFrom(
+      static_cast<const CmdChase &>(from));
+}
 
-void CmdChase::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
-  auto* const _this = static_cast<CmdChase*>(&to_msg);
-  auto& from = static_cast<const CmdChase&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.CmdChase)
-  GOOGLE_DCHECK_NE(&from, _this);
+
+void CmdChase::MergeFrom(const CmdChase& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.CmdChase)
+  GOOGLE_DCHECK_NE(&from, this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from._internal_has_start()) {
-    _this->_internal_mutable_start()->::ZSS::New::Pose::MergeFrom(
-        from._internal_start());
+    _internal_mutable_start()->::ZSS::New::Pose::MergeFrom(from._internal_start());
   }
   if (from._internal_has_start_v()) {
-    _this->_internal_mutable_start_v()->::ZSS::New::Twist::MergeFrom(
-        from._internal_start_v());
+    _internal_mutable_start_v()->::ZSS::New::Twist::MergeFrom(from._internal_start_v());
   }
   if (from._internal_has_ball()) {
-    _this->_internal_mutable_ball()->::ZSS::New::Pose::MergeFrom(
-        from._internal_ball());
+    _internal_mutable_ball()->::ZSS::New::Pose::MergeFrom(from._internal_ball());
   }
   if (from._internal_has_ball_v()) {
-    _this->_internal_mutable_ball_v()->::ZSS::New::Twist::MergeFrom(
-        from._internal_ball_v());
+    _internal_mutable_ball_v()->::ZSS::New::Twist::MergeFrom(from._internal_ball_v());
   }
-  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
 void CmdChase::CopyFrom(const CmdChase& from) {
@@ -3140,11 +3039,11 @@ void CmdChase::InternalSwap(CmdChase* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(CmdChase, _impl_.ball_v_)
-      + sizeof(CmdChase::_impl_.ball_v_)
-      - PROTOBUF_FIELD_OFFSET(CmdChase, _impl_.start_)>(
-          reinterpret_cast<char*>(&_impl_.start_),
-          reinterpret_cast<char*>(&other->_impl_.start_));
+      PROTOBUF_FIELD_OFFSET(CmdChase, ball_v_)
+      + sizeof(CmdChase::ball_v_)
+      - PROTOBUF_FIELD_OFFSET(CmdChase, start_)>(
+          reinterpret_cast<char*>(&start_),
+          reinterpret_cast<char*>(&other->start_));
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata CmdChase::GetMetadata() const {

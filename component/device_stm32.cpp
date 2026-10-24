@@ -1,6 +1,30 @@
 #include "device_stm32.h"
 
 #include <algorithm>
+#include <chrono>
+
+namespace {
+class MraaSpiTransport final : public robot_cm4::SpiTransport {
+public:
+    explicit MraaSpiTransport(mraa::Spi* spi) : spi_(spi) {}
+    bool transfer(const std::uint8_t* tx, std::uint8_t* rx,
+                  std::size_t length) override {
+        if (spi_ == nullptr || tx == nullptr || rx == nullptr) return false;
+        const int result = spi_->transfer(const_cast<std::uint8_t*>(tx), rx,
+                                          static_cast<int>(length));
+        return result == static_cast<int>(length);
+    }
+private:
+    mraa::Spi* spi_ = nullptr;
+};
+
+motion::TimeUs steady_now_us() {
+    return static_cast<motion::TimeUs>(
+        std::chrono::duration_cast<std::chrono::microseconds>(
+            std::chrono::steady_clock::now().time_since_epoch())
+            .count());
+}
+}  // namespace
 #include <cstddef>
 
 static auto now_time = std::chrono::steady_clock::now();
@@ -131,8 +155,19 @@ bool DeviceStm32::record_spi_api_status(bool api_error, std::chrono::steady_cloc
     return false;
 }
 
+void DeviceStm32::read_write_stm32_v2()
+{
+    if (motion_bridge_ == nullptr || stm32_spi == nullptr) return;
+    MraaSpiTransport transport(stm32_spi);
+    motion_bridge_->exchange(transport, steady_now_us());
+}
+
 void DeviceStm32::read_write_stm32()
 {
+    if (motion_bridge_ != nullptr && stm32_spi != nullptr) {
+        read_write_stm32_v2();
+        return;
+    }
     CM4_to_stm32_spi tx = {0};
     stm32_to_CM4_spi rx = {0};
 

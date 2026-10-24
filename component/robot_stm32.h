@@ -6,6 +6,7 @@
 #include "wifi.h"
 #include "parameter.h"
 #include "matrix.h"
+#include "../motion/cm4_motion_bridge.hpp"
 
 #include "robot_comm.pb.h"
 #include "vision_detection.pb.h"
@@ -113,6 +114,7 @@ private:
     bool raw_vision_vel_limiter_initialized_ = false;
 
     DeviceStm32 device_;
+    robot_cm4::Cm4MotionBridge motion_bridge_;
 
     zos::Data cmd_data_;
     zos::Data vision_data_;

@@ -3,7 +3,7 @@ import "zss_cmd_type.proto";
 package ZSS.New;
 
 message Robots_Status{
-    repeated Robot_Status robots_status = 1;
+    repeated Robot_Status_Sim robots_status = 1;
 }
 enum Team{
     UNKNOWN = 0;
@@ -55,6 +55,28 @@ message Robot_Status {
     bool have_imu = 13;
     sint32 imu_omega_z = 14;
     repeated sint32 wheel_ref = 15;
+    MotionFeedbackV2 motion_feedback = 50;
+}
+
+message Robot_Status_Sim {
+    int32 robot_id = 1;
+    // infrared sensor with elasped time , positive means infrared is detected
+    float infrared = 2; // ms, -1
+    // elasped time since last kick
+    float flat_kick = 3; // max 10000ms
+    // elasped time since last chip
+    float chip_kick = 4; // max 10000ms
+    // imu angle
+    float imu_theta = 5;
+    // battery voltage
+    float battery = 6; // V
+    // capacitance
+    float capacitance = 7; // V
+    // odom of imu
+    Odom odom = 8;
+    // wheel encoder value
+    repeated float wheel_encoder = 9;
+    Team team = 10;
 }
 
 message Robots_Command {
@@ -129,15 +151,29 @@ message Robot_Command {
     sint32 raw_vision_vel_y = 32;
     // 1: odometry only, 2: wheel speed + odometry, 3: vision velocity + odometry
     sint32 vision_source = 33;
-    // 1: pure torque, 2: pure speed, 3: torque + speed hybrid
     sint32 dribble_mode = 34;
-    // Runtime chassis velocity PID gains, gain * 100
+    // Runtime chassis velocity PID gains, gain * 100 (CM4 f-control fields)
     optional sint32 chassis_vel_pid_kp_x = 35;
     optional sint32 chassis_vel_pid_ki_x = 36;
     optional sint32 chassis_vel_pid_kd_x = 37;
     optional sint32 chassis_vel_pid_kp_y = 38;
     optional sint32 chassis_vel_pid_ki_y = 39;
     optional sint32 chassis_vel_pid_kd_y = 40;
+    MotionCommandV2 motion_command = 50;
+    VisionObservationV2 vision_observation = 51;
+    MotionConfigV2 motion_config = 52;
+}
+
+
+
+message Robot_Command_Mini{
+    enum KickMode {
+        NONE = 0;
+        KICK = 1;
+        CHIP = 2;
+    }
+    KickMode kick_mode = 1;
+    sint32 kick_discharge_time = 2; // us
 }
 
 message Robots_Command_Sim {
@@ -149,23 +185,193 @@ message Robots_Command_Sim {
 message Robot_Command_Sim {
     // The unique ID of the robot, as identified by SSL-Vision.
     int32 robot_id = 1;
-    Robot_Command.KickMode kick_mode = 2;
+    ZSS.New.Robot_Command.KickMode kick_mode = 2;
     // use for sim / just store for debug
     // if kick_mode == KICK, power means kick speed m/s
     // if kick_mode == CHIP, power means chip distance m
     float desire_power = 3;
+    // use for real robot
+    float kick_discharge_time = 4; // us
     // dribble PWM -1 ~ 1
-    sint32 dribble_spin = 4;
-    Robot_Command.CmdType cmd_type = 5;
-    CmdVel cmd_vel = 6;
+    float dribble_spin = 5;
+    bool need_report = 6;
+    ZSS.New.Robot_Command.CmdType cmd_type = 7;
+    CmdVel_Sim cmd_vel = 8;
+    CmdPose cmd_pose = 9;
+    CmdChase cmd_chase = 10;
+    CmdWheel cmd_wheel = 11;
+    enum CommType {
+        DEFAULT = 0;
+        SERIAL = 1;
+        UDP_24L01 = 2;
+        UDP_WIFI = 3;
+    }
+    CommType comm_type = 12;
 }
 
-message Robot_Command_Mini{
-    enum KickMode {
-        NONE = 0;
-        KICK = 1;
-        CHIP = 2;
-    }
-    KickMode kick_mode = 1;
-    sint32 kick_discharge_time = 2; // us
+// ===========================================================================
+// Motion protocol v2 (PLAN 4.1).  Old fields above are kept verbatim; new
+// fields start at 50.  Times are local monotonic microseconds; the CM4 bridge
+// maps the producer clock onto the local clock.
+// ===========================================================================
+enum MotionBackend {
+    MOTION_BACKEND_NEW = 0;
+    MOTION_BACKEND_LEGACY = 1;
+}
+enum MotionTranslationMode {
+    MOTION_TRANSLATION_STOP = 0;
+    MOTION_TRANSLATION_POSE = 1;
+    MOTION_TRANSLATION_GLOBAL_VELOCITY = 2;
+    MOTION_TRANSLATION_BODY_VELOCITY = 3;
+    MOTION_TRANSLATION_VELOCITY_AND_POSE = 4;
+}
+enum MotionYawMode {
+    MOTION_YAW_HOLD = 0;
+    MOTION_YAW_POSE = 1;
+    MOTION_YAW_ANGULAR_VELOCITY = 2;
+}
+enum MotionLocalizationQuality {
+    MOTION_LOCALIZATION_INVALID = 0;
+    MOTION_LOCALIZATION_DEGRADED = 1;
+    MOTION_LOCALIZATION_GOOD = 2;
+}
+enum MotionSafetyState {
+    MOTION_SAFETY_INITIALIZING = 0;
+    MOTION_SAFETY_READY = 1;
+    MOTION_SAFETY_COMMAND_TIMEOUT = 2;
+    MOTION_SAFETY_LOCALIZATION_BRAKE = 3;
+    MOTION_SAFETY_LOCALIZATION_INVALID = 4;
+    MOTION_SAFETY_FAULT = 5;
+}
+
+message MotionPose2 {
+    float x = 1;
+    float y = 2;
+    float yaw = 3;
+}
+message MotionTwist2 {
+    float vx = 1;
+    float vy = 2;
+    float wz = 3;
+}
+message MotionAccel2 {
+    float ax = 1;
+    float ay = 2;
+    float alpha = 3;
+}
+message MotionLimitsV2 {
+    float max_linear_speed_m_s = 1;
+    float max_linear_accel_m_s2 = 2;
+    float max_linear_decel_m_s2 = 3;
+    float max_yaw_speed_rad_s = 4;
+    float max_yaw_accel_rad_s2 = 5;
+    float max_centripetal_accel_m_s2 = 6;
+    float max_wheel_torque_nm = 7;
+    float max_torque_rate_nm_per_s = 8;
+    float position_correction_gain = 9;
+    float position_correction_limit_m_s = 10;
+    float yaw_correction_gain = 11;
+    float yaw_rate_gain = 12;
+    float wheel_speed_kp = 13;
+    float wheel_speed_ki = 14;
+    float wheel_speed_backcalc = 15;
+}
+message MotionCommandV2 {
+    MotionBackend backend = 1;
+    MotionTranslationMode translation_mode = 2;
+    MotionYawMode yaw_mode = 3;
+    uint32 session_id = 4;
+    uint32 sequence = 5;
+    uint32 trajectory_epoch = 6;
+    uint64 generated_time_us = 7;
+    uint32 valid_for_us = 8;
+    MotionPose2 target_pose = 9;
+    MotionTwist2 target_velocity = 10;
+    MotionLimitsV2 limits = 11;
+    bool enable = 12;
+    bool kick_requested = 13;
+    bool chip_mode = 14;
+    uint32 kick_discharge_time_us = 15;
+    uint32 kick_sequence = 16;
+    uint32 kick_valid_for_us = 17;
+    uint32 dribble_mode = 18;
+    float dribble_power = 19;
+    float dribble_velocity_rps = 20;
+    float dribble_torque_ff_nm = 21;
+}
+message VisionObservationV2 {
+    uint64 capture_time_us = 1;
+    uint32 sequence = 2;
+    MotionPose2 pose = 3;
+    float position_std_m = 4;
+    float yaw_std_rad = 5;
+    MotionLocalizationQuality quality = 6;
+    bool valid = 7;
+}
+message MotionFeedbackV2 {
+    MotionBackend backend = 1;
+    MotionSafetyState safety = 2;
+    MotionLocalizationQuality localization = 3;
+    uint32 session_id = 4;
+    uint32 executed_sequence = 5;
+    uint32 trajectory_epoch = 6;
+    uint32 active_command_age_us = 7;
+    uint64 fusion_time_us = 8;
+    uint64 prediction_time_us = 9;
+    uint64 feedback_time_us = 10;
+    uint64 vision_capture_time_us = 11;
+    uint32 vision_age_us = 12;
+    MotionPose2 estimated_pose = 13;
+    MotionTwist2 estimated_velocity = 14;
+    float position_sigma_m = 15;
+    float yaw_sigma_rad = 16;
+    MotionPose2 reference_pose = 17;
+    MotionTwist2 reference_velocity = 18;
+    MotionAccel2 reference_accel = 19;
+    bool trajectory_active = 20;
+    float gyro_bias_z_rad_s = 21;
+    float accel_bias_x_m_s2 = 22;
+    float accel_bias_y_m_s2 = 23;
+    repeated float wheel_speed_target = 24;
+    repeated float wheel_speed_measured = 25;
+    repeated float feedforward_torque = 26;
+    repeated float feedback_torque = 27;
+    repeated float integral_torque = 28;
+    repeated float applied_torque = 29;
+    uint32 saturation = 30;
+    bool wheel_speed_enabled = 31;
+    bool vision_fused = 32;
+    bool accelerometer_degraded = 33;
+    bool wheel_slip_suspected = 34;
+    uint32 late_observations = 35;
+    uint32 rejected_observations = 36;
+    uint32 vision_updates = 37;
+    uint32 estimator_version = 38;
+    uint32 controller_version = 39;
+    uint32 model_version = 40;
+    uint32 protocol_version = 41;
+}
+message MotionConfigV2 {
+    float mass_kg = 1;
+    float inertia_kg_m2 = 2;
+    float wheel_radius_m = 3;
+    float wheel_center_distance_m = 4;
+    float wheel_inertia_kg_m2 = 5;
+    float wheel_friction_torque_nm = 6;
+    float wheel_viscous_nm_per_rad_s = 7;
+    float efficiency = 8;
+    float max_wheel_torque_nm = 9;
+    float max_wheel_speed_rad_s = 10;
+    float max_wheel_accel_rad_s2 = 11;
+    float torque_rate_nm_per_s = 12;
+    repeated float wheel_axis_angle_rad = 13;
+    repeated float wheel_yaw_sign = 14;
+    MotionLimitsV2 limits = 15;
+    float fusion_delay_s = 16;
+    float history_span_s = 17;
+    float command_timeout_s = 18;
+    float spi_timeout_s = 19;
+    float vision_degrade_s = 20;
+    float vision_invalid_s = 21;
+    uint32 config_version = 22;
 }

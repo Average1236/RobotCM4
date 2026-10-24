@@ -19,6 +19,7 @@
 #include "zos/log.h"
 #include "config.h"
 #include "device_base.h"
+#include "../motion/cm4_motion_bridge.hpp"
 
 #include <pigpio.h>
 #include "mraa/common.hpp"
@@ -38,7 +39,7 @@
 #define GPIO_LED1 20
 #define GPIO_LED2 21
 
-const int spi_length = 112;
+const int spi_length = 256;
 
 class DeviceStm32 : public DeviceBase
 {
