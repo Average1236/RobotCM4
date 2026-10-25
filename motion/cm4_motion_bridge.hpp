@@ -4,11 +4,13 @@
 #include "motion/protocol.hpp"
 #include "motion/time_mapper.hpp"
 #include "motion/types.hpp"
+#include "motion/sequence.hpp"
 #include "spi_transport.hpp"
 #include "zss_cmd.pb.h"
 
 #include <cstdint>
 #include <mutex>
+#include <atomic>
 
 namespace robot_cm4 {
 
@@ -65,6 +67,7 @@ private:
     motion::MotionConfigV2 config_;
     motion::TimeMapper command_time_map_;
     motion::TimeMapper feedback_time_map_;
+    motion::SequenceGate command_sequences_;
     std::uint32_t session_id_ = 1;
     std::uint32_t next_sequence_ = 1;
     std::uint32_t legacy_sequence_ = 1;

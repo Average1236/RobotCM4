@@ -403,20 +403,20 @@ inline motion::MotionCommandV2 adaptLegacyCommand(
     if (type == ZSS::New::Robot_Command_CmdType_CMD_POSE) {
         command.translation_mode = motion::TranslationMode::kPose;
         command.yaw_mode = motion::YawMode::kPose;
-        command.target_pose.position.x = proto.cmd_pose().target().x();
-        command.target_pose.position.y = proto.cmd_pose().target().y();
+        command.target_pose.position.x = proto.cmd_pose().target().x() * 0.001f;
+        command.target_pose.position.y = proto.cmd_pose().target().y() * 0.001f;
         command.target_pose.yaw = proto.cmd_pose().target().w();
-        command.target_velocity.linear.x = proto.cmd_pose().target_v().x();
-        command.target_velocity.linear.y = proto.cmd_pose().target_v().y();
+        command.target_velocity.linear.x = proto.cmd_pose().target_v().x() * 0.001f;
+        command.target_velocity.linear.y = proto.cmd_pose().target_v().y() * 0.001f;
         command.target_velocity.angular = proto.cmd_pose().target_v().w();
         if (proto.cmd_pose().has_config()) {
             const auto& config = proto.cmd_pose().config();
-            if (config.max_vx() > 0) command.limits.max_linear_speed_m_s = config.max_vx();
-            if (config.max_ax() > 0) command.limits.max_linear_accel_m_s2 = config.max_ax();
+            if (config.max_vx() > 0) command.limits.max_linear_speed_m_s = config.max_vx() * 0.001f;
+            if (config.max_ax() > 0) command.limits.max_linear_accel_m_s2 = config.max_ax() * 0.001f;
             if (config.max_aw() > 0) command.limits.max_yaw_accel_rad_s2 = config.max_aw();
         }
     } else if (type == ZSS::New::Robot_Command_CmdType_CMD_VEL) {
-        command.translation_mode = motion::TranslationMode::kGlobalVelocity;
+        command.translation_mode = motion::TranslationMode::kBodyVelocity;
         command.target_velocity.linear.x = proto.cmd_vel().velocity_x() / 1000.0f;
         command.target_velocity.linear.y = proto.cmd_vel().velocity_y() / 1000.0f;
         if (proto.cmd_vel().use_imu()) {

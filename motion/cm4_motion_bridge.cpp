@@ -2,6 +2,7 @@
 #include "cm4_motion_bridge.hpp"
 
 #include "motion_proto.hpp"
+#include "motion/validation.hpp"
 
 #include <cstring>
 
@@ -21,6 +22,9 @@ void Cm4MotionBridge::configure(const motion::MotionConfigV2& config,
     session_id_ = session_id != 0 ? session_id
                                   : static_cast<std::uint32_t>(now_us ^ (now_us >> 32));
     next_sequence_ = 1;
+    legacy_sequence_ = 1;
+    disabled_sequence_ = 1;
+    command_sequences_ = motion::SequenceGate{};
     command_ = motion::MotionCommandV2{};
     has_command_ = false;
     has_vision_ = false;
@@ -46,10 +50,17 @@ void Cm4MotionBridge::configure(const motion::MotionConfigV2& config,
 
 bool Cm4MotionBridge::submitRobotCommand(const ZSS::New::Robot_Command& proto,
                                          motion::TimeUs receive_us) {
+    std::lock_guard<std::mutex> lock(command_mutex_);
     motion::MotionCommandV2 command;
     bool adapted = false;
     if (proto.has_motion_command()) {
         command = commandFromProto(proto.motion_command());
+        if (!motion::validCommand(command) || command.backend != motion::Backend::kNew) return false;
+        if (!command_sequences_.accepts(command.session_id, command.sequence)) return false;
+        if (has_command_ && command.session_id != command_.session_id) {
+            command_time_map_.reset();
+            has_vision_ = false;
+        }
         if (command.generated_time_us == 0) {
             command.generated_time_us = receive_us;
         } else {
@@ -57,8 +68,7 @@ bool Cm4MotionBridge::submitRobotCommand(const ZSS::New::Robot_Command& proto,
             command.generated_time_us = command_time_map_.toLocal(command.generated_time_us);
         }
         if (command.session_id == 0) command.session_id = session_id_;
-        if (command.sequence == 0) command.sequence = next_sequence_++;
-        else next_sequence_ = command.sequence + 1;
+        next_sequence_ = command.sequence + 1;
     } else {
         // Explicit legacy adapter.  Old use_imu / velocity_r commands remain
         // usable, but their meaning is translated into the v2 modes once.
@@ -89,8 +99,8 @@ bool Cm4MotionBridge::submitRobotCommand(const ZSS::New::Robot_Command& proto,
     }
 
     {
-        std::lock_guard<std::mutex> lock(command_mutex_);
         command_ = command;
+        command_sequences_.accept(command.session_id, command.sequence);
         has_command_ = true;
         command_receive_us_ = receive_us;
         if (has_vision) {
@@ -148,11 +158,9 @@ bool Cm4MotionBridge::buildCommandFrame(motion::TimeUs now_us, std::uint8_t* fra
     bool attach_vision = false;
     {
         std::lock_guard<std::mutex> lock(command_mutex_);
-        const bool valid = has_command_ && command_.enable &&
-                           now_us >= command_.generated_time_us &&
-                           now_us - command_.generated_time_us <=
-                               command_.valid_for_us;
-        if (valid) {
+        // Preserve the original sequence and generation time even after
+        // expiry. A synthetic new session would reopen replay/kick gates.
+        if (has_command_) {
             command = command_;
         } else {
             buildDisabledCommand(now_us, &command);
@@ -198,6 +206,9 @@ bool Cm4MotionBridge::processFeedbackFrame(const std::uint8_t* frame,
         ++protocol_errors_;
         return false;
     }
+    std::lock_guard<std::mutex> lock(feedback_mutex_);
+    const motion::TimeUs source_time = feedback.feedback_time_us;
+    if (has_feedback_ && source_time <= last_feedback_frame_us_) return false;
     if (feedback.feedback_time_us != 0) {
         feedback_time_map_.observe(feedback.feedback_time_us, now_us);
         feedback.fusion_time_us = feedback_time_map_.toLocal(feedback.fusion_time_us);
@@ -208,11 +219,10 @@ bool Cm4MotionBridge::processFeedbackFrame(const std::uint8_t* frame,
         feedback.feedback_time_us = feedback_time_map_.toLocal(feedback.feedback_time_us);
     }
     {
-        std::lock_guard<std::mutex> lock(feedback_mutex_);
         feedback_ = feedback;
         has_feedback_ = true;
         last_feedback_receive_us_ = now_us;
-        last_feedback_frame_us_ = feedback.feedback_time_us;
+        last_feedback_frame_us_ = source_time;
         spi_timed_out_ = false;
         ++feedback_frames_;
     }
