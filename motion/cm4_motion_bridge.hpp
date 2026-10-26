@@ -51,7 +51,6 @@ public:
     const motion::MotionConfigV2& config() const { return config_; }
 
     std::uint32_t commandsSubmitted() const;
-    std::uint32_t legacyAdapted() const;
     std::uint32_t protocolErrors() const;
     std::uint32_t spiTimeouts() const;
     std::uint32_t visionAttached() const;
@@ -69,8 +68,6 @@ private:
     motion::TimeMapper feedback_time_map_;
     motion::SequenceGate command_sequences_;
     std::uint32_t session_id_ = 1;
-    std::uint32_t next_sequence_ = 1;
-    std::uint32_t legacy_sequence_ = 1;
     std::uint32_t disabled_sequence_ = 1;
 
     mutable std::mutex command_mutex_;
@@ -90,7 +87,6 @@ private:
     bool spi_timed_out_ = true;
 
     std::uint32_t commands_submitted_ = 0;
-    std::uint32_t legacy_adapted_ = 0;
     std::uint32_t protocol_errors_ = 0;
     std::uint32_t spi_timeouts_ = 0;
     std::uint32_t vision_attached_ = 0;

@@ -7,22 +7,12 @@
 #include <cstring>
 
 namespace robot_cm4 {
-namespace {
-
-motion::CommandLimits defaultLimits() {
-    return motion::CommandLimits{};
-}
-
-}  // namespace
-
 void Cm4MotionBridge::configure(const motion::MotionConfigV2& config,
                                 std::uint32_t session_id,
                                 motion::TimeUs now_us) {
     config_ = config;
     session_id_ = session_id != 0 ? session_id
                                   : static_cast<std::uint32_t>(now_us ^ (now_us >> 32));
-    next_sequence_ = 1;
-    legacy_sequence_ = 1;
     disabled_sequence_ = 1;
     command_sequences_ = motion::SequenceGate{};
     command_ = motion::MotionCommandV2{};
@@ -36,7 +26,6 @@ void Cm4MotionBridge::configure(const motion::MotionConfigV2& config,
     last_feedback_frame_us_ = 0;
     spi_timed_out_ = true;
     commands_submitted_ = 0;
-    legacy_adapted_ = 0;
     protocol_errors_ = 0;
     spi_timeouts_ = 0;
     vision_attached_ = 0;
@@ -52,10 +41,10 @@ bool Cm4MotionBridge::submitRobotCommand(const ZSS::New::Robot_Command& proto,
                                          motion::TimeUs receive_us) {
     std::lock_guard<std::mutex> lock(command_mutex_);
     motion::MotionCommandV2 command;
-    bool adapted = false;
-    if (proto.has_motion_command()) {
+    if (!proto.has_motion_command()) return false;
+    {
         command = commandFromProto(proto.motion_command());
-        if (!motion::validCommand(command) || command.backend != motion::Backend::kNew) return false;
+        if (!motion::validCommand(command)) return false;
         if (!command_sequences_.accepts(command.session_id, command.sequence)) return false;
         if (has_command_ && command.session_id != command_.session_id) {
             command_time_map_.reset();
@@ -68,21 +57,11 @@ bool Cm4MotionBridge::submitRobotCommand(const ZSS::New::Robot_Command& proto,
             command.generated_time_us = command_time_map_.toLocal(command.generated_time_us);
         }
         if (command.session_id == 0) command.session_id = session_id_;
-        next_sequence_ = command.sequence + 1;
-    } else {
-        // Explicit legacy adapter.  Old use_imu / velocity_r commands remain
-        // usable, but their meaning is translated into the v2 modes once.
-        command = adaptLegacyCommand(proto, config_.limits, receive_us,
-                                     session_id_ ^ 0xA5A50000u);
-        command.generated_time_us = receive_us;
-        command.sequence = legacy_sequence_++;
-        adapted = true;
     }
     if (command.valid_for_us == 0) {
         command.valid_for_us = motion::secondsToUs(config_.command_timeout_s);
     }
     command.received_time_us = receive_us;
-    command.backend = motion::Backend::kNew;
 
     motion::VisionObservationV2 vision;
     bool has_vision = false;
@@ -113,7 +92,6 @@ bool Cm4MotionBridge::submitRobotCommand(const ZSS::New::Robot_Command& proto,
             }
         }
         ++commands_submitted_;
-        if (adapted) ++legacy_adapted_;
     }
     return true;
 }
@@ -314,7 +292,6 @@ bool Cm4MotionBridge::feedbackFresh(motion::TimeUs now_us) const {
 }
 
 std::uint32_t Cm4MotionBridge::commandsSubmitted() const { return commands_submitted_; }
-std::uint32_t Cm4MotionBridge::legacyAdapted() const { return legacy_adapted_; }
 std::uint32_t Cm4MotionBridge::protocolErrors() const { return protocol_errors_; }
 std::uint32_t Cm4MotionBridge::spiTimeouts() const { return spi_timeouts_; }
 std::uint32_t Cm4MotionBridge::visionAttached() const { return vision_attached_; }

@@ -6,9 +6,7 @@
 
 namespace robot_cm4 {
 
-// Hardware boundary used by the CM4 production bridge.  The real adapter wraps
-// mraa::Spi; FakeSpiTransport connects the host runner to the STM32 host core
-// without bypassing the byte-level frame format.
+// Fixed-byte boundary shared by Linux spidev and local test transports.
 class SpiTransport {
 public:
     virtual ~SpiTransport() = default;

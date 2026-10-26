@@ -75,9 +75,6 @@ inline motion::CommandLimits limitsFromProto(const ZSS::New::MotionLimitsV2& pro
 
 inline void commandToProto(const motion::MotionCommandV2& command,
                            ZSS::New::MotionCommandV2* proto) {
-    proto->set_backend(command.backend == motion::Backend::kLegacy
-                           ? ZSS::New::MOTION_BACKEND_LEGACY
-                           : ZSS::New::MOTION_BACKEND_NEW);
     proto->set_translation_mode(static_cast<ZSS::New::MotionTranslationMode>(
         static_cast<int>(command.translation_mode)));
     proto->set_yaw_mode(
@@ -110,9 +107,6 @@ inline void commandToProto(const motion::MotionCommandV2& command,
 
 inline motion::MotionCommandV2 commandFromProto(const ZSS::New::MotionCommandV2& proto) {
     motion::MotionCommandV2 command;
-    command.backend = proto.backend() == ZSS::New::MOTION_BACKEND_LEGACY
-                          ? motion::Backend::kLegacy
-                          : motion::Backend::kNew;
     command.translation_mode =
         static_cast<motion::TranslationMode>(proto.translation_mode());
     command.yaw_mode = static_cast<motion::YawMode>(proto.yaw_mode());
@@ -234,9 +228,6 @@ inline motion::MotionConfigV2 configFromProto(const ZSS::New::MotionConfigV2& pr
 
 inline void feedbackToProto(const motion::MotionFeedbackV2& feedback,
                             ZSS::New::MotionFeedbackV2* proto) {
-    proto->set_backend(feedback.backend == motion::Backend::kLegacy
-                           ? ZSS::New::MOTION_BACKEND_LEGACY
-                           : ZSS::New::MOTION_BACKEND_NEW);
     proto->set_safety(static_cast<ZSS::New::MotionSafetyState>(
         static_cast<int>(feedback.safety)));
     proto->set_localization(static_cast<ZSS::New::MotionLocalizationQuality>(
@@ -301,9 +292,6 @@ inline void feedbackToProto(const motion::MotionFeedbackV2& feedback,
 inline motion::MotionFeedbackV2 feedbackFromProto(
     const ZSS::New::MotionFeedbackV2& proto) {
     motion::MotionFeedbackV2 feedback;
-    feedback.backend = proto.backend() == ZSS::New::MOTION_BACKEND_LEGACY
-                           ? motion::Backend::kLegacy
-                           : motion::Backend::kNew;
     feedback.safety = static_cast<motion::SafetyState>(proto.safety());
     feedback.localization =
         static_cast<motion::LocalizationQuality>(proto.localization());
@@ -373,84 +361,6 @@ inline motion::MotionFeedbackV2 feedbackFromProto(
 // Old commands (use_imu / velocity_r / cmd_pose) are adapted once, explicitly,
 // into the v2 mode vocabulary.  The same numeric field is no longer treated
 // as an angle in one path and an angular velocity in another.
-inline motion::MotionCommandV2 adaptLegacyCommand(
-    const ZSS::New::Robot_Command& proto, const motion::CommandLimits& defaults,
-    motion::TimeUs receive_time_us, std::uint32_t session_id) {
-    motion::MotionCommandV2 command;
-    command.session_id = session_id;
-    command.sequence = 0;
-    command.generated_time_us = receive_time_us;
-    command.valid_for_us = 100000;
-    command.limits = defaults;
-    command.enable = true;
-    command.backend = motion::Backend::kNew;
-
-    const std::int32_t acc_x = proto.xy_max_acc_x();
-    const std::int32_t acc_y = proto.xy_max_acc_y();
-    if (acc_x > 0) command.limits.max_linear_accel_m_s2 = acc_x / 1000.0f;
-    if (acc_y > 0) command.limits.max_linear_accel_m_s2 =
-        std::fmin(command.limits.max_linear_accel_m_s2, acc_y / 1000.0f);
-    const std::int32_t dec_x = proto.xy_max_dec_x();
-    if (dec_x > 0) command.limits.max_linear_decel_m_s2 = dec_x / 1000.0f;
-    if (proto.yaw_max_vel() > 0) {
-        command.limits.max_yaw_speed_rad_s = proto.yaw_max_vel() / 1000.0f;
-    }
-    if (proto.yaw_max_acc() > 0) {
-        command.limits.max_yaw_accel_rad_s2 = proto.yaw_max_acc() / 1000.0f;
-    }
-
-    const auto type = proto.cmd_type();
-    if (type == ZSS::New::Robot_Command_CmdType_CMD_POSE) {
-        command.translation_mode = motion::TranslationMode::kPose;
-        command.yaw_mode = motion::YawMode::kPose;
-        command.target_pose.position.x = proto.cmd_pose().target().x() * 0.001f;
-        command.target_pose.position.y = proto.cmd_pose().target().y() * 0.001f;
-        command.target_pose.yaw = proto.cmd_pose().target().w();
-        command.target_velocity.linear.x = proto.cmd_pose().target_v().x() * 0.001f;
-        command.target_velocity.linear.y = proto.cmd_pose().target_v().y() * 0.001f;
-        command.target_velocity.angular = proto.cmd_pose().target_v().w();
-        if (proto.cmd_pose().has_config()) {
-            const auto& config = proto.cmd_pose().config();
-            if (config.max_vx() > 0) command.limits.max_linear_speed_m_s = config.max_vx() * 0.001f;
-            if (config.max_ax() > 0) command.limits.max_linear_accel_m_s2 = config.max_ax() * 0.001f;
-            if (config.max_aw() > 0) command.limits.max_yaw_accel_rad_s2 = config.max_aw();
-        }
-    } else if (type == ZSS::New::Robot_Command_CmdType_CMD_VEL) {
-        command.translation_mode = motion::TranslationMode::kBodyVelocity;
-        command.target_velocity.linear.x = proto.cmd_vel().velocity_x() / 1000.0f;
-        command.target_velocity.linear.y = proto.cmd_vel().velocity_y() / 1000.0f;
-        if (proto.cmd_vel().use_imu()) {
-            command.yaw_mode = motion::YawMode::kPose;
-            command.target_pose.yaw = proto.cmd_vel().imu_theta() / 1000.0f;
-        } else {
-            command.yaw_mode = motion::YawMode::kAngularVelocity;
-            command.target_velocity.angular = proto.cmd_vel().velocity_r() / 1000.0f;
-        }
-    } else if (type == ZSS::New::Robot_Command_CmdType_STOP) {
-        command.translation_mode = motion::TranslationMode::kStop;
-        command.yaw_mode = motion::YawMode::kHold;
-    } else {
-        command.translation_mode = motion::TranslationMode::kStop;
-        command.yaw_mode = motion::YawMode::kHold;
-    }
-
-    command.kick_requested =
-        proto.kick_mode() != ZSS::New::Robot_Command_KickMode_NONE;
-    command.chip_mode = proto.kick_mode() == ZSS::New::Robot_Command_KickMode_CHIP;
-    command.kick_discharge_time_us = 0;
-    if (proto.kick_discharge_time() > 0) {
-        command.kick_discharge_time_us =
-            static_cast<std::uint16_t>(proto.kick_discharge_time());
-    }
-    command.kick_sequence = 0;
-    command.kick_valid_for_us = 100000;
-    command.dribble_mode = static_cast<std::uint8_t>(proto.dribble_mode());
-    command.dribble_power = proto.dribble_spin() / 100.0f;
-    command.dribble_velocity_rps = proto.dribble_velocity() / 100.0f;
-    command.dribble_torque_ff_nm = proto.dribble_torque_ff() / 1000.0f;
-    return command;
-}
-
 }  // namespace robot_cm4
 
 #endif  // ROBOT_CM4_MOTION_PROTO_HPP
