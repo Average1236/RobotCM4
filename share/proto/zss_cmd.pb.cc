@@ -336,11 +336,29 @@ struct MotionFeedbackV2DefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MotionFeedbackV2DefaultTypeInternal _MotionFeedbackV2_default_instance_;
+PROTOBUF_CONSTEXPR MotionTrackingConfig::MotionTrackingConfig(
+    ::_pbi::ConstantInitialized)
+  : center_of_mass_height_m_(0)
+  , tire_friction_(0)
+  , traction_utilization_(0)
+  , position_soft_zone_m_(0)
+  , position_velocity_gain_(0)
+  , velocity_preview_s_(0){}
+struct MotionTrackingConfigDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MotionTrackingConfigDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MotionTrackingConfigDefaultTypeInternal() {}
+  union {
+    MotionTrackingConfig _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MotionTrackingConfigDefaultTypeInternal _MotionTrackingConfig_default_instance_;
 PROTOBUF_CONSTEXPR MotionConfigV2::MotionConfigV2(
     ::_pbi::ConstantInitialized)
   : wheel_axis_angle_rad_()
   , wheel_yaw_sign_()
   , limits_(nullptr)
+  , tracking_(nullptr)
   , mass_kg_(0)
   , inertia_kg_m2_(0)
   , wheel_radius_m_(0)
@@ -371,7 +389,7 @@ struct MotionConfigV2DefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MotionConfigV2DefaultTypeInternal _MotionConfigV2_default_instance_;
 }  // namespace New
 }  // namespace ZSS
-static ::_pb::Metadata file_level_metadata_zss_5fcmd_2eproto[16];
+static ::_pb::Metadata file_level_metadata_zss_5fcmd_2eproto[17];
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_zss_5fcmd_2eproto[7];
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_zss_5fcmd_2eproto = nullptr;
 
@@ -501,7 +519,7 @@ const uint32_t TableStruct_zss_5fcmd_2eproto::offsets[] PROTOBUF_SECTION_VARIABL
   PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionAccel2, ax_),
   PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionAccel2, ay_),
   PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionAccel2, alpha_),
-  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionLimitsV2, _has_bits_),
   PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionLimitsV2, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -522,6 +540,21 @@ const uint32_t TableStruct_zss_5fcmd_2eproto::offsets[] PROTOBUF_SECTION_VARIABL
   PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionLimitsV2, wheel_speed_kp_),
   PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionLimitsV2, wheel_speed_ki_),
   PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionLimitsV2, wheel_speed_backcalc_),
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  ~0u,
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionCommandV2, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -608,6 +641,18 @@ const uint32_t TableStruct_zss_5fcmd_2eproto::offsets[] PROTOBUF_SECTION_VARIABL
   PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, model_version_),
   PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionFeedbackV2, protocol_version_),
   ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionTrackingConfig, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionTrackingConfig, center_of_mass_height_m_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionTrackingConfig, tire_friction_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionTrackingConfig, traction_utilization_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionTrackingConfig, position_soft_zone_m_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionTrackingConfig, position_velocity_gain_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionTrackingConfig, velocity_preview_s_),
+  ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionConfigV2, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -635,6 +680,7 @@ const uint32_t TableStruct_zss_5fcmd_2eproto::offsets[] PROTOBUF_SECTION_VARIABL
   PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionConfigV2, vision_degrade_s_),
   PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionConfigV2, vision_invalid_s_),
   PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionConfigV2, config_version_),
+  PROTOBUF_FIELD_OFFSET(::ZSS::New::MotionConfigV2, tracking_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::ZSS::New::Robots_Status)},
@@ -648,11 +694,12 @@ static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protode
   { 98, -1, -1, sizeof(::ZSS::New::MotionPose2)},
   { 107, -1, -1, sizeof(::ZSS::New::MotionTwist2)},
   { 116, -1, -1, sizeof(::ZSS::New::MotionAccel2)},
-  { 125, -1, -1, sizeof(::ZSS::New::MotionLimitsV2)},
-  { 146, -1, -1, sizeof(::ZSS::New::MotionCommandV2)},
-  { 172, -1, -1, sizeof(::ZSS::New::VisionObservationV2)},
-  { 185, -1, -1, sizeof(::ZSS::New::MotionFeedbackV2)},
-  { 231, -1, -1, sizeof(::ZSS::New::MotionConfigV2)},
+  { 125, 146, -1, sizeof(::ZSS::New::MotionLimitsV2)},
+  { 161, -1, -1, sizeof(::ZSS::New::MotionCommandV2)},
+  { 187, -1, -1, sizeof(::ZSS::New::VisionObservationV2)},
+  { 200, -1, -1, sizeof(::ZSS::New::MotionFeedbackV2)},
+  { 246, -1, -1, sizeof(::ZSS::New::MotionTrackingConfig)},
+  { 258, -1, -1, sizeof(::ZSS::New::MotionConfigV2)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -671,6 +718,7 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::ZSS::New::_MotionCommandV2_default_instance_._instance,
   &::ZSS::New::_VisionObservationV2_default_instance_._instance,
   &::ZSS::New::_MotionFeedbackV2_default_instance_._instance,
+  &::ZSS::New::_MotionTrackingConfig_default_instance_._instance,
   &::ZSS::New::_MotionConfigV2_default_instance_._instance,
 };
 
@@ -715,113 +763,124 @@ const char descriptor_table_protodef_zss_5fcmd_2eproto[] PROTOBUF_SECTION_VARIAB
   "x\030\001 \001(\002\022\t\n\001y\030\002 \001(\002\022\013\n\003yaw\030\003 \001(\002\"2\n\014Motio"
   "nTwist2\022\n\n\002vx\030\001 \001(\002\022\n\n\002vy\030\002 \001(\002\022\n\n\002wz\030\003 "
   "\001(\002\"5\n\014MotionAccel2\022\n\n\002ax\030\001 \001(\002\022\n\n\002ay\030\002 "
-  "\001(\002\022\r\n\005alpha\030\003 \001(\002\"\325\003\n\016MotionLimitsV2\022\034\n"
+  "\001(\002\022\r\n\005alpha\030\003 \001(\002\"\240\005\n\016MotionLimitsV2\022\034\n"
   "\024max_linear_speed_m_s\030\001 \001(\002\022\035\n\025max_linea"
   "r_accel_m_s2\030\002 \001(\002\022\035\n\025max_linear_decel_m"
   "_s2\030\003 \001(\002\022\033\n\023max_yaw_speed_rad_s\030\004 \001(\002\022\034"
   "\n\024max_yaw_accel_rad_s2\030\005 \001(\002\022\"\n\032max_cent"
   "ripetal_accel_m_s2\030\006 \001(\002\022\033\n\023max_wheel_to"
   "rque_nm\030\007 \001(\002\022 \n\030max_torque_rate_nm_per_"
-  "s\030\010 \001(\002\022 \n\030position_correction_gain\030\t \001("
-  "\002\022%\n\035position_correction_limit_m_s\030\n \001(\002"
-  "\022\033\n\023yaw_correction_gain\030\013 \001(\002\022\025\n\ryaw_rat"
-  "e_gain\030\014 \001(\002\022\026\n\016wheel_speed_kp\030\r \001(\002\022\026\n\016"
-  "wheel_speed_ki\030\016 \001(\002\022\034\n\024wheel_speed_back"
-  "calc\030\017 \001(\002\"\340\004\n\017MotionCommandV2\0228\n\020transl"
-  "ation_mode\030\002 \001(\0162\036.ZSS.New.MotionTransla"
-  "tionMode\022(\n\010yaw_mode\030\003 \001(\0162\026.ZSS.New.Mot"
-  "ionYawMode\022\022\n\nsession_id\030\004 \001(\r\022\020\n\010sequen"
-  "ce\030\005 \001(\r\022\030\n\020trajectory_epoch\030\006 \001(\r\022\031\n\021ge"
-  "nerated_time_us\030\007 \001(\004\022\024\n\014valid_for_us\030\010 "
-  "\001(\r\022)\n\013target_pose\030\t \001(\0132\024.ZSS.New.Motio"
-  "nPose2\022.\n\017target_velocity\030\n \001(\0132\025.ZSS.Ne"
-  "w.MotionTwist2\022\'\n\006limits\030\013 \001(\0132\027.ZSS.New"
-  ".MotionLimitsV2\022\016\n\006enable\030\014 \001(\010\022\026\n\016kick_"
-  "requested\030\r \001(\010\022\021\n\tchip_mode\030\016 \001(\010\022\036\n\026ki"
-  "ck_discharge_time_us\030\017 \001(\r\022\025\n\rkick_seque"
-  "nce\030\020 \001(\r\022\031\n\021kick_valid_for_us\030\021 \001(\r\022\024\n\014"
-  "dribble_mode\030\022 \001(\r\022\025\n\rdribble_power\030\023 \001("
-  "\002\022\034\n\024dribble_velocity_rps\030\024 \001(\002\022\034\n\024dribb"
-  "le_torque_ff_nm\030\025 \001(\002\"\325\001\n\023VisionObservat"
-  "ionV2\022\027\n\017capture_time_us\030\001 \001(\004\022\020\n\010sequen"
-  "ce\030\002 \001(\r\022\"\n\004pose\030\003 \001(\0132\024.ZSS.New.MotionP"
-  "ose2\022\026\n\016position_std_m\030\004 \001(\002\022\023\n\013yaw_std_"
-  "rad\030\005 \001(\002\0223\n\007quality\030\006 \001(\0162\".ZSS.New.Mot"
-  "ionLocalizationQuality\022\r\n\005valid\030\007 \001(\010\"\323\t"
-  "\n\020MotionFeedbackV2\022*\n\006safety\030\002 \001(\0162\032.ZSS"
-  ".New.MotionSafetyState\0228\n\014localization\030\003"
-  " \001(\0162\".ZSS.New.MotionLocalizationQuality"
-  "\022\022\n\nsession_id\030\004 \001(\r\022\031\n\021executed_sequenc"
-  "e\030\005 \001(\r\022\030\n\020trajectory_epoch\030\006 \001(\r\022\035\n\025act"
-  "ive_command_age_us\030\007 \001(\r\022\026\n\016fusion_time_"
-  "us\030\010 \001(\004\022\032\n\022prediction_time_us\030\t \001(\004\022\030\n\020"
-  "feedback_time_us\030\n \001(\004\022\036\n\026vision_capture"
-  "_time_us\030\013 \001(\004\022\025\n\rvision_age_us\030\014 \001(\r\022,\n"
-  "\016estimated_pose\030\r \001(\0132\024.ZSS.New.MotionPo"
-  "se2\0221\n\022estimated_velocity\030\016 \001(\0132\025.ZSS.Ne"
-  "w.MotionTwist2\022\030\n\020position_sigma_m\030\017 \001(\002"
-  "\022\025\n\ryaw_sigma_rad\030\020 \001(\002\022,\n\016reference_pos"
-  "e\030\021 \001(\0132\024.ZSS.New.MotionPose2\0221\n\022referen"
-  "ce_velocity\030\022 \001(\0132\025.ZSS.New.MotionTwist2"
-  "\022.\n\017reference_accel\030\023 \001(\0132\025.ZSS.New.Moti"
-  "onAccel2\022\031\n\021trajectory_active\030\024 \001(\010\022\031\n\021g"
-  "yro_bias_z_rad_s\030\025 \001(\002\022\031\n\021accel_bias_x_m"
-  "_s2\030\026 \001(\002\022\031\n\021accel_bias_y_m_s2\030\027 \001(\002\022\032\n\022"
-  "wheel_speed_target\030\030 \003(\002\022\034\n\024wheel_speed_"
-  "measured\030\031 \003(\002\022\032\n\022feedforward_torque\030\032 \003"
-  "(\002\022\027\n\017feedback_torque\030\033 \003(\002\022\027\n\017integral_"
-  "torque\030\034 \003(\002\022\026\n\016applied_torque\030\035 \003(\002\022\022\n\n"
-  "saturation\030\036 \001(\r\022\033\n\023wheel_speed_enabled\030"
-  "\037 \001(\010\022\024\n\014vision_fused\030  \001(\010\022\036\n\026accelerom"
-  "eter_degraded\030! \001(\010\022\034\n\024wheel_slip_suspec"
-  "ted\030\" \001(\010\022\031\n\021late_observations\030# \001(\r\022\035\n\025"
-  "rejected_observations\030$ \001(\r\022\026\n\016vision_up"
-  "dates\030% \001(\r\022\031\n\021estimator_version\030& \001(\r\022\032"
-  "\n\022controller_version\030\' \001(\r\022\025\n\rmodel_vers"
-  "ion\030( \001(\r\022\030\n\020protocol_version\030) \001(\r\"\357\004\n\016"
-  "MotionConfigV2\022\017\n\007mass_kg\030\001 \001(\002\022\025\n\rinert"
-  "ia_kg_m2\030\002 \001(\002\022\026\n\016wheel_radius_m\030\003 \001(\002\022\037"
-  "\n\027wheel_center_distance_m\030\004 \001(\002\022\033\n\023wheel"
-  "_inertia_kg_m2\030\005 \001(\002\022 \n\030wheel_friction_t"
-  "orque_nm\030\006 \001(\002\022\"\n\032wheel_viscous_nm_per_r"
-  "ad_s\030\007 \001(\002\022\022\n\nefficiency\030\010 \001(\002\022\033\n\023max_wh"
-  "eel_torque_nm\030\t \001(\002\022\035\n\025max_wheel_speed_r"
-  "ad_s\030\n \001(\002\022\036\n\026max_wheel_accel_rad_s2\030\013 \001"
-  "(\002\022\034\n\024torque_rate_nm_per_s\030\014 \001(\002\022\034\n\024whee"
-  "l_axis_angle_rad\030\r \003(\002\022\026\n\016wheel_yaw_sign"
-  "\030\016 \003(\002\022\'\n\006limits\030\017 \001(\0132\027.ZSS.New.MotionL"
-  "imitsV2\022\026\n\016fusion_delay_s\030\020 \001(\002\022\026\n\016histo"
-  "ry_span_s\030\021 \001(\002\022\031\n\021command_timeout_s\030\022 \001"
-  "(\002\022\025\n\rspi_timeout_s\030\023 \001(\002\022\030\n\020vision_degr"
-  "ade_s\030\024 \001(\002\022\030\n\020vision_invalid_s\030\025 \001(\002\022\026\n"
-  "\016config_version\030\026 \001(\r*)\n\004Team\022\013\n\007UNKNOWN"
-  "\020\000\022\010\n\004BLUE\020\001\022\n\n\006YELLOW\020\002*G\n\016SimCommandTy"
-  "pe\022\033\n\027SIM_COMMAND_UNSPECIFIED\020\000\022\030\n\024SIM_C"
-  "OMMAND_VELOCITY\020\002*\237\001\n\025MotionTranslationM"
-  "ode\022\033\n\027MOTION_TRANSLATION_STOP\020\000\022\033\n\027MOTI"
-  "ON_TRANSLATION_POSE\020\001\022&\n\"MOTION_TRANSLAT"
-  "ION_GLOBAL_VELOCITY\020\002\022$\n MOTION_TRANSLAT"
-  "ION_BODY_VELOCITY\020\003*Z\n\rMotionYawMode\022\023\n\017"
-  "MOTION_YAW_HOLD\020\000\022\023\n\017MOTION_YAW_POSE\020\001\022\037"
-  "\n\033MOTION_YAW_ANGULAR_VELOCITY\020\002*|\n\031Motio"
-  "nLocalizationQuality\022\037\n\033MOTION_LOCALIZAT"
-  "ION_INVALID\020\000\022 \n\034MOTION_LOCALIZATION_DEG"
-  "RADED\020\001\022\034\n\030MOTION_LOCALIZATION_GOOD\020\002*\326\001"
-  "\n\021MotionSafetyState\022\036\n\032MOTION_SAFETY_INI"
-  "TIALIZING\020\000\022\027\n\023MOTION_SAFETY_READY\020\001\022!\n\035"
-  "MOTION_SAFETY_COMMAND_TIMEOUT\020\002\022$\n MOTIO"
-  "N_SAFETY_LOCALIZATION_BRAKE\020\003\022&\n\"MOTION_"
-  "SAFETY_LOCALIZATION_INVALID\020\004\022\027\n\023MOTION_"
-  "SAFETY_FAULT\020\005b\006proto3"
+  "s\030\010 \001(\002\022%\n\030position_correction_gain\030\t \001("
+  "\002H\000\210\001\001\022*\n\035position_correction_limit_m_s\030"
+  "\n \001(\002H\001\210\001\001\022 \n\023yaw_correction_gain\030\013 \001(\002H"
+  "\002\210\001\001\022\032\n\ryaw_rate_gain\030\014 \001(\002H\003\210\001\001\022\033\n\016whee"
+  "l_speed_kp\030\r \001(\002H\004\210\001\001\022\033\n\016wheel_speed_ki\030"
+  "\016 \001(\002H\005\210\001\001\022!\n\024wheel_speed_backcalc\030\017 \001(\002"
+  "H\006\210\001\001B\033\n\031_position_correction_gainB \n\036_p"
+  "osition_correction_limit_m_sB\026\n\024_yaw_cor"
+  "rection_gainB\020\n\016_yaw_rate_gainB\021\n\017_wheel"
+  "_speed_kpB\021\n\017_wheel_speed_kiB\027\n\025_wheel_s"
+  "peed_backcalc\"\340\004\n\017MotionCommandV2\0228\n\020tra"
+  "nslation_mode\030\002 \001(\0162\036.ZSS.New.MotionTran"
+  "slationMode\022(\n\010yaw_mode\030\003 \001(\0162\026.ZSS.New."
+  "MotionYawMode\022\022\n\nsession_id\030\004 \001(\r\022\020\n\010seq"
+  "uence\030\005 \001(\r\022\030\n\020trajectory_epoch\030\006 \001(\r\022\031\n"
+  "\021generated_time_us\030\007 \001(\004\022\024\n\014valid_for_us"
+  "\030\010 \001(\r\022)\n\013target_pose\030\t \001(\0132\024.ZSS.New.Mo"
+  "tionPose2\022.\n\017target_velocity\030\n \001(\0132\025.ZSS"
+  ".New.MotionTwist2\022\'\n\006limits\030\013 \001(\0132\027.ZSS."
+  "New.MotionLimitsV2\022\016\n\006enable\030\014 \001(\010\022\026\n\016ki"
+  "ck_requested\030\r \001(\010\022\021\n\tchip_mode\030\016 \001(\010\022\036\n"
+  "\026kick_discharge_time_us\030\017 \001(\r\022\025\n\rkick_se"
+  "quence\030\020 \001(\r\022\031\n\021kick_valid_for_us\030\021 \001(\r\022"
+  "\024\n\014dribble_mode\030\022 \001(\r\022\025\n\rdribble_power\030\023"
+  " \001(\002\022\034\n\024dribble_velocity_rps\030\024 \001(\002\022\034\n\024dr"
+  "ibble_torque_ff_nm\030\025 \001(\002\"\325\001\n\023VisionObser"
+  "vationV2\022\027\n\017capture_time_us\030\001 \001(\004\022\020\n\010seq"
+  "uence\030\002 \001(\r\022\"\n\004pose\030\003 \001(\0132\024.ZSS.New.Moti"
+  "onPose2\022\026\n\016position_std_m\030\004 \001(\002\022\023\n\013yaw_s"
+  "td_rad\030\005 \001(\002\0223\n\007quality\030\006 \001(\0162\".ZSS.New."
+  "MotionLocalizationQuality\022\r\n\005valid\030\007 \001(\010"
+  "\"\323\t\n\020MotionFeedbackV2\022*\n\006safety\030\002 \001(\0162\032."
+  "ZSS.New.MotionSafetyState\0228\n\014localizatio"
+  "n\030\003 \001(\0162\".ZSS.New.MotionLocalizationQual"
+  "ity\022\022\n\nsession_id\030\004 \001(\r\022\031\n\021executed_sequ"
+  "ence\030\005 \001(\r\022\030\n\020trajectory_epoch\030\006 \001(\r\022\035\n\025"
+  "active_command_age_us\030\007 \001(\r\022\026\n\016fusion_ti"
+  "me_us\030\010 \001(\004\022\032\n\022prediction_time_us\030\t \001(\004\022"
+  "\030\n\020feedback_time_us\030\n \001(\004\022\036\n\026vision_capt"
+  "ure_time_us\030\013 \001(\004\022\025\n\rvision_age_us\030\014 \001(\r"
+  "\022,\n\016estimated_pose\030\r \001(\0132\024.ZSS.New.Motio"
+  "nPose2\0221\n\022estimated_velocity\030\016 \001(\0132\025.ZSS"
+  ".New.MotionTwist2\022\030\n\020position_sigma_m\030\017 "
+  "\001(\002\022\025\n\ryaw_sigma_rad\030\020 \001(\002\022,\n\016reference_"
+  "pose\030\021 \001(\0132\024.ZSS.New.MotionPose2\0221\n\022refe"
+  "rence_velocity\030\022 \001(\0132\025.ZSS.New.MotionTwi"
+  "st2\022.\n\017reference_accel\030\023 \001(\0132\025.ZSS.New.M"
+  "otionAccel2\022\031\n\021trajectory_active\030\024 \001(\010\022\031"
+  "\n\021gyro_bias_z_rad_s\030\025 \001(\002\022\031\n\021accel_bias_"
+  "x_m_s2\030\026 \001(\002\022\031\n\021accel_bias_y_m_s2\030\027 \001(\002\022"
+  "\032\n\022wheel_speed_target\030\030 \003(\002\022\034\n\024wheel_spe"
+  "ed_measured\030\031 \003(\002\022\032\n\022feedforward_torque\030"
+  "\032 \003(\002\022\027\n\017feedback_torque\030\033 \003(\002\022\027\n\017integr"
+  "al_torque\030\034 \003(\002\022\026\n\016applied_torque\030\035 \003(\002\022"
+  "\022\n\nsaturation\030\036 \001(\r\022\033\n\023wheel_speed_enabl"
+  "ed\030\037 \001(\010\022\024\n\014vision_fused\030  \001(\010\022\036\n\026accele"
+  "rometer_degraded\030! \001(\010\022\034\n\024wheel_slip_sus"
+  "pected\030\" \001(\010\022\031\n\021late_observations\030# \001(\r\022"
+  "\035\n\025rejected_observations\030$ \001(\r\022\026\n\016vision"
+  "_updates\030% \001(\r\022\031\n\021estimator_version\030& \001("
+  "\r\022\032\n\022controller_version\030\' \001(\r\022\025\n\rmodel_v"
+  "ersion\030( \001(\r\022\030\n\020protocol_version\030) \001(\r\"\306"
+  "\001\n\024MotionTrackingConfig\022\037\n\027center_of_mas"
+  "s_height_m\030\001 \001(\002\022\025\n\rtire_friction\030\002 \001(\002\022"
+  "\034\n\024traction_utilization\030\003 \001(\002\022\034\n\024positio"
+  "n_soft_zone_m\030\004 \001(\002\022\036\n\026position_velocity"
+  "_gain\030\005 \001(\002\022\032\n\022velocity_preview_s\030\006 \001(\002\""
+  "\240\005\n\016MotionConfigV2\022\017\n\007mass_kg\030\001 \001(\002\022\025\n\ri"
+  "nertia_kg_m2\030\002 \001(\002\022\026\n\016wheel_radius_m\030\003 \001"
+  "(\002\022\037\n\027wheel_center_distance_m\030\004 \001(\002\022\033\n\023w"
+  "heel_inertia_kg_m2\030\005 \001(\002\022 \n\030wheel_fricti"
+  "on_torque_nm\030\006 \001(\002\022\"\n\032wheel_viscous_nm_p"
+  "er_rad_s\030\007 \001(\002\022\022\n\nefficiency\030\010 \001(\002\022\033\n\023ma"
+  "x_wheel_torque_nm\030\t \001(\002\022\035\n\025max_wheel_spe"
+  "ed_rad_s\030\n \001(\002\022\036\n\026max_wheel_accel_rad_s2"
+  "\030\013 \001(\002\022\034\n\024torque_rate_nm_per_s\030\014 \001(\002\022\034\n\024"
+  "wheel_axis_angle_rad\030\r \003(\002\022\026\n\016wheel_yaw_"
+  "sign\030\016 \003(\002\022\'\n\006limits\030\017 \001(\0132\027.ZSS.New.Mot"
+  "ionLimitsV2\022\026\n\016fusion_delay_s\030\020 \001(\002\022\026\n\016h"
+  "istory_span_s\030\021 \001(\002\022\031\n\021command_timeout_s"
+  "\030\022 \001(\002\022\025\n\rspi_timeout_s\030\023 \001(\002\022\030\n\020vision_"
+  "degrade_s\030\024 \001(\002\022\030\n\020vision_invalid_s\030\025 \001("
+  "\002\022\026\n\016config_version\030\026 \001(\r\022/\n\010tracking\030\027 "
+  "\001(\0132\035.ZSS.New.MotionTrackingConfig*)\n\004Te"
+  "am\022\013\n\007UNKNOWN\020\000\022\010\n\004BLUE\020\001\022\n\n\006YELLOW\020\002*G\n"
+  "\016SimCommandType\022\033\n\027SIM_COMMAND_UNSPECIFI"
+  "ED\020\000\022\030\n\024SIM_COMMAND_VELOCITY\020\002*\237\001\n\025Motio"
+  "nTranslationMode\022\033\n\027MOTION_TRANSLATION_S"
+  "TOP\020\000\022\033\n\027MOTION_TRANSLATION_POSE\020\001\022&\n\"MO"
+  "TION_TRANSLATION_GLOBAL_VELOCITY\020\002\022$\n MO"
+  "TION_TRANSLATION_BODY_VELOCITY\020\003*Z\n\rMoti"
+  "onYawMode\022\023\n\017MOTION_YAW_HOLD\020\000\022\023\n\017MOTION"
+  "_YAW_POSE\020\001\022\037\n\033MOTION_YAW_ANGULAR_VELOCI"
+  "TY\020\002*|\n\031MotionLocalizationQuality\022\037\n\033MOT"
+  "ION_LOCALIZATION_INVALID\020\000\022 \n\034MOTION_LOC"
+  "ALIZATION_DEGRADED\020\001\022\034\n\030MOTION_LOCALIZAT"
+  "ION_GOOD\020\002*\326\001\n\021MotionSafetyState\022\036\n\032MOTI"
+  "ON_SAFETY_INITIALIZING\020\000\022\027\n\023MOTION_SAFET"
+  "Y_READY\020\001\022!\n\035MOTION_SAFETY_COMMAND_TIMEO"
+  "UT\020\002\022$\n MOTION_SAFETY_LOCALIZATION_BRAKE"
+  "\020\003\022&\n\"MOTION_SAFETY_LOCALIZATION_INVALID"
+  "\020\004\022\027\n\023MOTION_SAFETY_FAULT\020\005b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_zss_5fcmd_2eproto_deps[1] = {
   &::descriptor_table_zss_5fcmd_5ftype_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_zss_5fcmd_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_zss_5fcmd_2eproto = {
-    false, false, 5502, descriptor_table_protodef_zss_5fcmd_2eproto,
+    false, false, 5955, descriptor_table_protodef_zss_5fcmd_2eproto,
     "zss_cmd.proto",
-    &descriptor_table_zss_5fcmd_2eproto_once, descriptor_table_zss_5fcmd_2eproto_deps, 1, 16,
+    &descriptor_table_zss_5fcmd_2eproto_once, descriptor_table_zss_5fcmd_2eproto_deps, 1, 17,
     schemas, file_default_instances, TableStruct_zss_5fcmd_2eproto::offsets,
     file_level_metadata_zss_5fcmd_2eproto, file_level_enum_descriptors_zss_5fcmd_2eproto,
     file_level_service_descriptors_zss_5fcmd_2eproto,
@@ -4318,6 +4377,28 @@ void MotionAccel2::InternalSwap(MotionAccel2* other) {
 
 class MotionLimitsV2::_Internal {
  public:
+  using HasBits = decltype(std::declval<MotionLimitsV2>()._has_bits_);
+  static void set_has_position_correction_gain(HasBits* has_bits) {
+    (*has_bits)[0] |= 1u;
+  }
+  static void set_has_position_correction_limit_m_s(HasBits* has_bits) {
+    (*has_bits)[0] |= 2u;
+  }
+  static void set_has_yaw_correction_gain(HasBits* has_bits) {
+    (*has_bits)[0] |= 4u;
+  }
+  static void set_has_yaw_rate_gain(HasBits* has_bits) {
+    (*has_bits)[0] |= 8u;
+  }
+  static void set_has_wheel_speed_kp(HasBits* has_bits) {
+    (*has_bits)[0] |= 16u;
+  }
+  static void set_has_wheel_speed_ki(HasBits* has_bits) {
+    (*has_bits)[0] |= 32u;
+  }
+  static void set_has_wheel_speed_backcalc(HasBits* has_bits) {
+    (*has_bits)[0] |= 64u;
+  }
 };
 
 MotionLimitsV2::MotionLimitsV2(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -4327,7 +4408,8 @@ MotionLimitsV2::MotionLimitsV2(::PROTOBUF_NAMESPACE_ID::Arena* arena,
   // @@protoc_insertion_point(arena_constructor:ZSS.New.MotionLimitsV2)
 }
 MotionLimitsV2::MotionLimitsV2(const MotionLimitsV2& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _has_bits_(from._has_bits_) {
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   ::memcpy(&max_linear_speed_m_s_, &from.max_linear_speed_m_s_,
     static_cast<size_t>(reinterpret_cast<char*>(&wheel_speed_backcalc_) -
@@ -4366,13 +4448,21 @@ void MotionLimitsV2::Clear() {
   (void) cached_has_bits;
 
   ::memset(&max_linear_speed_m_s_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&wheel_speed_backcalc_) -
-      reinterpret_cast<char*>(&max_linear_speed_m_s_)) + sizeof(wheel_speed_backcalc_));
+      reinterpret_cast<char*>(&max_torque_rate_nm_per_s_) -
+      reinterpret_cast<char*>(&max_linear_speed_m_s_)) + sizeof(max_torque_rate_nm_per_s_));
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x0000007fu) {
+    ::memset(&position_correction_gain_, 0, static_cast<size_t>(
+        reinterpret_cast<char*>(&wheel_speed_backcalc_) -
+        reinterpret_cast<char*>(&position_correction_gain_)) + sizeof(wheel_speed_backcalc_));
+  }
+  _has_bits_.Clear();
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
 const char* MotionLimitsV2::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
 #define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  _Internal::HasBits has_bits{};
   while (!ctx->Done(&ptr)) {
     uint32_t tag;
     ptr = ::_pbi::ReadTag(ptr, &tag);
@@ -4441,57 +4531,64 @@ const char* MotionLimitsV2::_InternalParse(const char* ptr, ::_pbi::ParseContext
         } else
           goto handle_unusual;
         continue;
-      // float position_correction_gain = 9;
+      // optional float position_correction_gain = 9;
       case 9:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 77)) {
+          _Internal::set_has_position_correction_gain(&has_bits);
           position_correction_gain_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
         continue;
-      // float position_correction_limit_m_s = 10;
+      // optional float position_correction_limit_m_s = 10;
       case 10:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 85)) {
+          _Internal::set_has_position_correction_limit_m_s(&has_bits);
           position_correction_limit_m_s_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
         continue;
-      // float yaw_correction_gain = 11;
+      // optional float yaw_correction_gain = 11;
       case 11:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 93)) {
+          _Internal::set_has_yaw_correction_gain(&has_bits);
           yaw_correction_gain_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
         continue;
-      // float yaw_rate_gain = 12;
+      // optional float yaw_rate_gain = 12;
       case 12:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 101)) {
+          _Internal::set_has_yaw_rate_gain(&has_bits);
           yaw_rate_gain_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
         continue;
-      // float wheel_speed_kp = 13;
+      // optional float wheel_speed_kp = 13;
       case 13:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 109)) {
+          _Internal::set_has_wheel_speed_kp(&has_bits);
           wheel_speed_kp_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
         continue;
-      // float wheel_speed_ki = 14;
+      // optional float wheel_speed_ki = 14;
       case 14:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 117)) {
+          _Internal::set_has_wheel_speed_ki(&has_bits);
           wheel_speed_ki_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
           goto handle_unusual;
         continue;
-      // float wheel_speed_backcalc = 15;
+      // optional float wheel_speed_backcalc = 15;
       case 15:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 125)) {
+          _Internal::set_has_wheel_speed_backcalc(&has_bits);
           wheel_speed_backcalc_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else
@@ -4513,6 +4610,7 @@ const char* MotionLimitsV2::_InternalParse(const char* ptr, ::_pbi::ParseContext
     CHK_(ptr != nullptr);
   }  // while
 message_done:
+  _has_bits_.Or(has_bits);
   return ptr;
 failure:
   ptr = nullptr;
@@ -4606,72 +4704,44 @@ uint8_t* MotionLimitsV2::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteFloatToArray(8, this->_internal_max_torque_rate_nm_per_s(), target);
   }
 
-  // float position_correction_gain = 9;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_position_correction_gain = this->_internal_position_correction_gain();
-  uint32_t raw_position_correction_gain;
-  memcpy(&raw_position_correction_gain, &tmp_position_correction_gain, sizeof(tmp_position_correction_gain));
-  if (raw_position_correction_gain != 0) {
+  // optional float position_correction_gain = 9;
+  if (_internal_has_position_correction_gain()) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteFloatToArray(9, this->_internal_position_correction_gain(), target);
   }
 
-  // float position_correction_limit_m_s = 10;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_position_correction_limit_m_s = this->_internal_position_correction_limit_m_s();
-  uint32_t raw_position_correction_limit_m_s;
-  memcpy(&raw_position_correction_limit_m_s, &tmp_position_correction_limit_m_s, sizeof(tmp_position_correction_limit_m_s));
-  if (raw_position_correction_limit_m_s != 0) {
+  // optional float position_correction_limit_m_s = 10;
+  if (_internal_has_position_correction_limit_m_s()) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteFloatToArray(10, this->_internal_position_correction_limit_m_s(), target);
   }
 
-  // float yaw_correction_gain = 11;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_yaw_correction_gain = this->_internal_yaw_correction_gain();
-  uint32_t raw_yaw_correction_gain;
-  memcpy(&raw_yaw_correction_gain, &tmp_yaw_correction_gain, sizeof(tmp_yaw_correction_gain));
-  if (raw_yaw_correction_gain != 0) {
+  // optional float yaw_correction_gain = 11;
+  if (_internal_has_yaw_correction_gain()) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteFloatToArray(11, this->_internal_yaw_correction_gain(), target);
   }
 
-  // float yaw_rate_gain = 12;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_yaw_rate_gain = this->_internal_yaw_rate_gain();
-  uint32_t raw_yaw_rate_gain;
-  memcpy(&raw_yaw_rate_gain, &tmp_yaw_rate_gain, sizeof(tmp_yaw_rate_gain));
-  if (raw_yaw_rate_gain != 0) {
+  // optional float yaw_rate_gain = 12;
+  if (_internal_has_yaw_rate_gain()) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteFloatToArray(12, this->_internal_yaw_rate_gain(), target);
   }
 
-  // float wheel_speed_kp = 13;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_wheel_speed_kp = this->_internal_wheel_speed_kp();
-  uint32_t raw_wheel_speed_kp;
-  memcpy(&raw_wheel_speed_kp, &tmp_wheel_speed_kp, sizeof(tmp_wheel_speed_kp));
-  if (raw_wheel_speed_kp != 0) {
+  // optional float wheel_speed_kp = 13;
+  if (_internal_has_wheel_speed_kp()) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteFloatToArray(13, this->_internal_wheel_speed_kp(), target);
   }
 
-  // float wheel_speed_ki = 14;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_wheel_speed_ki = this->_internal_wheel_speed_ki();
-  uint32_t raw_wheel_speed_ki;
-  memcpy(&raw_wheel_speed_ki, &tmp_wheel_speed_ki, sizeof(tmp_wheel_speed_ki));
-  if (raw_wheel_speed_ki != 0) {
+  // optional float wheel_speed_ki = 14;
+  if (_internal_has_wheel_speed_ki()) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteFloatToArray(14, this->_internal_wheel_speed_ki(), target);
   }
 
-  // float wheel_speed_backcalc = 15;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_wheel_speed_backcalc = this->_internal_wheel_speed_backcalc();
-  uint32_t raw_wheel_speed_backcalc;
-  memcpy(&raw_wheel_speed_backcalc, &tmp_wheel_speed_backcalc, sizeof(tmp_wheel_speed_backcalc));
-  if (raw_wheel_speed_backcalc != 0) {
+  // optional float wheel_speed_backcalc = 15;
+  if (_internal_has_wheel_speed_backcalc()) {
     target = stream->EnsureSpace(target);
     target = ::_pbi::WireFormatLite::WriteFloatToArray(15, this->_internal_wheel_speed_backcalc(), target);
   }
@@ -4764,69 +4834,44 @@ size_t MotionLimitsV2::ByteSizeLong() const {
     total_size += 1 + 4;
   }
 
-  // float position_correction_gain = 9;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_position_correction_gain = this->_internal_position_correction_gain();
-  uint32_t raw_position_correction_gain;
-  memcpy(&raw_position_correction_gain, &tmp_position_correction_gain, sizeof(tmp_position_correction_gain));
-  if (raw_position_correction_gain != 0) {
-    total_size += 1 + 4;
-  }
+  cached_has_bits = _has_bits_[0];
+  if (cached_has_bits & 0x0000007fu) {
+    // optional float position_correction_gain = 9;
+    if (cached_has_bits & 0x00000001u) {
+      total_size += 1 + 4;
+    }
 
-  // float position_correction_limit_m_s = 10;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_position_correction_limit_m_s = this->_internal_position_correction_limit_m_s();
-  uint32_t raw_position_correction_limit_m_s;
-  memcpy(&raw_position_correction_limit_m_s, &tmp_position_correction_limit_m_s, sizeof(tmp_position_correction_limit_m_s));
-  if (raw_position_correction_limit_m_s != 0) {
-    total_size += 1 + 4;
-  }
+    // optional float position_correction_limit_m_s = 10;
+    if (cached_has_bits & 0x00000002u) {
+      total_size += 1 + 4;
+    }
 
-  // float yaw_correction_gain = 11;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_yaw_correction_gain = this->_internal_yaw_correction_gain();
-  uint32_t raw_yaw_correction_gain;
-  memcpy(&raw_yaw_correction_gain, &tmp_yaw_correction_gain, sizeof(tmp_yaw_correction_gain));
-  if (raw_yaw_correction_gain != 0) {
-    total_size += 1 + 4;
-  }
+    // optional float yaw_correction_gain = 11;
+    if (cached_has_bits & 0x00000004u) {
+      total_size += 1 + 4;
+    }
 
-  // float yaw_rate_gain = 12;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_yaw_rate_gain = this->_internal_yaw_rate_gain();
-  uint32_t raw_yaw_rate_gain;
-  memcpy(&raw_yaw_rate_gain, &tmp_yaw_rate_gain, sizeof(tmp_yaw_rate_gain));
-  if (raw_yaw_rate_gain != 0) {
-    total_size += 1 + 4;
-  }
+    // optional float yaw_rate_gain = 12;
+    if (cached_has_bits & 0x00000008u) {
+      total_size += 1 + 4;
+    }
 
-  // float wheel_speed_kp = 13;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_wheel_speed_kp = this->_internal_wheel_speed_kp();
-  uint32_t raw_wheel_speed_kp;
-  memcpy(&raw_wheel_speed_kp, &tmp_wheel_speed_kp, sizeof(tmp_wheel_speed_kp));
-  if (raw_wheel_speed_kp != 0) {
-    total_size += 1 + 4;
-  }
+    // optional float wheel_speed_kp = 13;
+    if (cached_has_bits & 0x00000010u) {
+      total_size += 1 + 4;
+    }
 
-  // float wheel_speed_ki = 14;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_wheel_speed_ki = this->_internal_wheel_speed_ki();
-  uint32_t raw_wheel_speed_ki;
-  memcpy(&raw_wheel_speed_ki, &tmp_wheel_speed_ki, sizeof(tmp_wheel_speed_ki));
-  if (raw_wheel_speed_ki != 0) {
-    total_size += 1 + 4;
-  }
+    // optional float wheel_speed_ki = 14;
+    if (cached_has_bits & 0x00000020u) {
+      total_size += 1 + 4;
+    }
 
-  // float wheel_speed_backcalc = 15;
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_wheel_speed_backcalc = this->_internal_wheel_speed_backcalc();
-  uint32_t raw_wheel_speed_backcalc;
-  memcpy(&raw_wheel_speed_backcalc, &tmp_wheel_speed_backcalc, sizeof(tmp_wheel_speed_backcalc));
-  if (raw_wheel_speed_backcalc != 0) {
-    total_size += 1 + 4;
-  }
+    // optional float wheel_speed_backcalc = 15;
+    if (cached_has_bits & 0x00000040u) {
+      total_size += 1 + 4;
+    }
 
+  }
   return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
 }
 
@@ -4905,54 +4950,30 @@ void MotionLimitsV2::MergeFrom(const MotionLimitsV2& from) {
   if (raw_max_torque_rate_nm_per_s != 0) {
     _internal_set_max_torque_rate_nm_per_s(from._internal_max_torque_rate_nm_per_s());
   }
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_position_correction_gain = from._internal_position_correction_gain();
-  uint32_t raw_position_correction_gain;
-  memcpy(&raw_position_correction_gain, &tmp_position_correction_gain, sizeof(tmp_position_correction_gain));
-  if (raw_position_correction_gain != 0) {
-    _internal_set_position_correction_gain(from._internal_position_correction_gain());
-  }
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_position_correction_limit_m_s = from._internal_position_correction_limit_m_s();
-  uint32_t raw_position_correction_limit_m_s;
-  memcpy(&raw_position_correction_limit_m_s, &tmp_position_correction_limit_m_s, sizeof(tmp_position_correction_limit_m_s));
-  if (raw_position_correction_limit_m_s != 0) {
-    _internal_set_position_correction_limit_m_s(from._internal_position_correction_limit_m_s());
-  }
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_yaw_correction_gain = from._internal_yaw_correction_gain();
-  uint32_t raw_yaw_correction_gain;
-  memcpy(&raw_yaw_correction_gain, &tmp_yaw_correction_gain, sizeof(tmp_yaw_correction_gain));
-  if (raw_yaw_correction_gain != 0) {
-    _internal_set_yaw_correction_gain(from._internal_yaw_correction_gain());
-  }
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_yaw_rate_gain = from._internal_yaw_rate_gain();
-  uint32_t raw_yaw_rate_gain;
-  memcpy(&raw_yaw_rate_gain, &tmp_yaw_rate_gain, sizeof(tmp_yaw_rate_gain));
-  if (raw_yaw_rate_gain != 0) {
-    _internal_set_yaw_rate_gain(from._internal_yaw_rate_gain());
-  }
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_wheel_speed_kp = from._internal_wheel_speed_kp();
-  uint32_t raw_wheel_speed_kp;
-  memcpy(&raw_wheel_speed_kp, &tmp_wheel_speed_kp, sizeof(tmp_wheel_speed_kp));
-  if (raw_wheel_speed_kp != 0) {
-    _internal_set_wheel_speed_kp(from._internal_wheel_speed_kp());
-  }
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_wheel_speed_ki = from._internal_wheel_speed_ki();
-  uint32_t raw_wheel_speed_ki;
-  memcpy(&raw_wheel_speed_ki, &tmp_wheel_speed_ki, sizeof(tmp_wheel_speed_ki));
-  if (raw_wheel_speed_ki != 0) {
-    _internal_set_wheel_speed_ki(from._internal_wheel_speed_ki());
-  }
-  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
-  float tmp_wheel_speed_backcalc = from._internal_wheel_speed_backcalc();
-  uint32_t raw_wheel_speed_backcalc;
-  memcpy(&raw_wheel_speed_backcalc, &tmp_wheel_speed_backcalc, sizeof(tmp_wheel_speed_backcalc));
-  if (raw_wheel_speed_backcalc != 0) {
-    _internal_set_wheel_speed_backcalc(from._internal_wheel_speed_backcalc());
+  cached_has_bits = from._has_bits_[0];
+  if (cached_has_bits & 0x0000007fu) {
+    if (cached_has_bits & 0x00000001u) {
+      position_correction_gain_ = from.position_correction_gain_;
+    }
+    if (cached_has_bits & 0x00000002u) {
+      position_correction_limit_m_s_ = from.position_correction_limit_m_s_;
+    }
+    if (cached_has_bits & 0x00000004u) {
+      yaw_correction_gain_ = from.yaw_correction_gain_;
+    }
+    if (cached_has_bits & 0x00000008u) {
+      yaw_rate_gain_ = from.yaw_rate_gain_;
+    }
+    if (cached_has_bits & 0x00000010u) {
+      wheel_speed_kp_ = from.wheel_speed_kp_;
+    }
+    if (cached_has_bits & 0x00000020u) {
+      wheel_speed_ki_ = from.wheel_speed_ki_;
+    }
+    if (cached_has_bits & 0x00000040u) {
+      wheel_speed_backcalc_ = from.wheel_speed_backcalc_;
+    }
+    _has_bits_[0] |= cached_has_bits;
   }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -4971,6 +4992,7 @@ bool MotionLimitsV2::IsInitialized() const {
 void MotionLimitsV2::InternalSwap(MotionLimitsV2* other) {
   using std::swap;
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_has_bits_[0], other->_has_bits_[0]);
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
       PROTOBUF_FIELD_OFFSET(MotionLimitsV2, wheel_speed_backcalc_)
       + sizeof(MotionLimitsV2::wheel_speed_backcalc_)
@@ -7323,14 +7345,384 @@ void MotionFeedbackV2::InternalSwap(MotionFeedbackV2* other) {
 
 // ===================================================================
 
+class MotionTrackingConfig::_Internal {
+ public:
+};
+
+MotionTrackingConfig::MotionTrackingConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor();
+  // @@protoc_insertion_point(arena_constructor:ZSS.New.MotionTrackingConfig)
+}
+MotionTrackingConfig::MotionTrackingConfig(const MotionTrackingConfig& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::memcpy(&center_of_mass_height_m_, &from.center_of_mass_height_m_,
+    static_cast<size_t>(reinterpret_cast<char*>(&velocity_preview_s_) -
+    reinterpret_cast<char*>(&center_of_mass_height_m_)) + sizeof(velocity_preview_s_));
+  // @@protoc_insertion_point(copy_constructor:ZSS.New.MotionTrackingConfig)
+}
+
+inline void MotionTrackingConfig::SharedCtor() {
+::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
+    reinterpret_cast<char*>(&center_of_mass_height_m_) - reinterpret_cast<char*>(this)),
+    0, static_cast<size_t>(reinterpret_cast<char*>(&velocity_preview_s_) -
+    reinterpret_cast<char*>(&center_of_mass_height_m_)) + sizeof(velocity_preview_s_));
+}
+
+MotionTrackingConfig::~MotionTrackingConfig() {
+  // @@protoc_insertion_point(destructor:ZSS.New.MotionTrackingConfig)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void MotionTrackingConfig::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void MotionTrackingConfig::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+
+void MotionTrackingConfig::Clear() {
+// @@protoc_insertion_point(message_clear_start:ZSS.New.MotionTrackingConfig)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&center_of_mass_height_m_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&velocity_preview_s_) -
+      reinterpret_cast<char*>(&center_of_mass_height_m_)) + sizeof(velocity_preview_s_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* MotionTrackingConfig::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // float center_of_mass_height_m = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 13)) {
+          center_of_mass_height_m_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float tire_friction = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 21)) {
+          tire_friction_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float traction_utilization = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 29)) {
+          traction_utilization_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float position_soft_zone_m = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 37)) {
+          position_soft_zone_m_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float position_velocity_gain = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 45)) {
+          position_velocity_gain_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      // float velocity_preview_s = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 53)) {
+          velocity_preview_s_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* MotionTrackingConfig::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:ZSS.New.MotionTrackingConfig)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // float center_of_mass_height_m = 1;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_center_of_mass_height_m = this->_internal_center_of_mass_height_m();
+  uint32_t raw_center_of_mass_height_m;
+  memcpy(&raw_center_of_mass_height_m, &tmp_center_of_mass_height_m, sizeof(tmp_center_of_mass_height_m));
+  if (raw_center_of_mass_height_m != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(1, this->_internal_center_of_mass_height_m(), target);
+  }
+
+  // float tire_friction = 2;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_tire_friction = this->_internal_tire_friction();
+  uint32_t raw_tire_friction;
+  memcpy(&raw_tire_friction, &tmp_tire_friction, sizeof(tmp_tire_friction));
+  if (raw_tire_friction != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(2, this->_internal_tire_friction(), target);
+  }
+
+  // float traction_utilization = 3;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_traction_utilization = this->_internal_traction_utilization();
+  uint32_t raw_traction_utilization;
+  memcpy(&raw_traction_utilization, &tmp_traction_utilization, sizeof(tmp_traction_utilization));
+  if (raw_traction_utilization != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(3, this->_internal_traction_utilization(), target);
+  }
+
+  // float position_soft_zone_m = 4;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_position_soft_zone_m = this->_internal_position_soft_zone_m();
+  uint32_t raw_position_soft_zone_m;
+  memcpy(&raw_position_soft_zone_m, &tmp_position_soft_zone_m, sizeof(tmp_position_soft_zone_m));
+  if (raw_position_soft_zone_m != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(4, this->_internal_position_soft_zone_m(), target);
+  }
+
+  // float position_velocity_gain = 5;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_position_velocity_gain = this->_internal_position_velocity_gain();
+  uint32_t raw_position_velocity_gain;
+  memcpy(&raw_position_velocity_gain, &tmp_position_velocity_gain, sizeof(tmp_position_velocity_gain));
+  if (raw_position_velocity_gain != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(5, this->_internal_position_velocity_gain(), target);
+  }
+
+  // float velocity_preview_s = 6;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_velocity_preview_s = this->_internal_velocity_preview_s();
+  uint32_t raw_velocity_preview_s;
+  memcpy(&raw_velocity_preview_s, &tmp_velocity_preview_s, sizeof(tmp_velocity_preview_s));
+  if (raw_velocity_preview_s != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteFloatToArray(6, this->_internal_velocity_preview_s(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:ZSS.New.MotionTrackingConfig)
+  return target;
+}
+
+size_t MotionTrackingConfig::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:ZSS.New.MotionTrackingConfig)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // float center_of_mass_height_m = 1;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_center_of_mass_height_m = this->_internal_center_of_mass_height_m();
+  uint32_t raw_center_of_mass_height_m;
+  memcpy(&raw_center_of_mass_height_m, &tmp_center_of_mass_height_m, sizeof(tmp_center_of_mass_height_m));
+  if (raw_center_of_mass_height_m != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float tire_friction = 2;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_tire_friction = this->_internal_tire_friction();
+  uint32_t raw_tire_friction;
+  memcpy(&raw_tire_friction, &tmp_tire_friction, sizeof(tmp_tire_friction));
+  if (raw_tire_friction != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float traction_utilization = 3;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_traction_utilization = this->_internal_traction_utilization();
+  uint32_t raw_traction_utilization;
+  memcpy(&raw_traction_utilization, &tmp_traction_utilization, sizeof(tmp_traction_utilization));
+  if (raw_traction_utilization != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float position_soft_zone_m = 4;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_position_soft_zone_m = this->_internal_position_soft_zone_m();
+  uint32_t raw_position_soft_zone_m;
+  memcpy(&raw_position_soft_zone_m, &tmp_position_soft_zone_m, sizeof(tmp_position_soft_zone_m));
+  if (raw_position_soft_zone_m != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float position_velocity_gain = 5;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_position_velocity_gain = this->_internal_position_velocity_gain();
+  uint32_t raw_position_velocity_gain;
+  memcpy(&raw_position_velocity_gain, &tmp_position_velocity_gain, sizeof(tmp_position_velocity_gain));
+  if (raw_position_velocity_gain != 0) {
+    total_size += 1 + 4;
+  }
+
+  // float velocity_preview_s = 6;
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_velocity_preview_s = this->_internal_velocity_preview_s();
+  uint32_t raw_velocity_preview_s;
+  memcpy(&raw_velocity_preview_s, &tmp_velocity_preview_s, sizeof(tmp_velocity_preview_s));
+  if (raw_velocity_preview_s != 0) {
+    total_size += 1 + 4;
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData MotionTrackingConfig::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
+    MotionTrackingConfig::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*MotionTrackingConfig::GetClassData() const { return &_class_data_; }
+
+void MotionTrackingConfig::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to,
+                      const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+  static_cast<MotionTrackingConfig *>(to)->MergeFrom(
+      static_cast<const MotionTrackingConfig &>(from));
+}
+
+
+void MotionTrackingConfig::MergeFrom(const MotionTrackingConfig& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:ZSS.New.MotionTrackingConfig)
+  GOOGLE_DCHECK_NE(&from, this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_center_of_mass_height_m = from._internal_center_of_mass_height_m();
+  uint32_t raw_center_of_mass_height_m;
+  memcpy(&raw_center_of_mass_height_m, &tmp_center_of_mass_height_m, sizeof(tmp_center_of_mass_height_m));
+  if (raw_center_of_mass_height_m != 0) {
+    _internal_set_center_of_mass_height_m(from._internal_center_of_mass_height_m());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_tire_friction = from._internal_tire_friction();
+  uint32_t raw_tire_friction;
+  memcpy(&raw_tire_friction, &tmp_tire_friction, sizeof(tmp_tire_friction));
+  if (raw_tire_friction != 0) {
+    _internal_set_tire_friction(from._internal_tire_friction());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_traction_utilization = from._internal_traction_utilization();
+  uint32_t raw_traction_utilization;
+  memcpy(&raw_traction_utilization, &tmp_traction_utilization, sizeof(tmp_traction_utilization));
+  if (raw_traction_utilization != 0) {
+    _internal_set_traction_utilization(from._internal_traction_utilization());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_position_soft_zone_m = from._internal_position_soft_zone_m();
+  uint32_t raw_position_soft_zone_m;
+  memcpy(&raw_position_soft_zone_m, &tmp_position_soft_zone_m, sizeof(tmp_position_soft_zone_m));
+  if (raw_position_soft_zone_m != 0) {
+    _internal_set_position_soft_zone_m(from._internal_position_soft_zone_m());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_position_velocity_gain = from._internal_position_velocity_gain();
+  uint32_t raw_position_velocity_gain;
+  memcpy(&raw_position_velocity_gain, &tmp_position_velocity_gain, sizeof(tmp_position_velocity_gain));
+  if (raw_position_velocity_gain != 0) {
+    _internal_set_position_velocity_gain(from._internal_position_velocity_gain());
+  }
+  static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
+  float tmp_velocity_preview_s = from._internal_velocity_preview_s();
+  uint32_t raw_velocity_preview_s;
+  memcpy(&raw_velocity_preview_s, &tmp_velocity_preview_s, sizeof(tmp_velocity_preview_s));
+  if (raw_velocity_preview_s != 0) {
+    _internal_set_velocity_preview_s(from._internal_velocity_preview_s());
+  }
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void MotionTrackingConfig::CopyFrom(const MotionTrackingConfig& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:ZSS.New.MotionTrackingConfig)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool MotionTrackingConfig::IsInitialized() const {
+  return true;
+}
+
+void MotionTrackingConfig::InternalSwap(MotionTrackingConfig* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(MotionTrackingConfig, velocity_preview_s_)
+      + sizeof(MotionTrackingConfig::velocity_preview_s_)
+      - PROTOBUF_FIELD_OFFSET(MotionTrackingConfig, center_of_mass_height_m_)>(
+          reinterpret_cast<char*>(&center_of_mass_height_m_),
+          reinterpret_cast<char*>(&other->center_of_mass_height_m_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata MotionTrackingConfig::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_zss_5fcmd_2eproto_getter, &descriptor_table_zss_5fcmd_2eproto_once,
+      file_level_metadata_zss_5fcmd_2eproto[15]);
+}
+
+// ===================================================================
+
 class MotionConfigV2::_Internal {
  public:
   static const ::ZSS::New::MotionLimitsV2& limits(const MotionConfigV2* msg);
+  static const ::ZSS::New::MotionTrackingConfig& tracking(const MotionConfigV2* msg);
 };
 
 const ::ZSS::New::MotionLimitsV2&
 MotionConfigV2::_Internal::limits(const MotionConfigV2* msg) {
   return *msg->limits_;
+}
+const ::ZSS::New::MotionTrackingConfig&
+MotionConfigV2::_Internal::tracking(const MotionConfigV2* msg) {
+  return *msg->tracking_;
 }
 MotionConfigV2::MotionConfigV2(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
@@ -7349,6 +7741,11 @@ MotionConfigV2::MotionConfigV2(const MotionConfigV2& from)
     limits_ = new ::ZSS::New::MotionLimitsV2(*from.limits_);
   } else {
     limits_ = nullptr;
+  }
+  if (from._internal_has_tracking()) {
+    tracking_ = new ::ZSS::New::MotionTrackingConfig(*from.tracking_);
+  } else {
+    tracking_ = nullptr;
   }
   ::memcpy(&mass_kg_, &from.mass_kg_,
     static_cast<size_t>(reinterpret_cast<char*>(&config_version_) -
@@ -7375,6 +7772,7 @@ MotionConfigV2::~MotionConfigV2() {
 inline void MotionConfigV2::SharedDtor() {
   GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
   if (this != internal_default_instance()) delete limits_;
+  if (this != internal_default_instance()) delete tracking_;
 }
 
 void MotionConfigV2::SetCachedSize(int size) const {
@@ -7393,6 +7791,10 @@ void MotionConfigV2::Clear() {
     delete limits_;
   }
   limits_ = nullptr;
+  if (GetArenaForAllocation() == nullptr && tracking_ != nullptr) {
+    delete tracking_;
+  }
+  tracking_ = nullptr;
   ::memset(&mass_kg_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&config_version_) -
       reinterpret_cast<char*>(&mass_kg_)) + sizeof(config_version_));
@@ -7583,6 +7985,14 @@ const char* MotionConfigV2::_InternalParse(const char* ptr, ::_pbi::ParseContext
       case 22:
         if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 176)) {
           config_version_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // .ZSS.New.MotionTrackingConfig tracking = 23;
+      case 23:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 186)) {
+          ptr = ctx->ParseMessage(_internal_mutable_tracking(), ptr);
           CHK_(ptr);
         } else
           goto handle_unusual;
@@ -7819,6 +8229,13 @@ uint8_t* MotionConfigV2::_InternalSerialize(
     target = ::_pbi::WireFormatLite::WriteUInt32ToArray(22, this->_internal_config_version(), target);
   }
 
+  // .ZSS.New.MotionTrackingConfig tracking = 23;
+  if (this->_internal_has_tracking()) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(23, _Internal::tracking(this),
+        _Internal::tracking(this).GetCachedSize(), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
@@ -7862,6 +8279,13 @@ size_t MotionConfigV2::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *limits_);
+  }
+
+  // .ZSS.New.MotionTrackingConfig tracking = 23;
+  if (this->_internal_has_tracking()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *tracking_);
   }
 
   // float mass_kg = 1;
@@ -8060,6 +8484,9 @@ void MotionConfigV2::MergeFrom(const MotionConfigV2& from) {
   if (from._internal_has_limits()) {
     _internal_mutable_limits()->::ZSS::New::MotionLimitsV2::MergeFrom(from._internal_limits());
   }
+  if (from._internal_has_tracking()) {
+    _internal_mutable_tracking()->::ZSS::New::MotionTrackingConfig::MergeFrom(from._internal_tracking());
+  }
   static_assert(sizeof(uint32_t) == sizeof(float), "Code assumes uint32_t and float are the same size.");
   float tmp_mass_kg = from._internal_mass_kg();
   uint32_t raw_mass_kg;
@@ -8219,7 +8646,7 @@ void MotionConfigV2::InternalSwap(MotionConfigV2* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata MotionConfigV2::GetMetadata() const {
   return ::_pbi::AssignDescriptors(
       &descriptor_table_zss_5fcmd_2eproto_getter, &descriptor_table_zss_5fcmd_2eproto_once,
-      file_level_metadata_zss_5fcmd_2eproto[15]);
+      file_level_metadata_zss_5fcmd_2eproto[16]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
@@ -8285,6 +8712,10 @@ Arena::CreateMaybeMessage< ::ZSS::New::VisionObservationV2 >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::ZSS::New::MotionFeedbackV2*
 Arena::CreateMaybeMessage< ::ZSS::New::MotionFeedbackV2 >(Arena* arena) {
   return Arena::CreateMessageInternal< ::ZSS::New::MotionFeedbackV2 >(arena);
+}
+template<> PROTOBUF_NOINLINE ::ZSS::New::MotionTrackingConfig*
+Arena::CreateMaybeMessage< ::ZSS::New::MotionTrackingConfig >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::ZSS::New::MotionTrackingConfig >(arena);
 }
 template<> PROTOBUF_NOINLINE ::ZSS::New::MotionConfigV2*
 Arena::CreateMaybeMessage< ::ZSS::New::MotionConfigV2 >(Arena* arena) {

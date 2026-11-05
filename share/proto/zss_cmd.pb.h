@@ -66,6 +66,9 @@ extern MotionLimitsV2DefaultTypeInternal _MotionLimitsV2_default_instance_;
 class MotionPose2;
 struct MotionPose2DefaultTypeInternal;
 extern MotionPose2DefaultTypeInternal _MotionPose2_default_instance_;
+class MotionTrackingConfig;
+struct MotionTrackingConfigDefaultTypeInternal;
+extern MotionTrackingConfigDefaultTypeInternal _MotionTrackingConfig_default_instance_;
 class MotionTwist2;
 struct MotionTwist2DefaultTypeInternal;
 extern MotionTwist2DefaultTypeInternal _MotionTwist2_default_instance_;
@@ -105,6 +108,7 @@ template<> ::ZSS::New::MotionConfigV2* Arena::CreateMaybeMessage<::ZSS::New::Mot
 template<> ::ZSS::New::MotionFeedbackV2* Arena::CreateMaybeMessage<::ZSS::New::MotionFeedbackV2>(Arena*);
 template<> ::ZSS::New::MotionLimitsV2* Arena::CreateMaybeMessage<::ZSS::New::MotionLimitsV2>(Arena*);
 template<> ::ZSS::New::MotionPose2* Arena::CreateMaybeMessage<::ZSS::New::MotionPose2>(Arena*);
+template<> ::ZSS::New::MotionTrackingConfig* Arena::CreateMaybeMessage<::ZSS::New::MotionTrackingConfig>(Arena*);
 template<> ::ZSS::New::MotionTwist2* Arena::CreateMaybeMessage<::ZSS::New::MotionTwist2>(Arena*);
 template<> ::ZSS::New::Multicast_Status* Arena::CreateMaybeMessage<::ZSS::New::Multicast_Status>(Arena*);
 template<> ::ZSS::New::Robot_Command* Arena::CreateMaybeMessage<::ZSS::New::Robot_Command>(Arena*);
@@ -2707,7 +2711,11 @@ class MotionLimitsV2 final :
   void _internal_set_max_torque_rate_nm_per_s(float value);
   public:
 
-  // float position_correction_gain = 9;
+  // optional float position_correction_gain = 9;
+  bool has_position_correction_gain() const;
+  private:
+  bool _internal_has_position_correction_gain() const;
+  public:
   void clear_position_correction_gain();
   float position_correction_gain() const;
   void set_position_correction_gain(float value);
@@ -2716,7 +2724,11 @@ class MotionLimitsV2 final :
   void _internal_set_position_correction_gain(float value);
   public:
 
-  // float position_correction_limit_m_s = 10;
+  // optional float position_correction_limit_m_s = 10;
+  bool has_position_correction_limit_m_s() const;
+  private:
+  bool _internal_has_position_correction_limit_m_s() const;
+  public:
   void clear_position_correction_limit_m_s();
   float position_correction_limit_m_s() const;
   void set_position_correction_limit_m_s(float value);
@@ -2725,7 +2737,11 @@ class MotionLimitsV2 final :
   void _internal_set_position_correction_limit_m_s(float value);
   public:
 
-  // float yaw_correction_gain = 11;
+  // optional float yaw_correction_gain = 11;
+  bool has_yaw_correction_gain() const;
+  private:
+  bool _internal_has_yaw_correction_gain() const;
+  public:
   void clear_yaw_correction_gain();
   float yaw_correction_gain() const;
   void set_yaw_correction_gain(float value);
@@ -2734,7 +2750,11 @@ class MotionLimitsV2 final :
   void _internal_set_yaw_correction_gain(float value);
   public:
 
-  // float yaw_rate_gain = 12;
+  // optional float yaw_rate_gain = 12;
+  bool has_yaw_rate_gain() const;
+  private:
+  bool _internal_has_yaw_rate_gain() const;
+  public:
   void clear_yaw_rate_gain();
   float yaw_rate_gain() const;
   void set_yaw_rate_gain(float value);
@@ -2743,7 +2763,11 @@ class MotionLimitsV2 final :
   void _internal_set_yaw_rate_gain(float value);
   public:
 
-  // float wheel_speed_kp = 13;
+  // optional float wheel_speed_kp = 13;
+  bool has_wheel_speed_kp() const;
+  private:
+  bool _internal_has_wheel_speed_kp() const;
+  public:
   void clear_wheel_speed_kp();
   float wheel_speed_kp() const;
   void set_wheel_speed_kp(float value);
@@ -2752,7 +2776,11 @@ class MotionLimitsV2 final :
   void _internal_set_wheel_speed_kp(float value);
   public:
 
-  // float wheel_speed_ki = 14;
+  // optional float wheel_speed_ki = 14;
+  bool has_wheel_speed_ki() const;
+  private:
+  bool _internal_has_wheel_speed_ki() const;
+  public:
   void clear_wheel_speed_ki();
   float wheel_speed_ki() const;
   void set_wheel_speed_ki(float value);
@@ -2761,7 +2789,11 @@ class MotionLimitsV2 final :
   void _internal_set_wheel_speed_ki(float value);
   public:
 
-  // float wheel_speed_backcalc = 15;
+  // optional float wheel_speed_backcalc = 15;
+  bool has_wheel_speed_backcalc() const;
+  private:
+  bool _internal_has_wheel_speed_backcalc() const;
+  public:
   void clear_wheel_speed_backcalc();
   float wheel_speed_backcalc() const;
   void set_wheel_speed_backcalc(float value);
@@ -2777,6 +2809,8 @@ class MotionLimitsV2 final :
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::HasBits<1> _has_bits_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   float max_linear_speed_m_s_;
   float max_linear_accel_m_s2_;
   float max_linear_decel_m_s2_;
@@ -2792,7 +2826,6 @@ class MotionLimitsV2 final :
   float wheel_speed_kp_;
   float wheel_speed_ki_;
   float wheel_speed_backcalc_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_zss_5fcmd_2eproto;
 };
 // -------------------------------------------------------------------
@@ -4089,6 +4122,204 @@ class MotionFeedbackV2 final :
 };
 // -------------------------------------------------------------------
 
+class MotionTrackingConfig final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:ZSS.New.MotionTrackingConfig) */ {
+ public:
+  inline MotionTrackingConfig() : MotionTrackingConfig(nullptr) {}
+  ~MotionTrackingConfig() override;
+  explicit PROTOBUF_CONSTEXPR MotionTrackingConfig(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  MotionTrackingConfig(const MotionTrackingConfig& from);
+  MotionTrackingConfig(MotionTrackingConfig&& from) noexcept
+    : MotionTrackingConfig() {
+    *this = ::std::move(from);
+  }
+
+  inline MotionTrackingConfig& operator=(const MotionTrackingConfig& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MotionTrackingConfig& operator=(MotionTrackingConfig&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MotionTrackingConfig& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MotionTrackingConfig* internal_default_instance() {
+    return reinterpret_cast<const MotionTrackingConfig*>(
+               &_MotionTrackingConfig_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    15;
+
+  friend void swap(MotionTrackingConfig& a, MotionTrackingConfig& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MotionTrackingConfig* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MotionTrackingConfig* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MotionTrackingConfig* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<MotionTrackingConfig>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const MotionTrackingConfig& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const MotionTrackingConfig& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MotionTrackingConfig* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "ZSS.New.MotionTrackingConfig";
+  }
+  protected:
+  explicit MotionTrackingConfig(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCenterOfMassHeightMFieldNumber = 1,
+    kTireFrictionFieldNumber = 2,
+    kTractionUtilizationFieldNumber = 3,
+    kPositionSoftZoneMFieldNumber = 4,
+    kPositionVelocityGainFieldNumber = 5,
+    kVelocityPreviewSFieldNumber = 6,
+  };
+  // float center_of_mass_height_m = 1;
+  void clear_center_of_mass_height_m();
+  float center_of_mass_height_m() const;
+  void set_center_of_mass_height_m(float value);
+  private:
+  float _internal_center_of_mass_height_m() const;
+  void _internal_set_center_of_mass_height_m(float value);
+  public:
+
+  // float tire_friction = 2;
+  void clear_tire_friction();
+  float tire_friction() const;
+  void set_tire_friction(float value);
+  private:
+  float _internal_tire_friction() const;
+  void _internal_set_tire_friction(float value);
+  public:
+
+  // float traction_utilization = 3;
+  void clear_traction_utilization();
+  float traction_utilization() const;
+  void set_traction_utilization(float value);
+  private:
+  float _internal_traction_utilization() const;
+  void _internal_set_traction_utilization(float value);
+  public:
+
+  // float position_soft_zone_m = 4;
+  void clear_position_soft_zone_m();
+  float position_soft_zone_m() const;
+  void set_position_soft_zone_m(float value);
+  private:
+  float _internal_position_soft_zone_m() const;
+  void _internal_set_position_soft_zone_m(float value);
+  public:
+
+  // float position_velocity_gain = 5;
+  void clear_position_velocity_gain();
+  float position_velocity_gain() const;
+  void set_position_velocity_gain(float value);
+  private:
+  float _internal_position_velocity_gain() const;
+  void _internal_set_position_velocity_gain(float value);
+  public:
+
+  // float velocity_preview_s = 6;
+  void clear_velocity_preview_s();
+  float velocity_preview_s() const;
+  void set_velocity_preview_s(float value);
+  private:
+  float _internal_velocity_preview_s() const;
+  void _internal_set_velocity_preview_s(float value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:ZSS.New.MotionTrackingConfig)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  float center_of_mass_height_m_;
+  float tire_friction_;
+  float traction_utilization_;
+  float position_soft_zone_m_;
+  float position_velocity_gain_;
+  float velocity_preview_s_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_zss_5fcmd_2eproto;
+};
+// -------------------------------------------------------------------
+
 class MotionConfigV2 final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:ZSS.New.MotionConfigV2) */ {
  public:
@@ -4137,7 +4368,7 @@ class MotionConfigV2 final :
                &_MotionConfigV2_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    16;
 
   friend void swap(MotionConfigV2& a, MotionConfigV2& b) {
     a.Swap(&b);
@@ -4211,6 +4442,7 @@ class MotionConfigV2 final :
     kWheelAxisAngleRadFieldNumber = 13,
     kWheelYawSignFieldNumber = 14,
     kLimitsFieldNumber = 15,
+    kTrackingFieldNumber = 23,
     kMassKgFieldNumber = 1,
     kInertiaKgM2FieldNumber = 2,
     kWheelRadiusMFieldNumber = 3,
@@ -4292,6 +4524,24 @@ class MotionConfigV2 final :
   void unsafe_arena_set_allocated_limits(
       ::ZSS::New::MotionLimitsV2* limits);
   ::ZSS::New::MotionLimitsV2* unsafe_arena_release_limits();
+
+  // .ZSS.New.MotionTrackingConfig tracking = 23;
+  bool has_tracking() const;
+  private:
+  bool _internal_has_tracking() const;
+  public:
+  void clear_tracking();
+  const ::ZSS::New::MotionTrackingConfig& tracking() const;
+  PROTOBUF_NODISCARD ::ZSS::New::MotionTrackingConfig* release_tracking();
+  ::ZSS::New::MotionTrackingConfig* mutable_tracking();
+  void set_allocated_tracking(::ZSS::New::MotionTrackingConfig* tracking);
+  private:
+  const ::ZSS::New::MotionTrackingConfig& _internal_tracking() const;
+  ::ZSS::New::MotionTrackingConfig* _internal_mutable_tracking();
+  public:
+  void unsafe_arena_set_allocated_tracking(
+      ::ZSS::New::MotionTrackingConfig* tracking);
+  ::ZSS::New::MotionTrackingConfig* unsafe_arena_release_tracking();
 
   // float mass_kg = 1;
   void clear_mass_kg();
@@ -4474,6 +4724,7 @@ class MotionConfigV2 final :
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< float > wheel_axis_angle_rad_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< float > wheel_yaw_sign_;
   ::ZSS::New::MotionLimitsV2* limits_;
+  ::ZSS::New::MotionTrackingConfig* tracking_;
   float mass_kg_;
   float inertia_kg_m2_;
   float wheel_radius_m_;
@@ -6246,9 +6497,17 @@ inline void MotionLimitsV2::set_max_torque_rate_nm_per_s(float value) {
   // @@protoc_insertion_point(field_set:ZSS.New.MotionLimitsV2.max_torque_rate_nm_per_s)
 }
 
-// float position_correction_gain = 9;
+// optional float position_correction_gain = 9;
+inline bool MotionLimitsV2::_internal_has_position_correction_gain() const {
+  bool value = (_has_bits_[0] & 0x00000001u) != 0;
+  return value;
+}
+inline bool MotionLimitsV2::has_position_correction_gain() const {
+  return _internal_has_position_correction_gain();
+}
 inline void MotionLimitsV2::clear_position_correction_gain() {
   position_correction_gain_ = 0;
+  _has_bits_[0] &= ~0x00000001u;
 }
 inline float MotionLimitsV2::_internal_position_correction_gain() const {
   return position_correction_gain_;
@@ -6258,7 +6517,7 @@ inline float MotionLimitsV2::position_correction_gain() const {
   return _internal_position_correction_gain();
 }
 inline void MotionLimitsV2::_internal_set_position_correction_gain(float value) {
-
+  _has_bits_[0] |= 0x00000001u;
   position_correction_gain_ = value;
 }
 inline void MotionLimitsV2::set_position_correction_gain(float value) {
@@ -6266,9 +6525,17 @@ inline void MotionLimitsV2::set_position_correction_gain(float value) {
   // @@protoc_insertion_point(field_set:ZSS.New.MotionLimitsV2.position_correction_gain)
 }
 
-// float position_correction_limit_m_s = 10;
+// optional float position_correction_limit_m_s = 10;
+inline bool MotionLimitsV2::_internal_has_position_correction_limit_m_s() const {
+  bool value = (_has_bits_[0] & 0x00000002u) != 0;
+  return value;
+}
+inline bool MotionLimitsV2::has_position_correction_limit_m_s() const {
+  return _internal_has_position_correction_limit_m_s();
+}
 inline void MotionLimitsV2::clear_position_correction_limit_m_s() {
   position_correction_limit_m_s_ = 0;
+  _has_bits_[0] &= ~0x00000002u;
 }
 inline float MotionLimitsV2::_internal_position_correction_limit_m_s() const {
   return position_correction_limit_m_s_;
@@ -6278,7 +6545,7 @@ inline float MotionLimitsV2::position_correction_limit_m_s() const {
   return _internal_position_correction_limit_m_s();
 }
 inline void MotionLimitsV2::_internal_set_position_correction_limit_m_s(float value) {
-
+  _has_bits_[0] |= 0x00000002u;
   position_correction_limit_m_s_ = value;
 }
 inline void MotionLimitsV2::set_position_correction_limit_m_s(float value) {
@@ -6286,9 +6553,17 @@ inline void MotionLimitsV2::set_position_correction_limit_m_s(float value) {
   // @@protoc_insertion_point(field_set:ZSS.New.MotionLimitsV2.position_correction_limit_m_s)
 }
 
-// float yaw_correction_gain = 11;
+// optional float yaw_correction_gain = 11;
+inline bool MotionLimitsV2::_internal_has_yaw_correction_gain() const {
+  bool value = (_has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline bool MotionLimitsV2::has_yaw_correction_gain() const {
+  return _internal_has_yaw_correction_gain();
+}
 inline void MotionLimitsV2::clear_yaw_correction_gain() {
   yaw_correction_gain_ = 0;
+  _has_bits_[0] &= ~0x00000004u;
 }
 inline float MotionLimitsV2::_internal_yaw_correction_gain() const {
   return yaw_correction_gain_;
@@ -6298,7 +6573,7 @@ inline float MotionLimitsV2::yaw_correction_gain() const {
   return _internal_yaw_correction_gain();
 }
 inline void MotionLimitsV2::_internal_set_yaw_correction_gain(float value) {
-
+  _has_bits_[0] |= 0x00000004u;
   yaw_correction_gain_ = value;
 }
 inline void MotionLimitsV2::set_yaw_correction_gain(float value) {
@@ -6306,9 +6581,17 @@ inline void MotionLimitsV2::set_yaw_correction_gain(float value) {
   // @@protoc_insertion_point(field_set:ZSS.New.MotionLimitsV2.yaw_correction_gain)
 }
 
-// float yaw_rate_gain = 12;
+// optional float yaw_rate_gain = 12;
+inline bool MotionLimitsV2::_internal_has_yaw_rate_gain() const {
+  bool value = (_has_bits_[0] & 0x00000008u) != 0;
+  return value;
+}
+inline bool MotionLimitsV2::has_yaw_rate_gain() const {
+  return _internal_has_yaw_rate_gain();
+}
 inline void MotionLimitsV2::clear_yaw_rate_gain() {
   yaw_rate_gain_ = 0;
+  _has_bits_[0] &= ~0x00000008u;
 }
 inline float MotionLimitsV2::_internal_yaw_rate_gain() const {
   return yaw_rate_gain_;
@@ -6318,7 +6601,7 @@ inline float MotionLimitsV2::yaw_rate_gain() const {
   return _internal_yaw_rate_gain();
 }
 inline void MotionLimitsV2::_internal_set_yaw_rate_gain(float value) {
-
+  _has_bits_[0] |= 0x00000008u;
   yaw_rate_gain_ = value;
 }
 inline void MotionLimitsV2::set_yaw_rate_gain(float value) {
@@ -6326,9 +6609,17 @@ inline void MotionLimitsV2::set_yaw_rate_gain(float value) {
   // @@protoc_insertion_point(field_set:ZSS.New.MotionLimitsV2.yaw_rate_gain)
 }
 
-// float wheel_speed_kp = 13;
+// optional float wheel_speed_kp = 13;
+inline bool MotionLimitsV2::_internal_has_wheel_speed_kp() const {
+  bool value = (_has_bits_[0] & 0x00000010u) != 0;
+  return value;
+}
+inline bool MotionLimitsV2::has_wheel_speed_kp() const {
+  return _internal_has_wheel_speed_kp();
+}
 inline void MotionLimitsV2::clear_wheel_speed_kp() {
   wheel_speed_kp_ = 0;
+  _has_bits_[0] &= ~0x00000010u;
 }
 inline float MotionLimitsV2::_internal_wheel_speed_kp() const {
   return wheel_speed_kp_;
@@ -6338,7 +6629,7 @@ inline float MotionLimitsV2::wheel_speed_kp() const {
   return _internal_wheel_speed_kp();
 }
 inline void MotionLimitsV2::_internal_set_wheel_speed_kp(float value) {
-
+  _has_bits_[0] |= 0x00000010u;
   wheel_speed_kp_ = value;
 }
 inline void MotionLimitsV2::set_wheel_speed_kp(float value) {
@@ -6346,9 +6637,17 @@ inline void MotionLimitsV2::set_wheel_speed_kp(float value) {
   // @@protoc_insertion_point(field_set:ZSS.New.MotionLimitsV2.wheel_speed_kp)
 }
 
-// float wheel_speed_ki = 14;
+// optional float wheel_speed_ki = 14;
+inline bool MotionLimitsV2::_internal_has_wheel_speed_ki() const {
+  bool value = (_has_bits_[0] & 0x00000020u) != 0;
+  return value;
+}
+inline bool MotionLimitsV2::has_wheel_speed_ki() const {
+  return _internal_has_wheel_speed_ki();
+}
 inline void MotionLimitsV2::clear_wheel_speed_ki() {
   wheel_speed_ki_ = 0;
+  _has_bits_[0] &= ~0x00000020u;
 }
 inline float MotionLimitsV2::_internal_wheel_speed_ki() const {
   return wheel_speed_ki_;
@@ -6358,7 +6657,7 @@ inline float MotionLimitsV2::wheel_speed_ki() const {
   return _internal_wheel_speed_ki();
 }
 inline void MotionLimitsV2::_internal_set_wheel_speed_ki(float value) {
-
+  _has_bits_[0] |= 0x00000020u;
   wheel_speed_ki_ = value;
 }
 inline void MotionLimitsV2::set_wheel_speed_ki(float value) {
@@ -6366,9 +6665,17 @@ inline void MotionLimitsV2::set_wheel_speed_ki(float value) {
   // @@protoc_insertion_point(field_set:ZSS.New.MotionLimitsV2.wheel_speed_ki)
 }
 
-// float wheel_speed_backcalc = 15;
+// optional float wheel_speed_backcalc = 15;
+inline bool MotionLimitsV2::_internal_has_wheel_speed_backcalc() const {
+  bool value = (_has_bits_[0] & 0x00000040u) != 0;
+  return value;
+}
+inline bool MotionLimitsV2::has_wheel_speed_backcalc() const {
+  return _internal_has_wheel_speed_backcalc();
+}
 inline void MotionLimitsV2::clear_wheel_speed_backcalc() {
   wheel_speed_backcalc_ = 0;
+  _has_bits_[0] &= ~0x00000040u;
 }
 inline float MotionLimitsV2::_internal_wheel_speed_backcalc() const {
   return wheel_speed_backcalc_;
@@ -6378,7 +6685,7 @@ inline float MotionLimitsV2::wheel_speed_backcalc() const {
   return _internal_wheel_speed_backcalc();
 }
 inline void MotionLimitsV2::_internal_set_wheel_speed_backcalc(float value) {
-
+  _has_bits_[0] |= 0x00000040u;
   wheel_speed_backcalc_ = value;
 }
 inline void MotionLimitsV2::set_wheel_speed_backcalc(float value) {
@@ -8532,6 +8839,130 @@ inline void MotionFeedbackV2::set_protocol_version(uint32_t value) {
 
 // -------------------------------------------------------------------
 
+// MotionTrackingConfig
+
+// float center_of_mass_height_m = 1;
+inline void MotionTrackingConfig::clear_center_of_mass_height_m() {
+  center_of_mass_height_m_ = 0;
+}
+inline float MotionTrackingConfig::_internal_center_of_mass_height_m() const {
+  return center_of_mass_height_m_;
+}
+inline float MotionTrackingConfig::center_of_mass_height_m() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.MotionTrackingConfig.center_of_mass_height_m)
+  return _internal_center_of_mass_height_m();
+}
+inline void MotionTrackingConfig::_internal_set_center_of_mass_height_m(float value) {
+
+  center_of_mass_height_m_ = value;
+}
+inline void MotionTrackingConfig::set_center_of_mass_height_m(float value) {
+  _internal_set_center_of_mass_height_m(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.MotionTrackingConfig.center_of_mass_height_m)
+}
+
+// float tire_friction = 2;
+inline void MotionTrackingConfig::clear_tire_friction() {
+  tire_friction_ = 0;
+}
+inline float MotionTrackingConfig::_internal_tire_friction() const {
+  return tire_friction_;
+}
+inline float MotionTrackingConfig::tire_friction() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.MotionTrackingConfig.tire_friction)
+  return _internal_tire_friction();
+}
+inline void MotionTrackingConfig::_internal_set_tire_friction(float value) {
+
+  tire_friction_ = value;
+}
+inline void MotionTrackingConfig::set_tire_friction(float value) {
+  _internal_set_tire_friction(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.MotionTrackingConfig.tire_friction)
+}
+
+// float traction_utilization = 3;
+inline void MotionTrackingConfig::clear_traction_utilization() {
+  traction_utilization_ = 0;
+}
+inline float MotionTrackingConfig::_internal_traction_utilization() const {
+  return traction_utilization_;
+}
+inline float MotionTrackingConfig::traction_utilization() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.MotionTrackingConfig.traction_utilization)
+  return _internal_traction_utilization();
+}
+inline void MotionTrackingConfig::_internal_set_traction_utilization(float value) {
+
+  traction_utilization_ = value;
+}
+inline void MotionTrackingConfig::set_traction_utilization(float value) {
+  _internal_set_traction_utilization(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.MotionTrackingConfig.traction_utilization)
+}
+
+// float position_soft_zone_m = 4;
+inline void MotionTrackingConfig::clear_position_soft_zone_m() {
+  position_soft_zone_m_ = 0;
+}
+inline float MotionTrackingConfig::_internal_position_soft_zone_m() const {
+  return position_soft_zone_m_;
+}
+inline float MotionTrackingConfig::position_soft_zone_m() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.MotionTrackingConfig.position_soft_zone_m)
+  return _internal_position_soft_zone_m();
+}
+inline void MotionTrackingConfig::_internal_set_position_soft_zone_m(float value) {
+
+  position_soft_zone_m_ = value;
+}
+inline void MotionTrackingConfig::set_position_soft_zone_m(float value) {
+  _internal_set_position_soft_zone_m(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.MotionTrackingConfig.position_soft_zone_m)
+}
+
+// float position_velocity_gain = 5;
+inline void MotionTrackingConfig::clear_position_velocity_gain() {
+  position_velocity_gain_ = 0;
+}
+inline float MotionTrackingConfig::_internal_position_velocity_gain() const {
+  return position_velocity_gain_;
+}
+inline float MotionTrackingConfig::position_velocity_gain() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.MotionTrackingConfig.position_velocity_gain)
+  return _internal_position_velocity_gain();
+}
+inline void MotionTrackingConfig::_internal_set_position_velocity_gain(float value) {
+
+  position_velocity_gain_ = value;
+}
+inline void MotionTrackingConfig::set_position_velocity_gain(float value) {
+  _internal_set_position_velocity_gain(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.MotionTrackingConfig.position_velocity_gain)
+}
+
+// float velocity_preview_s = 6;
+inline void MotionTrackingConfig::clear_velocity_preview_s() {
+  velocity_preview_s_ = 0;
+}
+inline float MotionTrackingConfig::_internal_velocity_preview_s() const {
+  return velocity_preview_s_;
+}
+inline float MotionTrackingConfig::velocity_preview_s() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.MotionTrackingConfig.velocity_preview_s)
+  return _internal_velocity_preview_s();
+}
+inline void MotionTrackingConfig::_internal_set_velocity_preview_s(float value) {
+
+  velocity_preview_s_ = value;
+}
+inline void MotionTrackingConfig::set_velocity_preview_s(float value) {
+  _internal_set_velocity_preview_s(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.MotionTrackingConfig.velocity_preview_s)
+}
+
+// -------------------------------------------------------------------
+
 // MotionConfigV2
 
 // float mass_kg = 1;
@@ -9098,9 +9529,101 @@ inline void MotionConfigV2::set_config_version(uint32_t value) {
   // @@protoc_insertion_point(field_set:ZSS.New.MotionConfigV2.config_version)
 }
 
+// .ZSS.New.MotionTrackingConfig tracking = 23;
+inline bool MotionConfigV2::_internal_has_tracking() const {
+  return this != internal_default_instance() && tracking_ != nullptr;
+}
+inline bool MotionConfigV2::has_tracking() const {
+  return _internal_has_tracking();
+}
+inline void MotionConfigV2::clear_tracking() {
+  if (GetArenaForAllocation() == nullptr && tracking_ != nullptr) {
+    delete tracking_;
+  }
+  tracking_ = nullptr;
+}
+inline const ::ZSS::New::MotionTrackingConfig& MotionConfigV2::_internal_tracking() const {
+  const ::ZSS::New::MotionTrackingConfig* p = tracking_;
+  return p != nullptr ? *p : reinterpret_cast<const ::ZSS::New::MotionTrackingConfig&>(
+      ::ZSS::New::_MotionTrackingConfig_default_instance_);
+}
+inline const ::ZSS::New::MotionTrackingConfig& MotionConfigV2::tracking() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.MotionConfigV2.tracking)
+  return _internal_tracking();
+}
+inline void MotionConfigV2::unsafe_arena_set_allocated_tracking(
+    ::ZSS::New::MotionTrackingConfig* tracking) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(tracking_);
+  }
+  tracking_ = tracking;
+  if (tracking) {
+
+  } else {
+
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:ZSS.New.MotionConfigV2.tracking)
+}
+inline ::ZSS::New::MotionTrackingConfig* MotionConfigV2::release_tracking() {
+
+  ::ZSS::New::MotionTrackingConfig* temp = tracking_;
+  tracking_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::ZSS::New::MotionTrackingConfig* MotionConfigV2::unsafe_arena_release_tracking() {
+  // @@protoc_insertion_point(field_release:ZSS.New.MotionConfigV2.tracking)
+
+  ::ZSS::New::MotionTrackingConfig* temp = tracking_;
+  tracking_ = nullptr;
+  return temp;
+}
+inline ::ZSS::New::MotionTrackingConfig* MotionConfigV2::_internal_mutable_tracking() {
+
+  if (tracking_ == nullptr) {
+    auto* p = CreateMaybeMessage<::ZSS::New::MotionTrackingConfig>(GetArenaForAllocation());
+    tracking_ = p;
+  }
+  return tracking_;
+}
+inline ::ZSS::New::MotionTrackingConfig* MotionConfigV2::mutable_tracking() {
+  ::ZSS::New::MotionTrackingConfig* _msg = _internal_mutable_tracking();
+  // @@protoc_insertion_point(field_mutable:ZSS.New.MotionConfigV2.tracking)
+  return _msg;
+}
+inline void MotionConfigV2::set_allocated_tracking(::ZSS::New::MotionTrackingConfig* tracking) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete tracking_;
+  }
+  if (tracking) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(tracking);
+    if (message_arena != submessage_arena) {
+      tracking = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, tracking, submessage_arena);
+    }
+
+  } else {
+
+  }
+  tracking_ = tracking;
+  // @@protoc_insertion_point(field_set_allocated:ZSS.New.MotionConfigV2.tracking)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

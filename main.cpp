@@ -1,6 +1,6 @@
 #include "motion/cm4_motion_bridge.hpp"
 #include "motion/linux_spi_transport.hpp"
-#include "motion/production_config.hpp"
+#include "motion/runtime_config.hpp"
 #include <yaml-cpp/yaml.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
@@ -64,7 +64,7 @@ int main(int argc, char** argv) try {
         std::perror("CM4 command socket"); return 1;
     }
     robot_cm4::Cm4MotionBridge bridge;
-    bridge.configure(motion::productionMotionConfig(), static_cast<std::uint32_t>(nowUs()), nowUs());
+    bridge.configure(motion::runtimeMotionConfig(), static_cast<std::uint32_t>(nowUs()), nowUs());
     robot_cm4::UnixSocketSpiTransport unix_spi;
     robot_cm4::LinuxSpiTransport hardware_spi;
     if (!unix_path && !hardware_spi.openDevice(spi_device)) {

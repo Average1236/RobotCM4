@@ -55,19 +55,19 @@ inline motion::CommandLimits limitsFromProto(const ZSS::New::MotionLimitsV2& pro
     if (proto.max_torque_rate_nm_per_s() > 0.0f) {
         limits.max_torque_rate_nm_per_s = proto.max_torque_rate_nm_per_s();
     }
-    if (proto.position_correction_gain() > 0.0f) {
+    if (proto.has_position_correction_gain()) {
         limits.position_correction_gain = proto.position_correction_gain();
     }
-    if (proto.position_correction_limit_m_s() > 0.0f) {
+    if (proto.has_position_correction_limit_m_s()) {
         limits.position_correction_limit_m_s = proto.position_correction_limit_m_s();
     }
-    if (proto.yaw_correction_gain() > 0.0f) {
+    if (proto.has_yaw_correction_gain()) {
         limits.yaw_correction_gain = proto.yaw_correction_gain();
     }
-    if (proto.yaw_rate_gain() >= 0.0f) limits.yaw_rate_gain = proto.yaw_rate_gain();
-    if (proto.wheel_speed_kp() > 0.0f) limits.wheel_speed_kp = proto.wheel_speed_kp();
-    if (proto.wheel_speed_ki() > 0.0f) limits.wheel_speed_ki = proto.wheel_speed_ki();
-    if (proto.wheel_speed_backcalc() > 0.0f) {
+    if (proto.has_yaw_rate_gain()) limits.yaw_rate_gain = proto.yaw_rate_gain();
+    if (proto.has_wheel_speed_kp()) limits.wheel_speed_kp = proto.wheel_speed_kp();
+    if (proto.has_wheel_speed_ki()) limits.wheel_speed_ki = proto.wheel_speed_ki();
+    if (proto.has_wheel_speed_backcalc()) {
         limits.wheel_speed_backcalc = proto.wheel_speed_backcalc();
     }
     return limits;
@@ -192,6 +192,13 @@ inline void configToProto(const motion::MotionConfigV2& config,
     proto->set_vision_degrade_s(config.vision_degrade_s);
     proto->set_vision_invalid_s(config.vision_invalid_s);
     proto->set_config_version(config.config_version);
+    proto->mutable_tracking()->set_center_of_mass_height_m(config.physical_tracking.center_of_mass_height_m);
+    proto->mutable_tracking()->set_tire_friction(config.physical_tracking.tire_friction);
+    proto->mutable_tracking()->set_traction_utilization(config.physical_tracking.traction_utilization);
+    proto->mutable_tracking()->set_position_soft_zone_m(config.physical_tracking.position_soft_zone_m);
+    proto->mutable_tracking()->set_position_velocity_gain(config.physical_tracking.position_velocity_gain);
+    proto->mutable_tracking()->set_velocity_preview_s(config.physical_tracking.velocity_preview_s);
+
 }
 
 inline motion::MotionConfigV2 configFromProto(const ZSS::New::MotionConfigV2& proto) {
@@ -223,6 +230,14 @@ inline motion::MotionConfigV2 configFromProto(const ZSS::New::MotionConfigV2& pr
     config.vision_degrade_s = proto.vision_degrade_s();
     config.vision_invalid_s = proto.vision_invalid_s();
     config.config_version = proto.config_version();
+    if (proto.has_tracking()) {
+        config.physical_tracking.center_of_mass_height_m = proto.tracking().center_of_mass_height_m();
+        config.physical_tracking.tire_friction = proto.tracking().tire_friction();
+        config.physical_tracking.traction_utilization = proto.tracking().traction_utilization();
+        config.physical_tracking.position_soft_zone_m = proto.tracking().position_soft_zone_m();
+        config.physical_tracking.position_velocity_gain = proto.tracking().position_velocity_gain();
+        config.physical_tracking.velocity_preview_s = proto.tracking().velocity_preview_s();
+    }
     return config;
 }
 

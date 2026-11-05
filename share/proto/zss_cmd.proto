@@ -157,13 +157,13 @@ message MotionLimitsV2 {
     float max_centripetal_accel_m_s2 = 6;
     float max_wheel_torque_nm = 7;
     float max_torque_rate_nm_per_s = 8;
-    float position_correction_gain = 9;
-    float position_correction_limit_m_s = 10;
-    float yaw_correction_gain = 11;
-    float yaw_rate_gain = 12;
-    float wheel_speed_kp = 13;
-    float wheel_speed_ki = 14;
-    float wheel_speed_backcalc = 15;
+    optional float position_correction_gain = 9;
+    optional float position_correction_limit_m_s = 10;
+    optional float yaw_correction_gain = 11;
+    optional float yaw_rate_gain = 12;
+    optional float wheel_speed_kp = 13;
+    optional float wheel_speed_ki = 14;
+    optional float wheel_speed_backcalc = 15;
 }
 message MotionCommandV2 {
     MotionTranslationMode translation_mode = 2;
@@ -238,6 +238,14 @@ message MotionFeedbackV2 {
     uint32 model_version = 40;
     uint32 protocol_version = 41;
 }
+message MotionTrackingConfig {
+    float center_of_mass_height_m = 1;
+    float tire_friction = 2;
+    float traction_utilization = 3;
+    float position_soft_zone_m = 4;
+    float position_velocity_gain = 5;
+    float velocity_preview_s = 6;
+}
 message MotionConfigV2 {
     float mass_kg = 1;
     float inertia_kg_m2 = 2;
@@ -261,4 +269,5 @@ message MotionConfigV2 {
     float vision_degrade_s = 20;
     float vision_invalid_s = 21;
     uint32 config_version = 22;
+    MotionTrackingConfig tracking = 23;
 }
