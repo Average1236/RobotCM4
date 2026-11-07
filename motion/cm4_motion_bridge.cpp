@@ -7,6 +7,12 @@
 #include <cstring>
 
 namespace robot_cm4 {
+namespace {
+// A retransmitted execution event must never extend the Medusa/Athena status
+// pulse beyond the window stamped by the FIRST observation of that event.
+constexpr motion::TimeUs kExecutionPulseWindowUs = 100000;
+}  // namespace
+
 void Cm4MotionBridge::configure(const motion::MotionConfigV2& config,
                                 std::uint32_t session_id,
                                 motion::TimeUs now_us) {
@@ -35,6 +41,45 @@ void Cm4MotionBridge::configure(const motion::MotionConfigV2& config,
     command_time_map_.reset();
     feedback_time_map_.reset();
     command_receive_us_ = now_us;
+    // A CM4 restart starts a new session: keep the explicitly enabled match
+    // mode but require a fresh capability handshake and drop old ACKs/pulses.
+    const bool match_enabled = match_execution_.enabled();
+    {
+        std::lock_guard<std::mutex> lock(command_mutex_);
+        pending_ack_count_ = 0;
+        execution_acks_forwarded_ = 0;
+    }
+    {
+        std::lock_guard<std::mutex> lock(feedback_mutex_);
+        current_world_session_ = 0;
+        last_execution_feedback_ = motion::KickExecutionFeedback{};
+        pulse_valid_ = false;
+        pulse_start_us_ = 0;
+        flat_kick_ms_ = 0;
+        chip_kick_ms_ = 0;
+        execution_feedback_frames_ = 0;
+        execution_events_ = 0;
+        execution_duplicates_ = 0;
+        execution_old_generation_ = 0;
+    }
+    match_execution_.configure(match_enabled, now_us);
+}
+
+void Cm4MotionBridge::setMatchExecutionEnabled(bool enabled,
+                                                std::uint32_t world_session_id,
+                                                motion::TimeUs now_us) {
+    match_world_session_id_ = world_session_id;
+    if (enabled == match_execution_.enabled()) return;
+    match_execution_.configure(enabled, now_us);
+    std::lock_guard<std::mutex> command_lock(command_mutex_);
+    pending_ack_count_ = 0;
+    std::lock_guard<std::mutex> feedback_lock(feedback_mutex_);
+    current_world_session_ = 0;
+    last_execution_feedback_ = motion::KickExecutionFeedback{};
+    pulse_valid_ = false;
+    pulse_start_us_ = 0;
+    flat_kick_ms_ = 0;
+    chip_kick_ms_ = 0;
 }
 
 bool Cm4MotionBridge::submitRobotCommand(const ZSS::New::Robot_Command& proto,
@@ -42,6 +87,14 @@ bool Cm4MotionBridge::submitRobotCommand(const ZSS::New::Robot_Command& proto,
     std::lock_guard<std::mutex> lock(command_mutex_);
     motion::MotionCommandV2 command;
     if (!proto.has_motion_command()) return false;
+    // Execution ACKs ride the ordinary command chain but clear board state
+    // only; they are queued for the next command frame even when the motion
+    // command itself is rejected.  They never refresh command age/validity.
+    if (match_execution_.enabled() && proto.motion_command().has_execution_ack()) {
+        motion::KickExecutionAck ack =
+            executionAckFromProto(proto.motion_command().execution_ack());
+        if (ack.kick_sequence != 0) pushPendingAck(ack);
+    }
     {
         command = commandFromProto(proto.motion_command());
         if (!motion::validCommand(command)) return false;
@@ -155,6 +208,17 @@ bool Cm4MotionBridge::buildCommandFrame(motion::TimeUs now_us, std::uint8_t* fra
                 ++vision_attached_;
             }
         }
+        if (match_execution_.enabled()) {
+            // Capability declaration is retransmitted on every command frame
+            // until the STM32 observes it; the exchange is idempotent.
+            command.match_capability =
+                match_execution_.declaration(match_world_session_id_);
+            motion::KickExecutionAck ack;
+            if (popPendingAck(&ack)) {
+                command.execution_ack = ack;
+                ++execution_acks_forwarded_;
+            }
+        }
     }
     if (frame == nullptr) return false;
     return motion::encodeCommandFrame(command, attach_vision ? &vision : nullptr, frame);
@@ -173,6 +237,7 @@ bool Cm4MotionBridge::buildConfigFrame(motion::TimeUs now_us, std::uint8_t* fram
 }
 
 bool Cm4MotionBridge::buildFrame(motion::TimeUs now_us, std::uint8_t* frame) {
+    if (match_execution_.enabled()) match_execution_.poll(now_us);
     if (!config_sent_) return buildConfigFrame(now_us, frame);
     return buildCommandFrame(now_us, frame);
 }
@@ -180,11 +245,20 @@ bool Cm4MotionBridge::buildFrame(motion::TimeUs now_us, std::uint8_t* frame) {
 bool Cm4MotionBridge::processFeedbackFrame(const std::uint8_t* frame,
                                            motion::TimeUs now_us) {
     motion::MotionFeedbackV2 feedback;
-    if (!motion::decodeFeedbackFrame(frame, &feedback)) {
+    motion::MatchExecutionExtension extension;
+    const bool match_enabled = match_execution_.enabled();
+    if (match_enabled) {
+        // Extension-aware decode: a malformed tail invalidates the whole frame.
+        if (!motion::decodeFeedbackFrame(frame, &feedback, &extension)) {
+            ++protocol_errors_;
+            return false;
+        }
+    } else if (!motion::decodeFeedbackFrame(frame, &feedback)) {
         ++protocol_errors_;
         return false;
     }
     std::lock_guard<std::mutex> lock(feedback_mutex_);
+    match_execution_.poll(now_us);
     const motion::TimeUs source_time = feedback.feedback_time_us;
     if (has_feedback_ && source_time <= last_feedback_frame_us_) return false;
     if (feedback.feedback_time_us != 0) {
@@ -203,8 +277,140 @@ bool Cm4MotionBridge::processFeedbackFrame(const std::uint8_t* frame,
         last_feedback_frame_us_ = source_time;
         spi_timed_out_ = false;
         ++feedback_frames_;
+        if (match_enabled) observeFeedbackExtension(extension, now_us);
     }
     return true;
+}
+
+void Cm4MotionBridge::observeFeedbackExtension(
+    const motion::MatchExecutionExtension& extension, motion::TimeUs now_us) {
+    // Caller holds feedback_mutex_.
+    if (extension.capability.present) {
+        match_execution_.observePeerCapabilities(extension.capability.capability_bits,
+                                                 now_us);
+        if (current_world_session_ == 0 &&
+            extension.capability.world_session_id != 0) {
+            current_world_session_ = extension.capability.world_session_id;
+        }
+    }
+    // Elapsed status-pulse time is derived from the FIRST observation of an
+    // executed event, so retransmissions can never extend it.
+    flat_kick_ms_ = 0;
+    chip_kick_ms_ = 0;
+    if (pulse_valid_ && now_us >= pulse_start_us_) {
+        const motion::TimeUs elapsed = now_us - pulse_start_us_;
+        if (elapsed <= kExecutionPulseWindowUs) {
+            const std::int32_t ms =
+                static_cast<std::int32_t>(elapsed / 1000) + 1;
+            if (pulse_event_type_ == motion::KickEventType::kFlat) {
+                flat_kick_ms_ = ms;
+            } else if (pulse_event_type_ == motion::KickEventType::kChip) {
+                chip_kick_ms_ = ms;
+            }
+        }
+    }
+    if (!extension.feedback.present) return;
+    ++execution_feedback_frames_;
+    const motion::KickExecutionFeedback& event = extension.feedback;
+    const bool same_event = pulse_valid_ &&
+        event.world_session_id == pulse_world_session_ &&
+        event.producer_session_id == pulse_producer_session_ &&
+        event.kick_sequence == pulse_kick_sequence_;
+    if (same_event) {
+        // Duplicate feedback: forward the event identity (Medusa deduplicates
+        // and ACKs again) but do not restamp or extend the status pulse.
+        ++execution_duplicates_;
+        last_execution_feedback_ = event;
+        return;
+    }
+    pulse_valid_ = true;
+    pulse_world_session_ = event.world_session_id;
+    pulse_producer_session_ = event.producer_session_id;
+    pulse_kick_sequence_ = event.kick_sequence;
+    pulse_event_type_ = motion::KickEventType::kNone;
+    pulse_start_us_ = 0;
+    if (current_world_session_ == 0) current_world_session_ = event.world_session_id;
+    if (event.state != motion::KickExecutionState::kExecuted) {
+        // rejected/expired/deduplicated events only complete the audit trail.
+        last_execution_feedback_ = event;
+        return;
+    }
+    if (event.world_session_id != current_world_session_ ||
+        event.event_type == motion::KickEventType::kNone) {
+        // Old session/placement event: audit only, never a new status pulse.
+        ++execution_old_generation_;
+        last_execution_feedback_ = event;
+        return;
+    }
+    pulse_event_type_ = event.event_type;
+    pulse_start_us_ = now_us;
+    flat_kick_ms_ = event.event_type == motion::KickEventType::kFlat ? 1 : 0;
+    chip_kick_ms_ = event.event_type == motion::KickEventType::kChip ? 1 : 0;
+    ++execution_events_;
+    last_execution_feedback_ = event;
+}
+
+void Cm4MotionBridge::pushPendingAck(const motion::KickExecutionAck& ack) {
+    // Caller holds command_mutex_.  Identical ACKs already waiting are
+    // idempotent; a full queue drops the OLDEST audit ACK (the execution event
+    // keeps retransmitting, so Medusa will re-send it).
+    for (std::size_t i = 0; i < pending_ack_count_; ++i) {
+        const auto& queued = pending_acks_[i];
+        if (queued.world_session_id == ack.world_session_id &&
+            queued.producer_session_id == ack.producer_session_id &&
+            queued.kick_sequence == ack.kick_sequence) {
+            return;
+        }
+    }
+    if (pending_ack_count_ >= pending_acks_.size()) {
+        for (std::size_t i = 1; i < pending_ack_count_; ++i) {
+            pending_acks_[i - 1] = pending_acks_[i];
+        }
+        --pending_ack_count_;
+    }
+    pending_acks_[pending_ack_count_++] = ack;
+}
+
+bool Cm4MotionBridge::popPendingAck(motion::KickExecutionAck* ack) {
+    // Caller holds command_mutex_.
+    if (pending_ack_count_ == 0) return false;
+    *ack = pending_acks_[0];
+    for (std::size_t i = 1; i < pending_ack_count_; ++i) {
+        pending_acks_[i - 1] = pending_acks_[i];
+    }
+    --pending_ack_count_;
+    pending_acks_[pending_ack_count_] = motion::KickExecutionAck{};
+    return true;
+}
+
+motion::KickExecutionFeedback Cm4MotionBridge::lastExecutionFeedback() const {
+    std::lock_guard<std::mutex> lock(feedback_mutex_);
+    return last_execution_feedback_;
+}
+
+std::uint32_t Cm4MotionBridge::executionFeedbackFrames() const {
+    std::lock_guard<std::mutex> lock(feedback_mutex_);
+    return execution_feedback_frames_;
+}
+
+std::uint32_t Cm4MotionBridge::executionEvents() const {
+    std::lock_guard<std::mutex> lock(feedback_mutex_);
+    return execution_events_;
+}
+
+std::uint32_t Cm4MotionBridge::executionDuplicates() const {
+    std::lock_guard<std::mutex> lock(feedback_mutex_);
+    return execution_duplicates_;
+}
+
+std::uint32_t Cm4MotionBridge::executionOldGeneration() const {
+    std::lock_guard<std::mutex> lock(feedback_mutex_);
+    return execution_old_generation_;
+}
+
+std::uint32_t Cm4MotionBridge::executionAcksForwarded() const {
+    std::lock_guard<std::mutex> lock(command_mutex_);
+    return execution_acks_forwarded_;
 }
 
 bool Cm4MotionBridge::exchange(SpiTransport& transport, motion::TimeUs now_us) {
@@ -238,13 +444,25 @@ void Cm4MotionBridge::applyFeedbackToStatus(ZSS::New::Robot_Status* status) cons
     if (status == nullptr) return;
     motion::MotionFeedbackV2 feedback;
     bool valid = false;
+    bool match_enabled = false;
+    std::int32_t flat_kick_ms = 0;
+    std::int32_t chip_kick_ms = 0;
     {
         std::lock_guard<std::mutex> lock(feedback_mutex_);
         feedback = feedback_;
         valid = has_feedback_;
+        match_enabled = match_execution_.enabled();
+        flat_kick_ms = flat_kick_ms_;
+        chip_kick_ms = chip_kick_ms_;
     }
     if (!valid) return;
     feedbackToProto(feedback, status->mutable_motion_feedback());
+    if (match_enabled) {
+        // Status pulses are only triggered by the first `executed` observation
+        // and never extended by a retransmitted feedback frame.
+        status->set_flat_kick(flat_kick_ms);
+        status->set_chip_kick(chip_kick_ms);
+    }
     if (feedback.battery_voltage > 0.0f) {
         status->set_battery(static_cast<std::int32_t>(feedback.battery_voltage * 10.0f + 0.5f));
     }

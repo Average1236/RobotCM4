@@ -8,6 +8,7 @@
 #include "spi_transport.hpp"
 #include "zss_cmd.pb.h"
 
+#include <array>
 #include <cstdint>
 #include <mutex>
 #include <atomic>
@@ -50,6 +51,26 @@ public:
     bool feedbackFresh(motion::TimeUs now_us) const;
     const motion::MotionConfigV2& config() const { return config_; }
 
+    // --- Match execution tail extension (docs/MUJOCO_MATCH_EXECUTION.md) ---
+    // Disabled by default: v3 encoding/decoding stays byte-identical.  When
+    // enabled the bridge takes part in the startup capability handshake, adds
+    // the capability block to command frames, forwards execution ACKs and
+    // decodes execution feedback.  A session that cannot complete the
+    // handshake reports the fixed `match_execution_not_supported` error.
+    void setMatchExecutionEnabled(bool enabled, std::uint32_t world_session_id,
+                                  motion::TimeUs now_us);
+    bool matchExecutionEnabled() const { return match_execution_.enabled(); }
+    bool matchExecutionReady() const { return match_execution_.ready(); }
+    bool matchExecutionRejected() const { return match_execution_.rejected(); }
+    const char* matchExecutionError() const { return match_execution_.error(); }
+    void pollMatchExecution(motion::TimeUs now_us) { match_execution_.poll(now_us); }
+    motion::KickExecutionFeedback lastExecutionFeedback() const;
+    std::uint32_t executionFeedbackFrames() const;
+    std::uint32_t executionEvents() const;
+    std::uint32_t executionDuplicates() const;
+    std::uint32_t executionOldGeneration() const;
+    std::uint32_t executionAcksForwarded() const;
+
     std::uint32_t commandsSubmitted() const;
     std::uint32_t protocolErrors() const;
     std::uint32_t spiTimeouts() const;
@@ -62,6 +83,10 @@ public:
 private:
     void buildDisabledCommand(motion::TimeUs now_us, motion::MotionCommandV2* command);
     void noteSpiTimeout(motion::TimeUs now_us);
+    void observeFeedbackExtension(const motion::MatchExecutionExtension& extension,
+                                  motion::TimeUs now_us);
+    void pushPendingAck(const motion::KickExecutionAck& ack);
+    bool popPendingAck(motion::KickExecutionAck* ack);
 
     motion::MotionConfigV2 config_;
     motion::TimeMapper command_time_map_;
@@ -78,6 +103,9 @@ private:
     bool has_vision_ = false;
     std::uint32_t last_attached_vision_sequence_ = 0;
     motion::TimeUs last_attached_vision_capture_ = 0;
+    std::array<motion::KickExecutionAck, motion::kMatchMaxPendingKickExecutions>
+        pending_acks_{};
+    std::size_t pending_ack_count_ = 0;
 
     mutable std::mutex feedback_mutex_;
     motion::MotionFeedbackV2 feedback_;
@@ -85,6 +113,25 @@ private:
     motion::TimeUs last_feedback_receive_us_ = 0;
     motion::TimeUs last_feedback_frame_us_ = 0;
     bool spi_timed_out_ = true;
+
+    // Match execution handshake / status-pulse state (feedback_mutex_).
+    motion::MatchExecutionNegotiator match_execution_;
+    std::uint32_t match_world_session_id_ = 0;
+    std::uint32_t current_world_session_ = 0;
+    motion::KickExecutionFeedback last_execution_feedback_;
+    bool pulse_valid_ = false;
+    std::uint32_t pulse_world_session_ = 0;
+    std::uint32_t pulse_producer_session_ = 0;
+    std::uint32_t pulse_kick_sequence_ = 0;
+    motion::KickEventType pulse_event_type_ = motion::KickEventType::kNone;
+    motion::TimeUs pulse_start_us_ = 0;
+    std::int32_t flat_kick_ms_ = 0;
+    std::int32_t chip_kick_ms_ = 0;
+    std::uint32_t execution_feedback_frames_ = 0;
+    std::uint32_t execution_events_ = 0;
+    std::uint32_t execution_duplicates_ = 0;
+    std::uint32_t execution_old_generation_ = 0;
+    std::uint32_t execution_acks_forwarded_ = 0;
 
     std::uint32_t commands_submitted_ = 0;
     std::uint32_t protocol_errors_ = 0;

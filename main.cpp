@@ -65,6 +65,20 @@ int main(int argc, char** argv) try {
     }
     robot_cm4::Cm4MotionBridge bridge;
     bridge.configure(motion::runtimeMotionConfig(), static_cast<std::uint32_t>(nowUs()), nowUs());
+    // Match execution tail extension is explicitly enabled by the shared-world
+    // match session; the production default (env absent) keeps v3 bytes.
+    const char* match_execution_env = std::getenv("KUN2_MUJOCO_MATCH_EXECUTION");
+    const bool match_execution_enabled =
+        match_execution_env != nullptr && std::strcmp(match_execution_env, "1") == 0;
+    std::uint32_t match_world_session = 0;
+    if (const char* session_env = std::getenv("KUN2_MUJOCO_MATCH_WORLD_SESSION")) {
+        match_world_session =
+            static_cast<std::uint32_t>(std::strtoul(session_env, nullptr, 10));
+    }
+    const bool use_hardware_spi = unix_path == nullptr;
+    if (match_execution_enabled && use_hardware_spi) {
+        bridge.setMatchExecutionEnabled(true, match_world_session, nowUs());
+    }
     robot_cm4::UnixSocketSpiTransport unix_spi;
     robot_cm4::LinuxSpiTransport hardware_spi;
     if (!unix_path && !hardware_spi.openDevice(spi_device)) {
@@ -74,6 +88,7 @@ int main(int argc, char** argv) try {
     auto feedback_peer = endpoint("127.0.0.1", feedback_port);
     const auto multicast_peer = endpoint("225.225.225.225", 13134);
     bool connected = !unix_path, have_peer = false;
+    bool match_execution_ready_reported = false;
     motion::TimeUs next_multicast = 0;
     while (running) {
         const auto start = nowUs();
@@ -92,6 +107,11 @@ int main(int argc, char** argv) try {
             if (connected) {
                 timeval timeout{0, 40000};
                 ::setsockopt(unix_spi.descriptor(), SOL_SOCKET, SO_RCVTIMEO, &timeout, sizeof(timeout));
+                // The capability handshake only starts once the SPI link exists,
+                // so a slow session startup is not a false capability failure.
+                if (match_execution_enabled) {
+                    bridge.setMatchExecutionEnabled(true, match_world_session, nowUs());
+                }
             }
         }
         if (connected) {
@@ -103,6 +123,25 @@ int main(int argc, char** argv) try {
                 bridge.applyFeedbackToStatus(&status); sendProto(fd, feedback_peer, status);
             }
         }
+        if (match_execution_enabled && bridge.matchExecutionEnabled()) {
+            bridge.pollMatchExecution(nowUs());
+            if (!match_execution_ready_reported && bridge.matchExecutionReady()) {
+                // One-shot capability evidence consumed by the session launcher.
+                std::fprintf(stderr,
+                             "CM4: match_execution_ready team=%d id=%d world_session=%u "
+                             "events=%u acks_forwarded=%u duplicates=%u old_generation=%u\n",
+                             team, id, match_world_session,
+                             bridge.executionEvents(), bridge.executionAcksForwarded(),
+                             bridge.executionDuplicates(), bridge.executionOldGeneration());
+                match_execution_ready_reported = true;
+            }
+        }
+        if (match_execution_enabled && bridge.matchExecutionRejected()) {
+            // Missing/mismatched capabilities must refuse automatic match play
+            // instead of silently degrading to the v3 wire format.
+            std::fprintf(stderr, "CM4: match_execution_not_supported\n");
+            ::close(fd); return 1;
+        }
         if (!unix_path && start >= next_multicast) {
             ZSS::New::Multicast_Status status; const auto feedback = bridge.lastFeedback();
             status.set_robot_id(id); status.set_team(static_cast<ZSS::New::Team>(team));
@@ -112,6 +151,13 @@ int main(int argc, char** argv) try {
             sendProto(fd, multicast_peer, status); next_multicast = start + 100000;
         }
         std::this_thread::sleep_until(std::chrono::steady_clock::time_point(std::chrono::microseconds(start + 10000)));
+    }
+    if (match_execution_enabled) {
+        std::fprintf(stderr,
+                     "CM4: match_execution events=%u acks_forwarded=%u duplicates=%u "
+                     "old_generation=%u\n",
+                     bridge.executionEvents(), bridge.executionAcksForwarded(),
+                     bridge.executionDuplicates(), bridge.executionOldGeneration());
     }
     ::close(fd); return 0;
 } catch (const std::exception& e) {

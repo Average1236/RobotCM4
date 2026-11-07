@@ -73,6 +73,76 @@ inline motion::CommandLimits limitsFromProto(const ZSS::New::MotionLimitsV2& pro
     return limits;
 }
 
+// Match execution extension conversions (docs/MUJOCO_MATCH_EXECUTION.md).
+// Absent proto fields keep the production path unchanged; these are plain data
+// carriers with no motion semantics.
+inline void capabilityToProto(const motion::MatchCapabilityDeclaration& capability,
+                              ZSS::New::MotionCapabilityDeclaration* proto) {
+    proto->set_capability_bits(capability.capability_bits);
+    proto->set_world_session_id(capability.world_session_id);
+}
+
+inline motion::MatchCapabilityDeclaration capabilityFromProto(
+    const ZSS::New::MotionCapabilityDeclaration& proto) {
+    motion::MatchCapabilityDeclaration capability;
+    capability.present = true;
+    capability.capability_bits = proto.capability_bits();
+    capability.world_session_id = proto.world_session_id();
+    return capability;
+}
+
+inline void executionAckToProto(const motion::KickExecutionAck& ack,
+                                ZSS::New::MotionExecutionAck* proto) {
+    proto->set_world_session_id(ack.world_session_id);
+    proto->set_producer_session_id(ack.producer_session_id);
+    proto->set_kick_sequence(ack.kick_sequence);
+    proto->set_ack_sequence(ack.ack_sequence);
+}
+
+inline motion::KickExecutionAck executionAckFromProto(
+    const ZSS::New::MotionExecutionAck& proto) {
+    motion::KickExecutionAck ack;
+    ack.present = true;
+    ack.world_session_id = proto.world_session_id();
+    ack.producer_session_id = proto.producer_session_id();
+    ack.kick_sequence = proto.kick_sequence();
+    ack.ack_sequence = proto.ack_sequence();
+    return ack;
+}
+
+inline void executionFeedbackToProto(const motion::KickExecutionFeedback& feedback,
+                                     ZSS::New::MotionExecutionFeedback* proto) {
+    proto->set_feedback_sequence(feedback.feedback_sequence);
+    proto->set_world_session_id(feedback.world_session_id);
+    proto->set_placement_generation(feedback.placement_generation);
+    proto->set_producer_session_id(feedback.producer_session_id);
+    proto->set_kick_sequence(feedback.kick_sequence);
+    proto->set_event_type(static_cast<ZSS::New::MotionKickEventType>(
+        static_cast<int>(feedback.event_type)));
+    proto->set_discharge_us(feedback.discharge_us);
+    proto->set_executed_time_us(feedback.executed_time_us);
+    proto->set_state(static_cast<ZSS::New::MotionKickExecutionState>(
+        static_cast<int>(feedback.state)));
+    proto->set_queue_depth(feedback.queue_depth);
+}
+
+inline motion::KickExecutionFeedback executionFeedbackFromProto(
+    const ZSS::New::MotionExecutionFeedback& proto) {
+    motion::KickExecutionFeedback feedback;
+    feedback.present = true;
+    feedback.feedback_sequence = proto.feedback_sequence();
+    feedback.world_session_id = proto.world_session_id();
+    feedback.placement_generation = proto.placement_generation();
+    feedback.producer_session_id = proto.producer_session_id();
+    feedback.kick_sequence = proto.kick_sequence();
+    feedback.event_type = static_cast<motion::KickEventType>(proto.event_type());
+    feedback.discharge_us = static_cast<std::uint16_t>(proto.discharge_us());
+    feedback.executed_time_us = proto.executed_time_us();
+    feedback.state = static_cast<motion::KickExecutionState>(proto.state());
+    feedback.queue_depth = static_cast<std::uint8_t>(proto.queue_depth());
+    return feedback;
+}
+
 inline void commandToProto(const motion::MotionCommandV2& command,
                            ZSS::New::MotionCommandV2* proto) {
     proto->set_translation_mode(static_cast<ZSS::New::MotionTranslationMode>(
@@ -103,6 +173,13 @@ inline void commandToProto(const motion::MotionCommandV2& command,
     proto->set_dribble_power(command.dribble_power);
     proto->set_dribble_velocity_rps(command.dribble_velocity_rps);
     proto->set_dribble_torque_ff_nm(command.dribble_torque_ff_nm);
+    if (command.execution_ack.present) {
+        executionAckToProto(command.execution_ack, proto->mutable_execution_ack());
+    }
+    if (command.match_capability.present) {
+        capabilityToProto(command.match_capability,
+                          proto->mutable_match_capability());
+    }
 }
 
 inline motion::MotionCommandV2 commandFromProto(const ZSS::New::MotionCommandV2& proto) {
@@ -133,6 +210,12 @@ inline motion::MotionCommandV2 commandFromProto(const ZSS::New::MotionCommandV2&
     command.dribble_power = proto.dribble_power();
     command.dribble_velocity_rps = proto.dribble_velocity_rps();
     command.dribble_torque_ff_nm = proto.dribble_torque_ff_nm();
+    if (proto.has_execution_ack()) {
+        command.execution_ack = executionAckFromProto(proto.execution_ack());
+    }
+    if (proto.has_match_capability()) {
+        command.match_capability = capabilityFromProto(proto.match_capability());
+    }
     return command;
 }
 
@@ -302,6 +385,14 @@ inline void feedbackToProto(const motion::MotionFeedbackV2& feedback,
     proto->set_controller_version(feedback.controller_version);
     proto->set_model_version(feedback.model_version);
     proto->set_protocol_version(feedback.protocol_version);
+    if (feedback.execution_feedback.present) {
+        executionFeedbackToProto(feedback.execution_feedback,
+                                 proto->mutable_execution_feedback());
+    }
+    if (feedback.match_capability.present) {
+        capabilityToProto(feedback.match_capability,
+                          proto->mutable_match_capability());
+    }
 }
 
 inline motion::MotionFeedbackV2 feedbackFromProto(
@@ -370,6 +461,13 @@ inline motion::MotionFeedbackV2 feedbackFromProto(
     feedback.controller_version = static_cast<std::uint16_t>(proto.controller_version());
     feedback.model_version = static_cast<std::uint16_t>(proto.model_version());
     feedback.protocol_version = static_cast<std::uint16_t>(proto.protocol_version());
+    if (proto.has_execution_feedback()) {
+        feedback.execution_feedback =
+            executionFeedbackFromProto(proto.execution_feedback());
+    }
+    if (proto.has_match_capability()) {
+        feedback.match_capability = capabilityFromProto(proto.match_capability());
+    }
     return feedback;
 }
 

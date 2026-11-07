@@ -51,12 +51,21 @@ namespace New {
 class MotionAccel2;
 struct MotionAccel2DefaultTypeInternal;
 extern MotionAccel2DefaultTypeInternal _MotionAccel2_default_instance_;
+class MotionCapabilityDeclaration;
+struct MotionCapabilityDeclarationDefaultTypeInternal;
+extern MotionCapabilityDeclarationDefaultTypeInternal _MotionCapabilityDeclaration_default_instance_;
 class MotionCommandV2;
 struct MotionCommandV2DefaultTypeInternal;
 extern MotionCommandV2DefaultTypeInternal _MotionCommandV2_default_instance_;
 class MotionConfigV2;
 struct MotionConfigV2DefaultTypeInternal;
 extern MotionConfigV2DefaultTypeInternal _MotionConfigV2_default_instance_;
+class MotionExecutionAck;
+struct MotionExecutionAckDefaultTypeInternal;
+extern MotionExecutionAckDefaultTypeInternal _MotionExecutionAck_default_instance_;
+class MotionExecutionFeedback;
+struct MotionExecutionFeedbackDefaultTypeInternal;
+extern MotionExecutionFeedbackDefaultTypeInternal _MotionExecutionFeedback_default_instance_;
 class MotionFeedbackV2;
 struct MotionFeedbackV2DefaultTypeInternal;
 extern MotionFeedbackV2DefaultTypeInternal _MotionFeedbackV2_default_instance_;
@@ -103,8 +112,11 @@ extern VisionObservationV2DefaultTypeInternal _VisionObservationV2_default_insta
 }  // namespace ZSS
 PROTOBUF_NAMESPACE_OPEN
 template<> ::ZSS::New::MotionAccel2* Arena::CreateMaybeMessage<::ZSS::New::MotionAccel2>(Arena*);
+template<> ::ZSS::New::MotionCapabilityDeclaration* Arena::CreateMaybeMessage<::ZSS::New::MotionCapabilityDeclaration>(Arena*);
 template<> ::ZSS::New::MotionCommandV2* Arena::CreateMaybeMessage<::ZSS::New::MotionCommandV2>(Arena*);
 template<> ::ZSS::New::MotionConfigV2* Arena::CreateMaybeMessage<::ZSS::New::MotionConfigV2>(Arena*);
+template<> ::ZSS::New::MotionExecutionAck* Arena::CreateMaybeMessage<::ZSS::New::MotionExecutionAck>(Arena*);
+template<> ::ZSS::New::MotionExecutionFeedback* Arena::CreateMaybeMessage<::ZSS::New::MotionExecutionFeedback>(Arena*);
 template<> ::ZSS::New::MotionFeedbackV2* Arena::CreateMaybeMessage<::ZSS::New::MotionFeedbackV2>(Arena*);
 template<> ::ZSS::New::MotionLimitsV2* Arena::CreateMaybeMessage<::ZSS::New::MotionLimitsV2>(Arena*);
 template<> ::ZSS::New::MotionPose2* Arena::CreateMaybeMessage<::ZSS::New::MotionPose2>(Arena*);
@@ -307,6 +319,60 @@ inline bool MotionSafetyState_Parse(
     ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, MotionSafetyState* value) {
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<MotionSafetyState>(
     MotionSafetyState_descriptor(), name, value);
+}
+enum MotionKickEventType : int {
+  MOTION_KICK_NONE = 0,
+  MOTION_KICK_FLAT = 1,
+  MOTION_KICK_CHIP = 2,
+  MotionKickEventType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  MotionKickEventType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool MotionKickEventType_IsValid(int value);
+constexpr MotionKickEventType MotionKickEventType_MIN = MOTION_KICK_NONE;
+constexpr MotionKickEventType MotionKickEventType_MAX = MOTION_KICK_CHIP;
+constexpr int MotionKickEventType_ARRAYSIZE = MotionKickEventType_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MotionKickEventType_descriptor();
+template<typename T>
+inline const std::string& MotionKickEventType_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, MotionKickEventType>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function MotionKickEventType_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    MotionKickEventType_descriptor(), enum_t_value);
+}
+inline bool MotionKickEventType_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, MotionKickEventType* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<MotionKickEventType>(
+    MotionKickEventType_descriptor(), name, value);
+}
+enum MotionKickExecutionState : int {
+  MOTION_KICK_STATE_NONE = 0,
+  MOTION_KICK_STATE_EXECUTED = 1,
+  MOTION_KICK_STATE_REJECTED = 2,
+  MOTION_KICK_STATE_EXPIRED = 3,
+  MOTION_KICK_STATE_DEDUPLICATED = 4,
+  MotionKickExecutionState_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  MotionKickExecutionState_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool MotionKickExecutionState_IsValid(int value);
+constexpr MotionKickExecutionState MotionKickExecutionState_MIN = MOTION_KICK_STATE_NONE;
+constexpr MotionKickExecutionState MotionKickExecutionState_MAX = MOTION_KICK_STATE_DEDUPLICATED;
+constexpr int MotionKickExecutionState_ARRAYSIZE = MotionKickExecutionState_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* MotionKickExecutionState_descriptor();
+template<typename T>
+inline const std::string& MotionKickExecutionState_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, MotionKickExecutionState>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function MotionKickExecutionState_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    MotionKickExecutionState_descriptor(), enum_t_value);
+}
+inline bool MotionKickExecutionState_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, MotionKickExecutionState* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<MotionKickExecutionState>(
+    MotionKickExecutionState_descriptor(), name, value);
 }
 // ===================================================================
 
@@ -2952,6 +3018,8 @@ class MotionCommandV2 final :
     kTargetPoseFieldNumber = 9,
     kTargetVelocityFieldNumber = 10,
     kLimitsFieldNumber = 11,
+    kExecutionAckFieldNumber = 42,
+    kMatchCapabilityFieldNumber = 43,
     kTranslationModeFieldNumber = 2,
     kYawModeFieldNumber = 3,
     kSessionIdFieldNumber = 4,
@@ -3023,6 +3091,42 @@ class MotionCommandV2 final :
   void unsafe_arena_set_allocated_limits(
       ::ZSS::New::MotionLimitsV2* limits);
   ::ZSS::New::MotionLimitsV2* unsafe_arena_release_limits();
+
+  // .ZSS.New.MotionExecutionAck execution_ack = 42;
+  bool has_execution_ack() const;
+  private:
+  bool _internal_has_execution_ack() const;
+  public:
+  void clear_execution_ack();
+  const ::ZSS::New::MotionExecutionAck& execution_ack() const;
+  PROTOBUF_NODISCARD ::ZSS::New::MotionExecutionAck* release_execution_ack();
+  ::ZSS::New::MotionExecutionAck* mutable_execution_ack();
+  void set_allocated_execution_ack(::ZSS::New::MotionExecutionAck* execution_ack);
+  private:
+  const ::ZSS::New::MotionExecutionAck& _internal_execution_ack() const;
+  ::ZSS::New::MotionExecutionAck* _internal_mutable_execution_ack();
+  public:
+  void unsafe_arena_set_allocated_execution_ack(
+      ::ZSS::New::MotionExecutionAck* execution_ack);
+  ::ZSS::New::MotionExecutionAck* unsafe_arena_release_execution_ack();
+
+  // .ZSS.New.MotionCapabilityDeclaration match_capability = 43;
+  bool has_match_capability() const;
+  private:
+  bool _internal_has_match_capability() const;
+  public:
+  void clear_match_capability();
+  const ::ZSS::New::MotionCapabilityDeclaration& match_capability() const;
+  PROTOBUF_NODISCARD ::ZSS::New::MotionCapabilityDeclaration* release_match_capability();
+  ::ZSS::New::MotionCapabilityDeclaration* mutable_match_capability();
+  void set_allocated_match_capability(::ZSS::New::MotionCapabilityDeclaration* match_capability);
+  private:
+  const ::ZSS::New::MotionCapabilityDeclaration& _internal_match_capability() const;
+  ::ZSS::New::MotionCapabilityDeclaration* _internal_mutable_match_capability();
+  public:
+  void unsafe_arena_set_allocated_match_capability(
+      ::ZSS::New::MotionCapabilityDeclaration* match_capability);
+  ::ZSS::New::MotionCapabilityDeclaration* unsafe_arena_release_match_capability();
 
   // .ZSS.New.MotionTranslationMode translation_mode = 2;
   void clear_translation_mode();
@@ -3187,6 +3291,8 @@ class MotionCommandV2 final :
   ::ZSS::New::MotionPose2* target_pose_;
   ::ZSS::New::MotionTwist2* target_velocity_;
   ::ZSS::New::MotionLimitsV2* limits_;
+  ::ZSS::New::MotionExecutionAck* execution_ack_;
+  ::ZSS::New::MotionCapabilityDeclaration* match_capability_;
   int translation_mode_;
   int yaw_mode_;
   uint32_t session_id_;
@@ -3557,6 +3663,8 @@ class MotionFeedbackV2 final :
     kReferencePoseFieldNumber = 17,
     kReferenceVelocityFieldNumber = 18,
     kReferenceAccelFieldNumber = 19,
+    kExecutionFeedbackFieldNumber = 42,
+    kMatchCapabilityFieldNumber = 43,
     kSafetyFieldNumber = 2,
     kLocalizationFieldNumber = 3,
     kSessionIdFieldNumber = 4,
@@ -3808,6 +3916,42 @@ class MotionFeedbackV2 final :
   void unsafe_arena_set_allocated_reference_accel(
       ::ZSS::New::MotionAccel2* reference_accel);
   ::ZSS::New::MotionAccel2* unsafe_arena_release_reference_accel();
+
+  // .ZSS.New.MotionExecutionFeedback execution_feedback = 42;
+  bool has_execution_feedback() const;
+  private:
+  bool _internal_has_execution_feedback() const;
+  public:
+  void clear_execution_feedback();
+  const ::ZSS::New::MotionExecutionFeedback& execution_feedback() const;
+  PROTOBUF_NODISCARD ::ZSS::New::MotionExecutionFeedback* release_execution_feedback();
+  ::ZSS::New::MotionExecutionFeedback* mutable_execution_feedback();
+  void set_allocated_execution_feedback(::ZSS::New::MotionExecutionFeedback* execution_feedback);
+  private:
+  const ::ZSS::New::MotionExecutionFeedback& _internal_execution_feedback() const;
+  ::ZSS::New::MotionExecutionFeedback* _internal_mutable_execution_feedback();
+  public:
+  void unsafe_arena_set_allocated_execution_feedback(
+      ::ZSS::New::MotionExecutionFeedback* execution_feedback);
+  ::ZSS::New::MotionExecutionFeedback* unsafe_arena_release_execution_feedback();
+
+  // .ZSS.New.MotionCapabilityDeclaration match_capability = 43;
+  bool has_match_capability() const;
+  private:
+  bool _internal_has_match_capability() const;
+  public:
+  void clear_match_capability();
+  const ::ZSS::New::MotionCapabilityDeclaration& match_capability() const;
+  PROTOBUF_NODISCARD ::ZSS::New::MotionCapabilityDeclaration* release_match_capability();
+  ::ZSS::New::MotionCapabilityDeclaration* mutable_match_capability();
+  void set_allocated_match_capability(::ZSS::New::MotionCapabilityDeclaration* match_capability);
+  private:
+  const ::ZSS::New::MotionCapabilityDeclaration& _internal_match_capability() const;
+  ::ZSS::New::MotionCapabilityDeclaration* _internal_mutable_match_capability();
+  public:
+  void unsafe_arena_set_allocated_match_capability(
+      ::ZSS::New::MotionCapabilityDeclaration* match_capability);
+  ::ZSS::New::MotionCapabilityDeclaration* unsafe_arena_release_match_capability();
 
   // .ZSS.New.MotionSafetyState safety = 2;
   void clear_safety();
@@ -4088,6 +4232,8 @@ class MotionFeedbackV2 final :
   ::ZSS::New::MotionPose2* reference_pose_;
   ::ZSS::New::MotionTwist2* reference_velocity_;
   ::ZSS::New::MotionAccel2* reference_accel_;
+  ::ZSS::New::MotionExecutionFeedback* execution_feedback_;
+  ::ZSS::New::MotionCapabilityDeclaration* match_capability_;
   int safety_;
   int localization_;
   uint32_t session_id_;
@@ -4117,6 +4263,578 @@ class MotionFeedbackV2 final :
   uint32_t controller_version_;
   uint32_t model_version_;
   uint32_t protocol_version_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_zss_5fcmd_2eproto;
+};
+// -------------------------------------------------------------------
+
+class MotionExecutionFeedback final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:ZSS.New.MotionExecutionFeedback) */ {
+ public:
+  inline MotionExecutionFeedback() : MotionExecutionFeedback(nullptr) {}
+  ~MotionExecutionFeedback() override;
+  explicit PROTOBUF_CONSTEXPR MotionExecutionFeedback(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  MotionExecutionFeedback(const MotionExecutionFeedback& from);
+  MotionExecutionFeedback(MotionExecutionFeedback&& from) noexcept
+    : MotionExecutionFeedback() {
+    *this = ::std::move(from);
+  }
+
+  inline MotionExecutionFeedback& operator=(const MotionExecutionFeedback& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MotionExecutionFeedback& operator=(MotionExecutionFeedback&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MotionExecutionFeedback& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MotionExecutionFeedback* internal_default_instance() {
+    return reinterpret_cast<const MotionExecutionFeedback*>(
+               &_MotionExecutionFeedback_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    15;
+
+  friend void swap(MotionExecutionFeedback& a, MotionExecutionFeedback& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MotionExecutionFeedback* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MotionExecutionFeedback* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MotionExecutionFeedback* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<MotionExecutionFeedback>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const MotionExecutionFeedback& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const MotionExecutionFeedback& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MotionExecutionFeedback* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "ZSS.New.MotionExecutionFeedback";
+  }
+  protected:
+  explicit MotionExecutionFeedback(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kFeedbackSequenceFieldNumber = 1,
+    kWorldSessionIdFieldNumber = 2,
+    kPlacementGenerationFieldNumber = 3,
+    kProducerSessionIdFieldNumber = 4,
+    kKickSequenceFieldNumber = 5,
+    kEventTypeFieldNumber = 6,
+    kExecutedTimeUsFieldNumber = 8,
+    kDischargeUsFieldNumber = 7,
+    kStateFieldNumber = 9,
+    kQueueDepthFieldNumber = 10,
+  };
+  // uint32 feedback_sequence = 1;
+  void clear_feedback_sequence();
+  uint32_t feedback_sequence() const;
+  void set_feedback_sequence(uint32_t value);
+  private:
+  uint32_t _internal_feedback_sequence() const;
+  void _internal_set_feedback_sequence(uint32_t value);
+  public:
+
+  // uint32 world_session_id = 2;
+  void clear_world_session_id();
+  uint32_t world_session_id() const;
+  void set_world_session_id(uint32_t value);
+  private:
+  uint32_t _internal_world_session_id() const;
+  void _internal_set_world_session_id(uint32_t value);
+  public:
+
+  // uint32 placement_generation = 3;
+  void clear_placement_generation();
+  uint32_t placement_generation() const;
+  void set_placement_generation(uint32_t value);
+  private:
+  uint32_t _internal_placement_generation() const;
+  void _internal_set_placement_generation(uint32_t value);
+  public:
+
+  // uint32 producer_session_id = 4;
+  void clear_producer_session_id();
+  uint32_t producer_session_id() const;
+  void set_producer_session_id(uint32_t value);
+  private:
+  uint32_t _internal_producer_session_id() const;
+  void _internal_set_producer_session_id(uint32_t value);
+  public:
+
+  // uint32 kick_sequence = 5;
+  void clear_kick_sequence();
+  uint32_t kick_sequence() const;
+  void set_kick_sequence(uint32_t value);
+  private:
+  uint32_t _internal_kick_sequence() const;
+  void _internal_set_kick_sequence(uint32_t value);
+  public:
+
+  // .ZSS.New.MotionKickEventType event_type = 6;
+  void clear_event_type();
+  ::ZSS::New::MotionKickEventType event_type() const;
+  void set_event_type(::ZSS::New::MotionKickEventType value);
+  private:
+  ::ZSS::New::MotionKickEventType _internal_event_type() const;
+  void _internal_set_event_type(::ZSS::New::MotionKickEventType value);
+  public:
+
+  // uint64 executed_time_us = 8;
+  void clear_executed_time_us();
+  uint64_t executed_time_us() const;
+  void set_executed_time_us(uint64_t value);
+  private:
+  uint64_t _internal_executed_time_us() const;
+  void _internal_set_executed_time_us(uint64_t value);
+  public:
+
+  // uint32 discharge_us = 7;
+  void clear_discharge_us();
+  uint32_t discharge_us() const;
+  void set_discharge_us(uint32_t value);
+  private:
+  uint32_t _internal_discharge_us() const;
+  void _internal_set_discharge_us(uint32_t value);
+  public:
+
+  // .ZSS.New.MotionKickExecutionState state = 9;
+  void clear_state();
+  ::ZSS::New::MotionKickExecutionState state() const;
+  void set_state(::ZSS::New::MotionKickExecutionState value);
+  private:
+  ::ZSS::New::MotionKickExecutionState _internal_state() const;
+  void _internal_set_state(::ZSS::New::MotionKickExecutionState value);
+  public:
+
+  // uint32 queue_depth = 10;
+  void clear_queue_depth();
+  uint32_t queue_depth() const;
+  void set_queue_depth(uint32_t value);
+  private:
+  uint32_t _internal_queue_depth() const;
+  void _internal_set_queue_depth(uint32_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:ZSS.New.MotionExecutionFeedback)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  uint32_t feedback_sequence_;
+  uint32_t world_session_id_;
+  uint32_t placement_generation_;
+  uint32_t producer_session_id_;
+  uint32_t kick_sequence_;
+  int event_type_;
+  uint64_t executed_time_us_;
+  uint32_t discharge_us_;
+  int state_;
+  uint32_t queue_depth_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_zss_5fcmd_2eproto;
+};
+// -------------------------------------------------------------------
+
+class MotionExecutionAck final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:ZSS.New.MotionExecutionAck) */ {
+ public:
+  inline MotionExecutionAck() : MotionExecutionAck(nullptr) {}
+  ~MotionExecutionAck() override;
+  explicit PROTOBUF_CONSTEXPR MotionExecutionAck(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  MotionExecutionAck(const MotionExecutionAck& from);
+  MotionExecutionAck(MotionExecutionAck&& from) noexcept
+    : MotionExecutionAck() {
+    *this = ::std::move(from);
+  }
+
+  inline MotionExecutionAck& operator=(const MotionExecutionAck& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MotionExecutionAck& operator=(MotionExecutionAck&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MotionExecutionAck& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MotionExecutionAck* internal_default_instance() {
+    return reinterpret_cast<const MotionExecutionAck*>(
+               &_MotionExecutionAck_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    16;
+
+  friend void swap(MotionExecutionAck& a, MotionExecutionAck& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MotionExecutionAck* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MotionExecutionAck* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MotionExecutionAck* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<MotionExecutionAck>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const MotionExecutionAck& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const MotionExecutionAck& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MotionExecutionAck* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "ZSS.New.MotionExecutionAck";
+  }
+  protected:
+  explicit MotionExecutionAck(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kWorldSessionIdFieldNumber = 1,
+    kProducerSessionIdFieldNumber = 2,
+    kKickSequenceFieldNumber = 3,
+    kAckSequenceFieldNumber = 4,
+  };
+  // uint32 world_session_id = 1;
+  void clear_world_session_id();
+  uint32_t world_session_id() const;
+  void set_world_session_id(uint32_t value);
+  private:
+  uint32_t _internal_world_session_id() const;
+  void _internal_set_world_session_id(uint32_t value);
+  public:
+
+  // uint32 producer_session_id = 2;
+  void clear_producer_session_id();
+  uint32_t producer_session_id() const;
+  void set_producer_session_id(uint32_t value);
+  private:
+  uint32_t _internal_producer_session_id() const;
+  void _internal_set_producer_session_id(uint32_t value);
+  public:
+
+  // uint32 kick_sequence = 3;
+  void clear_kick_sequence();
+  uint32_t kick_sequence() const;
+  void set_kick_sequence(uint32_t value);
+  private:
+  uint32_t _internal_kick_sequence() const;
+  void _internal_set_kick_sequence(uint32_t value);
+  public:
+
+  // uint32 ack_sequence = 4;
+  void clear_ack_sequence();
+  uint32_t ack_sequence() const;
+  void set_ack_sequence(uint32_t value);
+  private:
+  uint32_t _internal_ack_sequence() const;
+  void _internal_set_ack_sequence(uint32_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:ZSS.New.MotionExecutionAck)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  uint32_t world_session_id_;
+  uint32_t producer_session_id_;
+  uint32_t kick_sequence_;
+  uint32_t ack_sequence_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_zss_5fcmd_2eproto;
+};
+// -------------------------------------------------------------------
+
+class MotionCapabilityDeclaration final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:ZSS.New.MotionCapabilityDeclaration) */ {
+ public:
+  inline MotionCapabilityDeclaration() : MotionCapabilityDeclaration(nullptr) {}
+  ~MotionCapabilityDeclaration() override;
+  explicit PROTOBUF_CONSTEXPR MotionCapabilityDeclaration(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  MotionCapabilityDeclaration(const MotionCapabilityDeclaration& from);
+  MotionCapabilityDeclaration(MotionCapabilityDeclaration&& from) noexcept
+    : MotionCapabilityDeclaration() {
+    *this = ::std::move(from);
+  }
+
+  inline MotionCapabilityDeclaration& operator=(const MotionCapabilityDeclaration& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MotionCapabilityDeclaration& operator=(MotionCapabilityDeclaration&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MotionCapabilityDeclaration& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const MotionCapabilityDeclaration* internal_default_instance() {
+    return reinterpret_cast<const MotionCapabilityDeclaration*>(
+               &_MotionCapabilityDeclaration_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    17;
+
+  friend void swap(MotionCapabilityDeclaration& a, MotionCapabilityDeclaration& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(MotionCapabilityDeclaration* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MotionCapabilityDeclaration* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MotionCapabilityDeclaration* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<MotionCapabilityDeclaration>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const MotionCapabilityDeclaration& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const MotionCapabilityDeclaration& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message* to, const ::PROTOBUF_NAMESPACE_ID::Message& from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(MotionCapabilityDeclaration* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "ZSS.New.MotionCapabilityDeclaration";
+  }
+  protected:
+  explicit MotionCapabilityDeclaration(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kCapabilityBitsFieldNumber = 1,
+    kWorldSessionIdFieldNumber = 2,
+  };
+  // uint32 capability_bits = 1;
+  void clear_capability_bits();
+  uint32_t capability_bits() const;
+  void set_capability_bits(uint32_t value);
+  private:
+  uint32_t _internal_capability_bits() const;
+  void _internal_set_capability_bits(uint32_t value);
+  public:
+
+  // uint32 world_session_id = 2;
+  void clear_world_session_id();
+  uint32_t world_session_id() const;
+  void set_world_session_id(uint32_t value);
+  private:
+  uint32_t _internal_world_session_id() const;
+  void _internal_set_world_session_id(uint32_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:ZSS.New.MotionCapabilityDeclaration)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  uint32_t capability_bits_;
+  uint32_t world_session_id_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_zss_5fcmd_2eproto;
 };
@@ -4170,7 +4888,7 @@ class MotionTrackingConfig final :
                &_MotionTrackingConfig_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    18;
 
   friend void swap(MotionTrackingConfig& a, MotionTrackingConfig& b) {
     a.Swap(&b);
@@ -4368,7 +5086,7 @@ class MotionConfigV2 final :
                &_MotionConfigV2_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    19;
 
   friend void swap(MotionConfigV2& a, MotionConfigV2& b) {
     a.Swap(&b);
@@ -7307,6 +8025,186 @@ inline void MotionCommandV2::set_dribble_torque_ff_nm(float value) {
   // @@protoc_insertion_point(field_set:ZSS.New.MotionCommandV2.dribble_torque_ff_nm)
 }
 
+// .ZSS.New.MotionExecutionAck execution_ack = 42;
+inline bool MotionCommandV2::_internal_has_execution_ack() const {
+  return this != internal_default_instance() && execution_ack_ != nullptr;
+}
+inline bool MotionCommandV2::has_execution_ack() const {
+  return _internal_has_execution_ack();
+}
+inline void MotionCommandV2::clear_execution_ack() {
+  if (GetArenaForAllocation() == nullptr && execution_ack_ != nullptr) {
+    delete execution_ack_;
+  }
+  execution_ack_ = nullptr;
+}
+inline const ::ZSS::New::MotionExecutionAck& MotionCommandV2::_internal_execution_ack() const {
+  const ::ZSS::New::MotionExecutionAck* p = execution_ack_;
+  return p != nullptr ? *p : reinterpret_cast<const ::ZSS::New::MotionExecutionAck&>(
+      ::ZSS::New::_MotionExecutionAck_default_instance_);
+}
+inline const ::ZSS::New::MotionExecutionAck& MotionCommandV2::execution_ack() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.MotionCommandV2.execution_ack)
+  return _internal_execution_ack();
+}
+inline void MotionCommandV2::unsafe_arena_set_allocated_execution_ack(
+    ::ZSS::New::MotionExecutionAck* execution_ack) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(execution_ack_);
+  }
+  execution_ack_ = execution_ack;
+  if (execution_ack) {
+
+  } else {
+
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:ZSS.New.MotionCommandV2.execution_ack)
+}
+inline ::ZSS::New::MotionExecutionAck* MotionCommandV2::release_execution_ack() {
+
+  ::ZSS::New::MotionExecutionAck* temp = execution_ack_;
+  execution_ack_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::ZSS::New::MotionExecutionAck* MotionCommandV2::unsafe_arena_release_execution_ack() {
+  // @@protoc_insertion_point(field_release:ZSS.New.MotionCommandV2.execution_ack)
+
+  ::ZSS::New::MotionExecutionAck* temp = execution_ack_;
+  execution_ack_ = nullptr;
+  return temp;
+}
+inline ::ZSS::New::MotionExecutionAck* MotionCommandV2::_internal_mutable_execution_ack() {
+
+  if (execution_ack_ == nullptr) {
+    auto* p = CreateMaybeMessage<::ZSS::New::MotionExecutionAck>(GetArenaForAllocation());
+    execution_ack_ = p;
+  }
+  return execution_ack_;
+}
+inline ::ZSS::New::MotionExecutionAck* MotionCommandV2::mutable_execution_ack() {
+  ::ZSS::New::MotionExecutionAck* _msg = _internal_mutable_execution_ack();
+  // @@protoc_insertion_point(field_mutable:ZSS.New.MotionCommandV2.execution_ack)
+  return _msg;
+}
+inline void MotionCommandV2::set_allocated_execution_ack(::ZSS::New::MotionExecutionAck* execution_ack) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete execution_ack_;
+  }
+  if (execution_ack) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(execution_ack);
+    if (message_arena != submessage_arena) {
+      execution_ack = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, execution_ack, submessage_arena);
+    }
+
+  } else {
+
+  }
+  execution_ack_ = execution_ack;
+  // @@protoc_insertion_point(field_set_allocated:ZSS.New.MotionCommandV2.execution_ack)
+}
+
+// .ZSS.New.MotionCapabilityDeclaration match_capability = 43;
+inline bool MotionCommandV2::_internal_has_match_capability() const {
+  return this != internal_default_instance() && match_capability_ != nullptr;
+}
+inline bool MotionCommandV2::has_match_capability() const {
+  return _internal_has_match_capability();
+}
+inline void MotionCommandV2::clear_match_capability() {
+  if (GetArenaForAllocation() == nullptr && match_capability_ != nullptr) {
+    delete match_capability_;
+  }
+  match_capability_ = nullptr;
+}
+inline const ::ZSS::New::MotionCapabilityDeclaration& MotionCommandV2::_internal_match_capability() const {
+  const ::ZSS::New::MotionCapabilityDeclaration* p = match_capability_;
+  return p != nullptr ? *p : reinterpret_cast<const ::ZSS::New::MotionCapabilityDeclaration&>(
+      ::ZSS::New::_MotionCapabilityDeclaration_default_instance_);
+}
+inline const ::ZSS::New::MotionCapabilityDeclaration& MotionCommandV2::match_capability() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.MotionCommandV2.match_capability)
+  return _internal_match_capability();
+}
+inline void MotionCommandV2::unsafe_arena_set_allocated_match_capability(
+    ::ZSS::New::MotionCapabilityDeclaration* match_capability) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(match_capability_);
+  }
+  match_capability_ = match_capability;
+  if (match_capability) {
+
+  } else {
+
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:ZSS.New.MotionCommandV2.match_capability)
+}
+inline ::ZSS::New::MotionCapabilityDeclaration* MotionCommandV2::release_match_capability() {
+
+  ::ZSS::New::MotionCapabilityDeclaration* temp = match_capability_;
+  match_capability_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::ZSS::New::MotionCapabilityDeclaration* MotionCommandV2::unsafe_arena_release_match_capability() {
+  // @@protoc_insertion_point(field_release:ZSS.New.MotionCommandV2.match_capability)
+
+  ::ZSS::New::MotionCapabilityDeclaration* temp = match_capability_;
+  match_capability_ = nullptr;
+  return temp;
+}
+inline ::ZSS::New::MotionCapabilityDeclaration* MotionCommandV2::_internal_mutable_match_capability() {
+
+  if (match_capability_ == nullptr) {
+    auto* p = CreateMaybeMessage<::ZSS::New::MotionCapabilityDeclaration>(GetArenaForAllocation());
+    match_capability_ = p;
+  }
+  return match_capability_;
+}
+inline ::ZSS::New::MotionCapabilityDeclaration* MotionCommandV2::mutable_match_capability() {
+  ::ZSS::New::MotionCapabilityDeclaration* _msg = _internal_mutable_match_capability();
+  // @@protoc_insertion_point(field_mutable:ZSS.New.MotionCommandV2.match_capability)
+  return _msg;
+}
+inline void MotionCommandV2::set_allocated_match_capability(::ZSS::New::MotionCapabilityDeclaration* match_capability) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete match_capability_;
+  }
+  if (match_capability) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(match_capability);
+    if (message_arena != submessage_arena) {
+      match_capability = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, match_capability, submessage_arena);
+    }
+
+  } else {
+
+  }
+  match_capability_ = match_capability;
+  // @@protoc_insertion_point(field_set_allocated:ZSS.New.MotionCommandV2.match_capability)
+}
+
 // -------------------------------------------------------------------
 
 // VisionObservationV2
@@ -8837,6 +9735,518 @@ inline void MotionFeedbackV2::set_protocol_version(uint32_t value) {
   // @@protoc_insertion_point(field_set:ZSS.New.MotionFeedbackV2.protocol_version)
 }
 
+// .ZSS.New.MotionExecutionFeedback execution_feedback = 42;
+inline bool MotionFeedbackV2::_internal_has_execution_feedback() const {
+  return this != internal_default_instance() && execution_feedback_ != nullptr;
+}
+inline bool MotionFeedbackV2::has_execution_feedback() const {
+  return _internal_has_execution_feedback();
+}
+inline void MotionFeedbackV2::clear_execution_feedback() {
+  if (GetArenaForAllocation() == nullptr && execution_feedback_ != nullptr) {
+    delete execution_feedback_;
+  }
+  execution_feedback_ = nullptr;
+}
+inline const ::ZSS::New::MotionExecutionFeedback& MotionFeedbackV2::_internal_execution_feedback() const {
+  const ::ZSS::New::MotionExecutionFeedback* p = execution_feedback_;
+  return p != nullptr ? *p : reinterpret_cast<const ::ZSS::New::MotionExecutionFeedback&>(
+      ::ZSS::New::_MotionExecutionFeedback_default_instance_);
+}
+inline const ::ZSS::New::MotionExecutionFeedback& MotionFeedbackV2::execution_feedback() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.MotionFeedbackV2.execution_feedback)
+  return _internal_execution_feedback();
+}
+inline void MotionFeedbackV2::unsafe_arena_set_allocated_execution_feedback(
+    ::ZSS::New::MotionExecutionFeedback* execution_feedback) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(execution_feedback_);
+  }
+  execution_feedback_ = execution_feedback;
+  if (execution_feedback) {
+
+  } else {
+
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:ZSS.New.MotionFeedbackV2.execution_feedback)
+}
+inline ::ZSS::New::MotionExecutionFeedback* MotionFeedbackV2::release_execution_feedback() {
+
+  ::ZSS::New::MotionExecutionFeedback* temp = execution_feedback_;
+  execution_feedback_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::ZSS::New::MotionExecutionFeedback* MotionFeedbackV2::unsafe_arena_release_execution_feedback() {
+  // @@protoc_insertion_point(field_release:ZSS.New.MotionFeedbackV2.execution_feedback)
+
+  ::ZSS::New::MotionExecutionFeedback* temp = execution_feedback_;
+  execution_feedback_ = nullptr;
+  return temp;
+}
+inline ::ZSS::New::MotionExecutionFeedback* MotionFeedbackV2::_internal_mutable_execution_feedback() {
+
+  if (execution_feedback_ == nullptr) {
+    auto* p = CreateMaybeMessage<::ZSS::New::MotionExecutionFeedback>(GetArenaForAllocation());
+    execution_feedback_ = p;
+  }
+  return execution_feedback_;
+}
+inline ::ZSS::New::MotionExecutionFeedback* MotionFeedbackV2::mutable_execution_feedback() {
+  ::ZSS::New::MotionExecutionFeedback* _msg = _internal_mutable_execution_feedback();
+  // @@protoc_insertion_point(field_mutable:ZSS.New.MotionFeedbackV2.execution_feedback)
+  return _msg;
+}
+inline void MotionFeedbackV2::set_allocated_execution_feedback(::ZSS::New::MotionExecutionFeedback* execution_feedback) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete execution_feedback_;
+  }
+  if (execution_feedback) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(execution_feedback);
+    if (message_arena != submessage_arena) {
+      execution_feedback = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, execution_feedback, submessage_arena);
+    }
+
+  } else {
+
+  }
+  execution_feedback_ = execution_feedback;
+  // @@protoc_insertion_point(field_set_allocated:ZSS.New.MotionFeedbackV2.execution_feedback)
+}
+
+// .ZSS.New.MotionCapabilityDeclaration match_capability = 43;
+inline bool MotionFeedbackV2::_internal_has_match_capability() const {
+  return this != internal_default_instance() && match_capability_ != nullptr;
+}
+inline bool MotionFeedbackV2::has_match_capability() const {
+  return _internal_has_match_capability();
+}
+inline void MotionFeedbackV2::clear_match_capability() {
+  if (GetArenaForAllocation() == nullptr && match_capability_ != nullptr) {
+    delete match_capability_;
+  }
+  match_capability_ = nullptr;
+}
+inline const ::ZSS::New::MotionCapabilityDeclaration& MotionFeedbackV2::_internal_match_capability() const {
+  const ::ZSS::New::MotionCapabilityDeclaration* p = match_capability_;
+  return p != nullptr ? *p : reinterpret_cast<const ::ZSS::New::MotionCapabilityDeclaration&>(
+      ::ZSS::New::_MotionCapabilityDeclaration_default_instance_);
+}
+inline const ::ZSS::New::MotionCapabilityDeclaration& MotionFeedbackV2::match_capability() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.MotionFeedbackV2.match_capability)
+  return _internal_match_capability();
+}
+inline void MotionFeedbackV2::unsafe_arena_set_allocated_match_capability(
+    ::ZSS::New::MotionCapabilityDeclaration* match_capability) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(match_capability_);
+  }
+  match_capability_ = match_capability;
+  if (match_capability) {
+
+  } else {
+
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:ZSS.New.MotionFeedbackV2.match_capability)
+}
+inline ::ZSS::New::MotionCapabilityDeclaration* MotionFeedbackV2::release_match_capability() {
+
+  ::ZSS::New::MotionCapabilityDeclaration* temp = match_capability_;
+  match_capability_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::ZSS::New::MotionCapabilityDeclaration* MotionFeedbackV2::unsafe_arena_release_match_capability() {
+  // @@protoc_insertion_point(field_release:ZSS.New.MotionFeedbackV2.match_capability)
+
+  ::ZSS::New::MotionCapabilityDeclaration* temp = match_capability_;
+  match_capability_ = nullptr;
+  return temp;
+}
+inline ::ZSS::New::MotionCapabilityDeclaration* MotionFeedbackV2::_internal_mutable_match_capability() {
+
+  if (match_capability_ == nullptr) {
+    auto* p = CreateMaybeMessage<::ZSS::New::MotionCapabilityDeclaration>(GetArenaForAllocation());
+    match_capability_ = p;
+  }
+  return match_capability_;
+}
+inline ::ZSS::New::MotionCapabilityDeclaration* MotionFeedbackV2::mutable_match_capability() {
+  ::ZSS::New::MotionCapabilityDeclaration* _msg = _internal_mutable_match_capability();
+  // @@protoc_insertion_point(field_mutable:ZSS.New.MotionFeedbackV2.match_capability)
+  return _msg;
+}
+inline void MotionFeedbackV2::set_allocated_match_capability(::ZSS::New::MotionCapabilityDeclaration* match_capability) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete match_capability_;
+  }
+  if (match_capability) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(match_capability);
+    if (message_arena != submessage_arena) {
+      match_capability = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, match_capability, submessage_arena);
+    }
+
+  } else {
+
+  }
+  match_capability_ = match_capability;
+  // @@protoc_insertion_point(field_set_allocated:ZSS.New.MotionFeedbackV2.match_capability)
+}
+
+// -------------------------------------------------------------------
+
+// MotionExecutionFeedback
+
+// uint32 feedback_sequence = 1;
+inline void MotionExecutionFeedback::clear_feedback_sequence() {
+  feedback_sequence_ = 0u;
+}
+inline uint32_t MotionExecutionFeedback::_internal_feedback_sequence() const {
+  return feedback_sequence_;
+}
+inline uint32_t MotionExecutionFeedback::feedback_sequence() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.MotionExecutionFeedback.feedback_sequence)
+  return _internal_feedback_sequence();
+}
+inline void MotionExecutionFeedback::_internal_set_feedback_sequence(uint32_t value) {
+
+  feedback_sequence_ = value;
+}
+inline void MotionExecutionFeedback::set_feedback_sequence(uint32_t value) {
+  _internal_set_feedback_sequence(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.MotionExecutionFeedback.feedback_sequence)
+}
+
+// uint32 world_session_id = 2;
+inline void MotionExecutionFeedback::clear_world_session_id() {
+  world_session_id_ = 0u;
+}
+inline uint32_t MotionExecutionFeedback::_internal_world_session_id() const {
+  return world_session_id_;
+}
+inline uint32_t MotionExecutionFeedback::world_session_id() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.MotionExecutionFeedback.world_session_id)
+  return _internal_world_session_id();
+}
+inline void MotionExecutionFeedback::_internal_set_world_session_id(uint32_t value) {
+
+  world_session_id_ = value;
+}
+inline void MotionExecutionFeedback::set_world_session_id(uint32_t value) {
+  _internal_set_world_session_id(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.MotionExecutionFeedback.world_session_id)
+}
+
+// uint32 placement_generation = 3;
+inline void MotionExecutionFeedback::clear_placement_generation() {
+  placement_generation_ = 0u;
+}
+inline uint32_t MotionExecutionFeedback::_internal_placement_generation() const {
+  return placement_generation_;
+}
+inline uint32_t MotionExecutionFeedback::placement_generation() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.MotionExecutionFeedback.placement_generation)
+  return _internal_placement_generation();
+}
+inline void MotionExecutionFeedback::_internal_set_placement_generation(uint32_t value) {
+
+  placement_generation_ = value;
+}
+inline void MotionExecutionFeedback::set_placement_generation(uint32_t value) {
+  _internal_set_placement_generation(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.MotionExecutionFeedback.placement_generation)
+}
+
+// uint32 producer_session_id = 4;
+inline void MotionExecutionFeedback::clear_producer_session_id() {
+  producer_session_id_ = 0u;
+}
+inline uint32_t MotionExecutionFeedback::_internal_producer_session_id() const {
+  return producer_session_id_;
+}
+inline uint32_t MotionExecutionFeedback::producer_session_id() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.MotionExecutionFeedback.producer_session_id)
+  return _internal_producer_session_id();
+}
+inline void MotionExecutionFeedback::_internal_set_producer_session_id(uint32_t value) {
+
+  producer_session_id_ = value;
+}
+inline void MotionExecutionFeedback::set_producer_session_id(uint32_t value) {
+  _internal_set_producer_session_id(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.MotionExecutionFeedback.producer_session_id)
+}
+
+// uint32 kick_sequence = 5;
+inline void MotionExecutionFeedback::clear_kick_sequence() {
+  kick_sequence_ = 0u;
+}
+inline uint32_t MotionExecutionFeedback::_internal_kick_sequence() const {
+  return kick_sequence_;
+}
+inline uint32_t MotionExecutionFeedback::kick_sequence() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.MotionExecutionFeedback.kick_sequence)
+  return _internal_kick_sequence();
+}
+inline void MotionExecutionFeedback::_internal_set_kick_sequence(uint32_t value) {
+
+  kick_sequence_ = value;
+}
+inline void MotionExecutionFeedback::set_kick_sequence(uint32_t value) {
+  _internal_set_kick_sequence(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.MotionExecutionFeedback.kick_sequence)
+}
+
+// .ZSS.New.MotionKickEventType event_type = 6;
+inline void MotionExecutionFeedback::clear_event_type() {
+  event_type_ = 0;
+}
+inline ::ZSS::New::MotionKickEventType MotionExecutionFeedback::_internal_event_type() const {
+  return static_cast< ::ZSS::New::MotionKickEventType >(event_type_);
+}
+inline ::ZSS::New::MotionKickEventType MotionExecutionFeedback::event_type() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.MotionExecutionFeedback.event_type)
+  return _internal_event_type();
+}
+inline void MotionExecutionFeedback::_internal_set_event_type(::ZSS::New::MotionKickEventType value) {
+
+  event_type_ = value;
+}
+inline void MotionExecutionFeedback::set_event_type(::ZSS::New::MotionKickEventType value) {
+  _internal_set_event_type(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.MotionExecutionFeedback.event_type)
+}
+
+// uint32 discharge_us = 7;
+inline void MotionExecutionFeedback::clear_discharge_us() {
+  discharge_us_ = 0u;
+}
+inline uint32_t MotionExecutionFeedback::_internal_discharge_us() const {
+  return discharge_us_;
+}
+inline uint32_t MotionExecutionFeedback::discharge_us() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.MotionExecutionFeedback.discharge_us)
+  return _internal_discharge_us();
+}
+inline void MotionExecutionFeedback::_internal_set_discharge_us(uint32_t value) {
+
+  discharge_us_ = value;
+}
+inline void MotionExecutionFeedback::set_discharge_us(uint32_t value) {
+  _internal_set_discharge_us(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.MotionExecutionFeedback.discharge_us)
+}
+
+// uint64 executed_time_us = 8;
+inline void MotionExecutionFeedback::clear_executed_time_us() {
+  executed_time_us_ = uint64_t{0u};
+}
+inline uint64_t MotionExecutionFeedback::_internal_executed_time_us() const {
+  return executed_time_us_;
+}
+inline uint64_t MotionExecutionFeedback::executed_time_us() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.MotionExecutionFeedback.executed_time_us)
+  return _internal_executed_time_us();
+}
+inline void MotionExecutionFeedback::_internal_set_executed_time_us(uint64_t value) {
+
+  executed_time_us_ = value;
+}
+inline void MotionExecutionFeedback::set_executed_time_us(uint64_t value) {
+  _internal_set_executed_time_us(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.MotionExecutionFeedback.executed_time_us)
+}
+
+// .ZSS.New.MotionKickExecutionState state = 9;
+inline void MotionExecutionFeedback::clear_state() {
+  state_ = 0;
+}
+inline ::ZSS::New::MotionKickExecutionState MotionExecutionFeedback::_internal_state() const {
+  return static_cast< ::ZSS::New::MotionKickExecutionState >(state_);
+}
+inline ::ZSS::New::MotionKickExecutionState MotionExecutionFeedback::state() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.MotionExecutionFeedback.state)
+  return _internal_state();
+}
+inline void MotionExecutionFeedback::_internal_set_state(::ZSS::New::MotionKickExecutionState value) {
+
+  state_ = value;
+}
+inline void MotionExecutionFeedback::set_state(::ZSS::New::MotionKickExecutionState value) {
+  _internal_set_state(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.MotionExecutionFeedback.state)
+}
+
+// uint32 queue_depth = 10;
+inline void MotionExecutionFeedback::clear_queue_depth() {
+  queue_depth_ = 0u;
+}
+inline uint32_t MotionExecutionFeedback::_internal_queue_depth() const {
+  return queue_depth_;
+}
+inline uint32_t MotionExecutionFeedback::queue_depth() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.MotionExecutionFeedback.queue_depth)
+  return _internal_queue_depth();
+}
+inline void MotionExecutionFeedback::_internal_set_queue_depth(uint32_t value) {
+
+  queue_depth_ = value;
+}
+inline void MotionExecutionFeedback::set_queue_depth(uint32_t value) {
+  _internal_set_queue_depth(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.MotionExecutionFeedback.queue_depth)
+}
+
+// -------------------------------------------------------------------
+
+// MotionExecutionAck
+
+// uint32 world_session_id = 1;
+inline void MotionExecutionAck::clear_world_session_id() {
+  world_session_id_ = 0u;
+}
+inline uint32_t MotionExecutionAck::_internal_world_session_id() const {
+  return world_session_id_;
+}
+inline uint32_t MotionExecutionAck::world_session_id() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.MotionExecutionAck.world_session_id)
+  return _internal_world_session_id();
+}
+inline void MotionExecutionAck::_internal_set_world_session_id(uint32_t value) {
+
+  world_session_id_ = value;
+}
+inline void MotionExecutionAck::set_world_session_id(uint32_t value) {
+  _internal_set_world_session_id(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.MotionExecutionAck.world_session_id)
+}
+
+// uint32 producer_session_id = 2;
+inline void MotionExecutionAck::clear_producer_session_id() {
+  producer_session_id_ = 0u;
+}
+inline uint32_t MotionExecutionAck::_internal_producer_session_id() const {
+  return producer_session_id_;
+}
+inline uint32_t MotionExecutionAck::producer_session_id() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.MotionExecutionAck.producer_session_id)
+  return _internal_producer_session_id();
+}
+inline void MotionExecutionAck::_internal_set_producer_session_id(uint32_t value) {
+
+  producer_session_id_ = value;
+}
+inline void MotionExecutionAck::set_producer_session_id(uint32_t value) {
+  _internal_set_producer_session_id(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.MotionExecutionAck.producer_session_id)
+}
+
+// uint32 kick_sequence = 3;
+inline void MotionExecutionAck::clear_kick_sequence() {
+  kick_sequence_ = 0u;
+}
+inline uint32_t MotionExecutionAck::_internal_kick_sequence() const {
+  return kick_sequence_;
+}
+inline uint32_t MotionExecutionAck::kick_sequence() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.MotionExecutionAck.kick_sequence)
+  return _internal_kick_sequence();
+}
+inline void MotionExecutionAck::_internal_set_kick_sequence(uint32_t value) {
+
+  kick_sequence_ = value;
+}
+inline void MotionExecutionAck::set_kick_sequence(uint32_t value) {
+  _internal_set_kick_sequence(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.MotionExecutionAck.kick_sequence)
+}
+
+// uint32 ack_sequence = 4;
+inline void MotionExecutionAck::clear_ack_sequence() {
+  ack_sequence_ = 0u;
+}
+inline uint32_t MotionExecutionAck::_internal_ack_sequence() const {
+  return ack_sequence_;
+}
+inline uint32_t MotionExecutionAck::ack_sequence() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.MotionExecutionAck.ack_sequence)
+  return _internal_ack_sequence();
+}
+inline void MotionExecutionAck::_internal_set_ack_sequence(uint32_t value) {
+
+  ack_sequence_ = value;
+}
+inline void MotionExecutionAck::set_ack_sequence(uint32_t value) {
+  _internal_set_ack_sequence(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.MotionExecutionAck.ack_sequence)
+}
+
+// -------------------------------------------------------------------
+
+// MotionCapabilityDeclaration
+
+// uint32 capability_bits = 1;
+inline void MotionCapabilityDeclaration::clear_capability_bits() {
+  capability_bits_ = 0u;
+}
+inline uint32_t MotionCapabilityDeclaration::_internal_capability_bits() const {
+  return capability_bits_;
+}
+inline uint32_t MotionCapabilityDeclaration::capability_bits() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.MotionCapabilityDeclaration.capability_bits)
+  return _internal_capability_bits();
+}
+inline void MotionCapabilityDeclaration::_internal_set_capability_bits(uint32_t value) {
+
+  capability_bits_ = value;
+}
+inline void MotionCapabilityDeclaration::set_capability_bits(uint32_t value) {
+  _internal_set_capability_bits(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.MotionCapabilityDeclaration.capability_bits)
+}
+
+// uint32 world_session_id = 2;
+inline void MotionCapabilityDeclaration::clear_world_session_id() {
+  world_session_id_ = 0u;
+}
+inline uint32_t MotionCapabilityDeclaration::_internal_world_session_id() const {
+  return world_session_id_;
+}
+inline uint32_t MotionCapabilityDeclaration::world_session_id() const {
+  // @@protoc_insertion_point(field_get:ZSS.New.MotionCapabilityDeclaration.world_session_id)
+  return _internal_world_session_id();
+}
+inline void MotionCapabilityDeclaration::_internal_set_world_session_id(uint32_t value) {
+
+  world_session_id_ = value;
+}
+inline void MotionCapabilityDeclaration::set_world_session_id(uint32_t value) {
+  _internal_set_world_session_id(value);
+  // @@protoc_insertion_point(field_set:ZSS.New.MotionCapabilityDeclaration.world_session_id)
+}
+
 // -------------------------------------------------------------------
 
 // MotionTrackingConfig
@@ -9654,6 +11064,12 @@ inline void MotionConfigV2::set_allocated_tracking(::ZSS::New::MotionTrackingCon
 
 // -------------------------------------------------------------------
 
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 
@@ -9696,6 +11112,16 @@ template <> struct is_proto_enum< ::ZSS::New::MotionSafetyState> : ::std::true_t
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::ZSS::New::MotionSafetyState>() {
   return ::ZSS::New::MotionSafetyState_descriptor();
+}
+template <> struct is_proto_enum< ::ZSS::New::MotionKickEventType> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::ZSS::New::MotionKickEventType>() {
+  return ::ZSS::New::MotionKickEventType_descriptor();
+}
+template <> struct is_proto_enum< ::ZSS::New::MotionKickExecutionState> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::ZSS::New::MotionKickExecutionState>() {
+  return ::ZSS::New::MotionKickExecutionState_descriptor();
 }
 
 PROTOBUF_NAMESPACE_CLOSE
