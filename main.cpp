@@ -97,8 +97,13 @@ int main(int argc, char** argv) try {
             const auto size = ::recvfrom(fd, bytes, sizeof(bytes), 0, reinterpret_cast<sockaddr*>(&sender), &length);
             if (size < 0) break;
             ZSS::New::Robot_Command command;
-            if (command.ParseFromArray(bytes, size) && command.robot_id() == id &&
-                bridge.submitRobotCommand(command, nowUs())) {
+            if (!command.ParseFromArray(bytes, size) || command.robot_id() != id) continue;
+            // Only the loopback simulator shares Athena's monotonic clock.
+            const bool observation_only = unix_path && !command.has_motion_command() &&
+                                          command.has_vision_observation();
+            const auto received_us = nowUs();
+            if (observation_only ? bridge.submitLocalVision(command.vision_observation(), received_us)
+                                 : bridge.submitRobotCommand(command, received_us)) {
                 feedback_peer.sin_addr = sender.sin_addr; have_peer = true;
             }
         }

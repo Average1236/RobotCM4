@@ -11,6 +11,7 @@ namespace {
 // A retransmitted execution event must never extend the Medusa/Athena status
 // pulse beyond the window stamped by the FIRST observation of that event.
 constexpr motion::TimeUs kExecutionPulseWindowUs = 100000;
+constexpr motion::TimeUs kMaxVisionAgeUs = 80000;
 }  // namespace
 
 void Cm4MotionBridge::configure(const motion::MotionConfigV2& config,
@@ -149,6 +150,14 @@ bool Cm4MotionBridge::submitRobotCommand(const ZSS::New::Robot_Command& proto,
     return true;
 }
 
+bool Cm4MotionBridge::submitLocalVision(const ZSS::New::VisionObservationV2& proto,
+                                       motion::TimeUs receive_us) {
+    const auto vision = visionFromProto(proto);
+    if (!motion::validVision(vision) || vision.capture_time_us > receive_us ||
+        receive_us - vision.capture_time_us > kMaxVisionAgeUs) return false;
+    return submitVision(vision, receive_us);
+}
+
 bool Cm4MotionBridge::submitVision(const motion::VisionObservationV2& observation,
                                    motion::TimeUs now_us) {
     if (!observation.valid) return false;
@@ -197,7 +206,7 @@ bool Cm4MotionBridge::buildCommandFrame(motion::TimeUs now_us, std::uint8_t* fra
             buildDisabledCommand(now_us, &command);
         }
         if (has_vision_ && vision_.valid && now_us >= vision_.capture_time_us &&
-            now_us - vision_.capture_time_us <= motion::secondsToUs(0.08f)) {
+            now_us - vision_.capture_time_us <= kMaxVisionAgeUs) {
             if (vision_.sequence == 0 ||
                 vision_.sequence != last_attached_vision_sequence_ ||
                 vision_.capture_time_us != last_attached_vision_capture_) {

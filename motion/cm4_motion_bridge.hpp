@@ -34,6 +34,8 @@ public:
                             motion::TimeUs receive_us);
     // Production CM4 vision path (local time base).  Hosts may also use the
     // embedded vision field of submitRobotCommand.
+    bool submitLocalVision(const ZSS::New::VisionObservationV2& observation,
+                           motion::TimeUs receive_us);
     bool submitVision(const motion::VisionObservationV2& observation,
                       motion::TimeUs now_us);
 
